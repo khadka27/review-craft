@@ -9,7 +9,7 @@
 
 Generate realistic, authentic-looking social media reviews with AI-powered content and platform-specific styling. Perfect for mockups, presentations, educational purposes, and design prototypes.
 
-![ReviewCraft Demo](/images/logo/logo.png)
+![ReviewCraft Demo](/logo/logo.png)
 
 ## ✨ Features
 
