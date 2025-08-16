@@ -34,7 +34,7 @@ const fetchRandomUser = async (
   try {
     const genderParam = gender ? `?gender=${gender}` : "";
     const response = await axios.get<RandomUserResponse>(
-      `https://randomuser.me/api/${genderParam}`
+      `${process.env.RANDOM_USER_API_URL}/${genderParam}`
     );
     return response.data.results[0] || null;
   } catch (error) {
@@ -474,7 +474,7 @@ export const generateRandomReviewData = async (
     username,
     avatar:
       user.picture.large ||
-      `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      `${process.env.UI_AVATARS_API_URL}/?name=${encodeURIComponent(
         firstName + " " + lastName
       )}&background=random`,
     gender: gender,
