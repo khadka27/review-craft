@@ -1,7 +1,32 @@
 {
-  "name": "fake-review-generator-nextjs",
-  "version": "0.1.0",
-  "private": true,
+  "name": "review-craft",
+  "version": "1.0.0",
+  "description": "AI-Powered Social Media Review Generator - Create realistic reviews for educational purposes",
+  "author": {
+    "name": "Abishek Khadka",
+    "email": "khadka27@example.com",
+    "url": "https://github.com/khadka27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khadka27/review-craft.git"
+  },
+  "homepage": "https://github.com/khadka27/review-craft",
+  "bugs": {
+    "url": "https://github.com/khadka27/review-craft/issues"
+  },
+  "keywords": [
+    "review-generator",
+    "social-media",
+    "mockup",
+    "nextjs",
+    "react",
+    "typescript",
+    "educational",
+    "design-tools"
+  ],
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
