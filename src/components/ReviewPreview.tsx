@@ -1,0 +1,203 @@
+import { ReviewData } from "@/types/review";
+import { RedditReview } from "./platforms/RedditReview";
+import { TwitterReview } from "./platforms/TwitterReview";
+import { InstagramReview } from "./platforms/InstagramReview";
+import { TrustpilotReview } from "./platforms/TrustpilotReview";
+import { FacebookReview } from "./platforms/FacebookReview";
+import { YelpReview } from "./platforms/YelpReview";
+import { AmazonReview } from "./platforms/AmazonReview";
+import { NetflixReview } from "./platforms/NetflixReview";
+import { SpotifyReview } from "./platforms/SpotifyReview";
+import { YoutubeReview } from "./platforms/YoutubeReview";
+import { LinkedinReview } from "./platforms/LinkedinReview";
+import { TiktokReview } from "./platforms/TiktokReview";
+import { DiscordReview } from "./platforms/DiscordReview";
+import { SteamReview } from "./platforms/SteamReview";
+import { ImdbReview } from "./platforms/ImdbReview";
+import { Download, Copy, RefreshCw, Loader2 } from "lucide-react";
+import { downloadReviewAsImage, copyToClipboard } from "@/utils/downloadUtils";
+import { useState } from "react";
+
+interface ReviewPreviewProps {
+  reviewData: ReviewData;
+  onRefresh: () => void;
+}
+
+export const ReviewPreview = ({
+  reviewData,
+  onRefresh,
+}: ReviewPreviewProps) => {
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [isCopying, setIsCopying] = useState(false);
+
+  const renderPlatformReview = () => {
+    const props = { data: reviewData };
+
+    switch (reviewData.platform) {
+      case "reddit":
+        return <RedditReview {...props} />;
+      case "twitter":
+        return <TwitterReview {...props} />;
+      case "instagram":
+        return <InstagramReview {...props} />;
+      case "trustpilot":
+        return <TrustpilotReview {...props} />;
+      case "facebook":
+        return <FacebookReview {...props} />;
+      case "yelp":
+        return <YelpReview {...props} />;
+      case "amazon":
+        return <AmazonReview {...props} />;
+      case "netflix":
+        return <NetflixReview {...props} />;
+      case "spotify":
+        return <SpotifyReview {...props} />;
+      case "youtube":
+        return <YoutubeReview {...props} />;
+      case "linkedin":
+        return <LinkedinReview {...props} />;
+      case "tiktok":
+        return <TiktokReview {...props} />;
+      case "discord":
+        return <DiscordReview {...props} />;
+      case "steam":
+        return <SteamReview {...props} />;
+      case "imdb":
+        return <ImdbReview {...props} />;
+      default:
+        return <div>Platform not supported</div>;
+    }
+  };
+
+  const handleDownload = async (format: "png" | "jpeg" = "png") => {
+    if (isDownloading) return;
+
+    setIsDownloading(true);
+    try {
+      // Ensure the review data exists
+      if (!reviewData || !reviewData.platform) {
+        throw new Error("Review data is not available");
+      }
+
+      // Wait a bit longer to ensure component is fully rendered
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      await downloadReviewAsImage(
+        "review-preview",
+        `${reviewData.platform}-review`,
+        format
+      );
+
+      // Show success feedback
+      alert(`${format.toUpperCase()} downloaded successfully!`);
+
+      // Small delay to show success state
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    } catch (error) {
+      console.error("Failed to download image:", error);
+      const message =
+        error instanceof Error ? error.message : "Unknown error occurred";
+      alert(
+        `Download failed: ${message}. Please ensure the review is visible and try again.`
+      );
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    if (isCopying) return;
+
+    setIsCopying(true);
+    try {
+      await copyToClipboard("review-preview");
+      alert("Review copied to clipboard!");
+      // Small delay to show success state
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    } catch (error) {
+      console.error("Failed to copy to clipboard:", error);
+      const message =
+        error instanceof Error ? error.message : "Unknown error occurred";
+      alert(
+        `Copy failed: ${message}. Please ensure your browser supports clipboard access.`
+      );
+    } finally {
+      setIsCopying(false);
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-gray-800">Preview</h2>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onRefresh}
+            className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-200"
+          >
+            <RefreshCw size={16} />
+            Refresh
+          </button>
+          <button
+            onClick={handleCopy}
+            disabled={isCopying}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          >
+            {isCopying ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              <Copy size={16} />
+            )}
+            {isCopying ? "Copying..." : "Copy"}
+          </button>
+          <div className="relative group">
+            <button
+              onClick={() => handleDownload("png")}
+              disabled={isDownloading}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105"
+            >
+              {isDownloading ? (
+                <Loader2 size={16} className="animate-spin" />
+              ) : (
+                <Download size={16} />
+              )}
+              {isDownloading ? "Downloading..." : "Download"}
+            </button>
+            <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 min-w-full">
+              <button
+                onClick={() => handleDownload("png")}
+                disabled={isDownloading}
+                className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                PNG
+              </button>
+              <button
+                onClick={() => handleDownload("jpeg")}
+                disabled={isDownloading}
+                className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                JPEG
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex justify-center">
+        <div
+          id="review-preview"
+          className="inline-block"
+          style={{
+            minWidth: "400px",
+            maxWidth: "800px",
+            backgroundColor: "white",
+            padding: "0",
+            margin: "0",
+          }}
+        >
+          {renderPlatformReview()}
+        </div>
+      </div>
+    </div>
+  );
+};
