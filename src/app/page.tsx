@@ -58,16 +58,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-                <Sparkles className="text-white" size={20} />
-              </div>
               <div>
                 <Image
-                  src="/images/logo.png"
+                  src="/logo/logo.png"
                   alt="ReviewCraft Logo"
-                  width={200}
-                  height={32}
-                  className="h-8 w-auto"
+                  width={250}
+                  height={40}
+                  className="h-10 w-auto"
                   unoptimized
                 />
               </div>

@@ -33,8 +33,11 @@ const fetchRandomUser = async (
 ): Promise<RandomUserResponse["results"][0] | null> => {
   try {
     const genderParam = gender ? `?gender=${gender}` : "";
+    const apiUrl =
+      process.env.NEXT_PUBLIC_RANDOM_USER_API_URL ||
+      "https://randomuser.me/api";
     const response = await axios.get<RandomUserResponse>(
-      `${process.env.RANDOM_USER_API_URL}/${genderParam}`
+      `${apiUrl}${genderParam}`
     );
     return response.data.results[0] || null;
   } catch (error) {
@@ -474,7 +477,10 @@ export const generateRandomReviewData = async (
     username,
     avatar:
       user.picture.large ||
-      `${process.env.UI_AVATARS_API_URL}/?name=${encodeURIComponent(
+      `${
+        process.env.NEXT_PUBLIC_UI_AVATARS_API_URL ||
+        "https://ui-avatars.com/api"
+      }/?name=${encodeURIComponent(
         firstName + " " + lastName
       )}&background=random`,
     gender: gender,
