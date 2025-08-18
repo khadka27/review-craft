@@ -97,8 +97,23 @@ export const ReviewPreview = ({
       console.error("Failed to download image:", error);
       const message =
         error instanceof Error ? error.message : "Unknown error occurred";
+
+      // Provide more helpful error messages based on common issues
+      let userMessage = `Download failed: ${message}`;
+
+      if (message.includes("CORS") || message.includes("cross-origin")) {
+        userMessage =
+          "Download failed due to image loading restrictions. The image will be generated with a fallback avatar.";
+      } else if (message.includes("network") || message.includes("timeout")) {
+        userMessage =
+          "Download failed due to network issues. Please check your connection and try again.";
+      } else if (message.includes("tainted") || message.includes("security")) {
+        userMessage =
+          "Download completed with a generated avatar due to browser security restrictions.";
+      }
+
       alert(
-        `Download failed: ${message}. Please ensure the review is visible and try again.`
+        `${userMessage}\n\nTip: Try refreshing the review to generate new images, or check your internet connection.`
       );
     } finally {
       setIsDownloading(false);

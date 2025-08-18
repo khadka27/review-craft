@@ -482,7 +482,7 @@ export const generateRandomReviewData = async (
         "https://ui-avatars.com/api"
       }/?name=${encodeURIComponent(
         firstName + " " + lastName
-      )}&background=random`,
+      )}&background=random&format=png&size=128&color=ffffff`,
     gender: gender,
     platform,
     title,
