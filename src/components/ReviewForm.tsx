@@ -4,7 +4,17 @@ import {
   platformStyles,
 } from "@/utils/dataGenerator";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
-import { Shuffle, User, Calendar, MessageSquare, Star } from "lucide-react";
+import {
+  Shuffle,
+  User,
+  Calendar,
+  MessageSquare,
+  Star,
+  Upload,
+  X,
+  ImageIcon,
+} from "lucide-react";
+import { useState, useRef } from "react";
 
 interface ReviewFormProps {
   reviewData: ReviewData;
@@ -17,6 +27,14 @@ export const ReviewForm = ({
   onUpdate,
   onGenerateRandom,
 }: ReviewFormProps) => {
+  const [imageUrl, setImageUrl] = useState("");
+  const [avatarType, setAvatarType] = useState<"api" | "default" | "custom">(
+    "api"
+  );
+  const [customAvatarUrl, setCustomAvatarUrl] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const avatarInputRef = useRef<HTMLInputElement>(null);
+
   const handleInputChange = (field: keyof ReviewData, value: any) => {
     onUpdate({ [field]: value });
   };
@@ -25,6 +43,78 @@ export const ReviewForm = ({
     const randomData = await generateRandomReviewData(reviewData.platform);
     if (randomData[field] !== undefined) {
       onUpdate({ [field]: randomData[field] });
+    }
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      const currentImages = reviewData.images || [];
+      const newImages: string[] = [];
+
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const result = e.target?.result as string;
+          newImages.push(result);
+          if (newImages.length === files.length) {
+            const updatedImages = [...currentImages, ...newImages];
+            handleInputChange("images", updatedImages);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  };
+
+  const handleUrlAdd = () => {
+    if (imageUrl.trim()) {
+      const currentImages = reviewData.images || [];
+      const updatedImages = [...currentImages, imageUrl.trim()];
+      handleInputChange("images", updatedImages);
+      setImageUrl("");
+    }
+  };
+
+  const removeImage = (index: number) => {
+    const currentImages = reviewData.images || [];
+    const updatedImages = currentImages.filter((_, i) => i !== index);
+    handleInputChange("images", updatedImages);
+  };
+
+  const handleAvatarTypeChange = (type: "api" | "default" | "custom") => {
+    setAvatarType(type);
+    if (type === "default") {
+      handleInputChange("avatar", "/images/default-avatar.jpg");
+    } else if (type === "api") {
+      // Keep current API avatar or generate new one
+      if (
+        !reviewData.avatar ||
+        reviewData.avatar === "/images/default-avatar.jpg"
+      ) {
+        generateRandomForField("avatar");
+      }
+    }
+  };
+
+  const handleCustomAvatarUpload = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result as string;
+        setCustomAvatarUrl(result);
+        handleInputChange("avatar", result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCustomAvatarUrl = () => {
+    if (customAvatarUrl.trim()) {
+      handleInputChange("avatar", customAvatarUrl.trim());
     }
   };
 
@@ -80,6 +170,118 @@ export const ReviewForm = ({
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
+        </div>
+
+        {/* Avatar Selection */}
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-gray-700">
+            Avatar
+          </label>
+          <div className="space-y-3">
+            {/* Avatar Type Selection */}
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => handleAvatarTypeChange("api")}
+                className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                  avatarType === "api"
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                Generate API
+              </button>
+              <button
+                type="button"
+                onClick={() => handleAvatarTypeChange("default")}
+                className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                  avatarType === "default"
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                Default Avatar
+              </button>
+              <button
+                type="button"
+                onClick={() => handleAvatarTypeChange("custom")}
+                className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                  avatarType === "custom"
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                Custom
+              </button>
+            </div>
+
+            {/* Avatar Preview */}
+            <div className="flex items-center gap-3">
+              <img
+                src={reviewData.avatar}
+                alt="Avatar preview"
+                className="w-12 h-12 rounded-full border border-gray-300 object-cover"
+              />
+              <div className="text-sm text-gray-600">
+                Current avatar preview
+              </div>
+            </div>
+
+            {/* Custom Avatar Options */}
+            {avatarType === "custom" && (
+              <div className="space-y-2">
+                {/* File Upload */}
+                <div className="flex gap-2">
+                  <input
+                    type="file"
+                    ref={avatarInputRef}
+                    onChange={handleCustomAvatarUpload}
+                    accept="image/*"
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => avatarInputRef.current?.click()}
+                    className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    <Upload size={16} />
+                    Upload Avatar
+                  </button>
+                </div>
+
+                {/* URL Input */}
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={customAvatarUrl}
+                    onChange={(e) => setCustomAvatarUrl(e.target.value)}
+                    placeholder="Or paste avatar URL"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleCustomAvatarUrl}
+                    disabled={!customAvatarUrl.trim()}
+                    className="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  >
+                    Set
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Generate New API Avatar Button */}
+            {avatarType === "api" && (
+              <button
+                type="button"
+                onClick={() => generateRandomForField("avatar")}
+                className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                <User size={16} />
+                Generate New Avatar
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Name Input */}
@@ -227,6 +429,85 @@ export const ReviewForm = ({
           {reviewData.content.length}/
           {platformStyles[reviewData.platform].maxLength}
         </div>
+      </div>
+
+      {/* Image Upload Section */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <ImageIcon size={18} className="text-gray-600" />
+          <label className="block text-sm font-semibold text-gray-700">
+            Review Images (Optional)
+          </label>
+        </div>
+
+        {/* Upload Controls */}
+        <div className="flex flex-col gap-3">
+          {/* File Upload */}
+          <div className="flex gap-2">
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileUpload}
+              multiple
+              accept="image/*"
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <Upload size={16} />
+              Upload Images
+            </button>
+          </div>
+
+          {/* URL Input */}
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              placeholder="Or paste image URL"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            />
+            <button
+              type="button"
+              onClick={handleUrlAdd}
+              disabled={!imageUrl.trim()}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+
+        {/* Display Uploaded Images */}
+        {reviewData.images && reviewData.images.length > 0 && (
+          <div className="space-y-2">
+            <p className="text-xs text-gray-500">
+              {reviewData.images.length} image(s) added
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {reviewData.images.map((image, index) => (
+                <div key={`${image}-${index}`} className="relative group">
+                  <img
+                    src={image}
+                    alt={`Review ${index + 1}`}
+                    className="w-16 h-16 object-cover rounded-lg border border-gray-300 shadow-sm"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeImage(index)}
+                    className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Engagement Metrics (if platform supports it) */}

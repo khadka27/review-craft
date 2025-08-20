@@ -1,6 +1,6 @@
-import { ReviewData } from '@/types/review';
-import { formatDistanceToNow } from 'date-fns';
-import { Star, ThumbsUp, Flag } from 'lucide-react';
+import { ReviewData } from "@/types/review";
+import { formatDistanceToNow } from "date-fns";
+import { Star, ThumbsUp, Share2 } from "lucide-react";
 
 interface TrustpilotReviewProps {
   data: ReviewData;
@@ -8,59 +8,65 @@ interface TrustpilotReviewProps {
 
 export const TrustpilotReview = ({ data }: TrustpilotReviewProps) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-2xl">
-      {/* Rating */}
-      <div className="flex items-center gap-2 mb-4">
-        <div className="flex items-center gap-1">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Star
-              key={star}
-              size={20}
-              className={star <= data.rating ? 'text-green-500 fill-current' : 'text-gray-300'}
-            />
-          ))}
+    <div className="bg-white border border-gray-200 rounded-lg p-4 max-w-md">
+      {/* Header with User Info */}
+      <div className="flex items-center gap-3 mb-3">
+        <div className="w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center">
+          <span className="text-lg font-bold text-gray-800">
+            {data.name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+              .slice(0, 2)
+              .toUpperCase()}
+          </span>
         </div>
-        <span className="text-sm text-gray-600">
-          {formatDistanceToNow(data.date, { addSuffix: true })}
-        </span>
-      </div>
-
-      {/* Title */}
-      <h3 className="text-xl font-bold text-gray-900 mb-3">{data.title}</h3>
-
-      {/* Content */}
-      <p className="text-gray-700 leading-relaxed mb-4">{data.content}</p>
-
-      {/* Footer */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-        <div className="flex items-center gap-3">
-          <img
-            src={data.avatar}
-            alt={data.name}
-            className="w-8 h-8 rounded-full"
-          />
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-medium text-gray-900">{data.name}</span>
-              {data.verified && (
-                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                  Verified
-                </span>
-              )}
-            </div>
-            <span className="text-xs text-gray-500">Customer</span>
+        <div>
+          <div className="font-medium text-gray-900">
+            {data.name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+              .slice(0, 2)
+              .toUpperCase()}
+          </div>
+          <div className="text-sm text-gray-500">
+            {formatDistanceToNow(data.date, { addSuffix: true })}
           </div>
         </div>
+      </div>
 
-        <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1 px-3 py-1 text-gray-600 hover:bg-gray-100 rounded transition-colors">
-            <ThumbsUp size={14} />
-            <span className="text-sm">Helpful</span>
-          </button>
-          <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
-            <Flag size={14} />
-          </button>
-        </div>
+      {/* Star Rating */}
+      <div className="flex items-center gap-1 mb-3">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <Star
+            key={star}
+            size={16}
+            className={
+              star <= data.rating
+                ? "text-red-500 fill-current"
+                : "text-gray-300 fill-current"
+            }
+          />
+        ))}
+      </div>
+
+      {/* Content */}
+      <p className="text-gray-800 text-sm leading-relaxed mb-4">
+        {data.content}
+      </p>
+
+      {/* Actions */}
+      <div className="flex items-center gap-4">
+        <button className="flex items-center gap-1 text-gray-600 hover:text-gray-800 transition-colors">
+          <ThumbsUp size={16} />
+          <span className="text-sm">Useful</span>
+        </button>
+
+        <button className="flex items-center gap-1 text-gray-600 hover:text-gray-800 transition-colors">
+          <Share2 size={16} />
+          <span className="text-sm">Share</span>
+        </button>
       </div>
     </div>
   );

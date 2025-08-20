@@ -1,77 +1,187 @@
-import { ReviewData } from '@/types/review';
-import { format } from 'date-fns';
-import { Star, ThumbsUp, ThumbsDown, Flag } from 'lucide-react';
+import { ReviewData } from "@/types/review";
+import { format } from "date-fns";
+import { Star, Upload, X } from "lucide-react";
+import { useState, useRef } from "react";
 
 interface AmazonReviewProps {
   data: ReviewData;
+  onImageAdd?: (images: string[]) => void;
+  allowImageUpload?: boolean;
 }
 
-export const AmazonReview = ({ data }: AmazonReviewProps) => {
+export const AmazonReview = ({
+  data,
+  onImageAdd,
+  allowImageUpload = false,
+}: AmazonReviewProps) => {
+  const [uploadedImages, setUploadedImages] = useState<string[]>(
+    data.images || []
+  );
+  const [imageUrl, setImageUrl] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+      const newImages: string[] = [];
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const result = e.target?.result as string;
+          newImages.push(result);
+          if (newImages.length === files.length) {
+            const updatedImages = [...uploadedImages, ...newImages];
+            setUploadedImages(updatedImages);
+            onImageAdd?.(updatedImages);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  };
+
+  const handleUrlAdd = () => {
+    if (imageUrl.trim()) {
+      const updatedImages = [...uploadedImages, imageUrl.trim()];
+      setUploadedImages(updatedImages);
+      onImageAdd?.(updatedImages);
+      setImageUrl("");
+    }
+  };
+
+  const removeImage = (index: number) => {
+    const updatedImages = uploadedImages.filter((_, i) => i !== index);
+    setUploadedImages(updatedImages);
+    onImageAdd?.(updatedImages);
+  };
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-2xl">
+    <div className="bg-white border border-gray-200 rounded-lg p-4 max-w-2xl">
       {/* Header */}
-      <div className="flex items-start gap-4 mb-4">
+      <div className="flex items-center gap-3 mb-4">
         <img
           src={data.avatar}
           alt={data.name}
-          className="w-12 h-12 rounded-full"
+          className="w-10 h-10 rounded-full"
         />
         <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="font-bold text-gray-900">{data.username}</span>
-            {data.verified && (
-              <span className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">
-                Verified Purchase
-              </span>
-            )}
-          </div>
-          <div className="text-sm text-gray-600">
-            Reviewed in the United States on {format(data.date, 'MMMM d, yyyy')}
-          </div>
+          <div className="font-bold text-gray-900">{data.name}</div>
         </div>
       </div>
 
-      {/* Rating */}
+      {/* Rating and Title */}
       <div className="flex items-center gap-2 mb-3">
         <div className="flex items-center gap-1">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
               key={star}
               size={16}
-              className={star <= data.rating ? 'text-orange-400 fill-current' : 'text-gray-300'}
+              className={
+                star <= data.rating
+                  ? "text-orange-400 fill-current"
+                  : "text-gray-300"
+              }
             />
           ))}
         </div>
         <span className="font-bold text-gray-900">{data.title}</span>
       </div>
 
+      {/* Review Date and Location */}
+      <div className="text-sm text-gray-600 mb-3">
+        Reviewed in the United States on {format(data.date, "MMMM d, yyyy")}
+      </div>
+
+      {/* Product Details */}
+      <div className="text-sm text-gray-600 mb-4">
+        {data.verified && (
+          <span className="text-orange-600 font-medium">Verified Purchase</span>
+        )}
+      </div>
+
       {/* Content */}
       <div className="mb-4">
-        <p className="text-gray-700 leading-relaxed">{data.content}</p>
+        <p className="text-gray-800 leading-relaxed">{data.content}</p>
       </div>
 
-      {/* Images indicator */}
-      <div className="flex items-center gap-2 mb-4 text-sm text-gray-600">
-        <div className="flex gap-1">
-          <div className="w-12 h-12 bg-gray-200 rounded border"></div>
-          <div className="w-12 h-12 bg-gray-200 rounded border"></div>
+      {/* Image Upload Section - Only show if allowImageUpload is true */}
+      {allowImageUpload && (
+        <div className="mb-4">
+          <div className="flex flex-col gap-3">
+            {/* File Upload */}
+            <div className="flex gap-2">
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileUpload}
+                multiple
+                accept="image/*"
+                className="hidden"
+              />
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                <Upload size={16} />
+                Upload Images
+              </button>
+            </div>
+
+            {/* URL Input */}
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="Or paste image URL"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              />
+              <button
+                onClick={handleUrlAdd}
+                disabled={!imageUrl.trim()}
+                className="px-3 py-2 bg-orange-500 text-white rounded text-sm hover:bg-orange-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+              >
+                Add
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Display Review Images - Show images from data or uploaded images */}
+      {(data.images || uploadedImages).length > 0 && (
+        <div className="mb-4">
+          <div className="flex flex-wrap gap-2">
+            {(data.images || uploadedImages).map((image, index) => (
+              <div key={`${image}-${index}`} className="relative">
+                <img
+                  src={image}
+                  alt={`Customer review ${index + 1}`}
+                  className="w-16 h-16 object-cover rounded border border-gray-300 shadow-sm"
+                />
+                {allowImageUpload && (
+                  <button
+                    onClick={() => removeImage(index)}
+                    className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                  >
+                    <X size={12} />
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Helpful section */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-600">
-            {data.likes} people found this helpful
-          </span>
+      <div className="pt-4 border-t border-gray-200">
+        <div className="text-sm text-gray-600 mb-3">
+          {data.likes} people found this helpful
         </div>
-        <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1 px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-            <ThumbsUp size={14} />
+        <div className="flex items-center gap-3">
+          <button className="px-4 py-2 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition-colors">
             Helpful
           </button>
-          <button className="flex items-center gap-1 px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-            <Flag size={14} />
+          <button className="text-sm text-gray-600 hover:text-gray-800 transition-colors">
             Report
           </button>
         </div>

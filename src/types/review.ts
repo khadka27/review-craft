@@ -13,6 +13,7 @@ export interface ReviewData {
   replies: number;
   shares: number;
   verified: boolean;
+  images?: string[]; // Optional array of image URLs or file paths
 }
 
 export type Platform =
