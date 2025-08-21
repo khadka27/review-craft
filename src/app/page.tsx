@@ -59,12 +59,13 @@ export default function Home() {
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
           <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8 text-white mb-6 sm:mb-8">
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 lg:mb-4 leading-tight">
-              Create Authentic-Looking Reviews
+              Create Product Reviews Like Social Media Posts
             </h1>
             <p className="text-sm sm:text-base lg:text-lg text-purple-100 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
-              Generate realistic social media reviews with AI-powered content
-              and authentic platform styling. Perfect for mockups,
-              presentations, and educational purposes.
+              Generate fake product reviews with realistic social media
+              formatting for testing, mockups, and presentations. Our tool
+              creates customer feedback posts that look authentic for
+              educational purposes.
             </p>
           </div>
         </div>

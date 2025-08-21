@@ -15,21 +15,24 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fakereviewgenerator.com"),
-  title: "ReviewCraft - AI-Powered Social Media Review Generator",
+  title: "ReviewCraft - Create Product Reviews Like Social Media Posts",
   description:
-    "Generate realistic social media reviews with AI-powered content and authentic platform styling. Perfect for mockups, presentations, and educational purposes.",
+    "Discover how Review Craft allows you to create product reviews just like sharing posts on social media. Our user-friendly platform lets customers easily write, interact, and share their reviews in a familiar, engaging format. Whether you're a business looking to collect feedback or a consumer eager to share your experience, Review Craft simplifies the review process with a sleek, intuitive interface. Start creating authentic product reviews today and build trust with your audience.",
   keywords: [
+    "product reviews",
+    "social media reviews",
+    "review platform",
+    "customer feedback",
     "review generator",
-    "social media",
-    "mockup",
-    "fake reviews",
-    "educational",
-    "design tool",
-    "ui components",
-    "reddit review",
-    "twitter review",
-    "instagram review",
-    "amazon review",
+    "authentic reviews",
+    "business reviews",
+    "consumer reviews",
+    "review interface",
+    "user-friendly reviews",
+    "review sharing",
+    "trust building",
+    "review creation",
+    "engaging reviews",
   ],
   authors: [{ name: "ReviewCraft Team" }],
   creator: "ReviewCraft",
@@ -47,9 +50,9 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   robots: "index, follow",
   openGraph: {
-    title: "ReviewCraft - AI-Powered Social Media Review Generator",
+    title: "ReviewCraft - Create Product Reviews Like Social Media Posts",
     description:
-      "Generate realistic social media reviews with AI-powered content and authentic platform styling. Perfect for mockups, presentations, and educational purposes.",
+      "Discover how Review Craft allows you to create product reviews just like sharing posts on social media. Our user-friendly platform lets customers easily write, interact, and share their reviews in a familiar, engaging format.",
     type: "website",
     url: "https://fakereviewgenerator.com",
     siteName: "ReviewCraft",
@@ -64,11 +67,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ReviewCraft - AI-Powered Social Media Review Generator",
+    title: "ReviewCraft - Create Product Reviews Like Social Media Posts",
     description:
-      "Generate realistic social media reviews for educational purposes, mockups, and presentations.",
+      "User-friendly platform for creating authentic product reviews in a familiar social media format. Build trust with your audience through engaging reviews.",
     images: ["/images/og-image.png"],
-    creator: "@khadka27",
   },
   alternates: {
     canonical: "https://fakereviewgenerator.com",
