@@ -119,22 +119,24 @@ export const ReviewForm = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-800">Review Generator</h2>
+    <div className="w-full space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 text-center sm:text-left">
+          Review Generator
+        </h2>
         <button
           onClick={onGenerateRandom}
-          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 transform hover:scale-105"
+          className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 text-sm sm:text-base"
         >
-          <Shuffle size={16} />
-          Generate Random
+          <Shuffle size={14} className="sm:w-4 sm:h-4" />
+          <span className="whitespace-nowrap">Generate Random</span>
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {/* Platform Selection */}
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
             Platform
           </label>
           <select
@@ -142,7 +144,7 @@ export const ReviewForm = ({
             onChange={(e) =>
               handleInputChange("platform", e.target.value as Platform)
             }
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
           >
             {Object.entries(platformStyles).map(([key, style]) => (
               <option key={key} value={key}>
@@ -150,21 +152,23 @@ export const ReviewForm = ({
               </option>
             ))}
           </select>
-          <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
-            {getPlatformIcon(reviewData.platform, 16)}
-            <span>Selected: {platformStyles[reviewData.platform].name}</span>
+          <div className="flex items-center gap-2 mt-2 text-xs sm:text-sm text-gray-600">
+            {getPlatformIcon(reviewData.platform, 14)}
+            <span className="truncate">
+              Selected: {platformStyles[reviewData.platform].name}
+            </span>
           </div>
         </div>
 
         {/* Gender Selection */}
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
             Gender
           </label>
           <select
             value={reviewData.gender}
             onChange={(e) => handleInputChange("gender", e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
           >
             <option value="random">Random</option>
             <option value="male">Male</option>
@@ -173,17 +177,17 @@ export const ReviewForm = ({
         </div>
 
         {/* Avatar Selection */}
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">
+        <div className="space-y-2 sm:col-span-2">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
             Avatar
           </label>
           <div className="space-y-3">
             {/* Avatar Type Selection */}
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => handleAvatarTypeChange("api")}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm transition-colors ${
                   avatarType === "api"
                     ? "bg-blue-600 text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -194,7 +198,7 @@ export const ReviewForm = ({
               <button
                 type="button"
                 onClick={() => handleAvatarTypeChange("default")}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm transition-colors ${
                   avatarType === "default"
                     ? "bg-blue-600 text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -205,7 +209,7 @@ export const ReviewForm = ({
               <button
                 type="button"
                 onClick={() => handleAvatarTypeChange("custom")}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm transition-colors ${
                   avatarType === "custom"
                     ? "bg-blue-600 text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -220,9 +224,9 @@ export const ReviewForm = ({
               <img
                 src={reviewData.avatar}
                 alt="Avatar preview"
-                className="w-12 h-12 rounded-full border border-gray-300 object-cover"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gray-300 object-cover flex-shrink-0"
               />
-              <div className="text-sm text-gray-600">
+              <div className="text-xs sm:text-sm text-gray-600">
                 Current avatar preview
               </div>
             </div>
@@ -242,9 +246,9 @@ export const ReviewForm = ({
                   <button
                     type="button"
                     onClick={() => avatarInputRef.current?.click()}
-                    className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg text-xs sm:text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                   >
-                    <Upload size={16} />
+                    <Upload size={14} className="sm:w-4 sm:h-4" />
                     Upload Avatar
                   </button>
                 </div>
@@ -256,13 +260,13 @@ export const ReviewForm = ({
                     value={customAvatarUrl}
                     onChange={(e) => setCustomAvatarUrl(e.target.value)}
                     placeholder="Or paste avatar URL"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="flex-1 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
                   <button
                     type="button"
                     onClick={handleCustomAvatarUrl}
                     disabled={!customAvatarUrl.trim()}
-                    className="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                    className="px-2 sm:px-3 py-1.5 sm:py-2 bg-blue-600 text-white rounded-lg text-xs sm:text-sm hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
                   >
                     Set
                   </button>
@@ -275,9 +279,9 @@ export const ReviewForm = ({
               <button
                 type="button"
                 onClick={() => generateRandomForField("avatar")}
-                className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-2 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg text-xs sm:text-sm text-gray-700 hover:bg-gray-50 transition-colors"
               >
-                <User size={16} />
+                <User size={14} className="sm:w-4 sm:h-4" />
                 Generate New Avatar
               </button>
             )}
@@ -287,7 +291,7 @@ export const ReviewForm = ({
         {/* Name Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
               Name
             </label>
             <button
@@ -295,39 +299,39 @@ export const ReviewForm = ({
               className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
               title="Generate random name"
             >
-              <User size={16} />
+              <User size={14} className="sm:w-4 sm:h-4" />
             </button>
           </div>
           <input
             type="text"
             value={reviewData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
             placeholder="Enter reviewer name"
           />
         </div>
 
         {/* Username Input */}
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
             Username
           </label>
           <input
             type="text"
             value={reviewData.username}
             onChange={(e) => handleInputChange("username", e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
             placeholder="Enter username"
           />
         </div>
 
         {/* Rating (if platform supports it) */}
         {platformStyles[reviewData.platform].hasRating && (
-          <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+          <div className="space-y-2 sm:col-span-2">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
               Rating
             </label>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
                   key={star}
@@ -339,12 +343,13 @@ export const ReviewForm = ({
                   }`}
                 >
                   <Star
-                    size={24}
+                    size={20}
+                    className="sm:w-6 sm:h-6"
                     fill={star <= reviewData.rating ? "currentColor" : "none"}
                   />
                 </button>
               ))}
-              <span className="ml-2 text-sm text-gray-600">
+              <span className="ml-2 text-xs sm:text-sm text-gray-600">
                 {reviewData.rating}/5
               </span>
             </div>
@@ -354,7 +359,7 @@ export const ReviewForm = ({
         {/* Date Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
               Date
             </label>
             <button
@@ -362,7 +367,7 @@ export const ReviewForm = ({
               className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
               title="Generate random date"
             >
-              <Calendar size={16} />
+              <Calendar size={14} className="sm:w-4 sm:h-4" />
             </button>
           </div>
           <input
@@ -371,7 +376,7 @@ export const ReviewForm = ({
             onChange={(e) =>
               handleInputChange("date", new Date(e.target.value))
             }
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
           />
         </div>
       </div>
@@ -379,7 +384,7 @@ export const ReviewForm = ({
       {/* Title Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
             Title
           </label>
           <button
@@ -387,14 +392,14 @@ export const ReviewForm = ({
             className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
             title="Generate random title"
           >
-            <MessageSquare size={16} />
+            <MessageSquare size={14} className="sm:w-4 sm:h-4" />
           </button>
         </div>
         <input
           type="text"
           value={reviewData.title}
           onChange={(e) => handleInputChange("title", e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
           placeholder="Enter review title"
           maxLength={100}
         />
@@ -406,7 +411,7 @@ export const ReviewForm = ({
       {/* Content Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
             Review Content
           </label>
           <button
@@ -414,13 +419,13 @@ export const ReviewForm = ({
             className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
             title="Generate random content"
           >
-            <MessageSquare size={16} />
+            <MessageSquare size={14} className="sm:w-4 sm:h-4" />
           </button>
         </div>
         <textarea
           value={reviewData.content}
           onChange={(e) => handleInputChange("content", e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+          className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none text-sm sm:text-base"
           rows={4}
           placeholder="Enter review content"
           maxLength={platformStyles[reviewData.platform].maxLength}
@@ -432,16 +437,16 @@ export const ReviewForm = ({
       </div>
 
       {/* Image Upload Section */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         <div className="flex items-center gap-2">
-          <ImageIcon size={18} className="text-gray-600" />
-          <label className="block text-sm font-semibold text-gray-700">
+          <ImageIcon size={16} className="text-gray-600 sm:w-5 sm:h-5" />
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
             Review Images (Optional)
           </label>
         </div>
 
         {/* Upload Controls */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2 sm:gap-3">
           {/* File Upload */}
           <div className="flex gap-2">
             <input
@@ -455,9 +460,9 @@ export const ReviewForm = ({
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-300 rounded-lg text-xs sm:text-sm text-gray-700 hover:bg-gray-50 transition-colors"
             >
-              <Upload size={16} />
+              <Upload size={14} className="sm:w-4 sm:h-4" />
               Upload Images
             </button>
           </div>
@@ -469,13 +474,13 @@ export const ReviewForm = ({
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
               placeholder="Or paste image URL"
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="flex-1 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             />
             <button
               type="button"
               onClick={handleUrlAdd}
               disabled={!imageUrl.trim()}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 text-white rounded-lg text-xs sm:text-sm hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
             >
               Add
             </button>
@@ -494,14 +499,14 @@ export const ReviewForm = ({
                   <img
                     src={image}
                     alt={`Review ${index + 1}`}
-                    className="w-16 h-16 object-cover rounded-lg border border-gray-300 shadow-sm"
+                    className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-lg border border-gray-300 shadow-sm"
                   />
                   <button
                     type="button"
                     onClick={() => removeImage(index)}
-                    className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
+                    className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
                   >
-                    <X size={12} />
+                    <X size={10} className="sm:w-3 sm:h-3" />
                   </button>
                 </div>
               ))}
@@ -512,9 +517,9 @@ export const ReviewForm = ({
 
       {/* Engagement Metrics (if platform supports it) */}
       {platformStyles[reviewData.platform].hasEngagement && (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
               Likes
             </label>
             <input
@@ -523,12 +528,12 @@ export const ReviewForm = ({
               onChange={(e) =>
                 handleInputChange("likes", parseInt(e.target.value) || 0)
               }
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
               min="0"
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
               Replies
             </label>
             <input
@@ -537,12 +542,12 @@ export const ReviewForm = ({
               onChange={(e) =>
                 handleInputChange("replies", parseInt(e.target.value) || 0)
               }
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
               min="0"
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
               Shares
             </label>
             <input
@@ -551,7 +556,7 @@ export const ReviewForm = ({
               onChange={(e) =>
                 handleInputChange("shares", parseInt(e.target.value) || 0)
               }
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
               min="0"
             />
           </div>

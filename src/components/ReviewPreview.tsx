@@ -142,54 +142,60 @@ export const ReviewPreview = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Preview</h2>
-        <div className="flex items-center gap-3">
+    <div className="w-full">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 text-center sm:text-left">
+          Preview
+        </h2>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
           <button
             onClick={onRefresh}
-            className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-200"
+            className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-200 text-sm sm:text-base"
           >
-            <RefreshCw size={16} />
-            Refresh
+            <RefreshCw size={14} className="sm:w-4 sm:h-4" />
+            <span className="whitespace-nowrap">Refresh</span>
           </button>
           <button
             onClick={handleCopy}
             disabled={isCopying}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 text-sm sm:text-base"
           >
             {isCopying ? (
-              <Loader2 size={16} className="animate-spin" />
+              <Loader2 size={14} className="sm:w-4 sm:h-4 animate-spin" />
             ) : (
-              <Copy size={16} />
+              <Copy size={14} className="sm:w-4 sm:h-4" />
             )}
-            {isCopying ? "Copying..." : "Copy"}
+            <span className="whitespace-nowrap">
+              {isCopying ? "Copying..." : "Copy"}
+            </span>
           </button>
           <div className="relative group">
             <button
               onClick={() => handleDownload("png")}
               disabled={isDownloading}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105"
+              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 text-sm sm:text-base w-full sm:w-auto"
             >
               {isDownloading ? (
-                <Loader2 size={16} className="animate-spin" />
+                <Loader2 size={14} className="sm:w-4 sm:h-4 animate-spin" />
               ) : (
-                <Download size={16} />
+                <Download size={14} className="sm:w-4 sm:h-4" />
               )}
-              {isDownloading ? "Downloading..." : "Download"}
+              <span className="whitespace-nowrap">
+                {isDownloading ? "Downloading..." : "Download"}
+              </span>
             </button>
             <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 min-w-full">
               <button
                 onClick={() => handleDownload("png")}
                 disabled={isDownloading}
-                className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="block w-full px-3 sm:px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
               >
                 PNG
               </button>
               <button
                 onClick={() => handleDownload("jpeg")}
                 disabled={isDownloading}
-                className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="block w-full px-3 sm:px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
               >
                 JPEG
               </button>
@@ -198,19 +204,17 @@ export const ReviewPreview = ({
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center w-full">
         <div
           id="review-preview"
-          className="inline-block"
+          className="w-full max-w-2xl"
           style={{
-            minWidth: "400px",
-            maxWidth: "800px",
             backgroundColor: "white",
             padding: "0",
             margin: "0",
           }}
         >
-          {renderPlatformReview()}
+          <div className="w-full overflow-x-auto">{renderPlatformReview()}</div>
         </div>
       </div>
     </div>

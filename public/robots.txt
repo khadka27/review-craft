@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Allow all pages
+Allow: /home
+Allow: /about
+Allow: /terms
+
+# Disallow admin paths (if any in future)
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://reviewcraft.app/sitemap.xml

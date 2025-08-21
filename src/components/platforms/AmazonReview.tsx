@@ -54,53 +54,60 @@ export const AmazonReview = ({
     setUploadedImages(updatedImages);
     onImageAdd?.(updatedImages);
   };
+
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 max-w-2xl">
+    <div className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 w-full max-w-2xl mx-auto">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
         <img
           src={data.avatar}
           alt={data.name}
-          className="w-10 h-10 rounded-full"
+          className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex-shrink-0"
         />
-        <div className="flex-1">
-          <div className="font-bold text-gray-900">{data.name}</div>
+        <div className="flex-1 min-w-0">
+          <div className="font-bold text-gray-900 text-sm sm:text-base truncate">
+            {data.name}
+          </div>
         </div>
       </div>
 
       {/* Rating and Title */}
-      <div className="flex items-center gap-2 mb-3">
-        <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-3">
+        <div className="flex items-center gap-0.5 sm:gap-1">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
               key={star}
-              size={16}
-              className={
+              size={14}
+              className={`sm:w-4 sm:h-4 ${
                 star <= data.rating
                   ? "text-orange-400 fill-current"
                   : "text-gray-300"
-              }
+              }`}
             />
           ))}
         </div>
-        <span className="font-bold text-gray-900">{data.title}</span>
+        <span className="font-bold text-gray-900 text-sm sm:text-base ml-1 sm:ml-2 break-words">
+          {data.title}
+        </span>
       </div>
 
       {/* Review Date and Location */}
-      <div className="text-sm text-gray-600 mb-3">
+      <div className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">
         Reviewed in the United States on {format(data.date, "MMMM d, yyyy")}
       </div>
 
       {/* Product Details */}
-      <div className="text-sm text-gray-600 mb-4">
+      <div className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
         {data.verified && (
           <span className="text-orange-600 font-medium">Verified Purchase</span>
         )}
       </div>
 
       {/* Content */}
-      <div className="mb-4">
-        <p className="text-gray-800 leading-relaxed">{data.content}</p>
+      <div className="mb-3 sm:mb-4">
+        <p className="text-gray-800 leading-relaxed text-sm sm:text-base break-words">
+          {data.content}
+        </p>
       </div>
 
       {/* Image Upload Section - Only show if allowImageUpload is true */}

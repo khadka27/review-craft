@@ -14,140 +14,73 @@ interface TwitterReviewProps {
 }
 
 export const TwitterReview = ({ data }: TwitterReviewProps) => {
-  // Generate realistic Twitter engagement metrics
-  const retweetCount = Math.floor(Math.random() * 100) + 5;
-  const viewCount = data.likes * Math.floor(Math.random() * 50 + 10);
-
-  // Format engagement numbers like Twitter
-  const formatEngagement = (num: number) => {
-    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
-    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
-    return num.toString();
-  };
-
   return (
-    <div className="bg-white border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200 font-['TwitterChirp',_-apple-system,_BlinkMacSystemFont,_'Segoe_UI',_Roboto,_Helvetica,_Arial,_sans-serif]">
-      <div className="flex gap-3 p-4">
-        {/* Avatar */}
-        <div className="flex-shrink-0">
-          <img
-            src={data.avatar}
-            alt={data.name}
-            className="w-12 h-12 rounded-full object-cover"
-            style={{ imageRendering: "crisp-edges" }}
-          />
-        </div>
-
-        {/* Main Content */}
+    <div className="bg-black border border-gray-800 rounded-xl overflow-hidden w-full max-w-lg mx-auto">
+      {/* Header */}
+      <div className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4">
+        <img
+          src={data.avatar}
+          alt={data.name}
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0"
+        />
         <div className="flex-1 min-w-0">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-1">
-            <div className="flex items-center gap-1 overflow-hidden">
-              <h3 className="font-bold text-gray-900 text-[15px] leading-5 truncate">
-                {data.name}
-              </h3>
-              {data.verified && (
-                <CheckCircle
-                  size={16}
-                  className="text-blue-500 flex-shrink-0"
-                  fill="currentColor"
-                />
+          <div className="flex items-center gap-1 flex-wrap">
+            <span className="font-bold text-white text-sm sm:text-base truncate">
+              {data.name}
+            </span>
+            {data.verified && (
+              <CheckCircle
+                size={14}
+                className="sm:w-4 sm:h-4 text-blue-400 fill-current flex-shrink-0"
+              />
+            )}
+            <span className="text-gray-500 text-sm truncate">
+              @{data.username}
+            </span>
+            <span className="text-gray-500 mx-1">•</span>
+            <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
+              {formatDistanceToNow(data.date, { addSuffix: true }).replace(
+                " ago",
+                ""
               )}
-              <span className="text-gray-500 text-[15px] leading-5 truncate">
-                @{data.username.replace(/^@/, "")}
-              </span>
-              <span className="text-gray-500 text-[15px] leading-5 flex-shrink-0">
-                ·
-              </span>
-              <span className="text-gray-500 text-[15px] leading-5 hover:underline cursor-pointer flex-shrink-0">
-                {formatDistanceToNow(data.date, { addSuffix: true }).replace(
-                  "about ",
-                  ""
-                )}
-              </span>
-            </div>
-            <button className="p-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors flex-shrink-0">
-              <MoreHorizontal size={20} />
-            </button>
+            </span>
           </div>
 
-          {/* Tweet Content */}
-          <div className="mb-3">
-            <p className="text-gray-900 text-[15px] leading-5 whitespace-pre-wrap break-words">
+          <div className="mt-2 sm:mt-3">
+            <p className="text-white leading-relaxed text-sm sm:text-base break-words">
               {data.content}
             </p>
           </div>
 
-          {/* Engagement Stats - Only show if high engagement */}
-          {viewCount > 5000 && (
-            <div className="text-gray-500 text-[13px] leading-4 mb-3 border-b border-gray-100 pb-3">
-              {formatEngagement(viewCount)} views
-            </div>
-          )}
-
-          {/* Action Buttons - Exact Twitter Layout */}
-          <div className="flex items-center justify-between max-w-md -ml-2">
-            {/* Reply */}
-            <button className="flex items-center gap-1 p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors group">
-              <div className="p-1.5 group-hover:bg-blue-100 rounded-full transition-colors">
-                <MessageCircle size={18} strokeWidth={1.5} />
-              </div>
-              {data.replies > 0 && (
-                <span className="text-[13px] leading-4 font-normal">
-                  {formatEngagement(data.replies)}
-                </span>
-              )}
+          {/* Engagement */}
+          <div className="flex items-center justify-between mt-3 sm:mt-4 max-w-sm">
+            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-blue-400 transition-colors">
+              <MessageCircle size={14} className="sm:w-4 sm:h-4" />
+              <span className="text-xs sm:text-sm">{data.replies}</span>
             </button>
 
-            {/* Retweet */}
-            <button className="flex items-center gap-1 p-2 text-gray-500 hover:text-green-500 hover:bg-green-50 rounded-full transition-colors group">
-              <div className="p-1.5 group-hover:bg-green-100 rounded-full transition-colors">
-                <Repeat2 size={18} strokeWidth={1.5} />
-              </div>
-              {retweetCount > 0 && (
-                <span className="text-[13px] leading-4 font-normal">
-                  {formatEngagement(retweetCount)}
-                </span>
-              )}
+            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-green-400 transition-colors">
+              <Repeat2 size={14} className="sm:w-4 sm:h-4" />
+              <span className="text-xs sm:text-sm">{data.shares || 1}</span>
             </button>
 
-            {/* Like */}
-            <button className="flex items-center gap-1 p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors group">
-              <div className="p-1.5 group-hover:bg-red-100 rounded-full transition-colors">
-                <Heart size={18} strokeWidth={1.5} />
-              </div>
-              {data.likes > 0 && (
-                <span className="text-[13px] leading-4 font-normal">
-                  {formatEngagement(data.likes)}
-                </span>
-              )}
+            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-red-400 transition-colors">
+              <Heart size={14} className="sm:w-4 sm:h-4" />
+              <span className="text-xs sm:text-sm">{data.likes}</span>
             </button>
 
-            {/* Bookmark & Share */}
-            <div className="flex items-center">
-              <button className="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors group">
-                <div className="p-1.5 group-hover:bg-blue-100 rounded-full transition-colors">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
-                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                  </svg>
-                </div>
-              </button>
-
-              <button className="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors group">
-                <div className="p-1.5 group-hover:bg-blue-100 rounded-full transition-colors">
-                  <Share size={18} strokeWidth={1.5} />
-                </div>
-              </button>
-            </div>
+            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-blue-400 transition-colors">
+              <Share size={14} className="sm:w-4 sm:h-4" />
+              <span className="text-xs sm:text-sm">
+                {Math.floor(data.likes / 10) || 529}
+              </span>
+            </button>
           </div>
         </div>
+
+        <button className="p-1 text-gray-500 hover:text-gray-300 transition-colors flex-shrink-0">
+          <MoreHorizontal size={14} className="sm:w-4 sm:h-4" />
+        </button>
       </div>
     </div>
   );
