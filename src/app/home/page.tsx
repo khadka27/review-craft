@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { SEO } from "@/components/SEO";
 
 const HomePage = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -160,13 +159,7 @@ const HomePage = () => {
   ];
 
   return (
-    <>
-      <SEO
-        title="ReviewCraft - AI-Powered Social Media Review Generator"
-        description="Generate realistic, authentic-looking social media reviews for educational purposes, mockups, and presentations. Supports 15+ platforms including Reddit, Twitter, Instagram, Amazon, and more."
-        url="/"
-      />
-
+    <div>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-indigo-50 via-white to-cyan-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -377,7 +370,7 @@ const HomePage = () => {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

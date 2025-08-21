@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import Navbar from "@/components/Navbar";
@@ -6,6 +6,12 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#6366f1",
+};
 
 export const metadata: Metadata = {
   title: "ReviewCraft - AI-Powered Social Media Review Generator",
@@ -38,7 +44,6 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
     title: "ReviewCraft - AI-Powered Social Media Review Generator",
@@ -77,7 +82,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="theme-color" content="#6366f1" />
         <meta name="msapplication-TileColor" content="#6366f1" />
         <meta name="application-name" content="ReviewCraft" />
         <meta name="apple-mobile-web-app-title" content="ReviewCraft" />
