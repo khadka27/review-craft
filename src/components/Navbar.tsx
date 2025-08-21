@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = [
-    { name: 'Home', href: '/home' },
-    { name: 'Generator', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Terms', href: '/terms' },
+    { name: "Home", href: "/home" },
+    { name: "Generator", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Terms", href: "/terms" },
   ];
 
   return (
