@@ -14,6 +14,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fakereviewgenerator.com"),
   title: "ReviewCraft - AI-Powered Social Media Review Generator",
   description:
     "Generate realistic social media reviews with AI-powered content and authentic platform styling. Perfect for mockups, presentations, and educational purposes.",
@@ -30,8 +31,8 @@ export const metadata: Metadata = {
     "instagram review",
     "amazon review",
   ],
-  authors: [{ name: "Abishek Khadka", url: "https://github.com/khadka27" }],
-  creator: "Abishek Khadka",
+  authors: [{ name: "ReviewCraft Team" }],
+  creator: "ReviewCraft",
   publisher: "ReviewCraft",
   icons: {
     icon: [
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     description:
       "Generate realistic social media reviews with AI-powered content and authentic platform styling. Perfect for mockups, presentations, and educational purposes.",
     type: "website",
-    url: "https://reviewcraft.app",
+    url: "https://fakereviewgenerator.com",
     siteName: "ReviewCraft",
     images: [
       {
@@ -70,7 +71,7 @@ export const metadata: Metadata = {
     creator: "@khadka27",
   },
   alternates: {
-    canonical: "https://reviewcraft.app",
+    canonical: "https://fakereviewgenerator.com",
   },
 };
 

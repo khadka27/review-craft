@@ -26,19 +26,19 @@ const Footer = () => {
     ],
     connect: [
       {
-        name: "GitHub",
-        href: "https://github.com/khadka27/review-craft",
-        external: true,
+        name: "Support",
+        href: "/about",
+        external: false,
       },
       {
-        name: "Creator Profile",
-        href: "https://github.com/khadka27",
-        external: true,
+        name: "Documentation",
+        href: "/about",
+        external: false,
       },
       {
-        name: "Report Issues",
-        href: "https://github.com/khadka27/review-craft/issues",
-        external: true,
+        name: "Contact",
+        href: "/about",
+        external: false,
       },
     ],
   };
@@ -136,17 +136,10 @@ const Footer = () => {
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="flex flex-wrap items-center justify-center sm:justify-start space-x-2 text-sm text-gray-400">
-              <span>© {currentYear} ReviewCraft. Made with</span>
-              <HeartIcon className="h-4 w-4 text-red-500 flex-shrink-0" />
-              <span>by</span>
-              <Link
-                href="https://github.com/khadka27"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-indigo-400 hover:text-indigo-300 transition-colors"
-              >
-                Abishek Khadka
-              </Link>
+              <span>
+                © {currentYear} ReviewCraft. Educational tool for design
+                mockups.
+              </span>
             </div>
             <div className="text-xs sm:text-sm text-gray-400 text-center sm:text-right">
               <span>

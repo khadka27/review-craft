@@ -190,15 +190,10 @@ const TermsPage = () => {
             </h2>
             <p className="text-gray-600 mb-6">
               If you have any questions about these Terms and Conditions, please
-              contact us through our GitHub repository at:
-              <a
-                href="https://github.com/khadka27/review-craft"
-                className="text-indigo-600 hover:text-indigo-800 ml-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                https://github.com/khadka27/review-craft
-              </a>
+              contact us through our website at{" "}
+              <span className="text-indigo-600 font-medium">
+                https://fakereviewgenerator.com/about
+              </span>
             </p>
 
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-8">

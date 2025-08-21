@@ -12,4 +12,4 @@ Disallow: /_next/
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://reviewcraft.app/sitemap.xml
+Sitemap: https://fakereviewgenerator.com/sitemap.xml

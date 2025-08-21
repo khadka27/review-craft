@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About ReviewCraft - Educational Social Media Review Generator",
   description:
-    "Learn about ReviewCraft, an educational tool for generating realistic social media reviews for design mockups, presentations, and learning purposes. Created by Abishek Khadka.",
+    "Learn about ReviewCraft, an educational tool for generating realistic social media reviews for design mockups, presentations, and learning purposes.",
   openGraph: {
     title: "About ReviewCraft - Educational Social Media Review Generator",
     description:
@@ -185,41 +185,6 @@ const AboutPage = () => {
                 authentic reviews. All generated content is simulated and should
                 be clearly identified as such in any usage.
               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Creator Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              About the Creator
-            </h2>
-            <div className="max-w-2xl mx-auto">
-              <p className="text-gray-600 mb-6">
-                ReviewCraft was created by <strong>Abishek Khadka</strong>, a
-                passionate developer dedicated to building educational tools
-                that help designers and developers create better user
-                experiences.
-              </p>
-              <div className="flex justify-center space-x-4">
-                <a
-                  href="https://github.com/khadka27"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-                >
-                  GitHub Profile
-                </a>
-                <a
-                  href="https://github.com/khadka27/review-craft"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  View Source Code
-                </a>
-              </div>
             </div>
           </div>
         </div>
