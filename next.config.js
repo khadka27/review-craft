@@ -9,11 +9,43 @@ const nextConfig = {
 
   // Image optimization
   images: {
-    domains: [
-      'randomuser.me',
-      'ui-avatars.com',
-      'images.unsplash.com',
-      'via.placeholder.com'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'logos-world.net',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.freepik.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -73,4 +105,4 @@ const nextConfig = {
   }
 };
 
-module.exports = nextConfig; module.exports = nextConfig
+module.exports = nextConfig;
