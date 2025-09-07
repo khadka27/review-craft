@@ -1,6 +1,36 @@
 {
   "version": 3,
   "middleware": {},
-  "functions": {},
+  "functions": {
+    "/api/image-proxy/route": {
+      "files": [
+        "server/server-reference-manifest.js",
+        "server/app/api/image-proxy/route_client-reference-manifest.js",
+        "server/middleware-build-manifest.js",
+        "server/middleware-react-loadable-manifest.js",
+        "server/next-font-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/edge-runtime-webpack.js",
+        "server/app/api/image-proxy/route.js"
+      ],
+      "name": "app/api/image-proxy/route",
+      "page": "/api/image-proxy/route",
+      "matchers": [
+        {
+          "regexp": "^/api/image\\-proxy$",
+          "originalSource": "/api/image-proxy"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "XqxLvl6DupivboBLs4r_W",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "0Sy+Sq9uPlHjIym1yfQg6LQIa+Kesf1T4ZupTuvF/8s=",
+        "__NEXT_PREVIEW_MODE_ID": "783cd3267d061f5b6ff6d7002e304d95",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "d6fc88f99d43346058566fef96d6a80250eb4f232df3d9671b93c69927fba43e",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "f82af98038436807e3d60a747c97016275b4f45753a544b4f8f3f5d3b3d15182"
+      }
+    }
+  },
   "sortedMiddleware": []
 }
