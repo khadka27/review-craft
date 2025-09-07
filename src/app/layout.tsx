@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -83,30 +84,14 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
         {/* Google Analytics */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${
-            process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"
-          }`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${
-              process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"
-            }', {
-              page_title: document.title,
-              page_location: window.location.href,
-            });
-          `}
-        </Script>
       </head>
       <body className={inter.className}>
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <GoogleAnalytics
+          gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"}
+        />
       </body>
     </html>
   );

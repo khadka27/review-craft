@@ -1,4 +1,5 @@
 import * as htmlToImage from "html-to-image";
+import { trackDownload } from "./analytics";
 
 // Simple cache for converted images to avoid repeated conversions
 const imageCache = new Map<string, string>();
@@ -596,6 +597,12 @@ export const downloadReviewAsImage = async (
     // Use setTimeout to ensure the click happens after DOM update
     setTimeout(() => {
       link.click();
+
+      // Track download event
+      const platform = elementId.includes("-")
+        ? elementId.split("-")[0]
+        : "unknown";
+      trackDownload(platform, format);
 
       // Clean up after successful download
       setTimeout(() => {

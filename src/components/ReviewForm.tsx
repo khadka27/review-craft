@@ -5,6 +5,11 @@ import {
 } from "@/utils/dataGenerator";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
 import {
+  trackReviewGenerated,
+  trackPlatformSwitch,
+  trackFeatureUse,
+} from "@/utils/analytics";
+import {
   Shuffle,
   User,
   Calendar,
@@ -36,6 +41,10 @@ export const ReviewForm = ({
   const avatarInputRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (field: keyof ReviewData, value: any) => {
+    // Track platform changes
+    if (field === "platform" && value !== reviewData.platform) {
+      trackPlatformSwitch(reviewData.platform, value);
+    }
     onUpdate({ [field]: value });
   };
 
@@ -43,6 +52,7 @@ export const ReviewForm = ({
     const randomData = await generateRandomReviewData(reviewData.platform);
     if (randomData[field] !== undefined) {
       onUpdate({ [field]: randomData[field] });
+      trackFeatureUse(`random_${field}`);
     }
   };
 

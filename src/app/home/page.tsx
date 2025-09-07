@@ -1,12 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { trackPageView, trackButtonClick } from "@/utils/analytics";
 
 const HomePage = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // Track page view on component mount
+  useEffect(() => {
+    trackPageView("home_landing_page");
+  }, []);
 
   const features = [
     {
@@ -227,12 +233,16 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/"
+                onClick={() =>
+                  trackButtonClick("start_generating_reviews", "hero_section")
+                }
                 className="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-lg"
               >
                 Start Generating Reviews Now
               </Link>
               <Link
                 href="/about"
+                onClick={() => trackButtonClick("learn_more", "hero_section")}
                 className="border border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors text-lg"
               >
                 Learn More
@@ -430,6 +440,12 @@ const HomePage = () => {
             </p>
             <Link
               href="/"
+              onClick={() =>
+                trackButtonClick(
+                  "start_generating_reviews",
+                  "how_it_works_section"
+                )
+              }
               className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors inline-block"
             >
               Start Generating Reviews Now
@@ -740,6 +756,12 @@ const HomePage = () => {
           </p>
           <Link
             href="/"
+            onClick={() =>
+              trackButtonClick(
+                "generate_first_fake_review",
+                "final_cta_section"
+              )
+            }
             className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block text-lg"
           >
             Generate Your First Fake Review Free

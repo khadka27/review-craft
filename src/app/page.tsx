@@ -8,6 +8,11 @@ import { generateRandomReviewData } from "@/utils/dataGenerator";
 import { ReviewForm } from "@/components/ReviewForm";
 import { ReviewPreview } from "@/components/ReviewPreview";
 import { Shield } from "lucide-react";
+import {
+  trackPageView,
+  trackReviewGenerated,
+  trackPlatformSwitch,
+} from "@/utils/analytics";
 
 export default function Home() {
   const [reviewData, setReviewData] = useState<ReviewData>({
@@ -39,6 +44,8 @@ export default function Home() {
   // Generate initial random data
   useEffect(() => {
     generateCompleteRandomReview();
+    // Track page view
+    trackPageView("home_review_generator");
   }, []);
 
   // Regenerate username when platform changes
@@ -50,6 +57,8 @@ export default function Home() {
       }
     };
     updateUsername();
+    // Track platform switch
+    trackPlatformSwitch("unknown", reviewData.platform);
   }, [reviewData.platform]);
 
   return (
