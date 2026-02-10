@@ -1,12 +1,53 @@
 import * as htmlToImage from "html-to-image";
 import { trackDownload } from "./analytics";
 
+// Wait for all images to be fully loaded
+const waitForAllImagesToLoad = async (
+  container: HTMLElement,
+): Promise<void> => {
+  const images = container.querySelectorAll("img");
+  console.log(`Waiting for ${images.length} images to load...`);
+
+  const imagePromises = Array.from(images).map((img) => {
+    return new Promise<void>((resolve) => {
+      if (img.complete && img.naturalWidth > 0) {
+        console.log("Image already loaded:", img.alt || "unnamed");
+        resolve();
+        return;
+      }
+
+      const timeout = setTimeout(() => {
+        console.warn(
+          "Image load timeout:",
+          img.alt || img.src.substring(0, 50),
+        );
+        resolve(); // Resolve anyway to not block the process
+      }, 10000); // 10 second timeout for each image
+
+      img.onload = () => {
+        clearTimeout(timeout);
+        console.log("Image loaded successfully:", img.alt || "unnamed");
+        resolve();
+      };
+
+      img.onerror = () => {
+        clearTimeout(timeout);
+        console.warn("Image failed to load:", img.alt || "unnamed");
+        resolve(); // Resolve anyway to not block the process
+      };
+    });
+  });
+
+  await Promise.allSettled(imagePromises);
+  console.log("All images finished loading (or timed out)");
+};
+
 // Simple cache for converted images to avoid repeated conversions
 const imageCache = new Map<string, string>();
 
 // Helper function to convert any image to base64 with better error handling
 const convertImageToBase64 = async (
-  imgElement: HTMLImageElement
+  imgElement: HTMLImageElement,
 ): Promise<string> => {
   return new Promise((resolve) => {
     try {
@@ -69,7 +110,7 @@ const convertImageToBase64 = async (
         } catch (error) {
           console.warn(
             "Canvas is tainted or failed to convert loaded image:",
-            error
+            error,
           );
           // Fall through to alternative methods
         }
@@ -106,7 +147,7 @@ const convertImageToBase64 = async (
         } catch (error) {
           console.warn(
             "Failed to convert new image, generating fallback:",
-            error
+            error,
           );
           resolveOnce(generateFallbackAvatar(imgElement));
         }
@@ -147,25 +188,59 @@ const convertImageToBase64 = async (
         }
       } catch {}
 
-      // Set timeout for loading (reduced to 2 seconds for better UX)
+      // Set timeout for loading (increased to 8 seconds for external APIs)
       timeoutId = setTimeout(() => {
-        console.warn("Image loading timeout, generating fallback");
+        console.warn("Image loading timeout after 8s, generating fallback");
         resolveOnce(generateFallbackAvatar(imgElement));
-      }, 2000);
+      }, 8000);
 
       tempImg.src = srcUrl;
     } catch (error) {
       console.warn(
         "Error in convertImageToBase64, generating fallback:",
-        error
+        error,
       );
       resolve(generateFallbackAvatar(imgElement));
     }
   });
 };
 
-// Generate a fallback avatar using Canvas API
+// Generate a fallback avatar using UI-Avatars API or Canvas as backup
 const generateFallbackAvatar = (imgElement: HTMLImageElement): string => {
+  try {
+    // Extract name from alt attribute or use default
+    const name = imgElement.alt || imgElement.title || "User";
+
+    // Try UI-Avatars API first (from .env configuration)
+    const uiAvatarsUrl =
+      process.env.NEXT_PUBLIC_UI_AVATARS_API_URL ||
+      "https://ui-avatars.com/api";
+    const params = new URLSearchParams({
+      name: name,
+      size: "300",
+      background: "random",
+      color: "fff",
+      format: "png",
+      rounded: "false",
+      bold: "true",
+    });
+
+    const fallbackUrl = `${uiAvatarsUrl}?${params.toString()}`;
+    console.log("Generated UI-Avatars fallback URL:", fallbackUrl);
+
+    // UI-Avatars should work reliably, but if not, fall back to canvas
+    return fallbackUrl;
+  } catch (error) {
+    console.warn(
+      "Failed to generate UI-Avatars fallback, using canvas:",
+      error,
+    );
+    return generateCanvasFallbackAvatar(imgElement);
+  }
+};
+
+// Generate a canvas-based fallback avatar as ultimate backup
+const generateCanvasFallbackAvatar = (imgElement: HTMLImageElement): string => {
   try {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -174,11 +249,11 @@ const generateFallbackAvatar = (imgElement: HTMLImageElement): string => {
       return generateColorAvatar("User");
     }
 
-    canvas.width = 128;
-    canvas.height = 128;
+    canvas.width = 300;
+    canvas.height = 300;
 
     // Extract name from alt attribute or use default
-    const name = imgElement.alt || "User";
+    const name = imgElement.alt || imgElement.title || "User";
     const initials = name
       .split(" ")
       .map((word) => word.charAt(0).toUpperCase())
@@ -197,19 +272,19 @@ const generateFallbackAvatar = (imgElement: HTMLImageElement): string => {
 
     // Draw background
     ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, 128, 128);
+    ctx.fillRect(0, 0, 300, 300);
 
     // Draw initials
     ctx.fillStyle = textColor;
-    ctx.font = "bold 48px Arial, sans-serif";
+    ctx.font = "bold 120px Arial, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(initials, 64, 64);
+    ctx.fillText(initials, 150, 150);
 
-    console.log("Generated fallback avatar with initials:", initials);
+    console.log("Generated canvas fallback avatar with initials:", initials);
     return canvas.toDataURL("image/png", 1.0);
   } catch (error) {
-    console.warn("Failed to generate fallback avatar:", error);
+    console.warn("Failed to generate canvas fallback avatar:", error);
     return generateColorAvatar("U");
   }
 };
@@ -267,7 +342,7 @@ const fallbackCopyTextToClipboard = (text: string): void => {
 export const downloadReviewAsImage = async (
   elementId: string,
   filename: string = "review",
-  format: "png" | "jpeg" = "png"
+  format: "png" | "jpeg" = "png",
 ): Promise<void> => {
   let hiddenContainer: HTMLDivElement | null = null;
   let renderTarget: HTMLElement | null = null;
@@ -290,7 +365,7 @@ export const downloadReviewAsImage = async (
     // Check if element is visible and has dimensions
     if (element.offsetWidth === 0 || element.offsetHeight === 0) {
       throw new Error(
-        "Element has zero dimensions. Make sure it's visible and has content."
+        "Element has zero dimensions. Make sure it's visible and has content.",
       );
     }
 
@@ -301,7 +376,7 @@ export const downloadReviewAsImage = async (
       computedStyle.visibility === "hidden"
     ) {
       throw new Error(
-        "Element is hidden. Make sure it's visible before downloading."
+        "Element is hidden. Make sure it's visible before downloading.",
       );
     }
 
@@ -347,16 +422,39 @@ export const downloadReviewAsImage = async (
             img.src = base64Src;
             console.log(
               "Image conversion completed for:",
-              img.alt || "unnamed image"
+              img.alt || "unnamed image",
             );
 
-            // Force image reload to ensure it's displayed
-            img.onload = () => {
-              console.log("Converted image loaded successfully");
-            };
-            img.onerror = () => {
-              console.error("Converted image failed to load");
-            };
+            // Force image to reload and wait for it
+            return new Promise<void>((loadResolve) => {
+              if (img.complete && img.naturalWidth > 0) {
+                console.log("Converted image already displayed");
+                loadResolve();
+                return;
+              }
+
+              const loadTimeout = setTimeout(() => {
+                console.warn("Converted image load timeout");
+                loadResolve();
+              }, 5000);
+
+              img.onload = () => {
+                clearTimeout(loadTimeout);
+                console.log("Converted image loaded successfully");
+                loadResolve();
+              };
+
+              img.onerror = () => {
+                clearTimeout(loadTimeout);
+                console.error("Converted image failed to load, but continuing");
+                loadResolve();
+              };
+
+              // Trigger a reload by slightly modifying the src
+              const currentSrc = img.src;
+              img.src = "";
+              img.src = currentSrc;
+            });
           })
           .catch((error) => {
             console.warn("Image conversion failed, keeping original:", error);
@@ -367,7 +465,7 @@ export const downloadReviewAsImage = async (
       } else {
         console.log(
           "Local or data image detected:",
-          img.src.substring(0, 50) + "..."
+          img.src.substring(0, 50) + "...",
         );
       }
     }
@@ -375,14 +473,18 @@ export const downloadReviewAsImage = async (
     // Wait for all image conversions to complete
     if (imageConversionPromises.length > 0) {
       console.log(
-        `Converting ${imageConversionPromises.length} external images...`
+        `Converting ${imageConversionPromises.length} external images...`,
       );
       await Promise.allSettled(imageConversionPromises);
       console.log("All image conversions completed");
     }
 
-    // Add delay to ensure images are rendered and check image loading status
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    // Wait for all images to be fully loaded in the DOM
+    console.log("Waiting for all images to be fully loaded...");
+    await waitForAllImagesToLoad(renderTarget);
+
+    // Additional delay to ensure rendering is complete
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     // Debug: Check if all images are properly loaded and fix broken ones
     console.log("=== Image Loading Status ===");
@@ -519,11 +621,11 @@ export const downloadReviewAsImage = async (
           };
           const canvas = await htmlToImage.toCanvas(
             renderTarget,
-            minimalOptions
+            minimalOptions,
           );
           dataUrl = canvas.toDataURL(
             format === "jpeg" ? "image/jpeg" : "image/png",
-            0.9
+            0.9,
           );
           console.log("Canvas fallback succeeded");
         } catch (canvasError) {
@@ -550,16 +652,16 @@ export const downloadReviewAsImage = async (
               ctx.fillText(
                 "Review Image",
                 fallbackCanvas.width / 2,
-                fallbackCanvas.height / 2 - 10
+                fallbackCanvas.height / 2 - 10,
               );
               ctx.fillText(
                 "(Download Error)",
                 fallbackCanvas.width / 2,
-                fallbackCanvas.height / 2 + 15
+                fallbackCanvas.height / 2 + 15,
               );
 
               dataUrl = fallbackCanvas.toDataURL(
-                format === "jpeg" ? "image/jpeg" : "image/png"
+                format === "jpeg" ? "image/jpeg" : "image/png",
               );
               console.log("Manual canvas fallback created");
             } else {
@@ -573,7 +675,7 @@ export const downloadReviewAsImage = async (
                   imageError instanceof Error
                     ? imageError.message
                     : "Unknown error"
-                }`
+                }`,
             );
           }
         }
@@ -641,6 +743,128 @@ export const downloadReviewAsImage = async (
     });
 
     throw new Error(`Failed to download image: ${errorMessage}`);
+  }
+};
+
+// Preload all images in an element to ensure they're ready for download
+export const preloadImagesForDownload = async (
+  elementId: string,
+): Promise<boolean> => {
+  console.log("🖼️ Preloading images for download...");
+
+  try {
+    const element = document.getElementById(elementId);
+    if (!element) {
+      console.error(`Element with ID "${elementId}" not found`);
+      return false;
+    }
+
+    const images = element.querySelectorAll("img");
+    console.log(`Found ${images.length} images to preload`);
+
+    if (images.length === 0) {
+      console.log("No images to preload");
+      return true;
+    }
+
+    // Create loading promises for all images
+    const preloadPromises = Array.from(images).map((img, index) => {
+      return new Promise<boolean>((resolve) => {
+        // If image is already loaded
+        if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+          console.log(
+            `✅ Image ${index + 1} already loaded:`,
+            img.alt || "unnamed",
+          );
+          resolve(true);
+          return;
+        }
+
+        // If it's a data URL, it should load quickly
+        if (img.src.startsWith("data:")) {
+          console.log(
+            `✅ Image ${index + 1} is data URL:`,
+            img.alt || "unnamed",
+          );
+          resolve(true);
+          return;
+        }
+
+        console.log(
+          `⏳ Preloading image ${index + 1}:`,
+          img.alt || img.src.substring(0, 50),
+        );
+
+        // Set up timeout
+        const timeout = setTimeout(() => {
+          console.warn(
+            `⚠️ Image ${index + 1} preload timeout:`,
+            img.alt || "unnamed",
+          );
+          resolve(false); // Resolve as failed but don't break the process
+        }, 15000); // 15 second timeout for preloading
+
+        // Handle successful load
+        const handleLoad = () => {
+          clearTimeout(timeout);
+          console.log(
+            `✅ Image ${index + 1} preloaded successfully:`,
+            img.alt || "unnamed",
+          );
+          resolve(true);
+        };
+
+        // Handle failed load
+        const handleError = () => {
+          clearTimeout(timeout);
+          console.warn(
+            `❌ Image ${index + 1} failed to preload:`,
+            img.alt || "unnamed",
+          );
+          resolve(false);
+        };
+
+        // If image is already loading, just wait for it
+        if (img.src) {
+          img.addEventListener("load", handleLoad, { once: true });
+          img.addEventListener("error", handleError, { once: true });
+
+          // Try to reload the image if it's not loading
+          if (!img.complete) {
+            const currentSrc = img.src;
+            img.src = "";
+            setTimeout(() => {
+              img.src = currentSrc;
+            }, 10);
+          }
+        } else {
+          console.warn(`⚠️ Image ${index + 1} has no src attribute`);
+          resolve(false);
+        }
+      });
+    });
+
+    // Wait for all preloads to complete or timeout
+    const results = await Promise.allSettled(preloadPromises);
+    const successCount = results.filter(
+      (r) => r.status === "fulfilled" && r.value,
+    ).length;
+    const totalImages = images.length;
+
+    console.log(
+      `📊 Preload results: ${successCount}/${totalImages} images loaded successfully`,
+    );
+
+    if (successCount === 0 && totalImages > 0) {
+      console.error("❌ No images loaded successfully");
+      return false;
+    }
+
+    console.log("✅ Image preloading completed");
+    return true;
+  } catch (error) {
+    console.error("❌ Error during image preloading:", error);
+    return false;
   }
 };
 
@@ -712,7 +936,7 @@ export const copyToClipboard = async (elementId: string): Promise<void> => {
       } catch (clipboardError) {
         console.warn(
           "Modern clipboard API failed, trying fallback:",
-          clipboardError
+          clipboardError,
         );
       }
     }
@@ -749,7 +973,7 @@ export const copyToClipboard = async (elementId: string): Promise<void> => {
     throw new Error(
       `Failed to copy to clipboard: ${
         error instanceof Error ? error.message : "Unknown error"
-      }`
+      }`,
     );
   }
 };

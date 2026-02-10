@@ -15,7 +15,11 @@ import { DiscordReview } from "./platforms/DiscordReview";
 import { SteamReview } from "./platforms/SteamReview";
 import { ImdbReview } from "./platforms/ImdbReview";
 import { Download, Copy, RefreshCw, Loader2 } from "lucide-react";
-import { downloadReviewAsImage, copyToClipboard } from "@/utils/downloadUtils";
+import {
+  downloadReviewAsImage,
+  copyToClipboard,
+  preloadImagesForDownload,
+} from "@/utils/downloadUtils";
 import { useState } from "react";
 
 interface ReviewPreviewProps {
@@ -79,13 +83,26 @@ export const ReviewPreview = ({
         throw new Error("Review data is not available");
       }
 
-      // Wait a bit longer to ensure component is fully rendered
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      // Wait a bit to ensure component is fully rendered
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      // Preload all images to ensure they're ready for download
+      console.log("🖼️ Preloading images before download...");
+      const preloadSuccess = await preloadImagesForDownload("review-preview");
+
+      if (!preloadSuccess) {
+        console.warn(
+          "⚠️ Some images failed to preload, but continuing with download",
+        );
+      }
+
+      // Additional wait after preloading to ensure everything is rendered
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
       await downloadReviewAsImage(
         "review-preview",
         `${reviewData.platform}-review`,
-        format
+        format,
       );
 
       // Show success feedback
@@ -113,7 +130,7 @@ export const ReviewPreview = ({
       }
 
       alert(
-        `${userMessage}\n\nTip: Try refreshing the review to generate new images, or check your internet connection.`
+        `${userMessage}\n\nTip: Try refreshing the review to generate new images, or check your internet connection.`,
       );
     } finally {
       setIsDownloading(false);
@@ -125,6 +142,19 @@ export const ReviewPreview = ({
 
     setIsCopying(true);
     try {
+      // Preload images before copying to clipboard
+      console.log("🖼️ Preloading images before copying...");
+      const preloadSuccess = await preloadImagesForDownload("review-preview");
+
+      if (!preloadSuccess) {
+        console.warn(
+          "⚠️ Some images failed to preload, but continuing with copy",
+        );
+      }
+
+      // Additional wait to ensure everything is rendered
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
       await copyToClipboard("review-preview");
       alert("Review copied to clipboard!");
       // Small delay to show success state
@@ -134,7 +164,7 @@ export const ReviewPreview = ({
       const message =
         error instanceof Error ? error.message : "Unknown error occurred";
       alert(
-        `Copy failed: ${message}. Please ensure your browser supports clipboard access.`
+        `Copy failed: ${message}. Please ensure your browser supports clipboard access.`,
       );
     } finally {
       setIsCopying(false);
