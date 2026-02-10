@@ -18,11 +18,17 @@ export const TwitterReview = ({ data }: TwitterReviewProps) => {
     <div className="bg-black border border-gray-800 rounded-xl overflow-hidden w-full max-w-lg mx-auto">
       {/* Header */}
       <div className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4">
-        <img
-          src={data.avatar}
-          alt={data.name}
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0"
-        />
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0"
+          />
+        ) : (
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0 bg-gray-600 flex items-center justify-center">
+            <span className="text-white text-xs">?</span>
+          </div>
+        )}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1 flex-wrap">
             <span className="font-bold text-white text-sm sm:text-base truncate">

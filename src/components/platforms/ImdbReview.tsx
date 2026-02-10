@@ -1,6 +1,6 @@
-import { ReviewData } from '@/types/review';
-import { format } from 'date-fns';
-import { Star, ThumbsUp, Flag, ExternalLink } from 'lucide-react';
+import { ReviewData } from "@/types/review";
+import { format } from "date-fns";
+import { Star, ThumbsUp, Flag, ExternalLink } from "lucide-react";
 
 interface ImdbReviewProps {
   data: ReviewData;
@@ -18,11 +18,17 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
                 <Star
                   key={star}
                   size={16}
-                  className={star <= data.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}
+                  className={
+                    star <= data.rating
+                      ? "text-yellow-400 fill-current"
+                      : "text-gray-300"
+                  }
                 />
               ))}
             </div>
-            <span className="font-bold text-lg text-gray-900">{data.rating}/10</span>
+            <span className="font-bold text-lg text-gray-900">
+              {data.rating}/10
+            </span>
           </div>
           <h3 className="text-xl font-bold text-gray-900 mb-2">{data.title}</h3>
         </div>
@@ -31,7 +37,7 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
             by <span className="font-semibold">{data.username}</span>
           </div>
           <div className="text-sm text-gray-500">
-            {format(data.date, 'MMMM d, yyyy')}
+            {format(data.date, "MMMM d, yyyy")}
           </div>
         </div>
       </div>
@@ -49,7 +55,7 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
             <span className="text-sm">{data.likes} found this helpful</span>
           </button>
         </div>
-        
+
         <div className="flex items-center gap-2">
           <button className="flex items-center gap-1 px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition-colors">
             <Flag size={14} />
@@ -65,11 +71,17 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
       {/* User info */}
       <div className="mt-4 pt-4 border-t border-gray-100">
         <div className="flex items-center gap-3">
-          <img
-            src={data.avatar}
-            alt={data.name}
-            className="w-8 h-8 rounded-full"
-          />
+          {data.avatar ? (
+            <img
+              src={data.avatar}
+              alt={data.name}
+              className="w-8 h-8 rounded-full"
+            />
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center">
+              <span className="text-white text-xs">?</span>
+            </div>
+          )}
           <div>
             <div className="flex items-center gap-2">
               <span className="font-medium text-gray-900">{data.username}</span>
@@ -80,7 +92,8 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
               )}
             </div>
             <div className="text-sm text-gray-600">
-              {Math.floor(Math.random() * 500 + 50)} reviews • {Math.floor(Math.random() * 1000 + 100)} helpful votes
+              {Math.floor(Math.random() * 500 + 50)} reviews •{" "}
+              {Math.floor(Math.random() * 1000 + 100)} helpful votes
             </div>
           </div>
         </div>

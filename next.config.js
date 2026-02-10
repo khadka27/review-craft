@@ -7,12 +7,12 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
-  // Image optimization
+  // Image optimization - only includes actually used domains
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'randomuser.me',
+        hostname: 'i.pravatar.cc',
         port: '',
         pathname: '/**',
       },
@@ -30,19 +30,37 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'via.placeholder.com',
+        hostname: 'thispersondoesnotexist.com',
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'logos-world.net',
+        hostname: 'images.generated.photos',
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'img.freepik.com',
+        hostname: 'jsonplaceholder.typicode.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'source.boringavatars.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.dicebear.com',
         port: '',
         pathname: '/**',
       },

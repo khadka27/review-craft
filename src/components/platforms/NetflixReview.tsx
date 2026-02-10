@@ -1,6 +1,6 @@
-import { ReviewData } from '@/types/review';
-import { formatDistanceToNow } from 'date-fns';
-import { Star, ThumbsUp, ThumbsDown, Play } from 'lucide-react';
+import { ReviewData } from "@/types/review";
+import { formatDistanceToNow } from "date-fns";
+import { Star, ThumbsUp, ThumbsDown, Play } from "lucide-react";
 
 interface NetflixReviewProps {
   data: ReviewData;
@@ -11,11 +11,17 @@ export const NetflixReview = ({ data }: NetflixReviewProps) => {
     <div className="bg-black text-white rounded-lg p-6 max-w-2xl">
       {/* Header */}
       <div className="flex items-start gap-4 mb-4">
-        <img
-          src={data.avatar}
-          alt={data.name}
-          className="w-10 h-10 rounded-full"
-        />
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-10 h-10 rounded-full"
+          />
+        ) : (
+          <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
+            <span className="text-white text-xs">?</span>
+          </div>
+        )}
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <span className="font-semibold text-white">{data.username}</span>
@@ -38,7 +44,11 @@ export const NetflixReview = ({ data }: NetflixReviewProps) => {
             <Star
               key={star}
               size={18}
-              className={star <= data.rating ? 'text-red-500 fill-current' : 'text-gray-600'}
+              className={
+                star <= data.rating
+                  ? "text-red-500 fill-current"
+                  : "text-gray-600"
+              }
             />
           ))}
         </div>

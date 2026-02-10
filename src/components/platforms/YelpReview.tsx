@@ -1,6 +1,6 @@
-import { ReviewData } from '@/types/review';
-import { format } from 'date-fns';
-import { Star, Camera, ThumbsUp, Flag, MessageCircle } from 'lucide-react';
+import { ReviewData } from "@/types/review";
+import { format } from "date-fns";
+import { Star, Camera, ThumbsUp, Flag, MessageCircle } from "lucide-react";
 
 interface YelpReviewProps {
   data: ReviewData;
@@ -11,11 +11,17 @@ export const YelpReview = ({ data }: YelpReviewProps) => {
     <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-2xl">
       {/* Header */}
       <div className="flex items-start gap-4 mb-4">
-        <img
-          src={data.avatar}
-          alt={data.name}
-          className="w-16 h-16 rounded-lg"
-        />
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-16 h-16 rounded-lg"
+          />
+        ) : (
+          <div className="w-16 h-16 rounded-lg bg-red-500 flex items-center justify-center">
+            <span className="text-white text-sm">?</span>
+          </div>
+        )}
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <span className="font-bold text-gray-900">{data.name}</span>
@@ -42,12 +48,16 @@ export const YelpReview = ({ data }: YelpReviewProps) => {
             <Star
               key={star}
               size={20}
-              className={star <= data.rating ? 'text-red-500 fill-current' : 'text-gray-300'}
+              className={
+                star <= data.rating
+                  ? "text-red-500 fill-current"
+                  : "text-gray-300"
+              }
             />
           ))}
         </div>
         <span className="text-sm text-gray-600">
-          {format(data.date, 'MM/dd/yyyy')}
+          {format(data.date, "MM/dd/yyyy")}
         </span>
       </div>
 

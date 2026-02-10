@@ -15,7 +15,7 @@ export const AmazonReview = ({
   allowImageUpload = false,
 }: AmazonReviewProps) => {
   const [uploadedImages, setUploadedImages] = useState<string[]>(
-    data.images || []
+    data.images || [],
   );
   const [imageUrl, setImageUrl] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -59,11 +59,17 @@ export const AmazonReview = ({
     <div className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 w-full max-w-2xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-        <img
-          src={data.avatar}
-          alt={data.name}
-          className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex-shrink-0"
-        />
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex-shrink-0"
+          />
+        ) : (
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex-shrink-0 bg-orange-500 flex items-center justify-center">
+            <span className="text-white text-xs">?</span>
+          </div>
+        )}
         <div className="flex-1 min-w-0">
           <div className="font-bold text-gray-900 text-sm sm:text-base truncate">
             {data.name}

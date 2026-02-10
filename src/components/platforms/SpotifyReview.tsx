@@ -1,6 +1,6 @@
-import { ReviewData } from '@/types/review';
-import { formatDistanceToNow } from 'date-fns';
-import { Heart, Play, Share2, MoreHorizontal, Star } from 'lucide-react';
+import { ReviewData } from "@/types/review";
+import { formatDistanceToNow } from "date-fns";
+import { Heart, Play, Share2, MoreHorizontal, Star } from "lucide-react";
 
 interface SpotifyReviewProps {
   data: ReviewData;
@@ -11,11 +11,17 @@ export const SpotifyReview = ({ data }: SpotifyReviewProps) => {
     <div className="bg-gray-900 text-white rounded-lg p-6 max-w-lg">
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
-        <img
-          src={data.avatar}
-          alt={data.name}
-          className="w-10 h-10 rounded-full"
-        />
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-12 h-12 rounded-full"
+          />
+        ) : (
+          <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
+            <span className="text-white text-sm">?</span>
+          </div>
+        )}
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <span className="font-semibold text-white">{data.username}</span>
@@ -51,9 +57,7 @@ export const SpotifyReview = ({ data }: SpotifyReviewProps) => {
             <span className="text-sm">Share</span>
           </button>
         </div>
-        <span className="text-xs text-gray-500">
-          {data.shares} shares
-        </span>
+        <span className="text-xs text-gray-500">{data.shares} shares</span>
       </div>
     </div>
   );

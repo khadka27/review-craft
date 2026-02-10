@@ -11,11 +11,17 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
     <div className="bg-gray-100 p-4 w-full max-w-2xl mx-auto">
       {/* Main Comment */}
       <div className="flex gap-3">
-        <img
-          src={data.avatar}
-          alt={data.name}
-          className="w-8 h-8 rounded-full flex-shrink-0 object-cover"
-        />
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-8 h-8 rounded-full flex-shrink-0 object-cover"
+          />
+        ) : (
+          <div className="w-8 h-8 rounded-full flex-shrink-0 bg-blue-500 flex items-center justify-center">
+            <span className="text-white text-xs">?</span>
+          </div>
+        )}
         <div className="flex-1">
           {/* Comment Bubble */}
           <div className="bg-gray-200 rounded-2xl px-3 py-2 inline-block max-w-full">
@@ -45,7 +51,7 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
             <span className="cursor-pointer hover:underline">
               {formatDistanceToNow(data.date, { addSuffix: true }).replace(
                 "about ",
-                ""
+                "",
               )}
             </span>
             <button className="cursor-pointer hover:underline">Like</button>

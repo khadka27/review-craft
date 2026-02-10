@@ -1,29 +1,23 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { ReviewData } from "@/types/review";
 import { generateRandomReviewData } from "@/utils/dataGenerator";
 import { ReviewForm } from "@/components/ReviewForm";
 import { ReviewPreview } from "@/components/ReviewPreview";
 import { Shield } from "lucide-react";
-import {
-  trackPageView,
-  trackReviewGenerated,
-  trackPlatformSwitch,
-} from "@/utils/analytics";
+import { trackPageView, trackPlatformSwitch } from "@/utils/analytics";
 
 export default function Home() {
   const [reviewData, setReviewData] = useState<ReviewData>({
     id: "",
-    name: "",
-    username: "",
-    avatar: "",
+    name: "Loading...",
+    username: "loading...",
+    avatar: "/images/default-avatar.jpg", // Use default avatar to prevent empty src
     gender: "random",
     platform: "reddit",
-    title: "",
-    content: "",
+    title: "Loading review...",
+    content: "Please wait while we generate your review...",
     rating: 5,
     date: new Date(),
     likes: 0,

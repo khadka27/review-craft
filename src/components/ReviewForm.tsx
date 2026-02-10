@@ -231,11 +231,17 @@ export const ReviewForm = ({
 
             {/* Avatar Preview */}
             <div className="flex items-center gap-3">
-              <img
-                src={reviewData.avatar}
-                alt="Avatar preview"
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gray-300 object-cover flex-shrink-0"
-              />
+              {reviewData.avatar ? (
+                <img
+                  src={reviewData.avatar}
+                  alt="Avatar preview"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gray-300 object-cover flex-shrink-0"
+                />
+              ) : (
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gray-300 bg-gray-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-lg text-gray-400">?</span>
+                </div>
+              )}
               <div className="text-xs sm:text-sm text-gray-600">
                 Current avatar preview
               </div>

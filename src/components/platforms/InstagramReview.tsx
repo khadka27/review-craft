@@ -18,11 +18,17 @@ export const InstagramReview = ({ data }: InstagramReviewProps) => {
       {/* Header */}
       <div className="flex items-center justify-between p-3 sm:p-4">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-          <img
-            src={data.avatar}
-            alt={data.name}
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gradient-to-r from-purple-400 to-pink-400 p-0.5 flex-shrink-0"
-          />
+          {data.avatar ? (
+            <img
+              src={data.avatar}
+              alt={data.name}
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gradient-to-r from-purple-400 to-pink-400 p-0.5 flex-shrink-0"
+            />
+          ) : (
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gradient-to-r from-purple-400 to-pink-400 p-0.5 flex-shrink-0 bg-gray-200 flex items-center justify-center">
+              <span className="text-xs text-gray-600">?</span>
+            </div>
+          )}
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1 sm:gap-2">
               <span className="font-semibold text-gray-900 text-sm sm:text-base truncate">

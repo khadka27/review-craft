@@ -85,7 +85,7 @@ export default function RootLayout({
 
         {/* Google Analytics */}
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <Navbar />
         <main>{children}</main>
         <Footer />

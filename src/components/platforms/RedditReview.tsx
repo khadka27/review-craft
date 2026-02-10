@@ -35,11 +35,17 @@ export const RedditReview = ({ data }: RedditReviewProps) => {
         <div className="flex-1 min-w-0">
           {/* Header */}
           <div className="flex items-center gap-1 sm:gap-2 p-2 sm:p-3 pb-2">
-            <img
-              src={data.avatar}
-              alt={data.name}
-              className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex-shrink-0"
-            />
+            {data.avatar ? (
+              <img
+                src={data.avatar}
+                alt={data.name}
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex-shrink-0"
+              />
+            ) : (
+              <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full flex-shrink-0 bg-gray-300 flex items-center justify-center">
+                <span className="text-xs text-gray-600">?</span>
+              </div>
+            )}
             <span className="font-medium text-xs sm:text-sm text-gray-900 truncate">
               u/{data.username}
             </span>

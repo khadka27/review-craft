@@ -1,6 +1,12 @@
-import { ReviewData } from '@/types/review';
-import { formatDistanceToNow } from 'date-fns';
-import { ThumbsUp, MessageCircle, Share2, Send, MoreHorizontal } from 'lucide-react';
+import { ReviewData } from "@/types/review";
+import { formatDistanceToNow } from "date-fns";
+import {
+  ThumbsUp,
+  MessageCircle,
+  Share2,
+  Send,
+  MoreHorizontal,
+} from "lucide-react";
 
 interface LinkedinReviewProps {
   data: ReviewData;
@@ -11,11 +17,17 @@ export const LinkedinReview = ({ data }: LinkedinReviewProps) => {
     <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-lg">
       {/* Header */}
       <div className="flex items-start gap-3 mb-4">
-        <img
-          src={data.avatar}
-          alt={data.name}
-          className="w-12 h-12 rounded-full"
-        />
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-12 h-12 rounded-full"
+          />
+        ) : (
+          <div className="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center">
+            <span className="text-white text-sm">?</span>
+          </div>
+        )}
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <span className="font-semibold text-gray-900">{data.username}</span>

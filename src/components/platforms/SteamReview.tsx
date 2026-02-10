@@ -1,6 +1,6 @@
-import { ReviewData } from '@/types/review';
-import { format } from 'date-fns';
-import { ThumbsUp, ThumbsDown, MessageCircle, Award } from 'lucide-react';
+import { ReviewData } from "@/types/review";
+import { format } from "date-fns";
+import { ThumbsUp, ThumbsDown, MessageCircle, Award } from "lucide-react";
 
 interface SteamReviewProps {
   data: ReviewData;
@@ -8,16 +8,22 @@ interface SteamReviewProps {
 
 export const SteamReview = ({ data }: SteamReviewProps) => {
   const isRecommended = data.rating >= 3;
-  
+
   return (
     <div className="bg-gray-900 text-white rounded p-4 max-w-2xl">
       {/* Header */}
       <div className="flex items-start gap-4 mb-4">
-        <img
-          src={data.avatar}
-          alt={data.name}
-          className="w-12 h-12 rounded"
-        />
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-12 h-12 rounded"
+          />
+        ) : (
+          <div className="w-12 h-12 rounded bg-blue-600 flex items-center justify-center">
+            <span className="text-white text-sm">?</span>
+          </div>
+        )}
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <span className="font-semibold text-white">{data.username}</span>
@@ -38,10 +44,12 @@ export const SteamReview = ({ data }: SteamReviewProps) => {
 
       {/* Recommendation */}
       <div className="flex items-center gap-3 mb-4">
-        <div className={`flex items-center gap-2 ${isRecommended ? 'text-green-400' : 'text-red-400'}`}>
+        <div
+          className={`flex items-center gap-2 ${isRecommended ? "text-green-400" : "text-red-400"}`}
+        >
           {isRecommended ? <ThumbsUp size={20} /> : <ThumbsDown size={20} />}
           <span className="font-semibold">
-            {isRecommended ? 'Recommended' : 'Not Recommended'}
+            {isRecommended ? "Recommended" : "Not Recommended"}
           </span>
         </div>
         <div className="text-sm text-gray-400">
@@ -57,7 +65,7 @@ export const SteamReview = ({ data }: SteamReviewProps) => {
 
       {/* Posted date */}
       <div className="text-sm text-gray-500 mb-4">
-        Posted: {format(data.date, 'MMMM d, yyyy')}
+        Posted: {format(data.date, "MMMM d, yyyy")}
       </div>
 
       {/* Footer */}
@@ -77,7 +85,7 @@ export const SteamReview = ({ data }: SteamReviewProps) => {
             </button>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-2 text-sm text-gray-400">
           <MessageCircle size={14} />
           <span>{data.replies} comments</span>
@@ -88,7 +96,9 @@ export const SteamReview = ({ data }: SteamReviewProps) => {
       {data.verified && (
         <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-700">
           <Award size={16} className="text-yellow-400" />
-          <span className="text-sm text-gray-400">This review received an award from the community</span>
+          <span className="text-sm text-gray-400">
+            This review received an award from the community
+          </span>
         </div>
       )}
     </div>
