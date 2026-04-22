@@ -24,6 +24,7 @@ export type Platform =
   | "twitter"
   | "instagram"
   | "trustpilot"
+  | "google"
   | "facebook"
   | "yelp"
   | "amazon"

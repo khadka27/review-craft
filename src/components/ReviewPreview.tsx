@@ -4,6 +4,7 @@ import { TwitterReview } from "./platforms/TwitterReview";
 import { InstagramReview } from "./platforms/InstagramReview";
 import { TrustpilotReview } from "./platforms/TrustpilotReview";
 import { FacebookReview } from "./platforms/FacebookReview";
+import { GoogleReview } from "./platforms/GoogleReview";
 import { YelpReview } from "./platforms/YelpReview";
 import { AmazonReview } from "./platforms/AmazonReview";
 import { NetflixReview } from "./platforms/NetflixReview";
@@ -47,6 +48,8 @@ export const ReviewPreview = ({
         return <InstagramReview {...props} />;
       case "trustpilot":
         return <TrustpilotReview {...props} />;
+      case "google":
+        return <GoogleReview {...props} />;
       case "facebook":
         return <FacebookReview {...props} />;
       case "yelp":

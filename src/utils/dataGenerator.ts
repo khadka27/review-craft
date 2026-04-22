@@ -1112,6 +1112,8 @@ const generateUsername = (
       return `@${baseUsername}${Math.floor(Math.random() * 99) + 1}`;
     case "instagram":
       return `@${baseUsername}_${Math.floor(Math.random() * 999) + 1}`;
+    case "google":
+      return `${firstName}${lastName.charAt(0).toLowerCase()}${Math.floor(Math.random() * 99) + 1}`;
     case "amazon":
       return `${firstName} ${lastName.charAt(0)}.`;
     case "netflix":
@@ -1164,6 +1166,13 @@ const generateTitle = (platform: Platform): string => {
       "Professional and reliable",
       "Exceeded my expectations",
       "Top-notch quality and service",
+    ],
+    google: [
+      "Fantastic place and excellent service",
+      "Highly recommended experience",
+      "Great quality and friendly team",
+      "Very satisfied with my visit",
+      "Outstanding service and atmosphere",
     ],
     facebook: [
       "Had to share this amazing experience!",
@@ -1269,6 +1278,11 @@ const generateContent = (platform: Platform): string => {
       "Outstanding experience from start to finish. The ordering process was seamless, delivery was prompt, and the product quality exceeded my expectations. Their customer support team is knowledgeable and responsive. I will definitely be a returning customer.",
       "Exceptional service and product quality. I was impressed by their attention to detail and commitment to customer satisfaction. The entire experience was smooth and professional. I would not hesitate to recommend this to friends and colleagues.",
     ],
+    google: [
+      "I had a great experience from start to finish. The team was welcoming, professional, and made everything easy. Quality was excellent and I would definitely recommend this place to others.",
+      "Visited recently and was genuinely impressed. Service was quick, communication was clear, and the final result exceeded my expectations. I will absolutely return.",
+      "Fantastic customer experience. The staff were friendly and attentive, and the overall quality was top-notch. One of the best experiences I have had in a long time.",
+    ],
     facebook: [
       "Had to share this amazing experience with everyone! I decided to try this after seeing so many positive reviews, and I'm so glad I did. The quality is fantastic and the customer service team was incredibly helpful. Already planning my next purchase!",
       "Just wanted to give a shoutout to this incredible company! From the moment I placed my order to receiving it, everything was perfect. The product exceeded my expectations and arrived faster than promised. Definitely recommend to anyone considering it!",
@@ -1363,6 +1377,14 @@ export const platformStyles: Record<Platform, any> = {
     hasRating: true,
     hasEngagement: false,
     maxLength: 400,
+  },
+  google: {
+    name: "Google",
+    color: "#4285F4",
+    icon: getPlatformIcon("google"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 420,
   },
   facebook: {
     name: "Facebook",
@@ -1518,6 +1540,7 @@ export const generateRandomReviewData = async (
     // Different platforms have different rating systems
     switch (platform) {
       case "trustpilot":
+      case "google":
       case "netflix":
       case "spotify":
       case "yelp":
@@ -1585,6 +1608,7 @@ export const generateRandomReviewDataSync = (
     // Different platforms have different rating systems
     switch (platform) {
       case "trustpilot":
+      case "google":
       case "netflix":
       case "spotify":
       case "yelp":

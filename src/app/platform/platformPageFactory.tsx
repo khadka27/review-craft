@@ -88,6 +88,24 @@ const platformMeta: Record<
       disclaimerIcon: "text-emerald-600",
     },
   },
+  google: {
+    name: "Google",
+    description: "Create realistic Google review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-blue-50 via-white to-yellow-50",
+      heroGradient:
+        "bg-gradient-to-r from-[#4285F4] via-[#34A853] via-[#FBBC05] to-[#EA4335]",
+      heroDescriptionColor: "text-white/90",
+      tipsCard: "bg-blue-50 border border-blue-200",
+      tipsHeading: "text-blue-900",
+      tipsText: "text-blue-800",
+      tipsBullet: "text-blue-600",
+      disclaimerCard: "bg-blue-50 border border-blue-200",
+      disclaimerHeading: "text-blue-900",
+      disclaimerText: "text-blue-800",
+      disclaimerIcon: "text-blue-600",
+    },
+  },
   facebook: {
     name: "Facebook",
     description: "Create realistic Facebook review screenshots in seconds.",
