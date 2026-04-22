@@ -1,3 +1,5 @@
+// This file serves as a wrapper for the ReviewForm component.
+export { ReviewForm as default } from "./ReviewForm";
 import { ReviewData, Platform } from "@/types/review";
 import {
   generateRandomReviewData,
