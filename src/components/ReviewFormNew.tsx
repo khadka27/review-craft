@@ -20,16 +20,18 @@ interface ReviewFormProps {
   reviewData: ReviewData;
   onUpdate: (data: Partial<ReviewData>) => void;
   onGenerateRandom: () => void;
+  showPlatformSelector?: boolean;
 }
 
 export const ReviewForm = ({
   reviewData,
   onUpdate,
   onGenerateRandom,
+  showPlatformSelector = true,
 }: ReviewFormProps) => {
   const [imageUrl, setImageUrl] = useState("");
   const [avatarType, setAvatarType] = useState<"api" | "default" | "custom">(
-    "api"
+    "api",
   );
   const [customAvatarUrl, setCustomAvatarUrl] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -98,7 +100,7 @@ export const ReviewForm = ({
   };
 
   const handleCustomAvatarUpload = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -135,30 +137,32 @@ export const ReviewForm = ({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {/* Platform Selection */}
-        <div className="space-y-2">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
-            Platform
-          </label>
-          <select
-            value={reviewData.platform}
-            onChange={(e) =>
-              handleInputChange("platform", e.target.value as Platform)
-            }
-            className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
-          >
-            {Object.entries(platformStyles).map(([key, style]) => (
-              <option key={key} value={key}>
-                {style.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex items-center gap-2 mt-2 text-xs sm:text-sm text-gray-600">
-            {getPlatformIcon(reviewData.platform, 14)}
-            <span className="truncate">
-              Selected: {platformStyles[reviewData.platform].name}
-            </span>
+        {showPlatformSelector && (
+          <div className="space-y-2">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              Platform
+            </label>
+            <select
+              value={reviewData.platform}
+              onChange={(e) =>
+                handleInputChange("platform", e.target.value as Platform)
+              }
+              className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
+            >
+              {Object.entries(platformStyles).map(([key, style]) => (
+                <option key={key} value={key}>
+                  {style.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex items-center gap-2 mt-2 text-xs sm:text-sm text-gray-600">
+              {getPlatformIcon(reviewData.platform, 14)}
+              <span className="truncate">
+                Selected: {platformStyles[reviewData.platform].name}
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Gender Selection */}
         <div className="space-y-2">

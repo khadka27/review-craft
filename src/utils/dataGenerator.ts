@@ -98,8 +98,43 @@ interface JSONPlaceholderUser {
   };
 }
 
+const RANDOM_USER_API_BASE_URL =
+  process.env.NEXT_PUBLIC_RANDOM_USER_API_BASE_URL ||
+  "https://randomuser.me/api";
+const RANDOM_USER_API_VERSION =
+  process.env.NEXT_PUBLIC_RANDOM_USER_API_VERSION || "";
+
+const buildRandomUserApiUrl = (): string => {
+  const trimmedBase = RANDOM_USER_API_BASE_URL.replace(/\/+$/, "");
+  const trimmedVersion = RANDOM_USER_API_VERSION.toString()
+    .trim()
+    .replace(/^\/+|\/+$/g, "");
+
+  if (!trimmedVersion) {
+    return `${trimmedBase}/`;
+  }
+
+  return `${trimmedBase}/${trimmedVersion}/`;
+};
+
 // Helper function to validate if an image URL works
 const validateImageUrl = async (url: string): Promise<boolean> => {
+  // Avoid browser CORS noise from HEAD checks on common avatar/image CDNs.
+  // These URLs are consumed directly by <img>, so preflight validation is unnecessary.
+  const skipValidationDomains = [
+    "i.pravatar.cc",
+    "randomuser.me",
+    "thispersondoesnotexist.com",
+    "images.unsplash.com",
+    "ui-avatars.com",
+    "api.dicebear.com",
+    "source.boringavatars.com",
+  ];
+
+  if (skipValidationDomains.some((domain) => url.includes(domain))) {
+    return true;
+  }
+
   try {
     const response = await fetch(url, {
       method: "HEAD",
@@ -114,12 +149,16 @@ const validateImageUrl = async (url: string): Promise<boolean> => {
       (response.headers.get("content-type")?.startsWith("image/") ||
         response.status === 200)
     );
-  } catch (error) {
+  } catch {
     // For CORS-blocked requests, assume the image works if it's from a known working domain
     const workingDomains = [
       "i.pravatar.cc",
+      "randomuser.me",
       "thispersondoesnotexist.com",
       "images.unsplash.com",
+      "ui-avatars.com",
+      "api.dicebear.com",
+      "source.boringavatars.com",
     ];
     return workingDomains.some((domain) => url.includes(domain));
   }
@@ -204,7 +243,6 @@ export const fetchGeneratedPhotosUser = async (
   try {
     const userGender: "male" | "female" =
       gender || (Math.random() > 0.5 ? "male" : "female");
-    const genderParam = userGender ? `?gender=${userGender}` : "";
     // Note: Generated Photos API may require authentication
     // Using direct image approach with random photo ID
     const photoId = Math.floor(Math.random() * 100000);
@@ -352,12 +390,6 @@ export const fetchUIFacesUser = async (
       gender || (Math.random() > 0.5 ? "male" : "female");
 
     // UIFaces alternative approach using Unsplash
-    const queries =
-      userGender === "male"
-        ? ["businessman", "man-portrait", "male-headshot"]
-        : ["businesswoman", "woman-portrait", "female-headshot"];
-
-    const query = queries[Math.floor(Math.random() * queries.length)];
     const photoId = 1500000000000 + Math.floor(Math.random() * 100000000);
 
     const avatarUrl = `https://images.unsplash.com/photo-${photoId}?ixlib=rb-1.2.1&fit=crop&w=300&h=300&q=80`;
@@ -429,13 +461,75 @@ export const fetchJSONPlaceholderUser = async (
   }
 };
 
+export const fetchRandomUserApiUser = async (
+  gender?: "male" | "female",
+): Promise<{
+  name: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  avatar: string;
+  gender: "male" | "female";
+  source: string;
+} | null> => {
+  try {
+    const userGender: "male" | "female" =
+      gender || (Math.random() > 0.5 ? "male" : "female");
+
+    const params = new URLSearchParams({
+      results: "1",
+      noinfo: "1",
+      inc: "gender,name,location,email,login,dob,phone,picture,nat",
+    });
+
+    if (gender) {
+      params.set("gender", userGender);
+    }
+
+    const response = await fetch(`${buildRandomUserApiUrl()}?${params}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+      signal: AbortSignal.timeout(8000),
+    });
+
+    if (!response.ok) {
+      throw new Error(`RandomUser API failed: ${response.status}`);
+    }
+
+    const data = (await response.json()) as RandomUserApiResponse & {
+      error?: string;
+    };
+
+    if (data.error || !data.results?.length) {
+      throw new Error(data.error || "RandomUser API returned no results");
+    }
+
+    const user = data.results[0];
+    return {
+      name: `${user.name.first} ${user.name.last}`,
+      firstName: user.name.first,
+      lastName: user.name.last,
+      username: user.login.username,
+      email: user.email,
+      avatar: user.picture.large,
+      gender: user.gender,
+      source: "randomuser",
+    };
+  } catch (error) {
+    console.warn("RandomUser API fetch failed:", error);
+    return null;
+  }
+};
+
 // Generate reliable local avatar as ultimate fallback
 const generateReliableLocalAvatar = (
   gender: "male" | "female",
   name: string,
 ): string => {
   // Use a simple, reliable avatar service that works consistently
-  const initial = name.charAt(0).toUpperCase();
   const colors = [
     "FF6B6B",
     "4ECDC4",
@@ -448,7 +542,7 @@ const generateReliableLocalAvatar = (
     "00D2D3",
     "FF9F43",
   ];
-  const colorIndex = name.charCodeAt(0) % colors.length;
+  const colorIndex = (name.codePointAt(0) ?? 0) % colors.length;
   const backgroundColor = colors[colorIndex];
 
   // Use a reliable avatar generation service
@@ -459,7 +553,7 @@ const generateReliableLocalAvatar = (
 export const fetchRealUserProfile = async (
   gender?: "male" | "female",
   preferredSource:
-    | "pravatar"
+    | "randomuser"
     | "generated"
     | "thisperson"
     | "uifaces"
@@ -487,27 +581,25 @@ export const fetchRealUserProfile = async (
     const userGender: "male" | "female" =
       gender || (Math.random() > 0.5 ? "male" : "female");
 
-    // Try different working APIs based on preference with specified percentages
+    // Use RandomUser as the primary source and keep others as backups.
     if (preferredSource === "mixed") {
-      const rand = Math.random();
-      if (rand < 0.4) {
-        // 40% Pravatar - most reliable with realistic photos
-        userProfile = await fetchPravavatarUser(userGender);
-      } else if (rand < 0.7) {
-        // 30% ThisPerson - unique AI-generated faces
-        userProfile = await fetchThisPersonUser(userGender);
-      } else if (rand < 0.85) {
-        // 15% Generated Photos - AI faces with metadata
-        userProfile = await fetchGeneratedPhotosUser(userGender);
-      } else {
-        // 15% UIFaces - professional headshots
-        userProfile = await fetchUIFacesUser(userGender);
+      userProfile = await fetchRandomUserApiUser(userGender);
+
+      if (!userProfile) {
+        const rand = Math.random();
+        if (rand < 0.5) {
+          // Backup source 1
+          userProfile = await fetchThisPersonUser(userGender);
+        } else {
+          // Backup source 2
+          userProfile = await fetchUIFacesUser(userGender);
+        }
       }
     } else {
       // Use preferred source
       switch (preferredSource) {
-        case "pravatar":
-          userProfile = await fetchPravavatarUser(userGender);
+        case "randomuser":
+          userProfile = await fetchRandomUserApiUser(userGender);
           break;
         case "thisperson":
           userProfile = await fetchThisPersonUser(userGender);
@@ -525,14 +617,15 @@ export const fetchRealUserProfile = async (
     if (!userProfile) {
       console.log("Primary API failed, trying fallbacks...");
 
-      // Try Pravatar multiple times with different IDs (most reliable)
-      for (let attempt = 0; attempt < 3 && !userProfile; attempt++) {
-        userProfile = await fetchPravavatarUser(userGender);
-        if (userProfile)
-          console.log(`✅ Pravatar worked on attempt ${attempt + 1}`);
+      // Try RandomUser API as a full-data fallback
+      for (let attempt = 0; attempt < 2 && !userProfile; attempt++) {
+        userProfile = await fetchRandomUserApiUser(userGender);
+        if (userProfile) {
+          console.log(`✅ RandomUser API worked on attempt ${attempt + 1}`);
+        }
       }
 
-      // Try ThisPerson if Pravatar failed
+      // Try ThisPerson if RandomUser failed
       if (!userProfile) {
         userProfile = await fetchThisPersonUser(userGender);
         if (userProfile) console.log("✅ ThisPerson worked as fallback");
@@ -556,7 +649,6 @@ export const fetchRealUserProfile = async (
       const firstName = getRandomItem(firstNames);
       const lastName = getRandomItem(LAST_NAMES);
       const fullName = `${firstName} ${lastName}`;
-      const locationData = getRandomItem(CITIES_STATES);
 
       userProfile = {
         name: fullName,
@@ -815,10 +907,6 @@ const BLOOD_TYPES = ["O+", "A+", "B+", "AB+", "O-", "A-", "B-", "AB-"];
 
 // AI-Generated Photo Services Configuration
 const PHOTO_SERVICES = {
-  pravatar: {
-    male: (id: number) => `https://i.pravatar.cc/300?img=${id + 50}`, // Male range 50-99
-    female: (id: number) => `https://i.pravatar.cc/300?img=${id}`, // Female range 0-49
-  },
   randomUser: {
     male: () =>
       `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 99) + 1}.jpg`,
@@ -847,7 +935,7 @@ const PHOTO_SERVICES = {
 };
 
 // Weighted selection for better realistic photos
-const REALISTIC_SERVICES = ["pravatar", "randomUser"];
+const REALISTIC_SERVICES = ["randomUser"];
 const FALLBACK_SERVICES = ["boringAvatars", "diceBear"];
 
 // Generate realistic AI face photo
@@ -855,49 +943,25 @@ const generateRealisticAvatar = (
   gender: "male" | "female",
   seed?: string,
 ): string => {
-  // Try realistic services first (85% chance for actual photos)
-  const useRealistic = Math.random() < 0.85;
-  const servicePool = useRealistic
-    ? REALISTIC_SERVICES
-    : [...REALISTIC_SERVICES, ...FALLBACK_SERVICES];
-  const selectedService = servicePool[
-    Math.floor(Math.random() * servicePool.length)
-  ] as keyof typeof PHOTO_SERVICES;
-
   try {
-    switch (selectedService) {
-      case "pravatar": {
-        const pravaId = Math.floor(Math.random() * 50);
-        return PHOTO_SERVICES.pravatar[gender](pravaId);
-      }
+    // Primary image source
+    return PHOTO_SERVICES.randomUser[gender]();
+  } catch {
+    // Backup image sources
+    const backupServices: Array<
+      "thisPersonDoesNotExist" | "boringAvatars" | "diceBear"
+    > = ["thisPersonDoesNotExist", "boringAvatars", "diceBear"];
+    const selectedBackup =
+      backupServices[Math.floor(Math.random() * backupServices.length)];
 
-      case "randomUser":
-        return PHOTO_SERVICES.randomUser[gender]();
-
-      case "thisPersonDoesNotExist":
-        return PHOTO_SERVICES.thisPersonDoesNotExist[gender]();
-
-      case "boringAvatars":
-        return PHOTO_SERVICES.boringAvatars[gender](seed || "User");
-
-      case "diceBear":
-        return PHOTO_SERVICES.diceBear[gender](seed || "User");
-
-      default:
-        // Enhanced fallback to RandomUser.me portraits
-        return gender === "male"
-          ? `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 99) + 1}.jpg`
-          : `https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * 99) + 1}.jpg`;
+    if (selectedBackup === "thisPersonDoesNotExist") {
+      return PHOTO_SERVICES.thisPersonDoesNotExist[gender]();
     }
-  } catch (error) {
-    console.warn("Avatar generation failed, using fallback:", error);
-    // Ultimate fallback to high-quality gendered text avatar
-    const colors =
-      gender === "male"
-        ? ["3b82f6", "1e40af", "1d4ed8"]
-        : ["ec4899", "db2777", "be185d"];
-    const bg = colors[Math.floor(Math.random() * colors.length)];
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(seed || "User")}&background=${bg}&color=ffffff&size=300&font-size=0.6&format=png`;
+    if (selectedBackup === "boringAvatars") {
+      return PHOTO_SERVICES.boringAvatars[gender](seed || "User");
+    }
+
+    return PHOTO_SERVICES.diceBear[gender](seed || "User");
   }
 };
 
@@ -911,13 +975,6 @@ export const getAvatarUrl = (
   switch (service) {
     case "realistic": {
       // Force realistic photos only
-      const realisticService = REALISTIC_SERVICES[
-        Math.floor(Math.random() * REALISTIC_SERVICES.length)
-      ] as keyof typeof PHOTO_SERVICES;
-      if (realisticService === "pravatar") {
-        const id = Math.floor(Math.random() * 50);
-        return `https://i.pravatar.cc/${size}?img=${gender === "male" ? id + 50 : id}`;
-      }
       return PHOTO_SERVICES.randomUser[gender]();
     }
 

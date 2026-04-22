@@ -75,90 +75,105 @@ const HomePage = () => {
   const platforms = [
     {
       name: "TikTok",
+      slug: "tiktok",
       logo: "/icons/tiktok.svg",
       color: "bg-black",
       description: "TikTok Fake Reviews Generator",
     },
     {
       name: "Amazon",
+      slug: "amazon",
       logo: "https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png",
       color: "bg-yellow-500",
       description: "Amazon Fake Product Reviews Generator",
     },
     {
       name: "Instagram",
+      slug: "instagram",
       logo: "https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png",
       color: "bg-pink-500",
       description: "Instagram Fake Customer Reviews Generator",
     },
     {
       name: "Twitter",
+      slug: "twitter",
       logo: "https://logos-world.net/wp-content/uploads/2023/08/X-Logo.png",
       color: "bg-black",
       description: "Twitter/X Fake Feedback Generator",
     },
     {
       name: "Facebook",
+      slug: "facebook",
       logo: "https://logos-world.net/wp-content/uploads/2020/04/Facebook-Logo.png",
       color: "bg-blue-600",
       description: "Facebook Fake Review Screenshot Generator",
     },
     {
       name: "YouTube",
+      slug: "youtube",
       logo: "https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png",
       color: "bg-red-500",
       description: "YouTube Fake Review Maker",
     },
     {
       name: "Reddit",
+      slug: "reddit",
       logo: "https://logos-world.net/wp-content/uploads/2020/10/Reddit-Logo.png",
       color: "bg-orange-500",
       description: "Reddit Fake Feedback Generator",
     },
     {
       name: "LinkedIn",
+      slug: "linkedin",
       logo: "https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png",
       color: "bg-blue-600",
       description: "LinkedIn Fake Review Maker",
     },
     {
       name: "Netflix",
+      slug: "netflix",
       logo: "https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png",
       color: "bg-red-600",
       description: "Netflix Reviews",
     },
     {
       name: "Spotify",
+      slug: "spotify",
       logo: "/icons/spotify.svg",
       color: "bg-green-500",
       description: "Spotify Reviews",
     },
     {
       name: "Steam",
+      slug: "steam",
       logo: "/icons/steam.svg",
       color: "bg-blue-800",
       description: "Steam Reviews",
     },
     {
       name: "Yelp",
+      slug: "yelp",
       logo: "/icons/yelp.svg",
       color: "bg-red-500",
       description: "Yelp Reviews",
     },
     {
       name: "Trustpilot",
+      slug: "trustpilot",
       logo: "/icons/trustpilot.svg",
       color: "bg-green-600",
       description: "Trustpilot Reviews",
     },
     {
       name: "IMDB",
+      slug: "imdb",
       logo: "/icons/imdb.svg",
       color: "bg-yellow-600",
       description: "IMDB Reviews",
     },
     {
       name: "Discord",
+      slug: "discord",
       logo: "https://logos-world.net/wp-content/uploads/2020/12/Discord-Logo.png",
       color: "bg-indigo-600",
       description: "Discord Reviews",
@@ -215,8 +230,8 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Review Craft: Free
-              <span className="text-indigo-600"> Fake Reviews Generator</span>
+              Review Craft: Free{" "}
+              <span className="text-indigo-600">Fake Reviews Generator</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
               Create Realistic Reviews & Screenshots Instantly
@@ -267,9 +282,9 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <div
-                key={index}
+                key={feature.title}
                 className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
               >
                 <div className="w-12 h-12 mb-4 flex items-center justify-center">
@@ -304,10 +319,11 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {platforms.map((platform, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg p-6 hover:shadow-md transition-shadow group cursor-pointer"
+            {platforms.map((platform) => (
+              <Link
+                key={platform.slug}
+                href={`/platform/${platform.slug}`}
+                className="bg-white rounded-lg p-6 hover:shadow-md transition-shadow group cursor-pointer block"
               >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 overflow-hidden">
@@ -339,7 +355,7 @@ const HomePage = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -443,7 +459,7 @@ const HomePage = () => {
               onClick={() =>
                 trackButtonClick(
                   "start_generating_reviews",
-                  "how_it_works_section"
+                  "how_it_works_section",
                 )
               }
               className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors inline-block"
@@ -717,7 +733,7 @@ const HomePage = () => {
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
-                key={index}
+                key={faq.question}
                 className="bg-white rounded-lg border border-gray-200"
               >
                 <button
@@ -759,7 +775,7 @@ const HomePage = () => {
             onClick={() =>
               trackButtonClick(
                 "generate_first_fake_review",
-                "final_cta_section"
+                "final_cta_section",
               )
             }
             className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block text-lg"
