@@ -191,7 +191,7 @@ const HomePage = () => {
     {
       question: "What is Review Craft?",
       answer:
-        "Review Craft is a free fake reviews generator that creates realistic review screenshots for 14+ platforms instantly. No sign-up, no cost—just pure creative freedom for mockups, presentations, and content creation.",
+        "Review Craft is a free fake reviews generator that creates realistic review screenshots for 16+ platforms instantly. No sign-up, no cost—just pure creative freedom for mockups, presentations, and content creation.",
     },
     {
       question: "Is this for creating fake reviews to deceive people?",
@@ -211,7 +211,7 @@ const HomePage = () => {
     {
       question: "Which platforms support fake review generation?",
       answer:
-        "We support 14+ platforms including TikTok, Amazon, Instagram, Twitter/X, Facebook, YouTube, Reddit, LinkedIn, Netflix, Spotify, Steam, Yelp, Trustpilot, IMDB, and Discord.",
+        "We support 16+ platforms including TikTok, Amazon, Instagram, Twitter/X, Google, Facebook, YouTube, Reddit, LinkedIn, Netflix, Spotify, Steam, Yelp, Trustpilot, IMDB, and Discord.",
     },
     {
       question: "Can I download the fake review screenshots?",
@@ -248,7 +248,7 @@ const HomePage = () => {
             </p>
             <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
               Fast, reliable, and free fake reviews generator. With Review
-              Craft, you can create realistic review screenshots for 14+
+              Craft, you can create realistic review screenshots for 16+
               platforms in seconds. No sign-up, no cost—just pure creative
               freedom.
             </p>
@@ -321,7 +321,7 @@ const HomePage = () => {
               Supported Platforms: Free Fake Review Generator
             </h2>
             <p className="text-xl text-gray-600">
-              Review Craft supports 14+ major platforms, including:
+              Review Craft supports 16+ major platforms, including:
             </p>
           </div>
 
@@ -390,7 +390,7 @@ const HomePage = () => {
                 Select Platform
               </h3>
               <p className="text-gray-600">
-                Choose TikTok, Amazon, Instagram, Twitter, and more from 14+
+                Choose TikTok, Amazon, Instagram, Twitter, and more from 16+
                 supported platforms.
               </p>
             </div>

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { HeartIcon } from "@heroicons/react/24/outline";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -62,7 +61,7 @@ const Footer = () => {
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               AI-powered social media review generator for educational purposes,
               design mockups, and presentations. Create authentic-looking
-              reviews for 15+ platforms.
+              reviews for 16+ platforms.
             </p>
             <div className="inline-flex items-center space-x-2 text-xs text-gray-400 bg-green-900/20 px-3 py-1 rounded-full">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
