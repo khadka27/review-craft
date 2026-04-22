@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
 import { trackPageView, trackButtonClick } from "@/utils/analytics";
+import { ReviewGeneratorPage } from "@/components/ReviewGeneratorPage";
 
 type SupportedPlatformCard = {
   name: string;
@@ -193,46 +194,10 @@ const HomePage = () => {
 
   return (
     <div className="bg-white text-gray-900">
-      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-cyan-50">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.15),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.12),transparent_30%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="inline-flex items-center rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-indigo-700 ring-1 ring-indigo-100 backdrop-blur">
-              Fake Review Generator for Mockups, Demos, and Customer Feedback
-            </p>
-            <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-950">
-              ReviewCraft: Fake Review Generator for Mockups, Demos, and
-              Customer Feedback
-            </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-700 leading-8">
-              ReviewCraft helps you create realistic review-style screenshots
-              for 16 platforms in seconds, complete with editable text, ratings,
-              and auto-filled reviewer details for mockups, demos, landing page
-              previews, and testing workflows.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-              <Link
-                href="/"
-                onClick={() =>
-                  trackButtonClick("start_generating_reviews", "hero_section")
-                }
-                className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-indigo-200 transition hover:bg-indigo-700"
-              >
-                Start Generating Reviews
-              </Link>
-              <Link
-                href="#platforms"
-                onClick={() =>
-                  trackButtonClick("view_supported_platforms", "hero_section")
-                }
-                className="inline-flex items-center justify-center rounded-xl border border-gray-300 bg-white px-7 py-3.5 text-base font-semibold text-gray-800 transition hover:bg-gray-50"
-              >
-                See Supported Platforms
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ReviewGeneratorPage
+        heroTitle="ReviewCraft: Fake Review Generator for Mockups, Demos, and Customer Feedback"
+        heroDescription="ReviewCraft helps you create realistic review-style screenshots for 16 platforms in seconds, complete with editable text, ratings, and auto-filled reviewer details for mockups, demos, landing page previews, and testing workflows."
+      />
 
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
