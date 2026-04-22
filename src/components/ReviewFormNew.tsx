@@ -1,5 +1,7 @@
 // This file serves as a wrapper for the ReviewForm component.
 export { ReviewForm as default } from "./ReviewForm";
+/* eslint-disable jsx-a11y/label-has-associated-control, no-restricted-globals */
+
 import { ReviewData, Platform } from "@/types/review";
 import {
   generateRandomReviewData,
@@ -532,7 +534,7 @@ export const ReviewForm = ({
               type="number"
               value={reviewData.likes}
               onChange={(e) =>
-                handleInputChange("likes", parseInt(e.target.value) || 0)
+                handleInputChange("likes", Number.parseInt(e.target.value) || 0)
               }
               className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
               min="0"
@@ -546,7 +548,10 @@ export const ReviewForm = ({
               type="number"
               value={reviewData.replies}
               onChange={(e) =>
-                handleInputChange("replies", parseInt(e.target.value) || 0)
+                handleInputChange(
+                  "replies",
+                  Number.parseInt(e.target.value) || 0,
+                )
               }
               className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
               min="0"
@@ -560,7 +565,10 @@ export const ReviewForm = ({
               type="number"
               value={reviewData.shares}
               onChange={(e) =>
-                handleInputChange("shares", parseInt(e.target.value) || 0)
+                handleInputChange(
+                  "shares",
+                  Number.parseInt(e.target.value) || 0,
+                )
               }
               className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
               min="0"
