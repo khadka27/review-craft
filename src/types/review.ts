@@ -13,6 +13,9 @@ export interface ReviewData {
   replies: number;
   shares: number;
   verified: boolean;
+  deviceViewMode?: "desktop" | "mobile";
+  facebookContentType?: "post" | "review";
+  facebookViewMode?: "desktop" | "mobile";
   images?: string[]; // Optional array of image URLs or file paths
 }
 

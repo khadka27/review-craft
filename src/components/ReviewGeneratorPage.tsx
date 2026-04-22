@@ -52,6 +52,9 @@ export function ReviewGeneratorPage({
     replies: 0,
     shares: 0,
     verified: false,
+    deviceViewMode: "desktop",
+    facebookContentType: "post",
+    facebookViewMode: "desktop",
   });
 
   const previousPlatformRef = useRef<Platform>(initialPlatform);

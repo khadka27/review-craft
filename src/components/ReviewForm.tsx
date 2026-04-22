@@ -4,11 +4,7 @@ import {
   platformStyles,
 } from "@/utils/dataGenerator";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
-import {
-  trackReviewGenerated,
-  trackPlatformSwitch,
-  trackFeatureUse,
-} from "@/utils/analytics";
+import { trackPlatformSwitch, trackFeatureUse } from "@/utils/analytics";
 import {
   Shuffle,
   User,
@@ -25,16 +21,18 @@ interface ReviewFormProps {
   reviewData: ReviewData;
   onUpdate: (data: Partial<ReviewData>) => void;
   onGenerateRandom: () => void;
+  showPlatformSelector?: boolean;
 }
 
 export const ReviewForm = ({
   reviewData,
   onUpdate,
   onGenerateRandom,
+  showPlatformSelector = true,
 }: ReviewFormProps) => {
   const [imageUrl, setImageUrl] = useState("");
   const [avatarType, setAvatarType] = useState<"api" | "default" | "custom">(
-    "api"
+    "api",
   );
   const [customAvatarUrl, setCustomAvatarUrl] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -108,7 +106,7 @@ export const ReviewForm = ({
   };
 
   const handleCustomAvatarUpload = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -128,6 +126,18 @@ export const ReviewForm = ({
     }
   };
 
+  const isFacebookPostMode =
+    reviewData.platform === "facebook" &&
+    (reviewData.facebookContentType || "post") === "post";
+  let contentLabel = "Review Content";
+  let contentPlaceholder = "Enter review content";
+  if (reviewData.platform === "facebook") {
+    contentLabel = isFacebookPostMode ? "Post Content" : "Comment";
+    contentPlaceholder = isFacebookPostMode
+      ? "Enter post content"
+      : "Enter comment";
+  }
+
   return (
     <div className="w-full space-y-4 sm:space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
@@ -145,30 +155,32 @@ export const ReviewForm = ({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {/* Platform Selection */}
-        <div className="space-y-2">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
-            Platform
-          </label>
-          <select
-            value={reviewData.platform}
-            onChange={(e) =>
-              handleInputChange("platform", e.target.value as Platform)
-            }
-            className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
-          >
-            {Object.entries(platformStyles).map(([key, style]) => (
-              <option key={key} value={key}>
-                {style.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex items-center gap-2 mt-2 text-xs sm:text-sm text-gray-600">
-            {getPlatformIcon(reviewData.platform, 14)}
-            <span className="truncate">
-              Selected: {platformStyles[reviewData.platform].name}
-            </span>
+        {showPlatformSelector && (
+          <div className="space-y-2">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              Platform
+            </label>
+            <select
+              value={reviewData.platform}
+              onChange={(e) =>
+                handleInputChange("platform", e.target.value as Platform)
+              }
+              className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
+            >
+              {Object.entries(platformStyles).map(([key, style]) => (
+                <option key={key} value={key}>
+                  {style.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex items-center gap-2 mt-2 text-xs sm:text-sm text-gray-600">
+              {getPlatformIcon(reviewData.platform, 14)}
+              <span className="truncate">
+                Selected: {platformStyles[reviewData.platform].name}
+              </span>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Gender Selection */}
         <div className="space-y-2">
@@ -184,6 +196,51 @@ export const ReviewForm = ({
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
+        </div>
+
+        {/* Screen Mode For All Platforms */}
+        <div className="space-y-2">
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            Screen Mode
+          </label>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() =>
+                onUpdate({
+                  deviceViewMode: "desktop",
+                  ...(reviewData.platform === "facebook"
+                    ? { facebookViewMode: "desktop" }
+                    : {}),
+                })
+              }
+              className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
+                (reviewData.deviceViewMode || "desktop") === "desktop"
+                  ? "bg-blue-600 text-white border-blue-600"
+                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+              }`}
+            >
+              Desktop
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                onUpdate({
+                  deviceViewMode: "mobile",
+                  ...(reviewData.platform === "facebook"
+                    ? { facebookViewMode: "mobile" }
+                    : {}),
+                })
+              }
+              className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
+                (reviewData.deviceViewMode || "desktop") === "mobile"
+                  ? "bg-blue-600 text-white border-blue-600"
+                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+              }`}
+            >
+              Mobile
+            </button>
+          </div>
         </div>
 
         {/* Avatar Selection */}
@@ -303,6 +360,41 @@ export const ReviewForm = ({
             )}
           </div>
         </div>
+
+        {/* Facebook Screen Mode */}
+        {reviewData.platform === "facebook" && (
+          <div className="space-y-2 sm:col-span-2">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              Facebook Content Type
+            </label>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => handleInputChange("facebookContentType", "post")}
+                className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
+                  (reviewData.facebookContentType || "post") === "post"
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                Post
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  handleInputChange("facebookContentType", "review")
+                }
+                className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
+                  (reviewData.facebookContentType || "post") === "review"
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                Comment
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Name Input */}
         <div className="space-y-2">
@@ -428,7 +520,7 @@ export const ReviewForm = ({
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <label className="block text-xs sm:text-sm font-semibold text-gray-700">
-            Review Content
+            {contentLabel}
           </label>
           <button
             onClick={() => generateRandomForField("content")}
@@ -443,7 +535,7 @@ export const ReviewForm = ({
           onChange={(e) => handleInputChange("content", e.target.value)}
           className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none text-sm sm:text-base"
           rows={4}
-          placeholder="Enter review content"
+          placeholder={contentPlaceholder}
           maxLength={platformStyles[reviewData.platform].maxLength}
         />
         <div className="text-xs text-gray-500 text-right">

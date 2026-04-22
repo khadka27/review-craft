@@ -1554,6 +1554,9 @@ export const generateRandomReviewData = async (
     replies: Math.floor(Math.random() * 10),
     shares: Math.floor(Math.random() * 20),
     verified: Math.random() > 0.7,
+    deviceViewMode: "desktop",
+    facebookContentType: platform === "facebook" ? "post" : undefined,
+    facebookViewMode: platform === "facebook" ? "desktop" : undefined,
   };
 };
 
@@ -1618,6 +1621,9 @@ export const generateRandomReviewDataSync = (
     replies: Math.floor(Math.random() * 10),
     shares: Math.floor(Math.random() * 20),
     verified: Math.random() > 0.7,
+    deviceViewMode: "desktop",
+    facebookContentType: platform === "facebook" ? "post" : undefined,
+    facebookViewMode: platform === "facebook" ? "desktop" : undefined,
   };
 };
 

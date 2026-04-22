@@ -33,6 +33,7 @@ export const ReviewPreview = ({
 }: ReviewPreviewProps) => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
+  const isMobileView = (reviewData.deviceViewMode || "desktop") === "mobile";
 
   const renderPlatformReview = () => {
     const props = { data: reviewData };
@@ -237,7 +238,7 @@ export const ReviewPreview = ({
       <div className="flex justify-center w-full">
         <div
           id="review-preview"
-          className="w-full max-w-2xl"
+          className={`w-full ${isMobileView ? "max-w-[390px]" : "max-w-2xl"}`}
           style={{
             backgroundColor: "white",
             padding: "0",
