@@ -14,8 +14,7 @@ const Navbar = () => {
   const [isPlatformsOpen, setIsPlatformsOpen] = useState(false);
 
   const navigation = [
-    { name: "Home", href: "/home" },
-    { name: "Generator", href: "/" },
+    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Terms", href: "/terms" },
   ];
