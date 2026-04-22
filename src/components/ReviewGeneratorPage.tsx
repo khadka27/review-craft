@@ -229,11 +229,18 @@ export function ReviewGeneratorPage({
               <p
                 className={`${activeTheme.disclaimerText} text-xs sm:text-sm leading-relaxed`}
               >
-                This tool is designed for educational purposes, mockups, and
-                presentations only. Creating fake reviews for deceptive purposes
-                is unethical and may violate platform terms of service. Always
-                use generated content responsibly and in compliance with
-                applicable laws and regulations.
+                ReviewCraft is intended for mockups, prototypes, internal demos,
+                design previews, sales materials, testing environments, and
+                draft marketing assets. It must not be used to mislead
+                customers, fabricate trust signals, impersonate real buyers, or
+                present generated reviews as genuine public feedback. Any
+                deceptive, infringing, or non-compliant use is strictly
+                prohibited and may result in legal exposure, platform action,
+                reputational damage, or other consequences. By using
+                ReviewCraft, you remain responsible for ensuring that every
+                screenshot, testimonial-style asset, or review layout is used
+                only in lawful, clearly non-deceptive, and appropriate business
+                or creative contexts.
               </p>
             </div>
           </div>
