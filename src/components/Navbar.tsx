@@ -3,16 +3,39 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  ChevronDownIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isPlatformsOpen, setIsPlatformsOpen] = useState(false);
 
   const navigation = [
     { name: "Home", href: "/home" },
     { name: "Generator", href: "/" },
     { name: "About", href: "/about" },
     { name: "Terms", href: "/terms" },
+  ];
+
+  const platforms = [
+    { name: "Amazon", href: "/platform/amazon" },
+    { name: "Discord", href: "/platform/discord" },
+    { name: "Facebook", href: "/platform/facebook" },
+    { name: "IMDb", href: "/platform/imdb" },
+    { name: "Instagram", href: "/platform/instagram" },
+    { name: "LinkedIn", href: "/platform/linkedin" },
+    { name: "Netflix", href: "/platform/netflix" },
+    { name: "Reddit", href: "/platform/reddit" },
+    { name: "Spotify", href: "/platform/spotify" },
+    { name: "Steam", href: "/platform/steam" },
+    { name: "TikTok", href: "/platform/tiktok" },
+    { name: "Trustpilot", href: "/platform/trustpilot" },
+    { name: "Twitter", href: "/platform/twitter" },
+    { name: "Yelp", href: "/platform/yelp" },
+    { name: "YouTube", href: "/platform/youtube" },
   ];
 
   return (
@@ -45,6 +68,37 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setIsPlatformsOpen((open) => !open)}
+                className="inline-flex items-center gap-1 text-gray-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
+                aria-expanded={isPlatformsOpen}
+                aria-haspopup="menu"
+              >
+                Platforms
+                <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
+              </button>
+
+              {isPlatformsOpen && (
+                <div className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden z-50">
+                  <div className="max-h-80 overflow-y-auto py-2">
+                    {platforms.map((platform) => (
+                      <Link
+                        key={platform.name}
+                        href={platform.href}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                        onClick={() => setIsPlatformsOpen(false)}
+                      >
+                        {platform.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div className="ml-4 flex items-center space-x-2 text-xs text-gray-500 bg-green-50 px-3 py-1 rounded-full">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
               <span className="hidden lg:inline">Educational Use Only</span>
@@ -81,6 +135,43 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
+
+              <div className="px-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsPlatformsOpen((open) => !open)}
+                  className="w-full flex items-center justify-between px-3 py-3 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
+                  aria-expanded={isPlatformsOpen}
+                  aria-haspopup="menu"
+                >
+                  <span>Platforms</span>
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform ${
+                      isPlatformsOpen ? "rotate-180" : ""
+                    }`}
+                    aria-hidden="true"
+                  />
+                </button>
+
+                {isPlatformsOpen && (
+                  <div className="mt-2 rounded-md border border-gray-200 bg-gray-50 overflow-hidden">
+                    {platforms.map((platform) => (
+                      <Link
+                        key={platform.name}
+                        href={platform.href}
+                        className="block px-6 py-2 text-sm text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setIsPlatformsOpen(false);
+                        }}
+                      >
+                        {platform.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <div className="mx-3 mt-3 mb-2 px-3 py-2 bg-green-50 rounded-md flex items-center space-x-2 text-sm text-gray-500">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                 <span>Educational Use Only</span>
