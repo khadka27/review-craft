@@ -36,7 +36,7 @@ const AboutPage = () => {
             <p className="text-gray-600 mb-6">
               ReviewCraft is an innovative educational tool designed to generate
               realistic-looking social media reviews for educational purposes,
-              design mockups, and presentations. Our platform supports over 15
+              design mockups, and presentations. Our platform supports over 16
               popular social media and review platforms, creating pixel-perfect
               replicas of their interfaces.
             </p>
@@ -58,7 +58,7 @@ const AboutPage = () => {
             <ul className="text-gray-600 mb-6 space-y-2">
               <li className="flex items-start">
                 <span className="text-indigo-600 mr-2">•</span>
-                Support for 15+ major social media platforms
+                Support for 16+ major social media platforms
               </li>
               <li className="flex items-start">
                 <span className="text-indigo-600 mr-2">•</span>
@@ -103,6 +103,7 @@ const AboutPage = () => {
                 "Yelp",
                 "Trustpilot",
                 "IMDB",
+                "Google",
                 "Facebook",
                 "Discord",
               ].map((platform) => (

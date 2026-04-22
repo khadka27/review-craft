@@ -24,6 +24,7 @@ const Navbar = () => {
     { name: "Amazon", href: "/platform/amazon" },
     { name: "Discord", href: "/platform/discord" },
     { name: "Facebook", href: "/platform/facebook" },
+    { name: "Google", href: "/platform/google" },
     { name: "IMDb", href: "/platform/imdb" },
     { name: "Instagram", href: "/platform/instagram" },
     { name: "LinkedIn", href: "/platform/linkedin" },

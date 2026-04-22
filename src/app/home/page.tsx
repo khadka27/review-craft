@@ -109,6 +109,13 @@ const HomePage = () => {
       description: "Facebook Fake Review Screenshot Generator",
     },
     {
+      name: "Google",
+      slug: "google",
+      logo: "https://www.gstatic.com/images/branding/product/2x/googleg_48dp.png",
+      color: "bg-blue-500",
+      description: "Google Fake Review Screenshot Generator",
+    },
+    {
       name: "YouTube",
       slug: "youtube",
       logo: "https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png",
