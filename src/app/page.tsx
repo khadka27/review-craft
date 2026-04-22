@@ -1,5 +1,1 @@
-import { ReviewGeneratorPage } from "@/components/ReviewGeneratorPage";
-
-export default function Home() {
-  return <ReviewGeneratorPage />;
-}
+export { default } from "./home/page";
