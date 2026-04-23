@@ -151,6 +151,56 @@ const HomePage = () => {
       subtitle: "YouTube Fake Review Maker",
       slug: "youtube",
     },
+    {
+      name: "Paytm",
+      subtitle: "Paytm Success Receipt",
+      slug: "paytm",
+    },
+    {
+      name: "Stripe",
+      subtitle: "Stripe Payment Receipt",
+      slug: "stripe",
+    },
+    {
+      name: "Google Pay",
+      subtitle: "GPay Transaction Mockup",
+      slug: "googlepay",
+    },
+    {
+      name: "Google Wallet",
+      subtitle: "Wallet Pass & Transaction",
+      slug: "googlewallet",
+    },
+    {
+      name: "Apple Pay",
+      subtitle: "Apple Wallet Screenshot",
+      slug: "applepay",
+    },
+    {
+      name: "Venmo",
+      subtitle: "Venmo Social Payment",
+      slug: "venmo",
+    },
+    {
+      name: "UPI",
+      subtitle: "BHIM UPI Receipt",
+      slug: "upi",
+    },
+    {
+      name: "PhonePe",
+      subtitle: "PhonePe Payment Screenshot",
+      slug: "phonepay",
+    },
+    {
+      name: "Fonepay",
+      subtitle: "Fonepay Nepal Receipt",
+      slug: "fonepay",
+    },
+    {
+      name: "Cash App",
+      subtitle: "Cash App Transaction",
+      slug: "cashapp",
+    },
   ];
   const usefulness = [
     "Create realistic review screenshots quickly for mockups and demos.",

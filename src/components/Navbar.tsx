@@ -14,10 +14,11 @@ const Navbar = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [desktopDropdown, setDesktopDropdown] = useState<
-    "reviews" | "chats" | null
+    "reviews" | "chats" | "payments" | null
   >(null);
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   const [isChatsOpen, setIsChatsOpen] = useState(false);
+  const [isPaymentsOpen, setIsPaymentsOpen] = useState(false);
   const desktopMenuRef = useRef<HTMLDivElement>(null);
 
   const navigation = [
@@ -65,6 +66,19 @@ const Navbar = () => {
     { name: "iMessage", href: "/chat/imessage" },
   ];
 
+  const paymentPlatforms = [
+    { name: "Paytm Success", href: "/payment/paytm" },
+    { name: "Stripe Receipt", href: "/payment/stripe" },
+    { name: "Google Pay", href: "/payment/googlepay" },
+    { name: "Google Wallet", href: "/payment/googlewallet" },
+    { name: "Apple Pay", href: "/payment/applepay" },
+    { name: "Venmo", href: "/payment/venmo" },
+    { name: "BHIM UPI", href: "/payment/upi" },
+    { name: "PhonePe", href: "/payment/phonepay" },
+    { name: "Fonepay", href: "/payment/fonepay" },
+    { name: "Cash App", href: "/payment/cashapp" },
+  ];
+
   useEffect(() => {
     setDesktopDropdown(null);
     setIsMenuOpen(false);
@@ -91,6 +105,7 @@ const Navbar = () => {
 
   const isReviewRoute = pathname.startsWith("/platform/");
   const isChatRoute = pathname.startsWith("/chat");
+  const isPaymentRoute = pathname.startsWith("/payment");
 
   const baseLinkClass =
     "rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap";
@@ -211,6 +226,47 @@ const Navbar = () => {
                 <div className="absolute left-0 top-full mt-2 w-[18rem] rounded-2xl border border-gray-200 bg-white p-3 shadow-xl overflow-hidden z-50">
                   <div className="grid grid-cols-2 gap-1">
                     {chatPlatforms.map((platform) => (
+                      <Link
+                        key={platform.name}
+                        href={platform.href}
+                        className="rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                        onClick={() => setDesktopDropdown(null)}
+                      >
+                        {platform.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() =>
+                  setDesktopDropdown((open) =>
+                    open === "payments" ? null : "payments",
+                  )
+                }
+                className={desktopMenuClass(
+                  desktopDropdown === "payments" || isPaymentRoute,
+                )}
+                aria-expanded={desktopDropdown === "payments"}
+                aria-haspopup="menu"
+              >
+                Payment Receipts
+                <ChevronDownIcon
+                  className={`h-4 w-4 transition-transform ${
+                    desktopDropdown === "payments" ? "rotate-180" : ""
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+
+              {desktopDropdown === "payments" && (
+                <div className="absolute left-0 top-full mt-2 w-[18rem] rounded-2xl border border-gray-200 bg-white p-3 shadow-xl overflow-hidden z-50">
+                  <div className="grid grid-cols-2 gap-1">
+                    {paymentPlatforms.map((platform) => (
                       <Link
                         key={platform.name}
                         href={platform.href}
@@ -346,6 +402,46 @@ const Navbar = () => {
                         onClick={() => {
                           setIsMenuOpen(false);
                           setIsChatsOpen(false);
+                        }}
+                      >
+                        {platform.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="px-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsPaymentsOpen((open) => !open)}
+                  className={`w-full flex items-center justify-between px-3 py-3 rounded-xl text-base font-medium transition-colors ${
+                    isPaymentRoute
+                      ? "bg-indigo-100 text-indigo-700"
+                      : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                  }`}
+                  aria-expanded={isPaymentsOpen}
+                  aria-haspopup="menu"
+                >
+                  <span>Payment Receipts</span>
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform ${
+                      isPaymentsOpen ? "rotate-180" : ""
+                    }`}
+                    aria-hidden="true"
+                  />
+                </button>
+
+                {isPaymentsOpen && (
+                  <div className="mt-2 rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
+                    {paymentPlatforms.map((platform) => (
+                      <Link
+                        key={platform.name}
+                        href={platform.href}
+                        className="block px-6 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setIsPaymentsOpen(false);
                         }}
                       >
                         {platform.name}

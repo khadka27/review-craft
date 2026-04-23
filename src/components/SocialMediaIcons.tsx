@@ -168,6 +168,55 @@ export const ImdbIcon = ({ size = 20, className = "" }: IconProps) => (
   </svg>
 );
 
+export const PaytmIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
+    <path fill="#00baf2" d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z" />
+    <path fill="#fff" d="M6 8h4v8H6zm6 0h4c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2h-4V8zm2 6v-4h-2v4h2z" />
+  </svg>
+);
+
+export const StripeIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
+    <path fill="#635bff" d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z" />
+    <path fill="#fff" d="M10 8c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-1h-2v1h-2v-4h4v-1c0-1.1-.9-2-2-2h-4z" />
+  </svg>
+);
+
+export const UPIIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
+    <path fill="#ff9933" d="M0 0h24v24H0z" />
+    <path fill="#fff" d="M12 12l8 8H4l8-8z" />
+  </svg>
+);
+
+export const AppleIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
+    <path fill="#000" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z" />
+    <path fill="#fff" d="M15.5 12c0-1.5.8-2.8 2-3.5-1-1.4-2.5-1.5-3-1.5-1.5 0-2 .5-2.5.5s-1.5-.5-2.5-.5c-1.5 0-3 1-3.5 3-.5 1.5.5 4 1.5 5.5.5.5 1.5 1.5 2 1.5s.5-.5 1.5-.5 1 1 2 1 1.5-1 2-1.5c.5-.5 1-1 1.5-1.5-1.2-.5-2-1.8-2-3z" />
+  </svg>
+);
+
+export const CashAppIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
+    <path fill="#00D64F" d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z" />
+    <path fill="#fff" d="M12 6c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 10c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z" />
+  </svg>
+);
+
+export const VenmoIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
+    <path fill="#008CFF" d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z" />
+    <path fill="#fff" d="M16 8h-2.5l-2.5 5-2.5-5H6l4 8h4l4-8z" />
+  </svg>
+);
+
+export const FonepayIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
+    <path fill="#ed1c24" d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12z" />
+    <circle cx="12" cy="12" r="6" fill="#fff" />
+  </svg>
+);
+
 export const getPlatformIcon = (platform: string, size = 20) => {
   const iconProps = { size, className: "inline-block" };
 
@@ -226,6 +275,26 @@ export const getPlatformIcon = (platform: string, size = 20) => {
     case "generic1star":
     case "generic-1-star":
       return <YelpIcon {...iconProps} />;
+    case "paytm":
+      return <PaytmIcon {...iconProps} />;
+    case "stripe":
+      return <StripeIcon {...iconProps} />;
+    case "googlepay":
+      return <GoogleIcon {...iconProps} />;
+    case "upi":
+      return <UPIIcon {...iconProps} />;
+    case "phonepay":
+      return <InstagramIcon {...iconProps} />; // Purple placeholder
+    case "googlewallet":
+      return <GoogleIcon {...iconProps} />;
+    case "applepay":
+      return <AppleIcon {...iconProps} />;
+    case "venmo":
+      return <VenmoIcon {...iconProps} />;
+    case "fonepay":
+      return <FonepayIcon {...iconProps} />;
+    case "cashapp":
+      return <CashAppIcon {...iconProps} />;
     default:
       return null;
   }
