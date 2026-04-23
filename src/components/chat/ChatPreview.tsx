@@ -31,7 +31,7 @@ export const ChatPreview = ({ chatData }: ChatPreviewProps) => {
       default:
         return (
           <div className="flex items-center justify-center h-[500px] bg-gray-100 rounded-xl border-2 border-dashed border-gray-300">
-            <p className="text-gray-500">{chatData.platform.toUpperCase()} Preview Coming Soon</p>
+            <p className="text-gray-500">Preview Coming Soon</p>
           </div>
         );
     }
@@ -39,7 +39,9 @@ export const ChatPreview = ({ chatData }: ChatPreviewProps) => {
 
   return (
     <div className="w-full flex justify-center p-4">
-      <div className={`w-full max-w-[375px] shadow-2xl rounded-[3rem] border-[8px] border-gray-900 overflow-hidden bg-white aspect-[9/19.5]`}>
+      <div
+        className={`w-full max-w-[375px] shadow-2xl rounded-[3rem] border-[8px] border-gray-900 overflow-hidden bg-white aspect-[9/19.5]`}
+      >
         <div id="chat-screen-capture" className="h-full w-full">
           {renderPlatform()}
         </div>
