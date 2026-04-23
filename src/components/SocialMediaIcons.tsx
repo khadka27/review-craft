@@ -204,6 +204,28 @@ export const getPlatformIcon = (platform: string, size = 20) => {
       return <SteamIcon {...iconProps} />;
     case "imdb":
       return <ImdbIcon {...iconProps} />;
+    case "airbnb":
+      return <YelpIcon {...iconProps} />;
+    case "tripadvisor":
+      return <TrustpilotIcon {...iconProps} />;
+    case "shopify":
+      return <SpotifyIcon {...iconProps} />;
+    case "playstore":
+      return <GoogleIcon {...iconProps} />;
+    case "fiverr":
+      return <LinkedinIcon {...iconProps} />;
+    case "booking":
+      return <TrustpilotIcon {...iconProps} />;
+    case "ecommerce":
+      return <AmazonIcon {...iconProps} />;
+    case "testimonial":
+      return <LinkedinIcon {...iconProps} />;
+    case "generic5star":
+    case "generic-5-star":
+      return <TrustpilotIcon {...iconProps} />;
+    case "generic1star":
+    case "generic-1-star":
+      return <YelpIcon {...iconProps} />;
     default:
       return null;
   }

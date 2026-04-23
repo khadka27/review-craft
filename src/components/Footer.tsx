@@ -21,17 +21,27 @@ const Footer = () => {
     ],
     reviewPlatforms: [
       { name: "Amazon", href: "/platform/amazon" },
+      { name: "Airbnb", href: "/platform/airbnb" },
+      { name: "Booking-style Ratings", href: "/platform/booking" },
+      { name: "Custom Testimonial Layouts", href: "/platform/testimonial" },
       { name: "Discord", href: "/platform/discord" },
+      { name: "Ecommerce Review Formats", href: "/platform/ecommerce" },
       { name: "Facebook", href: "/platform/facebook" },
+      { name: "Fiverr-style Service Reviews", href: "/platform/fiverr" },
+      { name: "Generic 1-star Templates", href: "/platform/generic-1-star" },
+      { name: "Generic 5-star Templates", href: "/platform/generic-5-star" },
       { name: "Google", href: "/platform/google" },
       { name: "IMDb", href: "/platform/imdb" },
       { name: "Instagram", href: "/platform/instagram" },
       { name: "LinkedIn", href: "/platform/linkedin" },
       { name: "Netflix", href: "/platform/netflix" },
+      { name: "Play Store Layouts", href: "/platform/playstore" },
       { name: "Reddit", href: "/platform/reddit" },
+      { name: "Shopify Product Reviews", href: "/platform/shopify" },
       { name: "Spotify", href: "/platform/spotify" },
       { name: "Steam", href: "/platform/steam" },
       { name: "TikTok", href: "/platform/tiktok" },
+      { name: "TripAdvisor", href: "/platform/tripadvisor" },
       { name: "Trustpilot", href: "/platform/trustpilot" },
       { name: "Twitter", href: "/platform/twitter" },
       { name: "Yelp", href: "/platform/yelp" },
@@ -67,7 +77,7 @@ const Footer = () => {
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               AI-powered social media review generator for educational purposes,
               design mockups, and presentations. Create authentic-looking
-              reviews for 16+ platforms.
+              reviews for 26+ platforms.
             </p>
             <div className="inline-flex items-center space-x-2 text-xs text-gray-400 bg-green-900/20 px-3 py-1 rounded-full">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>

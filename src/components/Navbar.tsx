@@ -28,17 +28,27 @@ const Navbar = () => {
 
   const reviewPlatforms = [
     { name: "Amazon", href: "/platform/amazon" },
+    { name: "Airbnb", href: "/platform/airbnb" },
+    { name: "Booking-style Ratings", href: "/platform/booking" },
+    { name: "Custom Testimonial Layouts", href: "/platform/testimonial" },
     { name: "Discord", href: "/platform/discord" },
+    { name: "Ecommerce Review Formats", href: "/platform/ecommerce" },
     { name: "Facebook", href: "/platform/facebook" },
+    { name: "Fiverr-style Service Reviews", href: "/platform/fiverr" },
+    { name: "Generic 1-star Templates", href: "/platform/generic-1-star" },
+    { name: "Generic 5-star Templates", href: "/platform/generic-5-star" },
     { name: "Google", href: "/platform/google" },
     { name: "IMDb", href: "/platform/imdb" },
     { name: "Instagram", href: "/platform/instagram" },
     { name: "LinkedIn", href: "/platform/linkedin" },
     { name: "Netflix", href: "/platform/netflix" },
+    { name: "Play Store Layouts", href: "/platform/playstore" },
     { name: "Reddit", href: "/platform/reddit" },
+    { name: "Shopify Product Reviews", href: "/platform/shopify" },
     { name: "Spotify", href: "/platform/spotify" },
     { name: "Steam", href: "/platform/steam" },
     { name: "TikTok", href: "/platform/tiktok" },
+    { name: "TripAdvisor", href: "/platform/tripadvisor" },
     { name: "Trustpilot", href: "/platform/trustpilot" },
     { name: "Twitter", href: "/platform/twitter" },
     { name: "Yelp", href: "/platform/yelp" },
@@ -157,8 +167,8 @@ const Navbar = () => {
               </button>
 
               {desktopDropdown === "reviews" && (
-                <div className="absolute left-0 top-full mt-2 w-[20rem] rounded-2xl border border-gray-200 bg-white p-3 shadow-xl overflow-hidden z-50">
-                  <div className="max-h-80 overflow-y-auto pr-1 grid grid-cols-2 gap-1">
+                <div className="absolute left-1/2 top-full mt-2 w-[42rem] -translate-x-1/2 rounded-2xl border border-gray-200 bg-white p-3 shadow-xl z-50">
+                  <div className="grid grid-cols-3 gap-1">
                     {reviewPlatforms.map((platform) => (
                       <Link
                         key={platform.name}
@@ -199,7 +209,7 @@ const Navbar = () => {
 
               {desktopDropdown === "chats" && (
                 <div className="absolute left-0 top-full mt-2 w-[18rem] rounded-2xl border border-gray-200 bg-white p-3 shadow-xl overflow-hidden z-50">
-                  <div className="max-h-80 overflow-y-auto pr-1 grid grid-cols-2 gap-1">
+                  <div className="grid grid-cols-2 gap-1">
                     {chatPlatforms.map((platform) => (
                       <Link
                         key={platform.name}

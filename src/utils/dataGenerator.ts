@@ -1132,6 +1132,26 @@ const generateUsername = (
       return `${baseUsername}${Math.floor(Math.random() * 999) + 1}`;
     case "imdb":
       return `${firstName}_${lastName}`;
+    case "airbnb":
+      return `${firstName.toLowerCase()}_guest${Math.floor(Math.random() * 999) + 1}`;
+    case "tripadvisor":
+      return `${firstName}${lastName.charAt(0)}${Math.floor(Math.random() * 999) + 1}`;
+    case "shopify":
+      return `${firstName.toLowerCase()}_${Math.floor(Math.random() * 9999) + 1}`;
+    case "playstore":
+      return `${baseUsername}${Math.floor(Math.random() * 999) + 1}`;
+    case "fiverr":
+      return `${firstName.toLowerCase()}pro${Math.floor(Math.random() * 99) + 1}`;
+    case "booking":
+      return `${firstName.toLowerCase()}_traveler${Math.floor(Math.random() * 999) + 1}`;
+    case "ecommerce":
+      return `${firstName} ${lastName.charAt(0)}.`;
+    case "testimonial":
+      return `${firstName} ${lastName}`;
+    case "generic5star":
+      return `${baseUsername}${Math.floor(Math.random() * 99) + 1}`;
+    case "generic1star":
+      return `${baseUsername}${Math.floor(Math.random() * 99) + 1}`;
     default:
       return baseUsername;
   }
@@ -1251,6 +1271,76 @@ const generateTitle = (platform: Platform): string => {
       "Must-watch film",
       "Masterpiece of cinema",
     ],
+    airbnb: [
+      "Wonderful stay and great host",
+      "Clean space and easy check-in",
+      "Perfect location for our trip",
+      "Comfortable home and smooth communication",
+      "Would happily stay here again",
+    ],
+    tripadvisor: [
+      "Excellent travel experience overall",
+      "Great service and memorable stay",
+      "Highly recommended destination",
+      "Impressive quality and friendly staff",
+      "Fantastic value for travelers",
+    ],
+    shopify: [
+      "Great product quality and delivery",
+      "Store experience was smooth and fast",
+      "Packaging and support were excellent",
+      "Exactly what I needed",
+      "Reliable product and seller",
+    ],
+    playstore: [
+      "Useful app with great features",
+      "Easy to use and reliable",
+      "Clean interface and fast performance",
+      "Helpful app for daily tasks",
+      "Solid update with better usability",
+    ],
+    fiverr: [
+      "Excellent freelancer and fast delivery",
+      "Great communication and professional output",
+      "High-quality service and on-time completion",
+      "Very satisfied with this gig",
+      "Would hire again for future projects",
+    ],
+    booking: [
+      "Great booking experience and stay",
+      "Smooth reservation and excellent property",
+      "Helpful staff and clean rooms",
+      "Accurate listing and good value",
+      "Comfortable and convenient trip",
+    ],
+    ecommerce: [
+      "Excellent product and quick shipping",
+      "Exactly as described with great quality",
+      "Good value and easy checkout",
+      "Reliable order process and support",
+      "Satisfied with both product and delivery",
+    ],
+    testimonial: [
+      "Working with this team has been a fantastic experience.",
+      "Professional, responsive, and results-driven from start to finish.",
+      "Their service quality exceeded our expectations.",
+      "Great communication and consistently strong outcomes.",
+      "We would confidently recommend them to others.",
+    ],
+    generic5star: [
+      "Outstanding experience and top quality.",
+      "Everything worked perfectly and exceeded expectations.",
+      "Highly recommended, great value and support.",
+      "Fantastic result from beginning to end.",
+      "One of the best experiences I have had.",
+    ],
+    generic1star: [
+      "The experience did not meet expectations.",
+      "Quality was below what was advertised.",
+      "Support response was slow and unhelpful.",
+      "I encountered multiple issues during use.",
+      "Would not recommend based on my experience.",
+    ],
   };
 
   return titles[platform][Math.floor(Math.random() * titles[platform].length)];
@@ -1337,6 +1427,56 @@ const generateContent = (platform: Platform): string => {
       "This movie is a cinematic masterpiece! The acting is phenomenal and the cinematography is breathtaking. Every scene is beautifully crafted. Definitely deserves all the awards it received!",
       "Incredible film with outstanding performances! The story is compelling and the direction is flawless. This is the kind of movie that stays with you long after watching. Highly recommend!",
       "Brilliant movie experience! The plot is engaging and the character development is superb. Amazing soundtrack and visual effects. This is definitely going on my favorites list!",
+    ],
+    airbnb: [
+      "Our stay was smooth from check-in to check-out. The space was spotless, exactly like the photos, and the host was very responsive. Great location and excellent value for the price.",
+      "Fantastic Airbnb experience. The apartment had everything we needed, and the host shared clear instructions and helpful local tips. I would definitely book this place again.",
+      "One of the best short stays we have had. Comfortable bed, quiet neighborhood, and a very welcoming host. The entire process was easy and stress-free.",
+    ],
+    tripadvisor: [
+      "Great overall travel experience. The property was clean, staff were friendly, and the location made it easy to explore nearby attractions. I would recommend it to other travelers.",
+      "Really enjoyable stay with professional service. Check-in was quick, amenities were as described, and the overall quality matched the rating.",
+      "Excellent hospitality and a memorable visit. The team was helpful throughout, and the value for money was strong compared with similar options.",
+    ],
+    shopify: [
+      "The product quality is excellent and shipping was fast. Checkout was simple, order updates were clear, and everything arrived safely packaged.",
+      "Very positive shopping experience. The store layout was easy to navigate, product details were accurate, and support answered my questions quickly.",
+      "I am happy with my purchase. Great value, smooth ordering process, and quick fulfillment. I would buy from this Shopify store again.",
+    ],
+    playstore: [
+      "Useful app with a clean interface and smooth performance. Setup was quick and the features are genuinely helpful for everyday use.",
+      "This app works reliably and is easy to navigate. I appreciate the frequent updates and improvements to stability.",
+      "Great mobile experience overall. Lightweight, responsive, and intuitive for new users. It has become part of my daily routine.",
+    ],
+    fiverr: [
+      "Excellent freelancer experience. Delivery was on time, communication was clear, and the final work matched the brief perfectly.",
+      "Very professional service from start to finish. Revisions were handled quickly and the quality of work was impressive.",
+      "Highly recommend this Fiverr seller. Great attention to detail, fair pricing, and dependable turnaround time.",
+    ],
+    booking: [
+      "Smooth booking process and a great stay overall. The property matched the listing and the staff were helpful and friendly.",
+      "Easy reservation, quick check-in, and comfortable room. The location was convenient and made the trip enjoyable.",
+      "Very good value for the price. Clean facilities, reliable service, and accurate information in the booking details.",
+    ],
+    ecommerce: [
+      "Great ecommerce experience from browsing to delivery. Product quality was as expected and shipping updates were timely.",
+      "Easy checkout, secure payment process, and fast dispatch. The item arrived in excellent condition and works perfectly.",
+      "Reliable online shopping experience with clear product info, fair pricing, and responsive customer support.",
+    ],
+    testimonial: [
+      "This team helped us move faster and with more confidence. Communication was clear, timelines were respected, and the final result was excellent.",
+      "Working together has been straightforward and productive. They understood our goals quickly and consistently delivered high-quality work.",
+      "Their professionalism and reliability stood out throughout the project. We saw strong outcomes and would gladly collaborate again.",
+    ],
+    generic5star: [
+      "Excellent experience across the board. Strong quality, great support, and results that exceeded expectations.",
+      "Everything went smoothly and professionally. I am very satisfied with the final outcome.",
+      "Top-tier service and a genuinely positive experience. Easy recommendation.",
+    ],
+    generic1star: [
+      "The experience was disappointing overall. I encountered issues and the result did not match expectations.",
+      "Service quality was inconsistent and support was slower than expected.",
+      "I faced multiple problems and did not get a satisfactory resolution.",
     ],
   };
 
@@ -1474,6 +1614,86 @@ export const platformStyles: Record<Platform, any> = {
     hasEngagement: true,
     maxLength: 400,
   },
+  airbnb: {
+    name: "Airbnb",
+    color: "#FF5A5F",
+    icon: getPlatformIcon("airbnb"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 420,
+  },
+  tripadvisor: {
+    name: "TripAdvisor",
+    color: "#34E0A1",
+    icon: getPlatformIcon("tripadvisor"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 420,
+  },
+  shopify: {
+    name: "Shopify Product Reviews",
+    color: "#95BF47",
+    icon: getPlatformIcon("shopify"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 450,
+  },
+  playstore: {
+    name: "Play Store Layouts",
+    color: "#34A853",
+    icon: getPlatformIcon("playstore"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 350,
+  },
+  fiverr: {
+    name: "Fiverr-Style Service Reviews",
+    color: "#1DBF73",
+    icon: getPlatformIcon("fiverr"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 420,
+  },
+  booking: {
+    name: "Booking-Style Ratings",
+    color: "#003580",
+    icon: getPlatformIcon("booking"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 420,
+  },
+  ecommerce: {
+    name: "Ecommerce Review Formats",
+    color: "#FF9900",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  testimonial: {
+    name: "Custom Testimonial Layouts",
+    color: "#2563EB",
+    icon: getPlatformIcon("testimonial"),
+    hasRating: false,
+    hasEngagement: false,
+    maxLength: 450,
+  },
+  generic5star: {
+    name: "Generic 5-Star Review Templates",
+    color: "#10B981",
+    icon: getPlatformIcon("generic5star"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 400,
+  },
+  generic1star: {
+    name: "Generic 1-Star Review Templates",
+    color: "#EF4444",
+    icon: getPlatformIcon("generic1star"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 400,
+  },
 };
 
 // Main function to generate review data with real API data
@@ -1547,11 +1767,28 @@ export const generateRandomReviewData = async (
       case "amazon":
       case "steam":
       case "imdb":
+      case "airbnb":
+      case "tripadvisor":
+      case "shopify":
+      case "playstore":
+      case "fiverr":
+      case "booking":
+      case "ecommerce":
+      case "generic5star":
+      case "generic1star":
         rating = Math.round((3.5 + Math.random() * 1.5) * 2) / 2; // 3.5-5 stars in 0.5 increments
         break;
       default:
         rating = undefined;
     }
+  }
+
+  if (platform === "generic5star") {
+    rating = 5;
+  }
+
+  if (platform === "generic1star") {
+    rating = 1;
   }
 
   // Generate random dates (last 6 months)
@@ -1616,11 +1853,28 @@ export const generateRandomReviewDataSync = (
       case "amazon":
       case "steam":
       case "imdb":
+      case "airbnb":
+      case "tripadvisor":
+      case "shopify":
+      case "playstore":
+      case "fiverr":
+      case "booking":
+      case "ecommerce":
+      case "generic5star":
+      case "generic1star":
         rating = Math.round((3.5 + Math.random() * 1.5) * 2) / 2; // 3.5-5 stars in 0.5 increments
         break;
       default:
         rating = undefined;
     }
+  }
+
+  if (platform === "generic5star") {
+    rating = 5;
+  }
+
+  if (platform === "generic1star") {
+    rating = 1;
   }
 
   // Generate random dates (last 6 months)

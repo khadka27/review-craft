@@ -27,14 +27,49 @@ const HomePage = () => {
       slug: "amazon",
     },
     {
+      name: "Airbnb",
+      subtitle: "Airbnb Review Layout Generator",
+      slug: "airbnb",
+    },
+    {
+      name: "Booking",
+      subtitle: "Booking-style Ratings",
+      slug: "booking",
+    },
+    {
+      name: "Custom Testimonials",
+      subtitle: "Custom Testimonial Layouts",
+      slug: "testimonial",
+    },
+    {
       name: "Discord",
       subtitle: "Discord Reviews",
       slug: "discord",
     },
     {
+      name: "Ecommerce",
+      subtitle: "Ecommerce Review Formats",
+      slug: "ecommerce",
+    },
+    {
       name: "Facebook",
       subtitle: "Facebook Fake Review Screenshot Generator",
       slug: "facebook",
+    },
+    {
+      name: "Fiverr",
+      subtitle: "Fiverr-style Service Reviews",
+      slug: "fiverr",
+    },
+    {
+      name: "Generic 1-Star",
+      subtitle: "Generic 1-star Review Templates",
+      slug: "generic-1-star",
+    },
+    {
+      name: "Generic 5-Star",
+      subtitle: "Generic 5-star Review Templates",
+      slug: "generic-5-star",
     },
     {
       name: "Google",
@@ -62,9 +97,19 @@ const HomePage = () => {
       slug: "netflix",
     },
     {
+      name: "Play Store",
+      subtitle: "Play Store Layouts",
+      slug: "playstore",
+    },
+    {
       name: "Reddit",
       subtitle: "Reddit Fake Feedback Generator",
       slug: "reddit",
+    },
+    {
+      name: "Shopify",
+      subtitle: "Shopify Product Reviews",
+      slug: "shopify",
     },
     {
       name: "Spotify",
@@ -80,6 +125,11 @@ const HomePage = () => {
       name: "TikTok",
       subtitle: "TikTok Fake Reviews Generator",
       slug: "tiktok",
+    },
+    {
+      name: "TripAdvisor",
+      subtitle: "TripAdvisor Rating Layouts",
+      slug: "tripadvisor",
     },
     {
       name: "Trustpilot",
@@ -183,7 +233,7 @@ const HomePage = () => {
     {
       question: "Does ReviewCraft support multiple platforms?",
       answer:
-        "Yes. ReviewCraft supports 16 platform-style layouts, including review formats inspired by major ecommerce, service, app, and social platforms.",
+        "Yes. ReviewCraft supports 26 platform-style layouts, including review formats inspired by major ecommerce, service, app, and social platforms.",
     },
     {
       question: "Is ReviewCraft only for product pages?",
@@ -196,7 +246,7 @@ const HomePage = () => {
     <div className="bg-white text-gray-900">
       <ReviewGeneratorPage
         heroTitle="ReviewCraft: Fake Review Generator for Mockups, Demos, and Customer Feedback"
-        heroDescription="ReviewCraft helps you create realistic review-style screenshots for 16 platforms in seconds, complete with editable text, ratings, and auto-filled reviewer details for mockups, demos, landing page previews, and testing workflows."
+        heroDescription="ReviewCraft helps you create realistic review-style screenshots for 26 platforms in seconds, complete with editable text, ratings, and auto-filled reviewer details for mockups, demos, landing page previews, and testing workflows."
       />
 
       <section className="py-20">
@@ -243,7 +293,7 @@ const HomePage = () => {
               Platforms Reviews Supported on ReviewCraft
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              ReviewCraft supports 16 platform-inspired customer review layouts
+              ReviewCraft supports 26 platform-inspired customer review layouts
               so your screenshots feel closer to real-world interfaces and are
               easier to present in a polished design context.
             </p>

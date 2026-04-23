@@ -36,7 +36,17 @@ export type Platform =
   | "tiktok"
   | "discord"
   | "steam"
-  | "imdb";
+  | "imdb"
+  | "airbnb"
+  | "tripadvisor"
+  | "shopify"
+  | "playstore"
+  | "fiverr"
+  | "booking"
+  | "ecommerce"
+  | "testimonial"
+  | "generic5star"
+  | "generic1star";
 
 export interface PlatformStyle {
   name: string;

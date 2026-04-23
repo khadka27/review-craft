@@ -72,6 +72,26 @@ export const ReviewPreview = ({
         return <SteamReview {...props} />;
       case "imdb":
         return <ImdbReview {...props} />;
+      case "airbnb":
+        return <TrustpilotReview {...props} />;
+      case "tripadvisor":
+        return <YelpReview {...props} />;
+      case "shopify":
+        return <AmazonReview {...props} />;
+      case "playstore":
+        return <GoogleReview {...props} />;
+      case "fiverr":
+        return <TrustpilotReview {...props} />;
+      case "booking":
+        return <TrustpilotReview {...props} />;
+      case "ecommerce":
+        return <AmazonReview {...props} />;
+      case "testimonial":
+        return <LinkedinReview {...props} />;
+      case "generic5star":
+        return <TrustpilotReview {...props} />;
+      case "generic1star":
+        return <TrustpilotReview {...props} />;
       default:
         return <div>Platform not supported</div>;
     }
