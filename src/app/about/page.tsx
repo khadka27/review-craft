@@ -116,35 +116,7 @@ const AboutPage = () => {
               ))}
             </div>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Technology Stack
-            </h2>
-            <p className="text-gray-600 mb-6">
-              ReviewCraft is built using modern web technologies to ensure
-              reliability, performance, and user experience:
-            </p>
-            <ul className="text-gray-600 mb-6 space-y-2">
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>Next.js 15</strong> - React framework for production
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>TypeScript</strong> - Type-safe JavaScript
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>Tailwind CSS</strong> - Utility-first CSS framework
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>html-to-image</strong> - DOM to image conversion
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>Google Analytics</strong> - User insights and SEO
-              </li>
-            </ul>
+           
 
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Use Cases</h2>
             <ul className="text-gray-600 mb-6 space-y-2">

@@ -14,31 +14,37 @@ const Footer = () => {
     ],
     legal: [
       { name: "Terms & Conditions", href: "/terms" },
-      { name: "Privacy Policy", href: "/terms#privacy" },
-      { name: "Disclaimer", href: "/terms#disclaimer" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Cookie Policy", href: "/cookie-policy" },
+      { name: "Disclaimer", href: "/disclaimer" },
+      { name: "Acceptable Use", href: "/acceptable-use" },
     ],
-    platforms: [
-      { name: "Reddit Reviews", href: "/?platform=reddit" },
-      { name: "Twitter Reviews", href: "/?platform=twitter" },
-      { name: "Instagram Reviews", href: "/?platform=instagram" },
-      { name: "Amazon Reviews", href: "/?platform=amazon" },
+    reviewPlatforms: [
+      { name: "Amazon", href: "/platform/amazon" },
+      { name: "Discord", href: "/platform/discord" },
+      { name: "Facebook", href: "/platform/facebook" },
+      { name: "Google", href: "/platform/google" },
+      { name: "IMDb", href: "/platform/imdb" },
+      { name: "Instagram", href: "/platform/instagram" },
+      { name: "LinkedIn", href: "/platform/linkedin" },
+      { name: "Netflix", href: "/platform/netflix" },
+      { name: "Reddit", href: "/platform/reddit" },
+      { name: "Spotify", href: "/platform/spotify" },
+      { name: "Steam", href: "/platform/steam" },
+      { name: "TikTok", href: "/platform/tiktok" },
+      { name: "Trustpilot", href: "/platform/trustpilot" },
+      { name: "Twitter", href: "/platform/twitter" },
+      { name: "Yelp", href: "/platform/yelp" },
+      { name: "YouTube", href: "/platform/youtube" },
     ],
-    connect: [
-      {
-        name: "Support",
-        href: "/about",
-        external: false,
-      },
-      {
-        name: "Documentation",
-        href: "/about",
-        external: false,
-      },
-      {
-        name: "Contact",
-        href: "/about",
-        external: false,
-      },
+    chatPlatforms: [
+      { name: "WhatsApp", href: "/chat/whatsapp" },
+      { name: "Messenger", href: "/chat/messenger" },
+      { name: "Instagram", href: "/chat/instagram" },
+      { name: "Telegram", href: "/chat/telegram" },
+      { name: "Twitter", href: "/chat/twitter" },
+      { name: "Discord", href: "/chat/discord" },
+      { name: "iMessage", href: "/chat/imessage" },
     ],
   };
 
@@ -107,21 +113,17 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Connect Links */}
+          {/* Review Platform Links */}
           <div>
             <h3 className="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-4">
-              Connect
+              Review Platforms
             </h3>
-            <ul className="space-y-2">
-              {footerLinks.connect.map((link) => (
+            <ul className="space-y-2 max-h-64 overflow-y-auto pr-1">
+              {footerLinks.reviewPlatforms.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
                     className="text-gray-400 hover:text-white text-sm transition-colors"
-                    {...(link.external && {
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    })}
                   >
                     {link.name}
                   </Link>
@@ -129,6 +131,25 @@ const Footer = () => {
               ))}
             </ul>
           </div>
+        </div>
+
+        {/* Chat Platform Links */}
+        <div className="mt-8 pt-8 border-t border-gray-800">
+          <h3 className="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-4">
+            Chat Platforms
+          </h3>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2">
+            {footerLinks.chatPlatforms.map((link) => (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className="block rounded-lg border border-gray-800 bg-gray-800/40 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Bottom Section */}
