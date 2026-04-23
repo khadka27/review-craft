@@ -396,6 +396,39 @@ export const ReviewForm = ({
           </div>
         )}
 
+        {/* Google Content Type */}
+        {reviewData.platform === "google" && (
+          <div className="space-y-2 sm:col-span-2">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              Google View Mode
+            </label>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => handleInputChange("googleContentType", "single")}
+                className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
+                  (reviewData.googleContentType || "single") === "single"
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                Single Review
+              </button>
+              <button
+                type="button"
+                onClick={() => handleInputChange("googleContentType", "summary")}
+                className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
+                  (reviewData.googleContentType || "single") === "summary"
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                Summary Badge
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Name Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">

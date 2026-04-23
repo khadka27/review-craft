@@ -17,6 +17,7 @@ export interface ReviewData {
   facebookContentType?: "post" | "review";
   facebookViewMode?: "desktop" | "mobile";
   images?: string[]; // Optional array of image URLs or file paths
+  googleContentType?: "single" | "summary";
 }
 
 export type Platform =

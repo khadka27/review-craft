@@ -1,11 +1,16 @@
 import { ReviewData } from "@/types/review";
 import { BadgeCheck, Star } from "lucide-react";
+import { GoogleReviewSummary } from "./GoogleReviewSummary";
 
 interface GoogleReviewProps {
   data: ReviewData;
 }
 
 export const GoogleReview = ({ data }: GoogleReviewProps) => {
+  if (data.googleContentType === "summary") {
+    return <GoogleReviewSummary data={data} />;
+  }
+
   const initials = data.name
     .split(" ")
     .map((part) => part[0])
