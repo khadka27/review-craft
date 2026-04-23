@@ -11,7 +11,8 @@ import {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isPlatformsOpen, setIsPlatformsOpen] = useState(false);
+  const [isReviewsOpen, setIsReviewsOpen] = useState(false);
+  const [isChatsOpen, setIsChatsOpen] = useState(false);
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -19,7 +20,7 @@ const Navbar = () => {
     { name: "Terms", href: "/terms" },
   ];
 
-  const platforms = [
+  const reviewPlatforms = [
     { name: "Amazon", href: "/platform/amazon" },
     { name: "Discord", href: "/platform/discord" },
     { name: "Facebook", href: "/platform/facebook" },
@@ -36,6 +37,16 @@ const Navbar = () => {
     { name: "Twitter", href: "/platform/twitter" },
     { name: "Yelp", href: "/platform/yelp" },
     { name: "YouTube", href: "/platform/youtube" },
+  ];
+
+  const chatPlatforms = [
+    { name: "WhatsApp", href: "/chat/whatsapp" },
+    { name: "Messenger", href: "/chat/messenger" },
+    { name: "Instagram", href: "/chat/instagram" },
+    { name: "Telegram", href: "/chat/telegram" },
+    { name: "Twitter", href: "/chat/twitter" },
+    { name: "Discord", href: "/chat/discord" },
+    { name: "iMessage", href: "/chat/imessage" },
   ];
 
   return (
@@ -72,24 +83,54 @@ const Navbar = () => {
             <div className="relative">
               <button
                 type="button"
-                onClick={() => setIsPlatformsOpen((open) => !open)}
+                onClick={() => setIsReviewsOpen((open) => !open)}
                 className="inline-flex items-center gap-1 text-gray-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
-                aria-expanded={isPlatformsOpen}
+                aria-expanded={isReviewsOpen}
                 aria-haspopup="menu"
               >
-                Platforms
+                Review Platforms
                 <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
               </button>
 
-              {isPlatformsOpen && (
+              {isReviewsOpen && (
                 <div className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden z-50">
                   <div className="max-h-80 overflow-y-auto py-2">
-                    {platforms.map((platform) => (
+                    {reviewPlatforms.map((platform) => (
                       <Link
                         key={platform.name}
                         href={platform.href}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
-                        onClick={() => setIsPlatformsOpen(false)}
+                        onClick={() => setIsReviewsOpen(false)}
+                      >
+                        {platform.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setIsChatsOpen((open) => !open)}
+                className="inline-flex items-center gap-1 text-gray-600 hover:text-indigo-600 px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap"
+                aria-expanded={isChatsOpen}
+                aria-haspopup="menu"
+              >
+                Chat Platforms
+                <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
+              </button>
+
+              {isChatsOpen && (
+                <div className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden z-50">
+                  <div className="max-h-80 overflow-y-auto py-2">
+                    {chatPlatforms.map((platform) => (
+                      <Link
+                        key={platform.name}
+                        href={platform.href}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                        onClick={() => setIsChatsOpen(false)}
                       >
                         {platform.name}
                       </Link>
@@ -139,30 +180,66 @@ const Navbar = () => {
               <div className="px-3 pt-2">
                 <button
                   type="button"
-                  onClick={() => setIsPlatformsOpen((open) => !open)}
+                  onClick={() => setIsReviewsOpen((open) => !open)}
                   className="w-full flex items-center justify-between px-3 py-3 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
-                  aria-expanded={isPlatformsOpen}
+                  aria-expanded={isReviewsOpen}
                   aria-haspopup="menu"
                 >
-                  <span>Platforms</span>
+                  <span>Review Platforms</span>
                   <ChevronDownIcon
                     className={`h-4 w-4 transition-transform ${
-                      isPlatformsOpen ? "rotate-180" : ""
+                      isReviewsOpen ? "rotate-180" : ""
                     }`}
                     aria-hidden="true"
                   />
                 </button>
 
-                {isPlatformsOpen && (
+                {isReviewsOpen && (
                   <div className="mt-2 rounded-md border border-gray-200 bg-gray-50 overflow-hidden">
-                    {platforms.map((platform) => (
+                    {reviewPlatforms.map((platform) => (
                       <Link
                         key={platform.name}
                         href={platform.href}
                         className="block px-6 py-2 text-sm text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
                         onClick={() => {
                           setIsMenuOpen(false);
-                          setIsPlatformsOpen(false);
+                          setIsReviewsOpen(false);
+                        }}
+                      >
+                        {platform.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="px-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsChatsOpen((open) => !open)}
+                  className="w-full flex items-center justify-between px-3 py-3 rounded-md text-base font-medium text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
+                  aria-expanded={isChatsOpen}
+                  aria-haspopup="menu"
+                >
+                  <span>Chat Platforms</span>
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform ${
+                      isChatsOpen ? "rotate-180" : ""
+                    }`}
+                    aria-hidden="true"
+                  />
+                </button>
+
+                {isChatsOpen && (
+                  <div className="mt-2 rounded-md border border-gray-200 bg-gray-50 overflow-hidden">
+                    {chatPlatforms.map((platform) => (
+                      <Link
+                        key={platform.name}
+                        href={platform.href}
+                        className="block px-6 py-2 text-sm text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setIsChatsOpen(false);
                         }}
                       >
                         {platform.name}

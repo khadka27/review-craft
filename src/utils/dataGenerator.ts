@@ -1580,6 +1580,7 @@ export const generateRandomReviewData = async (
     deviceViewMode: "desktop",
     facebookContentType: platform === "facebook" ? "post" : undefined,
     facebookViewMode: platform === "facebook" ? "desktop" : undefined,
+    googleContentType: platform === "google" ? "single" : undefined,
   };
 };
 
@@ -1648,6 +1649,7 @@ export const generateRandomReviewDataSync = (
     deviceViewMode: "desktop",
     facebookContentType: platform === "facebook" ? "post" : undefined,
     facebookViewMode: platform === "facebook" ? "desktop" : undefined,
+    googleContentType: platform === "google" ? "single" : undefined,
   };
 };
 

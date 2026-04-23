@@ -5,8 +5,9 @@ import { ReviewData, Platform } from "@/types/review";
 import { generateRandomReviewData } from "@/utils/dataGenerator";
 import { ReviewForm } from "@/components/ReviewForm";
 import { ReviewPreview } from "@/components/ReviewPreview";
-import { Shield } from "lucide-react";
+import { Shield, Download } from "lucide-react";
 import { trackPageView, trackPlatformSwitch } from "@/utils/analytics";
+import { downloadComponentAsImage } from "@/utils/export";
 
 interface ReviewGeneratorPageProps {
   initialPlatform?: Platform;
@@ -124,10 +125,19 @@ export function ReviewGeneratorPage({
         <div className="space-y-4 sm:space-y-6 lg:space-y-8">
           <div className="w-full">
             <div className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 p-3 sm:p-4 lg:p-6">
-              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6 text-center">
-                Review Preview
-              </h2>
-              <div className="overflow-x-auto">
+              <div className="flex flex-col sm:flex-row items-center justify-between mb-4 sm:mb-6 gap-4">
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900">
+                  Review Preview
+                </h2>
+                <button
+                  onClick={() => downloadComponentAsImage("review-preview", `review-${reviewData.platform}-${Date.now()}`)}
+                  className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm text-sm font-medium"
+                >
+                  <Download size={16} />
+                  Download Image
+                </button>
+              </div>
+              <div className="overflow-x-auto flex justify-center">
                 <ReviewPreview
                   reviewData={reviewData}
                   onRefresh={generateCompleteRandomReview}
