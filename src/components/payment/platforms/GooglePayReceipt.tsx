@@ -1,5 +1,6 @@
 import { TransactionData } from "@/types/payment";
 import { Check, X, Clock, ShieldCheck, Info } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const GooglePayReceipt = ({ data }: { data: TransactionData }) => {
   const isSuccess = data.status === "success";
@@ -31,7 +32,7 @@ export const GooglePayReceipt = ({ data }: { data: TransactionData }) => {
           {isSuccess ? "Paid" : isPending ? "Processing" : "Failed"}
         </h2>
         <div className="text-4xl font-bold mb-8">
-          {data.currency === "INR" ? "₹" : data.currency} {data.amount}
+          {getCurrencySymbol(data.currency)} {data.amount}
         </div>
 
         {/* Transaction Details */}
@@ -80,8 +81,8 @@ export const GooglePayReceipt = ({ data }: { data: TransactionData }) => {
           <span>Secured by Google</span>
         </div>
         <div className="flex gap-4">
-           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/1200px-UPI-Logo-vector.svg.png" className="h-4 opacity-50" />
-           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Google_Pay_%28GPay%29_Logo.svg/2560px-Google_Pay_%28GPay%29_Logo.svg.png" className="h-4 opacity-50" />
+           <img src="/icons/payment/BHIM-UPI.png" className="h-4 opacity-50" />
+           <img src="/icons/payment/g-pay.png" className="h-4 opacity-50" />
         </div>
       </div>
     </div>

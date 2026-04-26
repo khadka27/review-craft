@@ -1,17 +1,18 @@
 import { TransactionData } from "@/types/payment";
 import { ChevronRight, Apple } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const ApplePayReceipt = ({ data }: { data: TransactionData }) => {
   return (
     <div className="w-[380px] bg-white font-sans text-black min-h-[600px] flex flex-col shadow-2xl rounded-[3rem] border border-gray-100 overflow-hidden">
       {/* Top Section */}
       <div className="p-8 pt-12 flex flex-col items-center">
-         <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white mb-4">
-            <Apple size={24} fill="white" />
+         <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 overflow-hidden shadow-inner">
+            <img src="/icons/payment/apple-pay.png" alt="Apple Pay" className="w-full h-auto object-contain p-2" />
          </div>
          <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-1">Apple Pay</p>
          <h1 className="text-5xl font-black tracking-tighter mb-8">
-           {data.currency === "USD" ? "$" : data.currency}{data.amount}
+           {getCurrencySymbol(data.currency)}{data.amount}
          </h1>
 
          <div className="w-full space-y-1">
@@ -62,7 +63,7 @@ export const ApplePayReceipt = ({ data }: { data: TransactionData }) => {
       <div className="p-10 flex flex-col items-center">
          <p className="text-[10px] font-bold text-gray-300 uppercase tracking-[0.2em] mb-4">Transaction Confirmed</p>
          <div className="flex items-center gap-1.5 grayscale opacity-20">
-            <Apple size={14} />
+            <img src="/icons/payment/apple-pay.png" className="w-3.5 h-3.5 object-contain" />
             <span className="text-[10px] font-bold">Wallet</span>
          </div>
       </div>

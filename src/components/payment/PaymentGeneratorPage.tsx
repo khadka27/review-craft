@@ -30,7 +30,7 @@ export function PaymentGeneratorPage({
     id: "1",
     platform: initialPlatform,
     amount: "500.00",
-    currency: "INR",
+    currency: "USD",
     senderName: "Abish Khadka",
     receiverName: "ReviewCraft Store",
     timestamp: new Date().toLocaleString(),

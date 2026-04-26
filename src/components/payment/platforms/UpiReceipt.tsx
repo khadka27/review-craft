@@ -1,5 +1,6 @@
 import { TransactionData } from "@/types/payment";
 import { CheckCircle, ArrowRight, Shield, Copy } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const UpiReceipt = ({ data }: { data: TransactionData }) => {
   return (
@@ -7,7 +8,7 @@ export const UpiReceipt = ({ data }: { data: TransactionData }) => {
       {/* UPI Header */}
       <div className="bg-[#f2f7ff] p-4 flex justify-between items-center border-b">
         <img 
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/1200px-UPI-Logo-vector.svg.png" 
+          src="/icons/payment/BHIM-UPI.png" 
           className="h-6" 
           alt="UPI Logo" 
         />
@@ -24,7 +25,7 @@ export const UpiReceipt = ({ data }: { data: TransactionData }) => {
         
         <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Payment Successful</p>
         <div className="text-5xl font-black text-slate-900 mb-8 tracking-tight">
-          ₹{data.amount}
+          {getCurrencySymbol(data.currency)}{data.amount}
         </div>
 
         {/* Transfer Visual */}

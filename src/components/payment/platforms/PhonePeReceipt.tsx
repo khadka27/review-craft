@@ -1,5 +1,6 @@
 import { TransactionData } from "@/types/payment";
 import { Check, Share2, HelpCircle, ChevronRight } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
   return (
@@ -7,8 +8,8 @@ export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
       {/* PhonePe Header */}
       <div className="bg-[#5f259f] p-4 flex justify-between items-center text-white sticky top-0 z-10">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1">
-             <div className="w-full h-full bg-[#5f259f] rounded-[2px]"></div>
+          <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1 overflow-hidden">
+             <img src="/icons/payment/phone-pe.png" alt="PhonePe" className="w-full h-auto object-contain" />
           </div>
           <span className="font-bold text-lg">PhonePe</span>
         </div>
@@ -29,7 +30,7 @@ export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
           
           <div className="mt-8 mb-4">
              <span className="text-5xl font-black text-gray-900 tracking-tighter">
-               ₹{data.amount}
+               {getCurrencySymbol(data.currency)}{data.amount}
              </span>
           </div>
 
@@ -71,7 +72,7 @@ export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
                  <p className="text-sm font-bold text-gray-700">XXXX XXXX 1234</p>
               </div>
            </div>
-           <p className="text-sm font-black text-gray-900">₹{data.amount}</p>
+           <p className="text-sm font-black text-gray-900">{getCurrencySymbol(data.currency)}{data.amount}</p>
         </div>
 
         {data.note && (
@@ -85,7 +86,7 @@ export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
       {/* PhonePe Footer */}
       <div className="mt-auto p-4 flex justify-center items-center gap-2 opacity-30">
          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/1200px-UPI-Logo-vector.svg.png" 
+            src="/icons/payment/BHIM-UPI.png" 
             className="h-3" 
             alt="UPI" 
          />

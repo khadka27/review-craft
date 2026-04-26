@@ -1,5 +1,6 @@
 import { TransactionData } from "@/types/payment";
 import { Check, MoreVertical, Smartphone, ShieldCheck } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const GoogleWalletReceipt = ({ data }: { data: TransactionData }) => {
   return (
@@ -7,8 +8,8 @@ export const GoogleWalletReceipt = ({ data }: { data: TransactionData }) => {
       {/* App Bar */}
       <div className="p-6 flex justify-between items-center bg-white">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-             <Smartphone size={16} className="text-blue-600" />
+          <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 shadow-sm">
+             <img src="/icons/payment/google-wallet.png" alt="Google Wallet" className="w-full h-auto object-contain" />
           </div>
           <span className="font-medium text-lg text-gray-700">Google Wallet</span>
         </div>
@@ -24,7 +25,7 @@ export const GoogleWalletReceipt = ({ data }: { data: TransactionData }) => {
            
            <h2 className="text-xl font-bold mb-1">Payment sent</h2>
            <div className="text-4xl font-black mb-8 tracking-tight">
-             {data.currency === "USD" ? "$" : data.currency} {data.amount}
+             {getCurrencySymbol(data.currency)} {data.amount}
            </div>
 
            <div className="w-full space-y-4 border-t pt-6">

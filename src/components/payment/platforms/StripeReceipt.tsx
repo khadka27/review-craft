@@ -1,5 +1,6 @@
 import { TransactionData } from "@/types/payment";
 import { Check, Mail, Download, Printer } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const StripeReceipt = ({ data }: { data: TransactionData }) => {
   return (
@@ -9,9 +10,14 @@ export const StripeReceipt = ({ data }: { data: TransactionData }) => {
       
       <div className="p-8">
         <div className="flex justify-between items-start mb-8">
-          <div>
-            <div className="text-[#635bff] font-black text-2xl tracking-tight mb-1">STRIPE</div>
-            <p className="text-sm text-slate-500">Receipt from ReviewCraft</p>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-[#635bff] rounded-lg flex items-center justify-center p-1.5 shadow-sm">
+               <img src="/icons/payment/stripe.png" alt="Stripe" className="w-full h-auto object-contain brightness-0 invert" />
+            </div>
+            <div>
+              <div className="text-[#635bff] font-black text-2xl tracking-tight leading-none mb-1">STRIPE</div>
+              <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Receipt from ReviewCraft</p>
+            </div>
           </div>
           <div className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 border border-green-100">
             <Check size={14} /> Paid
@@ -20,7 +26,7 @@ export const StripeReceipt = ({ data }: { data: TransactionData }) => {
 
         <div className="mb-8">
           <p className="text-4xl font-bold tracking-tight">
-            {data.currency === "USD" ? "$" : data.currency} {data.amount}
+            {getCurrencySymbol(data.currency)} {data.amount}
           </p>
           <p className="text-sm text-slate-500 mt-1">Paid on {data.timestamp}</p>
         </div>

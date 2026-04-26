@@ -1,5 +1,6 @@
 import { TransactionData } from "@/types/payment";
 import { Heart, MessageCircle, Share, MoreHorizontal } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const VenmoReceipt = ({ data }: { data: TransactionData }) => {
   return (
@@ -7,7 +8,9 @@ export const VenmoReceipt = ({ data }: { data: TransactionData }) => {
       {/* Venmo Header */}
       <div className="bg-[#008CFF] p-4 flex justify-between items-center text-white sticky top-0 z-10">
         <div className="flex items-center gap-2">
-           <div className="w-8 h-8 bg-white text-[#008CFF] rounded flex items-center justify-center font-black italic text-xl">V</div>
+           <div className="w-8 h-8 bg-white rounded overflow-hidden flex items-center justify-center p-1">
+               <img src="/icons/payment/Venmo.png" alt="Venmo" className="w-full h-auto object-contain" />
+            </div>
            <span className="font-bold text-lg">Venmo</span>
         </div>
         <MoreHorizontal size={24} />
@@ -41,7 +44,7 @@ export const VenmoReceipt = ({ data }: { data: TransactionData }) => {
          {/* Amount */}
          <div className="flex flex-col items-center py-8 border-t border-b border-gray-100 mb-8">
             <p className="text-6xl font-black text-[#008CFF] tracking-tighter">
-              ${data.amount}
+              {getCurrencySymbol(data.currency)}{data.amount}
             </p>
             <div className="flex items-center gap-2 mt-4 px-4 py-1.5 bg-green-50 text-green-700 rounded-full text-xs font-bold border border-green-100 uppercase tracking-widest">
                Completed

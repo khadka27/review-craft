@@ -1,5 +1,6 @@
 import { TransactionData } from "@/types/payment";
 import { CheckCircle2, Share2, HelpCircle } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
   return (
@@ -8,7 +9,7 @@ export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
       <div className="bg-[#002e6e] p-4 flex justify-between items-center text-white">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1">
-            <img src="https://static.paytm.com/common/images/paytm-logo.png" alt="Paytm" className="w-full h-auto" />
+            <img src="/icons/payment/paytm.png" alt="Paytm" className="w-full h-auto" />
           </div>
           <span className="font-bold text-lg">Paytm</span>
         </div>
@@ -25,7 +26,7 @@ export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
         
         <div className="mt-6 flex flex-col items-center">
           <span className="text-4xl font-black text-[#002e6e]">
-            {data.currency === "INR" ? "₹" : data.currency} {data.amount}
+            {getCurrencySymbol(data.currency)} {data.amount}
           </span>
           <p className="text-sm text-gray-500 mt-2 italic">Paid to {data.receiverName}</p>
         </div>

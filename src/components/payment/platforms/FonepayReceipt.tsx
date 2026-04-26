@@ -1,5 +1,6 @@
 import { TransactionData } from "@/types/payment";
 import { CheckCircle, Share2, HelpCircle, Download } from "lucide-react";
+import { getCurrencySymbol } from "@/utils/payment";
 
 export const FonepayReceipt = ({ data }: { data: TransactionData }) => {
   return (
@@ -28,7 +29,7 @@ export const FonepayReceipt = ({ data }: { data: TransactionData }) => {
          <p className="text-gray-400 text-xs font-bold mb-8 uppercase tracking-widest">{data.timestamp}</p>
          
          <div className="text-5xl font-black text-[#ed1c24] mb-12 tracking-tighter">
-           Rs. {data.amount}
+           {getCurrencySymbol(data.currency)} {data.amount}
          </div>
 
          {/* Transaction Summary Box */}

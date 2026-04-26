@@ -84,6 +84,7 @@ export const PaymentForm = ({ paymentData, onUpdate, showPlatformSelector = true
             <option value="USD">USD ($)</option>
             <option value="EUR">EUR (€)</option>
             <option value="GBP">GBP (£)</option>
+            <option value="NPR">NPR (Rs.)</option>
           </select>
         </div>
       </div>
