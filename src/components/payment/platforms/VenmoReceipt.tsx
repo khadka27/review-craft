@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const VenmoReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[380px] bg-white font-sans text-gray-900 min-h-[600px] flex flex-col shadow-2xl border border-gray-100">
+    <div className="w-full bg-white font-sans text-gray-900 min-h-full flex flex-col">
       {/* Venmo Header */}
       <div className="bg-[#008CFF] p-4 flex justify-between items-center text-white sticky top-0 z-10">
         <div className="flex items-center gap-2">

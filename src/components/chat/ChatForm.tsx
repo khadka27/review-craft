@@ -1,6 +1,7 @@
 import { ChatData, ChatMessage, ChatPlatform } from "@/types/chat";
 import { useState } from "react";
-import { Plus, Trash2, User, Monitor, Smartphone, Sun, Moon } from "lucide-react";
+import { Plus, Trash2, User, Monitor, Smartphone, Sun, Moon, Upload, X, ImageIcon, RefreshCw } from "lucide-react";
+import { useRef } from "react";
 
 interface ChatFormProps {
   chatData: ChatData;
@@ -10,7 +11,54 @@ interface ChatFormProps {
 
 export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: ChatFormProps) => {
   const [newMessage, setNewMessage] = useState("");
+  const [newMessageImage, setNewMessageImage] = useState<string | null>(null);
   const [newSender, setNewSender] = useState<"me" | "them">("them");
+  const [avatarType, setAvatarType] = useState<"api" | "default" | "custom">("api");
+  const [customAvatarUrl, setCustomAvatarUrl] = useState("");
+  const avatarInputRef = useRef<HTMLInputElement>(null);
+  const messageImageInputRef = useRef<HTMLInputElement>(null);
+
+  const statusOptions = [
+    "Online",
+    "Last seen today",
+    "Last seen yesterday",
+    "typing...",
+    "Last seen recently",
+    "Custom"
+  ];
+
+  const handleAvatarTypeChange = (type: "api" | "default" | "custom") => {
+    setAvatarType(type);
+    if (type === "default") {
+      onUpdate({ contactAvatar: "/images/default-avatar.jpg" });
+    } else if (type === "api") {
+      onUpdate({ contactAvatar: `https://i.pravatar.cc/150?u=${chatData.contactName || 'chat'}` });
+    }
+  };
+
+  const handleCustomAvatarUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result as string;
+        onUpdate({ contactAvatar: result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleMessageImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result as string;
+        setNewMessageImage(result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const addMessage = () => {
     if (!newMessage.trim()) return;
@@ -20,13 +68,15 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
       text: newMessage,
       sender: newSender,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      status: "read"
+      status: "read",
+      image: newMessageImage || undefined
     };
 
     onUpdate({
       messages: [...chatData.messages, message]
     });
     setNewMessage("");
+    setNewMessageImage(null);
   };
 
   const removeMessage = (id: string) => {
@@ -96,12 +146,110 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
         </div>
         <div className="space-y-2">
           <label className="block text-sm font-semibold text-gray-700">Status (Online/Last seen)</label>
-          <input 
-            type="text"
-            value={chatData.contactStatus}
-            onChange={(e) => onUpdate({ contactStatus: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded-lg"
-          />
+          <div className="flex gap-2">
+            <select 
+              value={statusOptions.slice(0, -1).includes(chatData.contactStatus) ? chatData.contactStatus : "Custom"}
+              onChange={(e) => {
+                if (e.target.value !== "Custom") {
+                  onUpdate({ contactStatus: e.target.value });
+                } else {
+                  onUpdate({ contactStatus: "" }); // Clear to show placeholder
+                }
+              }}
+              className="flex-1 p-2 border border-gray-300 rounded-lg"
+            >
+              {statusOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+            </select>
+            {!statusOptions.slice(0, -1).includes(chatData.contactStatus) ? (
+              <input 
+                type="text"
+                value={chatData.contactStatus}
+                onChange={(e) => onUpdate({ contactStatus: e.target.value })}
+                placeholder="Enter custom status..."
+                className="flex-1 p-2 border border-gray-300 rounded-lg"
+              />
+            ) : null}
+          </div>
+        </div>
+
+        {/* Profile Image Selection */}
+        <div className="space-y-3 md:col-span-2">
+          <label className="block text-sm font-semibold text-gray-700">Profile Image</label>
+          <div className="flex flex-col sm:flex-row gap-4 items-start">
+            <div className="relative group">
+              {chatData.contactAvatar ? (
+                <img 
+                  src={chatData.contactAvatar} 
+                  alt="Avatar" 
+                  className="w-16 h-16 rounded-full border border-gray-200 object-cover"
+                />
+              ) : (
+                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
+                  <User size={32} />
+                </div>
+              )}
+              {avatarType === "api" && (
+                <button 
+                  onClick={() => onUpdate({ contactAvatar: `https://i.pravatar.cc/150?u=${Date.now()}` })}
+                  className="absolute -bottom-1 -right-1 p-1 bg-white rounded-full shadow-md border hover:text-blue-600 transition-colors"
+                  title="Refresh random image"
+                >
+                  <RefreshCw size={12} />
+                </button>
+              )}
+            </div>
+
+            <div className="flex-1 space-y-3 w-full">
+              <div className="flex flex-wrap gap-2">
+                <button 
+                  onClick={() => handleAvatarTypeChange("api")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${avatarType === "api" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                >
+                  Generate API
+                </button>
+                <button 
+                  onClick={() => handleAvatarTypeChange("default")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${avatarType === "default" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                >
+                  Default
+                </button>
+                <button 
+                  onClick={() => handleAvatarTypeChange("custom")}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${avatarType === "custom" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                >
+                  Custom Upload
+                </button>
+              </div>
+
+              {avatarType === "custom" && (
+                <div className="flex gap-2 w-full">
+                  <input 
+                    type="file"
+                    ref={avatarInputRef}
+                    onChange={handleCustomAvatarUpload}
+                    accept="image/*"
+                    className="hidden"
+                  />
+                  <button 
+                    onClick={() => avatarInputRef.current?.click()}
+                    className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    <Upload size={16} />
+                    Upload Image
+                  </button>
+                  <div className="flex-1">
+                    <input 
+                      type="text"
+                      value={chatData.contactAvatar.startsWith('data:') ? '' : chatData.contactAvatar}
+                      onChange={(e) => onUpdate({ contactAvatar: e.target.value })}
+                      placeholder="Or paste image URL"
+                      className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -113,6 +261,17 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
             <div key={msg.id} className={`flex flex-col gap-1 ${msg.sender === "me" ? "items-end" : "items-start"}`}>
               <div className="flex items-center gap-2 w-full max-w-[90%]">
                 <div className={`flex-1 p-2 rounded-lg text-sm shadow-sm ${msg.sender === "me" ? "bg-blue-600 text-white" : "bg-white text-gray-800 border"}`}>
+                  {msg.image && (
+                    <div className="relative mb-2 group">
+                      <img src={msg.image} alt="Attached" className="max-w-full h-32 object-cover rounded" />
+                      <button 
+                        onClick={() => updateMessage(msg.id, { image: undefined })}
+                        className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <X size={10} />
+                      </button>
+                    </div>
+                  )}
                   <textarea 
                     value={msg.text}
                     onChange={(e) => updateMessage(msg.id, { text: e.target.value })}
@@ -158,29 +317,56 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
         </div>
 
         {/* New Message Input */}
-        <div className="flex gap-2 bg-white p-3 rounded-lg border shadow-sm">
-          <select 
-            value={newSender}
-            onChange={(e) => setNewSender(e.target.value as "me" | "them")}
-            className="p-2 border rounded-lg text-xs"
-          >
-            <option value="them">Them</option>
-            <option value="me">Me</option>
-          </select>
-          <input 
-            type="text"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && addMessage()}
-            placeholder="Type a message..."
-            className="flex-1 p-2 border border-gray-300 rounded-lg text-sm"
-          />
-          <button 
-            onClick={addMessage}
-            className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            <Plus size={20} />
-          </button>
+        <div className="flex flex-col gap-2 bg-white p-3 rounded-lg border shadow-sm">
+          {newMessageImage && (
+            <div className="relative inline-block w-20 h-20 mb-2">
+              <img src={newMessageImage} className="w-full h-full object-cover rounded-lg border" />
+              <button 
+                onClick={() => setNewMessageImage(null)}
+                className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full"
+              >
+                <X size={12} />
+              </button>
+            </div>
+          )}
+          <div className="flex gap-2">
+            <select 
+              value={newSender}
+              onChange={(e) => setNewSender(e.target.value as "me" | "them")}
+              className="p-2 border rounded-lg text-xs"
+            >
+              <option value="them">Them</option>
+              <option value="me">Me</option>
+            </select>
+            <input 
+              type="text"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && addMessage()}
+              placeholder="Type a message..."
+              className="flex-1 p-2 border border-gray-300 rounded-lg text-sm"
+            />
+            <input 
+              type="file"
+              ref={messageImageInputRef}
+              onChange={handleMessageImageUpload}
+              accept="image/*"
+              className="hidden"
+            />
+            <button 
+              onClick={() => messageImageInputRef.current?.click()}
+              className={`p-2 rounded-lg border transition-colors ${newMessageImage ? "bg-blue-50 border-blue-200 text-blue-600" : "bg-white text-gray-500 hover:bg-gray-50"}`}
+              title="Attach Image"
+            >
+              <ImageIcon size={20} />
+            </button>
+            <button 
+              onClick={addMessage}
+              className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              <Plus size={20} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -47,9 +47,16 @@ export const DiscordChat = ({ data }: { data: ChatData }) => {
                     <span className="text-[10px] text-[#949ba4]">{msg.timestamp}</span>
                   </div>
                 )}
-                <div className="text-[14px] leading-relaxed break-words">
-                  {msg.text}
-                </div>
+                {msg.image && (
+                  <div className="mt-2 mb-2 rounded-lg overflow-hidden max-w-md border border-[#2b2d31]">
+                    <img src={msg.image} alt="" className="w-full h-auto max-h-[400px] object-contain" />
+                  </div>
+                )}
+                {msg.text && (
+                  <div className="text-[14px] leading-relaxed break-words">
+                    {msg.text}
+                  </div>
+                )}
               </div>
             </div>
           );

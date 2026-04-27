@@ -46,7 +46,12 @@ export const TelegramChat = ({ data }: { data: ChatData }) => {
                   : (isDark ? "bg-[#182533] text-white rounded-bl-none" : "bg-white text-black rounded-bl-none")
                 }
               `}>
-                <p className="leading-relaxed">{msg.text}</p>
+                {msg.image && (
+                  <div className="mb-1 rounded-lg overflow-hidden">
+                    <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover" />
+                  </div>
+                )}
+                {msg.text && <p className="leading-relaxed">{msg.text}</p>}
                 <div className="flex items-center justify-end gap-1 mt-1">
                   <span className={`text-[9px] ${isDark ? "text-gray-400" : "text-gray-400"}`}>{msg.timestamp}</span>
                   {isMe && (

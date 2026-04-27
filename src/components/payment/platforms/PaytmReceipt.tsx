@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[380px] bg-[#f5f9fd] font-sans text-gray-800 flex flex-col min-h-[600px]">
+    <div className="w-full bg-[#f5f9fd] font-sans text-gray-800 flex flex-col min-h-full">
       {/* Header */}
       <div className="bg-[#002e6e] p-4 flex justify-between items-center text-white">
         <div className="flex items-center gap-2">

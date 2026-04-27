@@ -29,7 +29,12 @@ export const TwitterChat = ({ data }: { data: ChatData }) => {
                   : (isDark ? "bg-[#2f3336] text-white rounded-t-[20px] rounded-br-[20px] rounded-bl-[4px]" : "bg-[#eff3f4] text-black rounded-t-[20px] rounded-br-[20px] rounded-bl-[4px]")
                 }
               `}>
-                <p className="leading-snug">{msg.text}</p>
+                {msg.image && (
+                  <div className="mb-2 rounded-2xl overflow-hidden border border-gray-800">
+                    <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover" />
+                  </div>
+                )}
+                {msg.text && <p className="leading-snug">{msg.text}</p>}
               </div>
               <span className="text-[11px] text-gray-500 mt-1 px-1">{msg.timestamp}</span>
             </div>

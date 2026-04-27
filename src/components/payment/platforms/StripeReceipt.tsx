@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const StripeReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[400px] bg-white font-sans text-slate-900 border shadow-lg rounded-xl overflow-hidden">
+    <div className="w-full min-h-full bg-white font-sans text-slate-900 overflow-hidden">
       {/* Top Banner */}
       <div className="bg-[#635bff] h-2"></div>
       

@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const FonepayReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[380px] bg-white font-sans text-gray-800 flex flex-col min-h-[620px] shadow-2xl rounded-2xl overflow-hidden border">
+    <div className="w-full bg-white font-sans text-gray-800 flex flex-col min-h-full">
       {/* Fonepay Header */}
       <div className="bg-[#ed1c24] p-4 flex justify-between items-center text-white">
         <div className="flex items-center gap-2">

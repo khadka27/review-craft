@@ -41,7 +41,12 @@ export const WhatsAppChat = ({ data }: { data: ChatData }) => {
                 : (isDark ? "bg-[#202c33] rounded-tl-none" : "bg-white rounded-tl-none")
               }
             `}>
-              <p className="leading-relaxed">{msg.text}</p>
+              {msg.image && (
+                <div className="mb-1 rounded-sm overflow-hidden">
+                  <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover" />
+                </div>
+              )}
+              {msg.text && <p className="leading-relaxed">{msg.text}</p>}
               <div className="flex items-center justify-end gap-1 mt-0.5">
                 <span className="text-[9px] text-gray-500">{msg.timestamp}</span>
                 {msg.sender === "me" && (

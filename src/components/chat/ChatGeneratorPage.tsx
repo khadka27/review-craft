@@ -30,8 +30,8 @@ export function ChatGeneratorPage({
     id: "1",
     platform: initialPlatform,
     contactName: "John Doe",
-    contactAvatar: "",
-    contactStatus: "online",
+    contactAvatar: "https://i.pravatar.cc/150?u=johndoe",
+    contactStatus: "Online",
     messages: [
       { id: "1", text: "Hey! How are you?", sender: "them", timestamp: "10:00 AM", status: "read" },
       { id: "2", text: "I'm doing great, thanks for asking!", sender: "me", timestamp: "10:01 AM", status: "read" },

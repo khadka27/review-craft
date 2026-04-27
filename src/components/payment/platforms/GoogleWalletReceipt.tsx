@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const GoogleWalletReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[380px] bg-[#f8f9fa] font-sans text-gray-900 min-h-[600px] flex flex-col rounded-3xl overflow-hidden shadow-xl border border-gray-200">
+    <div className="w-full bg-[#f8f9fa] font-sans text-gray-900 min-h-full flex flex-col overflow-hidden">
       {/* App Bar */}
       <div className="p-6 flex justify-between items-center bg-white">
         <div className="flex items-center gap-3">

@@ -39,10 +39,14 @@ export const ChatPreview = ({ chatData }: ChatPreviewProps) => {
 
   return (
     <div className="w-full flex justify-center p-4">
-      <div
-        className={`w-full max-w-[375px] shadow-2xl rounded-[3rem] border-[8px] border-gray-900 overflow-hidden bg-white aspect-[9/19.5]`}
-      >
-        <div id="chat-screen-capture" className="h-full w-full">
+      {/* Visual Phone Frame (Preview only) */}
+      <div className="w-full max-w-[375px] shadow-2xl rounded-[3rem] border-[8px] border-gray-900 overflow-hidden bg-white aspect-[9/19.5]">
+        {/* Flat Capture Area (for download) */}
+        <div 
+          id="chat-screen-capture" 
+          className="h-full w-full bg-white rounded-none border-none"
+          style={{ borderRadius: '0px' }} // Force no rounding for capture
+        >
           {renderPlatform()}
         </div>
       </div>

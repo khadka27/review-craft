@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const ApplePayReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[380px] bg-white font-sans text-black min-h-[600px] flex flex-col shadow-2xl rounded-[3rem] border border-gray-100 overflow-hidden">
+    <div className="w-full bg-white font-sans text-black min-h-full flex flex-col overflow-hidden">
       {/* Top Section */}
       <div className="p-8 pt-12 flex flex-col items-center">
          <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 overflow-hidden shadow-inner">

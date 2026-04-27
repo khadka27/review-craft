@@ -38,7 +38,12 @@ export const IMessageChat = ({ data }: { data: ChatData }) => {
                   : (isDark ? "bg-[#262626]" : "bg-[#e9e9eb] text-black")
                 }
               `}>
-                <p className="leading-snug">{msg.text}</p>
+                {msg.image && (
+                  <div className="mb-1 rounded-[18px] overflow-hidden">
+                    <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover" />
+                  </div>
+                )}
+                {msg.text && <p className="leading-snug">{msg.text}</p>}
               </div>
               {isMe && (
                 <span className="text-[10px] text-gray-500 mt-1 mr-1">Delivered</span>

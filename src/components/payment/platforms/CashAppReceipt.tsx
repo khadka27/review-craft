@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const CashAppReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[380px] bg-[#00D64F] font-sans text-white min-h-[620px] flex flex-col shadow-2xl rounded-[3rem] overflow-hidden">
+    <div className="w-full bg-[#00D64F] font-sans text-white min-h-full flex flex-col overflow-hidden">
       <div className="p-6 flex justify-between items-center">
          <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1 overflow-hidden shadow-sm">

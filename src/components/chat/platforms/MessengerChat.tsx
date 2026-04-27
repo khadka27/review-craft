@@ -45,7 +45,12 @@ export const MessengerChat = ({ data }: { data: ChatData }) => {
                   : (isDark ? "bg-[#242526]" : "bg-[#f0f0f0]")
                 }
               `}>
-                <p className="leading-snug">{msg.text}</p>
+                {msg.image && (
+                  <div className="mb-2 rounded-2xl overflow-hidden">
+                    <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover" />
+                  </div>
+                )}
+                {msg.text && <p className="leading-snug">{msg.text}</p>}
               </div>
             </div>
           );

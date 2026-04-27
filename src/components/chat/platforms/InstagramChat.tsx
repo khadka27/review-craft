@@ -44,7 +44,12 @@ export const InstagramChat = ({ data }: { data: ChatData }) => {
                   : (isDark ? "bg-[#262626]" : "bg-gray-100")
                 }
               `}>
-                <p className="leading-snug">{msg.text}</p>
+                {msg.image && (
+                  <div className="mb-2 rounded-xl overflow-hidden">
+                    <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover" />
+                  </div>
+                )}
+                {msg.text && <p className="leading-snug">{msg.text}</p>}
               </div>
             </div>
           );

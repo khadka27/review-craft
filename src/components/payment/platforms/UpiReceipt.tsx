@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const UpiReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[380px] bg-white font-sans text-slate-800 shadow-2xl rounded-2xl overflow-hidden border">
+    <div className="w-full bg-white font-sans text-slate-800 min-h-full flex flex-col overflow-hidden">
       {/* UPI Header */}
       <div className="bg-[#f2f7ff] p-4 flex justify-between items-center border-b">
         <img 

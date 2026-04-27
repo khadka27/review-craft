@@ -4,7 +4,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 
 export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
   return (
-    <div className="w-[380px] bg-[#f7f5ff] font-sans text-gray-800 flex flex-col min-h-[620px] shadow-2xl">
+    <div className="w-full bg-[#f7f5ff] font-sans text-gray-800 flex flex-col min-h-full">
       {/* PhonePe Header */}
       <div className="bg-[#5f259f] p-4 flex justify-between items-center text-white sticky top-0 z-10">
         <div className="flex items-center gap-3">

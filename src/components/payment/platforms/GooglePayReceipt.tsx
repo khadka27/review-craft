@@ -7,7 +7,7 @@ export const GooglePayReceipt = ({ data }: { data: TransactionData }) => {
   const isPending = data.status === "pending";
 
   return (
-    <div className="w-[380px] bg-white font-sans text-gray-900 min-h-[600px] flex flex-col relative overflow-hidden">
+    <div className="w-full bg-white font-sans text-gray-900 min-h-full flex flex-col relative overflow-hidden">
       {/* Google Pay Colors Top Bar */}
       <div className="flex h-1.5 w-full">
         <div className="bg-[#4285F4] flex-1"></div>
