@@ -1,12 +1,12 @@
 import { TransactionData } from "@/types/payment";
-import { CheckCircle2, Share2, HelpCircle } from "lucide-react";
+import { CheckCircle2, Share2, HelpCircle, Clock, AlertCircle } from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
 
 export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
   return (
     <div className="w-full bg-[#f5f9fd] font-sans text-gray-800 flex flex-col min-h-full">
       {/* Header */}
-      <div className="bg-[#002e6e] p-4 flex justify-between items-center text-white">
+      <div className="bg-[#002e6e] p-4 pt-6 flex justify-between items-center text-white">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1">
             <img src="/icons/payment/paytm.png" alt="Paytm" className="w-full h-auto" />
@@ -18,10 +18,21 @@ export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
 
       {/* Success Banner */}
       <div className="bg-white p-6 flex flex-col items-center text-center border-b">
-        <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-4 text-white">
-          <CheckCircle2 size={40} />
+        <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 text-white ${
+          data.status === "success" ? "bg-green-500" : 
+          data.status === "pending" ? "bg-amber-500" : "bg-red-500"
+        }`}>
+          {data.status === "success" && <CheckCircle2 size={40} />}
+          {data.status === "pending" && <Clock size={40} />}
+          {data.status === "failed" && <AlertCircle size={40} />}
         </div>
-        <h2 className="text-xl font-bold text-green-600 mb-1">Payment Successful</h2>
+        <h2 className={`text-xl font-bold mb-1 ${
+          data.status === "success" ? "text-green-600" : 
+          data.status === "pending" ? "text-amber-600" : "text-red-600"
+        }`}>
+          {data.status === "success" ? "Payment Successful" : 
+           data.status === "pending" ? "Payment Pending" : "Payment Failed"}
+        </h2>
         <p className="text-gray-500 text-sm">{data.timestamp}</p>
         
         <div className="mt-6 flex flex-col items-center">
@@ -63,9 +74,9 @@ export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
       {/* Footer */}
       <div className="mt-auto p-6 bg-white border-t flex flex-col items-center gap-4">
         <img 
-          src="https://www.qr-code-generator.com/wp-content/themes/qr/new_structure/markets/core_market/generator/dist/generator/assets/images/methods/qr-code.png" 
+          src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Paytm-Success" 
           alt="QR Code" 
-          className="w-24 h-24 opacity-50"
+          className="w-24 h-24 opacity-80"
         />
         <p className="text-[10px] text-gray-400 text-center uppercase tracking-widest font-bold">
           Powered by Paytm Payments Bank

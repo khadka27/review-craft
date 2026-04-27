@@ -36,7 +36,13 @@ export const ApplePayReceipt = ({ data }: { data: TransactionData }) => {
          <div className="space-y-6 mt-4">
             <div className="flex justify-between items-center text-sm border-b pb-4">
                <span className="text-gray-500 font-medium">Status</span>
-               <span className="font-bold text-green-600">Completed</span>
+               <span className={`font-bold ${
+                 data.status === "failed" ? "text-red-600" : 
+                 data.status === "pending" ? "text-amber-600" : "text-green-600"
+               }`}>
+                 {data.status === "failed" ? "Failed" : 
+                  data.status === "pending" ? "Pending" : "Completed"}
+               </span>
             </div>
             <div className="flex justify-between items-center text-sm border-b pb-4">
                <span className="text-gray-500 font-medium">Transaction ID</span>

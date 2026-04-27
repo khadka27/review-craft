@@ -1,29 +1,36 @@
 import { TransactionData } from "@/types/payment";
-import { Check, MoreVertical, Smartphone, ShieldCheck } from "lucide-react";
+import { Check, MoreVertical, Smartphone, ShieldCheck, Clock, AlertCircle } from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
 
 export const GoogleWalletReceipt = ({ data }: { data: TransactionData }) => {
+  const isPending = data.status === "pending";
+  const isFailed = data.status === "failed";
+
   return (
     <div className="w-full bg-[#f8f9fa] font-sans text-gray-900 min-h-full flex flex-col overflow-hidden">
       {/* App Bar */}
-      <div className="p-6 flex justify-between items-center bg-white">
+      <div className="p-6 pt-12 flex justify-between items-center bg-white">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 shadow-sm">
              <img src="/icons/payment/google-wallet.png" alt="Google Wallet" className="w-full h-auto object-contain" />
           </div>
           <span className="font-medium text-lg text-gray-700">Google Wallet</span>
         </div>
-        <MoreVertical size={20} className="text-gray-500" />
+        < MoreVertical size={20} className="text-gray-500" />
       </div>
 
       {/* Main Content */}
       <div className="flex-1 p-6">
         <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col items-center">
-           <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-6 text-white shadow-lg ring-8 ring-blue-50">
-             <Check size={36} strokeWidth={3} />
+           <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 text-white shadow-lg ring-8 ${
+             isFailed ? "bg-red-500 ring-red-50" : isPending ? "bg-amber-500 ring-amber-50" : "bg-blue-600 ring-blue-50"
+           }`}>
+             {isFailed ? <AlertCircle size={36} strokeWidth={3} /> : isPending ? <Clock size={36} strokeWidth={3} /> : <Check size={36} strokeWidth={3} />}
            </div>
            
-           <h2 className="text-xl font-bold mb-1">Payment sent</h2>
+           <h2 className="text-xl font-bold mb-1">
+             {isFailed ? "Payment failed" : isPending ? "Payment pending" : "Payment sent"}
+           </h2>
            <div className="text-4xl font-black mb-8 tracking-tight">
              {getCurrencySymbol(data.currency)} {data.amount}
            </div>

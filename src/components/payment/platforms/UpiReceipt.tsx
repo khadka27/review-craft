@@ -1,12 +1,15 @@
 import { TransactionData } from "@/types/payment";
-import { CheckCircle, ArrowRight, Shield, Copy } from "lucide-react";
+import { CheckCircle, ArrowRight, Shield, Copy, Clock, AlertCircle } from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
 
 export const UpiReceipt = ({ data }: { data: TransactionData }) => {
+  const isPending = data.status === "pending";
+  const isFailed = data.status === "failed";
+
   return (
     <div className="w-full bg-white font-sans text-slate-800 min-h-full flex flex-col overflow-hidden">
       {/* UPI Header */}
-      <div className="bg-[#f2f7ff] p-4 flex justify-between items-center border-b">
+      <div className="bg-[#f2f7ff] p-4 pt-10 flex justify-between items-center border-b">
         <img 
           src="/icons/payment/BHIM-UPI.png" 
           className="h-6" 
@@ -18,12 +21,18 @@ export const UpiReceipt = ({ data }: { data: TransactionData }) => {
       </div>
 
       <div className="p-8 flex flex-col items-center">
-        {/* Success Icon */}
-        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
-          <CheckCircle size={40} strokeWidth={2.5} />
+        {/* Status Icon */}
+        <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 ${
+          isFailed ? "bg-red-50 text-red-600" : isPending ? "bg-amber-50 text-amber-600" : "bg-green-100 text-green-600"
+        }`}>
+          {isFailed ? <AlertCircle size={40} strokeWidth={2.5} /> : isPending ? <Clock size={40} strokeWidth={2.5} /> : <CheckCircle size={40} strokeWidth={2.5} />}
         </div>
         
-        <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Payment Successful</p>
+        <p className={`text-sm font-bold uppercase tracking-widest mb-1 ${
+          isFailed ? "text-red-500" : isPending ? "text-amber-500" : "text-slate-400"
+        }`}>
+          {isFailed ? "Payment Failed" : isPending ? "Payment Pending" : "Payment Successful"}
+        </p>
         <div className="text-5xl font-black text-slate-900 mb-8 tracking-tight">
           {getCurrencySymbol(data.currency)}{data.amount}
         </div>

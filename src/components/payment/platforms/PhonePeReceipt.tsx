@@ -1,15 +1,18 @@
 import { TransactionData } from "@/types/payment";
-import { Check, Share2, HelpCircle, ChevronRight } from "lucide-react";
+import { Check, Share2, HelpCircle, ChevronRight, Clock, AlertCircle } from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
 
 export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
+  const isPending = data.status === "pending";
+  const isFailed = data.status === "failed";
+
   return (
     <div className="w-full bg-[#f7f5ff] font-sans text-gray-800 flex flex-col min-h-full">
       {/* PhonePe Header */}
-      <div className="bg-[#5f259f] p-4 flex justify-between items-center text-white sticky top-0 z-10">
+      <div className="bg-[#5f259f] p-4 pt-8 flex justify-between items-center text-white sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1 overflow-hidden">
-             <img src="/icons/payment/phone-pe.png" alt="PhonePe" className="w-full h-auto object-contain" />
+             <img src="/icons/payment/phonepe.png" alt="PhonePe" className="w-full h-auto object-contain" />
           </div>
           <span className="font-bold text-lg">PhonePe</span>
         </div>
@@ -22,10 +25,16 @@ export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
       <div className="bg-white m-4 rounded-2xl shadow-sm border border-purple-100 overflow-hidden">
         {/* Transaction Summary */}
         <div className="p-6 flex flex-col items-center text-center">
-          <div className="w-16 h-16 bg-[#5f259f] rounded-full flex items-center justify-center mb-4 text-white ring-8 ring-purple-50">
-            <Check size={40} strokeWidth={3} />
+          <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-4 text-white ring-8 ${
+            isFailed ? "bg-red-500 ring-red-50" : isPending ? "bg-amber-500 ring-amber-50" : "bg-[#5f259f] ring-purple-50"
+          }`}>
+            {isFailed ? <AlertCircle size={40} strokeWidth={3} /> : isPending ? <Clock size={40} strokeWidth={3} /> : <Check size={40} strokeWidth={3} />}
           </div>
-          <h2 className="text-xl font-black text-[#5f259f] mb-1 uppercase tracking-tight">Transaction Successful</h2>
+          <h2 className={`text-xl font-black mb-1 uppercase tracking-tight ${
+            isFailed ? "text-red-600" : isPending ? "text-amber-600" : "text-[#5f259f]"
+          }`}>
+            {isFailed ? "Transaction Failed" : isPending ? "Transaction Pending" : "Transaction Successful"}
+          </h2>
           <p className="text-gray-400 text-xs font-bold">{data.timestamp}</p>
           
           <div className="mt-8 mb-4">

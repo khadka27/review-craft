@@ -6,7 +6,7 @@ export const VenmoReceipt = ({ data }: { data: TransactionData }) => {
   return (
     <div className="w-full bg-white font-sans text-gray-900 min-h-full flex flex-col">
       {/* Venmo Header */}
-      <div className="bg-[#008CFF] p-4 flex justify-between items-center text-white sticky top-0 z-10">
+      <div className="bg-[#008CFF] p-4 pt-10 flex justify-between items-center text-white sticky top-0 z-10">
         <div className="flex items-center gap-2">
            <div className="w-8 h-8 bg-white rounded overflow-hidden flex items-center justify-center p-1">
                <img src="/icons/payment/Venmo.png" alt="Venmo" className="w-full h-auto object-contain" />
@@ -46,9 +46,13 @@ export const VenmoReceipt = ({ data }: { data: TransactionData }) => {
             <p className="text-6xl font-black text-[#008CFF] tracking-tighter">
               {getCurrencySymbol(data.currency)}{data.amount}
             </p>
-            <div className="flex items-center gap-2 mt-4 px-4 py-1.5 bg-green-50 text-green-700 rounded-full text-xs font-bold border border-green-100 uppercase tracking-widest">
-               Completed
-            </div>
+             <div className={`flex items-center gap-2 mt-4 px-4 py-1.5 rounded-full text-xs font-bold border uppercase tracking-widest ${
+               data.status === "failed" ? "bg-red-50 text-red-700 border-red-100" : 
+               data.status === "pending" ? "bg-amber-50 text-amber-700 border-amber-100" : "bg-green-50 text-green-700 border-green-100"
+             }`}>
+                {data.status === "failed" ? "Failed" : 
+                 data.status === "pending" ? "Pending" : "Completed"}
+             </div>
          </div>
 
          {/* Social Actions */}

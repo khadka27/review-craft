@@ -65,18 +65,23 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
 
   return (
     <div className="w-full flex justify-center p-4">
-      {/* Mobile Frame */}
-      <div className="w-full max-w-[375px] shadow-2xl rounded-[3rem] border-[10px] border-gray-900 overflow-hidden bg-white aspect-[9/19.5] relative">
-        <div id="payment-receipt-capture" className="h-full w-full relative flex flex-col pt-10">
-          <MobileStatusBar isDark={isDark} />
+      {/* Mobile Preview Container - Removed outer black border */}
+      <div className="w-full max-w-[375px] relative group transition-all duration-500 shadow-2xl">
+        {/* Capture Area */}
+        <div id="payment-receipt-capture" className="w-full bg-white relative flex flex-col rounded-3xl overflow-hidden">
+          {/* Status Bar Area */}
+          <div className="h-10 relative z-20 bg-transparent">
+            <MobileStatusBar isDark={isDark} />
+          </div>
           
-          <div className="flex-1 overflow-y-auto scrollbar-hide">
+          {/* Content Area */}
+          <div className="w-full -mt-10 pt-10">
             {renderPlatformReceipt()}
           </div>
 
-          {/* Home Indicator */}
-          <div className="h-8 flex justify-center items-center absolute bottom-0 w-full bg-transparent">
-             <div className={`w-32 h-1.5 rounded-full ${isDark ? "bg-white/30" : "bg-black/20"}`} />
+          {/* Home Indicator Area */}
+          <div className="h-10 flex justify-center items-center w-full bg-white relative z-20 mt-auto">
+             <div className={`w-32 h-1.5 rounded-full ${isDark ? "bg-black/20" : "bg-black/10"}`} />
           </div>
         </div>
       </div>

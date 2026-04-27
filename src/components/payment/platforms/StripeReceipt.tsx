@@ -1,26 +1,38 @@
 import { TransactionData } from "@/types/payment";
-import { Check, Mail, Download, Printer } from "lucide-react";
+import { Check, Mail, Download, Printer, Clock, AlertCircle } from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
 
 export const StripeReceipt = ({ data }: { data: TransactionData }) => {
+  const statusStyles = {
+    success: { label: "Paid", color: "bg-green-50 text-green-700 border-green-100", icon: Check },
+    pending: { label: "Pending", color: "bg-amber-50 text-amber-700 border-amber-100", icon: Clock },
+    failed: { label: "Failed", color: "bg-red-50 text-red-700 border-red-100", icon: AlertCircle },
+  };
+
+  const currentStatus = statusStyles[data.status] || statusStyles.success;
+
   return (
     <div className="w-full min-h-full bg-white font-sans text-slate-900 overflow-hidden">
       {/* Top Banner */}
-      <div className="bg-[#635bff] h-2"></div>
+      <div className={`h-2 ${data.status === "success" ? "bg-[#635bff]" : data.status === "pending" ? "bg-amber-500" : "bg-red-500"}`}></div>
       
-      <div className="p-8">
+      <div className="p-8 pt-12">
         <div className="flex justify-between items-start mb-8">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#635bff] rounded-lg flex items-center justify-center p-1.5 shadow-sm">
+            <div className={`w-10 h-10 rounded-lg flex items-center justify-center p-1.5 shadow-sm ${
+              data.status === "success" ? "bg-[#635bff]" : data.status === "pending" ? "bg-amber-500" : "bg-red-500"
+            }`}>
                <img src="/icons/payment/stripe.png" alt="Stripe" className="w-full h-auto object-contain brightness-0 invert" />
             </div>
             <div>
-              <div className="text-[#635bff] font-black text-2xl tracking-tight leading-none mb-1">STRIPE</div>
+              <div className={`font-black text-2xl tracking-tight leading-none mb-1 ${
+                data.status === "success" ? "text-[#635bff]" : data.status === "pending" ? "text-amber-600" : "text-red-600"
+              }`}>STRIPE</div>
               <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Receipt from ReviewCraft</p>
             </div>
           </div>
-          <div className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 border border-green-100">
-            <Check size={14} /> Paid
+          <div className={`${currentStatus.color} px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 border`}>
+            <currentStatus.icon size={14} /> {currentStatus.label}
           </div>
         </div>
 

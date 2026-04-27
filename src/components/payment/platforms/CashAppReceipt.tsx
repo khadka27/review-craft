@@ -5,7 +5,7 @@ import { getCurrencySymbol } from "@/utils/payment";
 export const CashAppReceipt = ({ data }: { data: TransactionData }) => {
   return (
     <div className="w-full bg-[#00D64F] font-sans text-white min-h-full flex flex-col overflow-hidden">
-      <div className="p-6 flex justify-between items-center">
+      <div className="p-6 pt-10 flex justify-between items-center">
          <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1 overflow-hidden shadow-sm">
                <img src="/icons/payment/cash-app.png" alt="Cash App" className="w-full h-auto object-contain" />
@@ -41,7 +41,13 @@ export const CashAppReceipt = ({ data }: { data: TransactionData }) => {
             <div className="space-y-4">
                <div className="flex justify-between items-center text-sm">
                   <span className="font-bold opacity-60 uppercase tracking-widest text-[10px]">Status</span>
-                  <span className="font-black bg-white text-[#00D64F] px-3 py-1 rounded-full text-[10px] uppercase">Completed</span>
+                  <span className={`font-black px-3 py-1 rounded-full text-[10px] uppercase ${
+                    data.status === "failed" ? "bg-red-500 text-white" : 
+                    data.status === "pending" ? "bg-amber-500 text-white" : "bg-white text-[#00D64F]"
+                  }`}>
+                    {data.status === "failed" ? "Failed" : 
+                     data.status === "pending" ? "Pending" : "Completed"}
+                  </span>
                </div>
                <div className="flex justify-between items-center text-sm">
                   <span className="font-bold opacity-60 uppercase tracking-widest text-[10px]">Date</span>

@@ -1,12 +1,15 @@
 import { TransactionData } from "@/types/payment";
-import { CheckCircle, Share2, HelpCircle, Download } from "lucide-react";
+import { CheckCircle, Share2, HelpCircle, Download, Clock, AlertCircle } from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
 
 export const FonepayReceipt = ({ data }: { data: TransactionData }) => {
+  const isPending = data.status === "pending";
+  const isFailed = data.status === "failed";
+
   return (
     <div className="w-full bg-white font-sans text-gray-800 flex flex-col min-h-full">
       {/* Fonepay Header */}
-      <div className="bg-[#ed1c24] p-4 flex justify-between items-center text-white">
+      <div className="bg-[#ed1c24] p-4 pt-6 flex justify-between items-center text-white">
         <div className="flex items-center gap-2">
            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1">
               <span className="text-[#ed1c24] font-black text-xs">f</span>
@@ -20,12 +23,18 @@ export const FonepayReceipt = ({ data }: { data: TransactionData }) => {
       </div>
 
       <div className="p-8 flex flex-col items-center">
-         {/* Success Check */}
-         <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-6 text-white ring-8 ring-green-50 shadow-lg">
-            <CheckCircle size={48} strokeWidth={2.5} />
+         {/* Status Check */}
+         <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-6 text-white ring-8 shadow-lg ${
+           isFailed ? "bg-red-500 ring-red-50 shadow-red-100" : isPending ? "bg-amber-500 ring-amber-50 shadow-amber-100" : "bg-green-500 ring-green-50 shadow-green-100"
+         }`}>
+            {isFailed ? <AlertCircle size={48} strokeWidth={2.5} /> : isPending ? <Clock size={48} strokeWidth={2.5} /> : <CheckCircle size={48} strokeWidth={2.5} />}
          </div>
 
-         <h2 className="text-xl font-black text-green-600 mb-1 uppercase tracking-tight">Payment Successful</h2>
+         <h2 className={`text-xl font-black mb-1 uppercase tracking-tight ${
+           isFailed ? "text-red-600" : isPending ? "text-amber-600" : "text-green-600"
+         }`}>
+           {isFailed ? "Payment Failed" : isPending ? "Payment Pending" : "Payment Successful"}
+         </h2>
          <p className="text-gray-400 text-xs font-bold mb-8 uppercase tracking-widest">{data.timestamp}</p>
          
          <div className="text-5xl font-black text-[#ed1c24] mb-12 tracking-tighter">
