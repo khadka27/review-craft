@@ -18,7 +18,7 @@ export const GooglePayReceipt = ({ data }: { data: TransactionData }) => {
       
       <div className="p-6 pt-12">
         <div className="flex justify-between items-center mb-8">
-          <img src="/icons/payment/googlepay.png" alt="Google Pay" className="h-6" />
+          <img src="/icons/payment/g-pay.png" alt="Google Pay" className="h-6" />
           <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
             <span className="text-gray-500 text-xs font-bold">{data.senderName.charAt(0)}</span>
           </div>
@@ -81,7 +81,7 @@ export const GooglePayReceipt = ({ data }: { data: TransactionData }) => {
         </div>
         <div className="flex gap-4">
            <img src="/icons/payment/BHIM-UPI.png" className="h-4 opacity-50" />
-           <img src="/icons/payment/googlepay.png" className="h-4 opacity-50" />
+           <img src="/icons/payment/g-pay.png" className="h-4 opacity-50" />
         </div>
       </div>
     </div>

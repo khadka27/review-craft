@@ -12,7 +12,7 @@ export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
       <div className="bg-[#5f259f] p-4 pt-8 flex justify-between items-center text-white sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1 overflow-hidden">
-             <img src="/icons/payment/phonepe.png" alt="PhonePe" className="w-full h-auto object-contain" />
+             <img src="/icons/payment/phone-pe.png" alt="PhonePe" className="w-full h-auto object-contain" />
           </div>
           <span className="font-bold text-lg">PhonePe</span>
         </div>
