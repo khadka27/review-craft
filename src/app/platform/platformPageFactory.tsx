@@ -629,7 +629,7 @@ export function renderPlatformPage(platform: Platform) {
       initialPlatform={platform}
       lockPlatform
       pageViewName={`platform_${platform}_review_generator`}
-      heroTitle={`${selectedPlatform.name} Review Generator`}
+      heroTitle={`${selectedPlatform.name}`}
       heroDescription={selectedPlatform.description}
       theme={selectedPlatform.theme}
       platformCategory={
