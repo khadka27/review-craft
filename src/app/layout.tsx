@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,34 +16,45 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fakereviewgenerator.com"),
-  title: "ReviewCraft - Create Product Reviews Like Social Media Posts",
+  title: {
+    default: "Fake Review Generator for Mockups | ReviewCraft",
+    template: "%s | ReviewCraft",
+  },
   description:
-    "Discover how Review Craft allows you to create product reviews just like sharing posts on social media. Our user-friendly platform lets customers easily write, interact, and share their reviews in a familiar, engaging format. Whether you're a business looking to collect feedback or a consumer eager to share your experience, Review Craft simplifies the review process with a sleek, intuitive interface. Start creating authentic product reviews today and build trust with your audience.",
+    "Create realistic review and comment mockups for UI design, demos, and education. Generate Amazon, Google, Instagram, TikTok, and more with fast export options.",
   keywords: [
-    "product reviews",
-    "social media reviews",
-    "review platform",
-    "customer feedback",
-    "review generator",
-    "authentic reviews",
-    "business reviews",
-    "consumer reviews",
-    "review interface",
-    "user-friendly reviews",
-    "review sharing",
-    "trust building",
-    "review creation",
-    "engaging reviews",
+    "fake review generator",
+    "review screenshot generator",
+    "testimonial generator",
+    "social proof generator",
+    "review mockup generator",
+    "amazon review generator",
+    "google review generator",
+    "instagram comment generator",
+    "tiktok comment generator",
+    "ui design mockup tool",
+    "ecommerce review mockup",
   ],
   authors: [{ name: "ReviewCraft Team" }],
   creator: "ReviewCraft",
   publisher: "ReviewCraft",
   manifest: "/site.webmanifest",
-  robots: "index, follow",
+  category: "Design tool",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "ReviewCraft - Create Product Reviews Like Social Media Posts",
+    title: "Fake Review Generator for Mockups | ReviewCraft",
     description:
-      "Discover how Review Craft allows you to create product reviews just like sharing posts on social media. Our user-friendly platform lets customers easily write, interact, and share their reviews in a familiar, engaging format.",
+      "Create realistic review and comment mockups for UI design, demos, and educational workflows across 40+ platform styles.",
     type: "website",
     url: "https://fakereviewgenerator.com",
     siteName: "ReviewCraft",
@@ -59,9 +69,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ReviewCraft - Create Product Reviews Like Social Media Posts",
+    title: "Fake Review Generator for Mockups | ReviewCraft",
     description:
-      "User-friendly platform for creating authentic product reviews in a familiar social media format. Build trust with your audience through engaging reviews.",
+      "Create realistic review mockups for UI design, demos, and educational use across major social and ecommerce layouts.",
     images: ["/images/og-image.png"],
   },
   alternates: {

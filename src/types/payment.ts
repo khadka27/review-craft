@@ -1,8 +1,8 @@
-export type PaymentPlatform = 
-  | "paytm" 
-  | "stripe" 
-  | "googlepay" 
-  | "upi" 
+export type PaymentPlatform =
+  | "paytm"
+  | "stripe"
+  | "googlepay"
+  | "upi"
   | "phonepay"
   | "googlewallet"
   | "applepay"
@@ -22,6 +22,9 @@ export interface TransactionData {
   status: "success" | "pending" | "failed";
   note?: string;
   referenceId?: string;
+  receiverId?: string;
+  senderMasked?: string;
+  utr?: string;
 }
 
 export interface PaymentPageTheme {

@@ -41,7 +41,7 @@ export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
       "Ninety",
     ];
 
-    const inWords = (n: number) => {
+    const inWords = (n: number): string => {
       if (n < 20) return a[n];
       if (n < 100)
         return b[Math.floor(n / 10)] + (n % 10 ? " " + a[n % 10] : "");

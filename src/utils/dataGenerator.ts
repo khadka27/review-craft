@@ -1158,8 +1158,20 @@ const generateUsername = (
 };
 
 const generateProductVariation = (platform: Platform): string | undefined => {
-  const isEcom = ["amazon", "daraz", "flipkart", "ebay", "walmart", "bestbuy", "etsy", "aliexpress", "alibaba", "ecommerce", "shopify"].includes(platform);
-  
+  const isEcom = [
+    "amazon",
+    "daraz",
+    "flipkart",
+    "ebay",
+    "walmart",
+    "bestbuy",
+    "etsy",
+    "aliexpress",
+    "alibaba",
+    "ecommerce",
+    "shopify",
+  ].includes(platform);
+
   if (!isEcom) return undefined;
 
   const variations = [
@@ -1342,6 +1354,62 @@ const generateTitle = (platform: Platform): string => {
       "Reliable order process and support",
       "Satisfied with both product and delivery",
     ],
+    daraz: [
+      "Great quality and fast delivery",
+      "Exactly as pictured, very satisfied",
+      "Good price and excellent packaging",
+      "Reliable seller and smooth transaction",
+      "Would purchase again from this seller",
+    ],
+    flipkart: [
+      "Best price for this product",
+      "Quick delivery and well packaged",
+      "Excellent quality at great value",
+      "Exactly as described in listing",
+      "Very satisfied with purchase",
+    ],
+    ebay: [
+      "Item arrived in perfect condition",
+      "Great seller, fast shipping",
+      "Exactly as described, highly satisfied",
+      "Good value and authentic product",
+      "Would buy from this seller again",
+    ],
+    walmart: [
+      "Great quality and competitive price",
+      "Fast checkout and delivery",
+      "Excellent product selection",
+      "Very satisfied with my purchase",
+      "Will shop here again",
+    ],
+    bestbuy: [
+      "Great electronics selection and service",
+      "Knowledgeable staff and fair pricing",
+      "Fast shipping and excellent packaging",
+      "Perfect product for my needs",
+      "Highly recommend their service",
+    ],
+    etsy: [
+      "Unique handmade item, beautifully crafted",
+      "Great communication from seller",
+      "Perfect gift and excellent quality",
+      "Exactly as pictured and well packaged",
+      "Supporting small business, highly recommended",
+    ],
+    aliexpress: [
+      "Great price for the quality",
+      "Fast shipping and good packaging",
+      "Excellent product, very satisfied",
+      "Good value and reliable seller",
+      "Would order again from this seller",
+    ],
+    alibaba: [
+      "Excellent bulk pricing and quality",
+      "Professional supplier and good communication",
+      "Great for wholesale orders",
+      "Reliable delivery and good packaging",
+      "Recommend for business purchases",
+    ],
     testimonial: [
       "Working with this team has been a fantastic experience.",
       "Professional, responsive, and results-driven from start to finish.",
@@ -1484,6 +1552,46 @@ const generateContent = (platform: Platform): string => {
       "Great ecommerce experience from browsing to delivery. Product quality was as expected and shipping updates were timely.",
       "Easy checkout, secure payment process, and fast dispatch. The item arrived in excellent condition and works perfectly.",
       "Reliable online shopping experience with clear product info, fair pricing, and responsive customer support.",
+    ],
+    daraz: [
+      "Great shopping experience with quick delivery and good product quality. Packaging was secure and checkout was straightforward.",
+      "Excellent value and fast shipping. The product arrived exactly as described. Very satisfied with this purchase.",
+      "Reliable seller with great communication. Item quality is high and delivery was faster than expected.",
+    ],
+    flipkart: [
+      "Best price I found online and delivery was incredibly fast. Product is exactly as described with great packaging.",
+      "Excellent shopping experience. Easy returns policy and great customer service made the whole process smooth.",
+      "Great quality product at competitive pricing. Flipkart's delivery service is very reliable and efficient.",
+    ],
+    ebay: [
+      "Very satisfied with my purchase. Seller was professional and shipped quickly. Item arrived in perfect condition.",
+      "Great eBay experience. Authentic product, fair pricing, and excellent seller communication throughout.",
+      "Reliable seller with fast shipping and well-packaged items. This was my first eBay purchase and it was great.",
+    ],
+    walmart: [
+      "Great selection and fast checkout. Quality products at reasonable prices with reliable shipping to my location.",
+      "Walmart's online store is convenient and user-friendly. Delivery was on time and product quality is consistent.",
+      "Good value for money and efficient service. I appreciate the easy return process and quick refunds.",
+    ],
+    bestbuy: [
+      "Excellent electronics selection with knowledgeable customer service. Product quality is authentic and delivery is fast.",
+      "Great warranty options and professional support team. Best Buy's online experience rivals their physical stores.",
+      "Tech products arrived in perfect condition with clear documentation. Great customer service throughout.",
+    ],
+    etsy: [
+      "Wonderful handmade product with excellent attention to detail. The seller was very responsive and professional.",
+      "Great quality craftsmanship and unique items you won't find elsewhere. Supporting small business never felt better.",
+      "Beautiful product that exceeded my expectations. Seller's communication was excellent and packaging was thoughtful.",
+    ],
+    aliexpress: [
+      "Great value for the price and good quality. International shipping was smooth despite the distance.",
+      "Very satisfied with the product and seller support. Delivery took time but arrived safely packaged.",
+      "Excellent budget-friendly option. Product quality is better than expected for the price point.",
+    ],
+    alibaba: [
+      "Professional supplier with reliable communication and fair wholesale pricing. Great for bulk orders.",
+      "Dependable business partnership. Quality control is good and shipment tracking was transparent.",
+      "Excellent supplier for our business needs. Consistent quality and reliable delivery to our location.",
     ],
     testimonial: [
       "This team helped us move faster and with more confidence. Communication was clear, timelines were respected, and the final result was excellent.",

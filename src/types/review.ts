@@ -23,7 +23,8 @@ export interface ReviewData {
   location?: {
     city: string;
     state: string;
-    country: string;
+    country?: string;
+    zip?: string;
     address?: string;
   };
 }
