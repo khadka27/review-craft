@@ -14,10 +14,18 @@ export interface ReviewData {
   shares: number;
   verified: boolean;
   deviceViewMode?: "desktop" | "mobile";
+  phoneModel?: string; // e.g. "iPhone 15", "Samsung Galaxy S24"
   facebookContentType?: "post" | "review";
   facebookViewMode?: "desktop" | "mobile";
   images?: string[]; // Optional array of image URLs or file paths
   googleContentType?: "single" | "summary";
+  productVariation?: string; // e.g. "Color: Black, Size: Large"
+  location?: {
+    city: string;
+    state: string;
+    country: string;
+    address?: string;
+  };
 }
 
 export type Platform =
@@ -44,6 +52,14 @@ export type Platform =
   | "fiverr"
   | "booking"
   | "ecommerce"
+  | "daraz"
+  | "flipkart"
+  | "ebay"
+  | "walmart"
+  | "bestbuy"
+  | "etsy"
+  | "aliexpress"
+  | "alibaba"
   | "testimonial"
   | "generic5star"
   | "generic1star";

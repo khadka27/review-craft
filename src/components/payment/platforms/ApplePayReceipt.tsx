@@ -1,77 +1,122 @@
 import { TransactionData } from "@/types/payment";
-import { ChevronRight, Apple } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
 
 export const ApplePayReceipt = ({ data }: { data: TransactionData }) => {
+  const statusLabel =
+    data.status === "failed"
+      ? "Failed"
+      : data.status === "pending"
+        ? "Pending"
+        : "Cleared";
+
   return (
-    <div className="w-full bg-white font-sans text-black min-h-full flex flex-col overflow-hidden">
-      {/* Top Section */}
-      <div className="p-8 pt-12 flex flex-col items-center">
-         <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 overflow-hidden shadow-inner">
-            <img src="/icons/payment/apple-pay.png" alt="Apple Pay" className="w-full h-auto object-contain p-2" />
-         </div>
-         <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-1">Apple Pay</p>
-         <h1 className="text-5xl font-black tracking-tighter mb-8">
-           {getCurrencySymbol(data.currency)}{data.amount}
-         </h1>
-
-         <div className="w-full space-y-1">
-            <div className="bg-gray-50 p-5 rounded-2xl flex justify-between items-center group cursor-pointer hover:bg-gray-100 transition-colors">
-               <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                    {data.receiverName.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-bold text-lg leading-tight">{data.receiverName}</p>
-                    <p className="text-sm text-gray-500">{data.timestamp.split(',')[0]}</p>
-                  </div>
-               </div>
-               <ChevronRight className="text-gray-300" size={20} />
-            </div>
-         </div>
+    <div className="w-full bg-white font-[-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif] text-black min-h-full flex flex-col overflow-hidden">
+      {/* Apple Status Bar */}
+      <div className="px-6 pt-4 pb-2 flex items-center">
+        <ChevronLeft className="text-blue-500" size={24} />
+        <span className="text-blue-500 font-semibold ml-1">Back</span>
       </div>
 
-      {/* Details Section */}
-      <div className="px-8 flex-1">
-         <div className="space-y-6 mt-4">
-            <div className="flex justify-between items-center text-sm border-b pb-4">
-               <span className="text-gray-500 font-medium">Status</span>
-               <span className={`font-bold ${
-                 data.status === "failed" ? "text-red-600" : 
-                 data.status === "pending" ? "text-amber-600" : "text-green-600"
-               }`}>
-                 {data.status === "failed" ? "Failed" : 
-                  data.status === "pending" ? "Pending" : "Completed"}
-               </span>
-            </div>
-            <div className="flex justify-between items-center text-sm border-b pb-4">
-               <span className="text-gray-500 font-medium">Transaction ID</span>
-               <span className="font-mono text-xs text-gray-400 uppercase">{data.transactionId}</span>
-            </div>
-            <div className="flex justify-between items-center text-sm border-b pb-4">
-               <span className="text-gray-500 font-medium">Payment Method</span>
-               <div className="flex items-center gap-2">
-                  <div className="w-8 h-5 bg-black rounded flex items-center justify-center text-[8px] text-white font-bold italic">CARD</div>
-                  <span className="font-bold">•••• 4242</span>
-               </div>
-            </div>
-         </div>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col px-6 py-8">
+        {/* Amount Section */}
+        <div className="text-center mb-12">
+          <p className="text-7xl font-black tracking-tight mb-2">
+            {getCurrencySymbol(data.currency)}
+            {data.amount}
+          </p>
+          <p className="text-lg text-gray-600 font-semibold mb-1">
+            {data.receiverName}
+          </p>
+          <p className="text-sm text-gray-500">{data.timestamp}</p>
+        </div>
 
-         {data.note && (
-           <div className="mt-8 p-5 bg-gray-50 rounded-2xl">
-              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Note</p>
-              <p className="text-sm text-gray-700 font-medium leading-relaxed italic">"{data.note}"</p>
-           </div>
-         )}
+        {/* Status Card */}
+        <div className="bg-gray-50 rounded-2xl p-6 mb-6 space-y-5">
+          {/* Status */}
+          <div className="flex justify-between items-center">
+            <p className="text-base font-bold">Status: {statusLabel}</p>
+          </div>
+
+          {/* Card Number */}
+          <div className="flex justify-between items-center border-t pt-4">
+            <span className="text-gray-500 text-sm">Card Number Used</span>
+            <span className="text-gray-600 font-medium">•••• 4242</span>
+          </div>
+
+          {/* Item Breakdown */}
+          <div className="border-t pt-4 space-y-3">
+            {/* Item */}
+            <div className="flex items-start gap-3">
+              <div className="w-12 h-12 bg-white rounded-lg border border-gray-200 flex items-center justify-center flex-shrink-0">
+                <span className="text-xs font-black text-black">Apple</span>
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-base">Apple One</p>
+                <p className="text-gray-500 text-sm">Premier</p>
+              </div>
+              <span className="font-semibold text-base">
+                {getCurrencySymbol(data.currency)}
+                {(parseFloat(data.amount) * 0.93).toFixed(2)}
+              </span>
+            </div>
+
+            {/* Tax */}
+            <div className="flex justify-between items-center border-t pt-3">
+              <p className="font-semibold">Tax</p>
+              <span className="text-gray-600">
+                {getCurrencySymbol(data.currency)}
+                {(parseFloat(data.amount) * 0.065).toFixed(2)}
+              </span>
+            </div>
+
+            {/* Total */}
+            <div className="flex justify-between items-center border-t pt-3">
+              <p className="text-lg font-bold">Total</p>
+              <span className="text-lg font-bold">
+                {getCurrencySymbol(data.currency)}
+                {data.amount}
+              </span>
+            </div>
+
+            {/* Rewards/Cashback */}
+            <div className="flex justify-between items-center border-t pt-3">
+              <p className="text-gray-600 text-sm">3% Daily Cash</p>
+              <span className="text-gray-600 text-sm">
+                {getCurrencySymbol(data.currency)}
+                {(parseFloat(data.amount) * 0.03).toFixed(2)}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Statement Info */}
+        <div className="mb-6">
+          <p className="text-[11px] text-gray-400 font-semibold tracking-widest uppercase mb-3">
+            Shown on statement as:
+          </p>
+          <div className="bg-gray-50 rounded-xl p-4">
+            <p className="font-semibold text-gray-900">apple.com/bill</p>
+          </div>
+        </div>
+
+        {/* Note if present */}
+        {data.note && (
+          <div className="mb-6 bg-blue-50 rounded-xl p-4 border border-blue-100">
+            <p className="text-[11px] text-blue-600 font-bold uppercase tracking-widest mb-1">
+              Note
+            </p>
+            <p className="text-sm text-gray-800">{data.note}</p>
+          </div>
+        )}
       </div>
 
-      {/* Footer */}
-      <div className="p-10 flex flex-col items-center">
-         <p className="text-[10px] font-bold text-gray-300 uppercase tracking-[0.2em] mb-4">Transaction Confirmed</p>
-         <div className="flex items-center gap-1.5 grayscale opacity-20">
-            <img src="/icons/payment/apple-pay.png" className="w-3.5 h-3.5 object-contain" />
-            <span className="text-[10px] font-bold">Wallet</span>
-         </div>
+      {/* Footer Button */}
+      <div className="px-6 pb-8">
+        <button className="w-full py-3 text-blue-500 font-semibold text-base">
+          Report an Issue
+        </button>
       </div>
     </div>
   );

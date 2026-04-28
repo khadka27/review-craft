@@ -15,7 +15,7 @@ type PlatformTheme = {
   disclaimerIcon: string;
 };
 
-const platformMeta: Record<
+export const platformMeta: Record<
   Platform,
   { name: string; description: string; theme: PlatformTheme }
 > = {
@@ -397,8 +397,8 @@ const platformMeta: Record<
     },
   },
   ecommerce: {
-    name: "Ecommerce Review Formats",
-    description: "Create generic ecommerce-style review layouts in seconds.",
+    name: "Ecommerce",
+    description: "Create popular ecommerce-style review layouts in seconds.",
     theme: {
       pageGradient: "bg-gradient-to-br from-amber-50 via-orange-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#F59E0B] to-[#EA580C]",
@@ -411,6 +411,142 @@ const platformMeta: Record<
       disclaimerHeading: "text-amber-900",
       disclaimerText: "text-amber-800",
       disclaimerIcon: "text-amber-600",
+    },
+  },
+  daraz: {
+    name: "Daraz",
+    description: "Create realistic Daraz review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-orange-50 via-white to-red-50",
+      heroGradient: "bg-gradient-to-r from-[#f68b1e] to-[#ff4500]",
+      heroDescriptionColor: "text-orange-50",
+      tipsCard: "bg-orange-50 border border-orange-200",
+      tipsHeading: "text-orange-900",
+      tipsText: "text-orange-800",
+      tipsBullet: "text-orange-600",
+      disclaimerCard: "bg-orange-50 border border-orange-200",
+      disclaimerHeading: "text-orange-900",
+      disclaimerText: "text-orange-800",
+      disclaimerIcon: "text-orange-600",
+    },
+  },
+  flipkart: {
+    name: "Flipkart",
+    description: "Create realistic Flipkart review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-blue-50 via-white to-yellow-50",
+      heroGradient: "bg-gradient-to-r from-[#2874f0] to-[#ffd814]",
+      heroDescriptionColor: "text-blue-50",
+      tipsCard: "bg-blue-50 border border-blue-200",
+      tipsHeading: "text-blue-900",
+      tipsText: "text-blue-800",
+      tipsBullet: "text-blue-600",
+      disclaimerCard: "bg-blue-50 border border-blue-200",
+      disclaimerHeading: "text-blue-900",
+      disclaimerText: "text-blue-800",
+      disclaimerIcon: "text-blue-600",
+    },
+  },
+  ebay: {
+    name: "eBay",
+    description: "Create realistic eBay review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-zinc-50 via-white to-slate-50",
+      heroGradient: "bg-gradient-to-r from-[#e53238] via-[#0064d2] via-[#f5af02] to-[#86b817]",
+      heroDescriptionColor: "text-white/90",
+      tipsCard: "bg-zinc-50 border border-zinc-200",
+      tipsHeading: "text-zinc-900",
+      tipsText: "text-zinc-800",
+      tipsBullet: "text-zinc-600",
+      disclaimerCard: "bg-zinc-50 border border-zinc-200",
+      disclaimerHeading: "text-zinc-900",
+      disclaimerText: "text-zinc-800",
+      disclaimerIcon: "text-zinc-600",
+    },
+  },
+  walmart: {
+    name: "Walmart",
+    description: "Create realistic Walmart review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-sky-50 via-white to-amber-50",
+      heroGradient: "bg-gradient-to-r from-[#0071ce] to-[#ffc220]",
+      heroDescriptionColor: "text-sky-50",
+      tipsCard: "bg-sky-50 border border-sky-200",
+      tipsHeading: "text-sky-900",
+      tipsText: "text-sky-800",
+      tipsBullet: "text-sky-600",
+      disclaimerCard: "bg-sky-50 border border-sky-200",
+      disclaimerHeading: "text-sky-900",
+      disclaimerText: "text-sky-800",
+      disclaimerIcon: "text-sky-600",
+    },
+  },
+  bestbuy: {
+    name: "Best Buy",
+    description: "Create realistic Best Buy review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-blue-50 via-white to-yellow-50",
+      heroGradient: "bg-gradient-to-r from-[#0046be] to-[#fff200]",
+      heroDescriptionColor: "text-blue-50",
+      tipsCard: "bg-blue-50 border border-blue-200",
+      tipsHeading: "text-blue-900",
+      tipsText: "text-blue-800",
+      tipsBullet: "text-blue-600",
+      disclaimerCard: "bg-blue-50 border border-blue-200",
+      disclaimerHeading: "text-blue-900",
+      disclaimerText: "text-blue-800",
+      disclaimerIcon: "text-blue-600",
+    },
+  },
+  etsy: {
+    name: "Etsy",
+    description: "Create realistic Etsy review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-orange-50 via-white to-amber-50",
+      heroGradient: "bg-gradient-to-r from-[#f1641e] to-[#eb6d20]",
+      heroDescriptionColor: "text-orange-50",
+      tipsCard: "bg-orange-50 border border-orange-200",
+      tipsHeading: "text-orange-900",
+      tipsText: "text-orange-800",
+      tipsBullet: "text-orange-600",
+      disclaimerCard: "bg-orange-50 border border-orange-200",
+      disclaimerHeading: "text-orange-900",
+      disclaimerText: "text-orange-800",
+      disclaimerIcon: "text-orange-600",
+    },
+  },
+  aliexpress: {
+    name: "AliExpress",
+    description: "Create realistic AliExpress review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-red-50 via-white to-orange-50",
+      heroGradient: "bg-gradient-to-r from-[#e62e04] to-[#ff4747]",
+      heroDescriptionColor: "text-red-50",
+      tipsCard: "bg-red-50 border border-red-200",
+      tipsHeading: "text-red-900",
+      tipsText: "text-red-800",
+      tipsBullet: "text-red-600",
+      disclaimerCard: "bg-red-50 border border-red-200",
+      disclaimerHeading: "text-red-900",
+      disclaimerText: "text-red-800",
+      disclaimerIcon: "text-red-600",
+    },
+  },
+  alibaba: {
+    name: "Alibaba",
+    description: "Create realistic Alibaba review screenshots in seconds.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-orange-50 via-white to-amber-50",
+      heroGradient: "bg-gradient-to-r from-[#ff6600] to-[#ff4500]",
+      heroDescriptionColor: "text-orange-50",
+      tipsCard: "bg-orange-50 border border-orange-200",
+      tipsHeading: "text-orange-900",
+      tipsText: "text-orange-800",
+      tipsBullet: "text-orange-600",
+      disclaimerCard: "bg-orange-50 border border-orange-200",
+      disclaimerHeading: "text-orange-900",
+      disclaimerText: "text-orange-800",
+      disclaimerIcon: "text-orange-600",
     },
   },
   testimonial: {
@@ -477,6 +613,7 @@ export function renderPlatformPage(platform: Platform) {
       heroTitle={`${selectedPlatform.name} Review Generator`}
       heroDescription={selectedPlatform.description}
       theme={selectedPlatform.theme}
+      platformCategory={platform === "ecommerce" || ["amazon", "ebay", "walmart", "bestbuy", "etsy", "aliexpress", "alibaba", "daraz", "flipkart"].includes(platform) ? "ecommerce" : undefined}
     />
   );
 }

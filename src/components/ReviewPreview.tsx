@@ -15,6 +15,8 @@ import { TiktokReview } from "./platforms/TiktokReview";
 import { DiscordReview } from "./platforms/DiscordReview";
 import { SteamReview } from "./platforms/SteamReview";
 import { ImdbReview } from "./platforms/ImdbReview";
+import { GenericEcomReview } from "./platforms/GenericEcomReview";
+import { FlipkartReview } from "./platforms/FlipkartReview";
 import { Download, Copy, RefreshCw, Loader2 } from "lucide-react";
 import {
   downloadReviewAsImage,
@@ -84,8 +86,17 @@ export const ReviewPreview = ({
         return <TrustpilotReview {...props} />;
       case "booking":
         return <TrustpilotReview {...props} />;
+      case "flipkart":
+        return <FlipkartReview {...props} />;
+      case "daraz":
+      case "ebay":
+      case "walmart":
+      case "bestbuy":
+      case "etsy":
+      case "aliexpress":
+      case "alibaba":
       case "ecommerce":
-        return <AmazonReview {...props} />;
+        return <GenericEcomReview {...props} />;
       case "testimonial":
         return <LinkedinReview {...props} />;
       case "generic5star":

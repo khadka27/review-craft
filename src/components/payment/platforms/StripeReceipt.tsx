@@ -1,92 +1,150 @@
 import { TransactionData } from "@/types/payment";
-import { Check, Mail, Download, Printer, Clock, AlertCircle } from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
 
 export const StripeReceipt = ({ data }: { data: TransactionData }) => {
-  const statusStyles = {
-    success: { label: "Paid", color: "bg-green-50 text-green-700 border-green-100", icon: Check },
-    pending: { label: "Pending", color: "bg-amber-50 text-amber-700 border-amber-100", icon: Clock },
-    failed: { label: "Failed", color: "bg-red-50 text-red-700 border-red-100", icon: AlertCircle },
-  };
-
-  const currentStatus = statusStyles[data.status] || statusStyles.success;
-
   return (
-    <div className="w-full min-h-full bg-white font-sans text-slate-900 overflow-hidden">
-      {/* Top Banner */}
-      <div className={`h-2 ${data.status === "success" ? "bg-[#635bff]" : data.status === "pending" ? "bg-amber-500" : "bg-red-500"}`}></div>
-      
-      <div className="p-8 pt-12">
-        <div className="flex justify-between items-start mb-8">
-          <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center p-1.5 shadow-sm ${
-              data.status === "success" ? "bg-[#635bff]" : data.status === "pending" ? "bg-amber-500" : "bg-red-500"
-            }`}>
-               <img src="/icons/payment/stripe.png" alt="Stripe" className="w-full h-auto object-contain brightness-0 invert" />
-            </div>
-            <div>
-              <div className={`font-black text-2xl tracking-tight leading-none mb-1 ${
-                data.status === "success" ? "text-[#635bff]" : data.status === "pending" ? "text-amber-600" : "text-red-600"
-              }`}>STRIPE</div>
-              <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Receipt from ReviewCraft</p>
-            </div>
-          </div>
-          <div className={`${currentStatus.color} px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 border`}>
-            <currentStatus.icon size={14} /> {currentStatus.label}
-          </div>
-        </div>
+    <div className="w-full min-h-full bg-white font-sans text-slate-900 overflow-hidden flex flex-col">
+      {/* Purple Diagonal Header */}
+      <div className="relative h-40 bg-gradient-to-r from-[#6366F1] to-[#7C3AED] overflow-hidden">
+        {/* Diagonal Wave */}
+        <svg
+          className="absolute bottom-0 w-full"
+          viewBox="0 0 1000 100"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,50 Q250,0 500,50 T1000,50 L1000,100 L0,100 Z"
+            fill="white"
+          />
+        </svg>
 
-        <div className="mb-8">
-          <p className="text-4xl font-bold tracking-tight">
-            {getCurrencySymbol(data.currency)} {data.amount}
-          </p>
-          <p className="text-sm text-slate-500 mt-1">Paid on {data.timestamp}</p>
-        </div>
-
-        <div className="space-y-4 border-t border-b py-6 mb-6">
-          <div className="flex justify-between text-sm">
-            <span className="text-slate-500">Transaction ID</span>
-            <span className="font-mono text-xs">{data.transactionId}</span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-slate-500">Payment method</span>
-            <span className="flex items-center gap-2">
-               <div className="w-8 h-5 bg-slate-100 rounded border flex items-center justify-center text-[8px] font-bold">VISA</div>
-               •••• 4242
-            </span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-slate-500">Customer</span>
-            <span>{data.senderName}</span>
-          </div>
-        </div>
-
-        {data.note && (
-          <div className="mb-8 bg-slate-50 p-4 rounded-lg text-sm text-slate-600 italic">
-            "{data.note}"
-          </div>
-        )}
-
-        <div className="grid grid-cols-3 gap-2">
-          <button className="flex flex-col items-center gap-2 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
-            <Mail size={18} className="text-slate-400" />
-            <span className="text-[10px] font-bold uppercase text-slate-500">Email</span>
-          </button>
-          <button className="flex flex-col items-center gap-2 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
-            <Download size={18} className="text-slate-400" />
-            <span className="text-[10px] font-bold uppercase text-slate-500">Download</span>
-          </button>
-          <button className="flex flex-col items-center gap-2 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
-            <Printer size={18} className="text-slate-400" />
-            <span className="text-[10px] font-bold uppercase text-slate-500">Print</span>
-          </button>
+        {/* S Badge */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white rounded-full flex items-center justify-center border-4 border-[#6366F1] shadow-lg">
+          <span className="text-4xl font-black text-[#6366F1]">S</span>
         </div>
       </div>
 
-      <div className="bg-slate-50 p-4 text-center">
-        <p className="text-[10px] text-slate-400 font-medium">
-          Something wrong with this receipt? <span className="text-[#635bff] cursor-pointer">Contact support</span>
-        </p>
+      <div className="px-8 py-12 flex-1">
+        {/* Title */}
+        <div className="text-center mb-12">
+          <h1 className="text-2xl font-semibold text-slate-900 mb-2">
+            Receipt from Stripe, Inc.
+          </h1>
+          <p className="text-sm text-slate-500">
+            Receipt #{data.transactionId.slice(0, 8).toUpperCase()}
+          </p>
+        </div>
+
+        {/* Summary Row */}
+        <div className="grid grid-cols-3 gap-8 mb-12 pb-8 border-b border-slate-200">
+          <div>
+            <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+              Amount Paid
+            </p>
+            <p className="text-xl font-semibold text-slate-900">
+              {getCurrencySymbol(data.currency)}
+              {data.amount}
+            </p>
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+              Date Paid
+            </p>
+            <p className="text-base text-slate-900">
+              {data.timestamp.split("•")[0].trim()}
+            </p>
+          </div>
+          <div>
+            <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">
+              Payment Method
+            </p>
+            <p className="text-base text-slate-900 font-semibold">
+              VISA – 9969
+            </p>
+          </div>
+        </div>
+
+        {/* Summary Section */}
+        <div className="mb-12">
+          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-6">
+            Summary
+          </p>
+
+          <div className="space-y-4">
+            {/* Payment Item */}
+            <div className="flex justify-between items-center py-3 bg-slate-50 px-4 rounded-lg">
+              <p className="text-slate-700 font-medium">
+                Payment to {data.receiverName}
+              </p>
+              <p className="font-semibold text-slate-900">
+                {getCurrencySymbol(data.currency)}
+                {data.amount}
+              </p>
+            </div>
+
+            {/* Amount Paid Total */}
+            <div className="flex justify-between items-center py-4 border-t border-slate-200 px-4">
+              <p className="font-semibold text-slate-900 text-base">
+                Amount paid
+              </p>
+              <p className="font-bold text-slate-900 text-lg">
+                {getCurrencySymbol(data.currency)}
+                {data.amount}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Note if present */}
+        {data.note && (
+          <div className="mb-12 p-4 bg-blue-50 rounded-lg border border-blue-100">
+            <p className="text-[11px] font-bold text-blue-700 uppercase tracking-wider mb-2">
+              Note
+            </p>
+            <p className="text-sm text-slate-800">{data.note}</p>
+          </div>
+        )}
+
+        {/* Contact Section */}
+        <div className="border-t border-slate-200 pt-8 text-sm text-slate-600 leading-relaxed">
+          <p className="mb-6">
+            If you have any questions, contact us at{" "}
+            <a
+              href="mailto:support@stripe.com"
+              className="text-blue-600 hover:underline font-medium"
+            >
+              support@stripe.com
+            </a>{" "}
+            or call{" "}
+            <a
+              href="tel:+15551234567"
+              className="text-blue-600 hover:underline font-medium"
+            >
+              +1 (555) 123-4567
+            </a>
+            .
+          </p>
+
+          <p className="text-[12px] text-slate-500 mb-4">
+            <a href="#" className="text-blue-600 hover:underline">
+              View it in your browser
+            </a>
+          </p>
+
+          <p className="text-[12px] text-slate-500 mb-4">
+            You're receiving this email because you made a purchase at Stripe,
+            Inc. Stripe, Inc. partners with Stripe to provide secure invoicing
+            and payments processing.
+          </p>
+
+          <p className="text-[12px] text-slate-500 mb-4">
+            Stripe, Inc., 510 Townsend Street, San Francisco CA 94103
+          </p>
+
+          <p className="text-[12px] text-slate-500">
+            Application Name: Stripe Credit, AID: A0000000031010
+          </p>
+        </div>
       </div>
     </div>
   );

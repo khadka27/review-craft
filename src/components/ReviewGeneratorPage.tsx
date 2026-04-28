@@ -28,6 +28,7 @@ interface ReviewGeneratorPageProps {
     disclaimerText: string;
     disclaimerIcon: string;
   };
+  platformCategory?: "social" | "ecommerce" | "professional" | "entertainment";
 }
 
 export function ReviewGeneratorPage({
@@ -37,6 +38,7 @@ export function ReviewGeneratorPage({
   heroTitle = "Create Product Reviews Like Social Media Posts",
   heroDescription = "Generate fake product reviews with realistic social media formatting for testing, mockups, and presentations. Our tool creates customer feedback posts that look authentic for educational purposes.",
   theme,
+  platformCategory,
 }: ReviewGeneratorPageProps) {
   const [reviewData, setReviewData] = useState<ReviewData>({
     id: "",
@@ -127,7 +129,7 @@ export function ReviewGeneratorPage({
             <div className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 p-3 sm:p-4 lg:p-6">
               <div className="flex flex-col sm:flex-row items-center justify-between mb-4 sm:mb-6 gap-4">
                 <h2 className="text-lg sm:text-xl font-semibold text-gray-900">
-                  Review Preview
+                  Review
                 </h2>
                 <button
                   onClick={() => downloadComponentAsImage("review-preview", `review-${reviewData.platform}-${Date.now()}`)}
@@ -158,6 +160,7 @@ export function ReviewGeneratorPage({
                     onUpdate={updateReviewData}
                     onGenerateRandom={generateCompleteRandomReview}
                     showPlatformSelector={!lockPlatform}
+                    platformCategory={platformCategory}
                   />
                 </div>
               </div>

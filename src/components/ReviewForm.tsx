@@ -22,6 +22,7 @@ interface ReviewFormProps {
   onUpdate: (data: Partial<ReviewData>) => void;
   onGenerateRandom: () => void;
   showPlatformSelector?: boolean;
+  platformCategory?: "social" | "ecommerce" | "professional" | "entertainment";
 }
 
 export const ReviewForm = ({
@@ -29,6 +30,7 @@ export const ReviewForm = ({
   onUpdate,
   onGenerateRandom,
   showPlatformSelector = true,
+  platformCategory,
 }: ReviewFormProps) => {
   const [imageUrl, setImageUrl] = useState("");
   const [avatarType, setAvatarType] = useState<"api" | "default" | "custom">(
@@ -155,10 +157,12 @@ export const ReviewForm = ({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {/* Platform Selection */}
-        {showPlatformSelector && (
+        {(showPlatformSelector || platformCategory) && (
           <div className="space-y-2">
             <label className="block text-xs sm:text-sm font-semibold text-gray-700">
-              Platform
+              {platformCategory
+                ? `${platformCategory.charAt(0).toUpperCase() + platformCategory.slice(1)} Platform`
+                : "Platform"}
             </label>
             <select
               value={reviewData.platform}
@@ -167,11 +171,30 @@ export const ReviewForm = ({
               }
               className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
             >
-              {Object.entries(platformStyles).map(([key, style]) => (
-                <option key={key} value={key}>
-                  {style.name}
-                </option>
-              ))}
+              {Object.entries(platformStyles)
+                .filter(([key]) => {
+                  if (!platformCategory) return true;
+                  if (platformCategory === "ecommerce") {
+                    return [
+                      "amazon",
+                      "ebay",
+                      "walmart",
+                      "bestbuy",
+                      "etsy",
+                      "aliexpress",
+                      "alibaba",
+                      "daraz",
+                      "flipkart",
+                      "ecommerce",
+                    ].includes(key);
+                  }
+                  return true; // Expand other categories as needed
+                })
+                .map(([key, style]) => (
+                  <option key={key} value={key}>
+                    {style.name}
+                  </option>
+                ))}
             </select>
             <div className="flex items-center gap-2 mt-2 text-xs sm:text-sm text-gray-600">
               {getPlatformIcon(reviewData.platform, 14)}
@@ -242,6 +265,63 @@ export const ReviewForm = ({
             </button>
           </div>
         </div>
+
+        {/* Phone Model Selection - Only show when Mobile is selected */}
+        {(reviewData.deviceViewMode || "desktop") === "mobile" && (
+          <div className="space-y-2">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              Phone Model
+            </label>
+            <select
+              value={reviewData.phoneModel || "iPhone 15 Pro"}
+              onChange={(e) => onUpdate({ phoneModel: e.target.value })}
+              className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
+            >
+              {/* Apple Models */}
+              <optgroup label="Apple">
+                <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+                <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
+                <option value="iPhone 15">iPhone 15</option>
+                <option value="iPhone 14 Pro">iPhone 14 Pro</option>
+                <option value="iPhone 14">iPhone 14</option>
+                <option value="iPhone 13">iPhone 13</option>
+              </optgroup>
+              {/* Samsung Models */}
+              <optgroup label="Samsung">
+                <option value="Samsung Galaxy S24 Ultra">
+                  Samsung Galaxy S24 Ultra
+                </option>
+                <option value="Samsung Galaxy S24">Samsung Galaxy S24</option>
+                <option value="Samsung Galaxy S23">Samsung Galaxy S23</option>
+                <option value="Samsung Galaxy A55">Samsung Galaxy A55</option>
+                <option value="Samsung Galaxy Z Fold 6">
+                  Samsung Galaxy Z Fold 6
+                </option>
+              </optgroup>
+              {/* Google Models */}
+              <optgroup label="Google">
+                <option value="Google Pixel 9 Pro">Google Pixel 9 Pro</option>
+                <option value="Google Pixel 9">Google Pixel 9</option>
+                <option value="Google Pixel 8">Google Pixel 8</option>
+              </optgroup>
+              {/* OnePlus Models */}
+              <optgroup label="OnePlus">
+                <option value="OnePlus 12">OnePlus 12</option>
+                <option value="OnePlus 11">OnePlus 11</option>
+              </optgroup>
+              {/* Xiaomi Models */}
+              <optgroup label="Xiaomi">
+                <option value="Xiaomi 14 Ultra">Xiaomi 14 Ultra</option>
+                <option value="Xiaomi 13">Xiaomi 13</option>
+              </optgroup>
+              {/* Generic Options */}
+              <optgroup label="Generic">
+                <option value="Generic Android">Generic Android</option>
+                <option value="Generic iOS">Generic iOS</option>
+              </optgroup>
+            </select>
+          </div>
+        )}
 
         {/* Avatar Selection */}
         <div className="space-y-2 sm:col-span-2">
@@ -416,7 +496,9 @@ export const ReviewForm = ({
               </button>
               <button
                 type="button"
-                onClick={() => handleInputChange("googleContentType", "summary")}
+                onClick={() =>
+                  handleInputChange("googleContentType", "summary")
+                }
                 className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
                   (reviewData.googleContentType || "single") === "summary"
                     ? "bg-blue-600 text-white border-blue-600"

@@ -1,50 +1,55 @@
 # 🎨 ReviewCraft
 
-**AI-Powered Social Media Review Generator**
+**AI-Powered Social Media Review, Chat & Payment Generator**
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.0.3-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-18.3.1-blue?style=flat-square&logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 
-Generate realistic, authentic-looking social media reviews with AI-powered content and platform-specific styling. Perfect for mockups, presentations, educational purposes, and design prototypes.
+Generate realistic, authentic-looking social media reviews, chat conversations, and payment receipts with platform-specific styling. Perfect for mockups, presentations, educational purposes, and design prototypes.
 
 ![ReviewCraft Demo](public/logo/logo.png)
 
-## ✨ Features
+## ✨ Key Tools
 
-### 🎯 **Multi-Platform Support**
+### 🎯 **1. Review Generator**
+Generate authentic-looking reviews for 15+ platforms including Amazon, Yelp, Trustpilot, and major social networks. Customize everything from star ratings to verified purchase badges.
 
-Generate reviews for 15+ popular platforms:
+### 💬 **2. Chat Generator**
+Create high-fidelity chat screenshots for WhatsApp, Messenger, Instagram, Telegram, and more. Supports:
+- **Image Attachments**: Send photos in chat bubbles.
+- **Custom Avatars**: Upload your own or use AI-generated profiles.
+- **Live Status**: Toggle between "Online", "Typing...", or custom status messages.
 
-- **Social Media**: Reddit, Twitter/X, Instagram, Facebook, TikTok, LinkedIn
-- **E-commerce**: Amazon, Yelp
-- **Entertainment**: Netflix, Spotify, YouTube, IMDb, Steam
-- **Professional**: Trustpilot, Discord
+### 💸 **3. Payment Generator**
+Create realistic payment confirmation screenshots for 10+ global and local platforms.
+- **Platforms**: Paytm, Stripe, Google Pay, PhonePe, Apple Pay, UPI, and more.
+- **Transaction Status**: Switch between **Success**, **Pending**, and **Failed** states.
+- **Mobile Frame**: Optional mobile UI overlay for enhanced realism.
 
-### 🤖 **AI-Powered Content**
+## 🚀 Features
 
-- **Realistic User Data**: Integration with RandomUser API for authentic profiles
-- **Platform-Specific Language**: Tailored content for each platform's tone and style
-- **Dynamic Content**: Contextual reviews with proper ratings and engagement metrics
+### 🤖 **AI-Powered & Dynamic Content**
+- **Realistic User Data**: Integration with RandomUser API for authentic profiles.
+- **Status Control**: Dynamic status indicators (Success/Failed for payments, Online/Last Seen for chats).
+- **Localization**: Support for multiple currencies (USD, INR, NPR, EUR, GBP).
 
-### 🎨 **Authentic Design**
+### 📸 **High-Quality Exports**
+- **Full-Length Screenshots**: Capture the entire receipt or chat history, even if it scrolls.
+- **Frame-Free Mode**: Option to export just the content or the full mobile mockup.
+- **Pixel-Perfect Scaling**: Optimized for crisp visuals on any display.
 
-- **Pixel-Perfect Styling**: Platform-specific UI components and color schemes
-- **Responsive Design**: Optimized for all device sizes
-- **Interactive Elements**: Hover effects, loading states, and smooth animations
+## 📱 Platform Support
 
-### 📸 **Export & Share**
+### **Review Platforms**
+Reddit, Twitter/X, Instagram, Facebook, TikTok, LinkedIn, Amazon, Yelp, Netflix, Spotify, YouTube, IMDb, Steam, Trustpilot, Discord.
 
-- **Image Download**: Export reviews as high-quality PNG images
-- **Clipboard Copy**: One-click copy to clipboard
-- **Optimized Output**: Clean, professional-looking review cards
+### **Chat Platforms**
+WhatsApp, Messenger, Instagram, Telegram, Twitter/X, Discord, iMessage.
 
-### ⚙️ **Customization**
-
-- **Manual Editing**: Full control over usernames, content, ratings, and dates
-- **Random Generation**: AI-powered automatic content creation
-- **Real-time Preview**: Instant visual feedback as you edit
+### **Payment Platforms**
+Paytm, Stripe, Google Pay, BHIM UPI, PhonePe, Google Wallet, Apple Pay, Venmo, Fonepay, Cash App.
 
 ## 🚀 Quick Start
 
@@ -147,16 +152,20 @@ Generate reviews for 15+ popular platforms:
 ```
 review-craft/
 ├── src/
-│   ├── app/                 # Next.js App Router
+│   ├── app/                 # Next.js App Router (Reviews, Chats, Payments)
+│   │   ├── chat/           # Chat Generator routes
+│   │   ├── payment/        # Payment Generator routes
 │   │   ├── layout.tsx      # Root layout
 │   │   └── page.tsx        # Home page
-│   ├── components/         # React components
-│   │   ├── platforms/      # Platform-specific components
+│   ├── components/         # Shared & Platform components
+│   │   ├── chat/           # Chat UI platforms
+│   │   ├── payment/        # Payment UI platforms
+│   │   ├── platforms/      # Review UI platforms
 │   │   ├── ReviewForm.tsx  # Form component
 │   │   └── ReviewPreview.tsx # Preview component
 │   ├── types/              # TypeScript definitions
 │   └── utils/              # Utility functions
-├── public/                 # Static assets
+├── public/                 # Platform icons & logos
 └── docs/                   # Documentation
 ```
 
@@ -196,7 +205,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## ⚠️ Disclaimer
 
-**Important**: This tool is designed for **educational purposes, mockups, and presentations only**. Creating fake reviews for deceptive purposes is unethical and may violate platform terms of service. Always use generated content responsibly and in compliance with applicable laws and regulations.
+**Important**: This tool is designed for **educational purposes, mockups, and presentations only**. Creating fake reviews, deceptive chat logs, or fraudulent payment receipts is unethical and may violate platform terms of service. Always use generated content responsibly and in compliance with applicable laws and regulations.
 
 ## 🙏 Acknowledgments
 

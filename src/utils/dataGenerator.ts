@@ -1157,6 +1157,28 @@ const generateUsername = (
   }
 };
 
+const generateProductVariation = (platform: Platform): string | undefined => {
+  const isEcom = ["amazon", "daraz", "flipkart", "ebay", "walmart", "bestbuy", "etsy", "aliexpress", "alibaba", "ecommerce", "shopify"].includes(platform);
+  
+  if (!isEcom) return undefined;
+
+  const variations = [
+    "Color Family: Black, Size: L",
+    "Color Family: White, Size: M",
+    "Size: 10.5, Color: Midnight Blue",
+    "Style: Modern, Material: Oak Wood",
+    "Capacity: 256GB, Color: Space Gray",
+    "Size: XL, Color Family: Navy Blue",
+    "Pattern: Floral, Size: S",
+    "Color: Red, Material: Genuine Leather",
+    "Flavor: Chocolate, Weight: 2kg",
+    "Format: Paperback, Language: English",
+    "Version: International, Warranty: 1 Year",
+  ];
+
+  return getRandomItem(variations);
+};
+
 const generateTitle = (platform: Platform): string => {
   const titles = {
     reddit: [
@@ -1663,8 +1685,72 @@ export const platformStyles: Record<Platform, any> = {
     maxLength: 420,
   },
   ecommerce: {
-    name: "Ecommerce Review Formats",
+    name: "Generic Ecommerce",
     color: "#FF9900",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  daraz: {
+    name: "Daraz",
+    color: "#F68B1E",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  flipkart: {
+    name: "Flipkart",
+    color: "#2874F0",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  ebay: {
+    name: "eBay",
+    color: "#E53238",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  walmart: {
+    name: "Walmart",
+    color: "#0071CE",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  bestbuy: {
+    name: "Best Buy",
+    color: "#FFF200",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  etsy: {
+    name: "Etsy",
+    color: "#F1641E",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  aliexpress: {
+    name: "AliExpress",
+    color: "#E62E04",
+    icon: getPlatformIcon("ecommerce"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 500,
+  },
+  alibaba: {
+    name: "Alibaba",
+    color: "#FF6600",
     icon: getPlatformIcon("ecommerce"),
     hasRating: true,
     hasEngagement: true,
@@ -1751,6 +1837,7 @@ export const generateRandomReviewData = async (
   // Generate platform-specific content
   const title = generateTitle(platform);
   const content = generateContent(platform);
+  const productVariation = generateProductVariation(platform);
 
   // Generate rating based on platform
   const hasRating = platformStyles[platform].hasRating;
@@ -1818,6 +1905,8 @@ export const generateRandomReviewData = async (
     facebookContentType: platform === "facebook" ? "post" : undefined,
     facebookViewMode: platform === "facebook" ? "desktop" : undefined,
     googleContentType: platform === "google" ? "single" : undefined,
+    productVariation,
+    location: personData.location,
   };
 };
 
@@ -1837,6 +1926,7 @@ export const generateRandomReviewDataSync = (
   );
   const title = generateTitle(platform);
   const content = generateContent(platform);
+  const productVariation = generateProductVariation(platform);
 
   // Generate rating based on platform
   const hasRating = platformStyles[platform].hasRating;
@@ -1904,6 +1994,12 @@ export const generateRandomReviewDataSync = (
     facebookContentType: platform === "facebook" ? "post" : undefined,
     facebookViewMode: platform === "facebook" ? "desktop" : undefined,
     googleContentType: platform === "google" ? "single" : undefined,
+    productVariation,
+    location: {
+      city: fakePerson.location.city,
+      state: fakePerson.location.state,
+      country: "US",
+    },
   };
 };
 
