@@ -511,6 +511,41 @@ export const ReviewForm = ({
           </div>
         )}
 
+        {/* App Store Template */}
+        {reviewData.platform === "appstore" && (
+          <div className="space-y-2 sm:col-span-2">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              App Store Template
+            </label>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() =>
+                  handleInputChange("appstoreTemplate", "editorial")
+                }
+                className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
+                  (reviewData.appstoreTemplate || "editorial") === "editorial"
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                Editorial
+              </button>
+              <button
+                type="button"
+                onClick={() => handleInputChange("appstoreTemplate", "classic")}
+                className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
+                  (reviewData.appstoreTemplate || "editorial") === "classic"
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                Classic
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Name Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">

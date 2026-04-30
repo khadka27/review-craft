@@ -58,6 +58,7 @@ export function ReviewGeneratorPage({
     deviceViewMode: "desktop",
     facebookContentType: "post",
     facebookViewMode: "desktop",
+    appstoreTemplate: "editorial",
   });
 
   const previousPlatformRef = useRef<Platform>(initialPlatform);
@@ -132,7 +133,12 @@ export function ReviewGeneratorPage({
                   Review
                 </h2>
                 <button
-                  onClick={() => downloadComponentAsImage("review-preview", `review-${reviewData.platform}-${Date.now()}`)}
+                  onClick={() =>
+                    downloadComponentAsImage(
+                      "review-preview",
+                      `review-${reviewData.platform}-${Date.now()}`,
+                    )
+                  }
                   className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm text-sm font-medium"
                 >
                   <Download size={16} />

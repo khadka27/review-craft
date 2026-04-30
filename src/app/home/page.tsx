@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
-import { trackPageView, trackButtonClick } from "@/utils/analytics";
+import { trackPageView } from "@/utils/analytics";
 import { ReviewGeneratorPage } from "@/components/ReviewGeneratorPage";
 
 type SupportedPlatformCard = {
@@ -92,14 +92,14 @@ const HomePage = () => {
       slug: "linkedin",
     },
     {
-      name: "Netflix",
-      subtitle: "Netflix Reviews",
-      slug: "netflix",
-    },
-    {
       name: "Play Store",
       subtitle: "Play Store Layouts",
       slug: "playstore",
+    },
+    {
+      name: "App Store",
+      subtitle: "App Store Review Generator",
+      slug: "appstore",
     },
     {
       name: "Reddit",
@@ -110,11 +110,6 @@ const HomePage = () => {
       name: "Shopify",
       subtitle: "Shopify Product Reviews",
       slug: "shopify",
-    },
-    {
-      name: "Spotify",
-      subtitle: "Spotify Reviews",
-      slug: "spotify",
     },
     {
       name: "Steam",

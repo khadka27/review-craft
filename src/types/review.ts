@@ -17,6 +17,7 @@ export interface ReviewData {
   phoneModel?: string; // e.g. "iPhone 15", "Samsung Galaxy S24"
   facebookContentType?: "post" | "review";
   facebookViewMode?: "desktop" | "mobile";
+  appstoreTemplate?: "editorial" | "classic";
   images?: string[]; // Optional array of image URLs or file paths
   googleContentType?: "single" | "summary";
   productVariation?: string; // e.g. "Color: Black, Size: Large"
@@ -38,8 +39,6 @@ export type Platform =
   | "facebook"
   | "yelp"
   | "amazon"
-  | "netflix"
-  | "spotify"
   | "youtube"
   | "linkedin"
   | "tiktok"
@@ -63,7 +62,8 @@ export type Platform =
   | "alibaba"
   | "testimonial"
   | "generic5star"
-  | "generic1star";
+  | "generic1star"
+  | "appstore";
 
 export interface PlatformStyle {
   name: string;

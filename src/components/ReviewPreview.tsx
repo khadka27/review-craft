@@ -7,8 +7,6 @@ import { FacebookReview } from "./platforms/FacebookReview";
 import { GoogleReview } from "./platforms/GoogleReview";
 import { YelpReview } from "./platforms/YelpReview";
 import { AmazonReview } from "./platforms/AmazonReview";
-import { NetflixReview } from "./platforms/NetflixReview";
-import { SpotifyReview } from "./platforms/SpotifyReview";
 import { YoutubeReview } from "./platforms/YoutubeReview";
 import { LinkedinReview } from "./platforms/LinkedinReview";
 import { TiktokReview } from "./platforms/TiktokReview";
@@ -17,6 +15,8 @@ import { SteamReview } from "./platforms/SteamReview";
 import { ImdbReview } from "./platforms/ImdbReview";
 import { GenericEcomReview } from "./platforms/GenericEcomReview";
 import { FlipkartReview } from "./platforms/FlipkartReview";
+import { PlaystoreReview } from "./platforms/PlaystoreReview";
+import { AppstoreReview } from "./platforms/AppstoreReview";
 import { Download, Copy, RefreshCw, Loader2 } from "lucide-react";
 import {
   downloadReviewAsImage,
@@ -58,10 +58,6 @@ export const ReviewPreview = ({
         return <YelpReview {...props} />;
       case "amazon":
         return <AmazonReview {...props} />;
-      case "netflix":
-        return <NetflixReview {...props} />;
-      case "spotify":
-        return <SpotifyReview {...props} />;
       case "youtube":
         return <YoutubeReview {...props} />;
       case "linkedin":
@@ -81,7 +77,9 @@ export const ReviewPreview = ({
       case "shopify":
         return <AmazonReview {...props} />;
       case "playstore":
-        return <GoogleReview {...props} />;
+        return <PlaystoreReview {...props} />;
+      case "appstore":
+        return <AppstoreReview {...props} />;
       case "fiverr":
         return <TrustpilotReview {...props} />;
       case "booking":

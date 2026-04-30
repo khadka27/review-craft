@@ -22,6 +22,7 @@ const Footer = () => {
     reviewPlatforms: [
       { name: "Amazon", href: "/platform/amazon" },
       { name: "Airbnb", href: "/platform/airbnb" },
+      { name: "App Store", href: "/platform/appstore" },
       { name: "Booking-style Ratings", href: "/platform/booking" },
       { name: "Custom Testimonial Layouts", href: "/platform/testimonial" },
       { name: "Discord", href: "/platform/discord" },
@@ -34,11 +35,9 @@ const Footer = () => {
       { name: "IMDb", href: "/platform/imdb" },
       { name: "Instagram", href: "/platform/instagram" },
       { name: "LinkedIn", href: "/platform/linkedin" },
-      { name: "Netflix", href: "/platform/netflix" },
       { name: "Play Store Layouts", href: "/platform/playstore" },
       { name: "Reddit", href: "/platform/reddit" },
       { name: "Shopify Product Reviews", href: "/platform/shopify" },
-      { name: "Spotify", href: "/platform/spotify" },
       { name: "Steam", href: "/platform/steam" },
       { name: "TikTok", href: "/platform/tiktok" },
       { name: "TripAdvisor", href: "/platform/tripadvisor" },
@@ -46,6 +45,18 @@ const Footer = () => {
       { name: "Twitter", href: "/platform/twitter" },
       { name: "Yelp", href: "/platform/yelp" },
       { name: "YouTube", href: "/platform/youtube" },
+    ],
+    paymentPlatforms: [
+      { name: "Paytm Success", href: "/payment/paytm" },
+      { name: "Stripe Receipt", href: "/payment/stripe" },
+      { name: "Google Pay", href: "/payment/googlepay" },
+      { name: "Google Wallet", href: "/payment/googlewallet" },
+      { name: "Apple Pay", href: "/payment/applepay" },
+      { name: "Venmo", href: "/payment/venmo" },
+      { name: "BHIM UPI", href: "/payment/upi" },
+      { name: "PhonePe", href: "/payment/phonepay" },
+      { name: "Fonepay", href: "/payment/fonepay" },
+      { name: "Cash App", href: "/payment/cashapp" },
     ],
     chatPlatforms: [
       { name: "WhatsApp", href: "/chat/whatsapp" },
@@ -61,7 +72,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
           {/* Brand Section */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center mb-4">
@@ -111,6 +122,25 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-white text-sm transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Payment Links */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-4">
+              Payments
+            </h3>
+            <ul className="space-y-2 max-h-64 overflow-y-auto pr-1">
+              {footerLinks.paymentPlatforms.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}

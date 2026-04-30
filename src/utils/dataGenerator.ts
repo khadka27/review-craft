@@ -43,22 +43,9 @@ interface RandomUserApiResponse {
       medium: string;
       thumbnail: string;
     };
+    email: string;
     location: {
       city: string;
-      state: string;
-      country: string;
-      postcode: string | number;
-      street: {
-        number: number;
-        name: string;
-      };
-    };
-    email: string;
-    phone: string;
-    cell: string;
-    dob: {
-      date: string;
-      age: number;
     };
     id: {
       name: string;
@@ -116,6 +103,9 @@ const buildRandomUserApiUrl = (): string => {
 
   return `${trimmedBase}/${trimmedVersion}/`;
 };
+
+const getAppStoreTemplate = (): "editorial" | "classic" =>
+  Math.random() > 0.5 ? "editorial" : "classic";
 
 // Helper function to validate if an image URL works
 const validateImageUrl = async (url: string): Promise<boolean> => {
@@ -1116,10 +1106,6 @@ const generateUsername = (
       return `${firstName}${lastName.charAt(0).toLowerCase()}${Math.floor(Math.random() * 99) + 1}`;
     case "amazon":
       return `${firstName} ${lastName.charAt(0)}.`;
-    case "netflix":
-      return `${firstName}${Math.floor(Math.random() * 999) + 1}`;
-    case "spotify":
-      return `${baseUsername}${Math.floor(Math.random() * 99) + 1}`;
     case "youtube":
       return `@${baseUsername}${Math.floor(Math.random() * 999) + 1}`;
     case "linkedin":
@@ -1140,6 +1126,8 @@ const generateUsername = (
       return `${firstName.toLowerCase()}_${Math.floor(Math.random() * 9999) + 1}`;
     case "playstore":
       return `${baseUsername}${Math.floor(Math.random() * 999) + 1}`;
+    case "appstore":
+      return `${firstName} ${lastName.charAt(0)}.`;
     case "fiverr":
       return `${firstName.toLowerCase()}pro${Math.floor(Math.random() * 99) + 1}`;
     case "booking":
@@ -1333,6 +1321,13 @@ const generateTitle = (platform: Platform): string => {
       "Helpful app for daily tasks",
       "Solid update with better usability",
     ],
+    appstore: [
+      "Love this app, works perfectly!",
+      "Great user experience and smooth performance",
+      "Highly recommend this app",
+      "Best app in its category",
+      "Excellent features and design",
+    ],
     fiverr: [
       "Excellent freelancer and fast delivery",
       "Great communication and professional output",
@@ -1478,16 +1473,6 @@ const generateContent = (platform: Platform): string => {
       "Amazing value for money! The product works perfectly and the build quality is impressive. Customer service was responsive when I had questions. Will definitely be purchasing from this seller again.",
       "Exactly what I was looking for! The product arrived quickly and was packaged securely. Quality is top-notch and it's been working flawlessly. Highly recommend to anyone considering this purchase!",
     ],
-    netflix: [
-      "Just finished binge-watching this series and I'm absolutely blown away! The storyline is captivating, the acting is superb, and the production quality is incredible. Can't wait for the next season!",
-      "This show is a masterpiece! Every episode keeps you on the edge of your seat. The character development is fantastic and the plot twists are unexpected. Definitely one of the best series on Netflix!",
-      "Incredible cinematography and storytelling! This series has everything - drama, suspense, and amazing performances. I've already watched it twice and noticed new details each time. Highly recommend!",
-    ],
-    spotify: [
-      "This playlist is absolutely perfect for my morning workouts! The song selection is incredible and the flow between tracks is seamless. I've discovered so many new artists through this. Love it!",
-      "Amazing album! Every track is a masterpiece and the sound quality is crystal clear. The artist's creativity really shines through. I've had this on repeat for weeks now!",
-      "Perfect music for studying! The instrumental tracks are soothing and help me focus. Great variety and excellent curation. This has become my go-to playlist for productivity.",
-    ],
     youtube: [
       "This video was incredibly helpful! The explanation was clear and easy to follow. I learned so much in just a few minutes. The production quality is excellent too. Subscribed!",
       "Amazing content as always! Your tutorials are the best on YouTube. The step-by-step approach makes everything so easy to understand. Keep up the fantastic work!",
@@ -1537,6 +1522,11 @@ const generateContent = (platform: Platform): string => {
       "Useful app with a clean interface and smooth performance. Setup was quick and the features are genuinely helpful for everyday use.",
       "This app works reliably and is easy to navigate. I appreciate the frequent updates and improvements to stability.",
       "Great mobile experience overall. Lightweight, responsive, and intuitive for new users. It has become part of my daily routine.",
+    ],
+    appstore: [
+      "This app changed my daily routine! The user interface is intuitive and the performance is flawless. Regular updates keep adding new features. Highly recommend!",
+      "Best app in this category by far! The design is beautiful and everything works smoothly. Customer support is responsive and helpful. Worth every penny!",
+      "Absolutely love this app! It's reliable, fast, and does exactly what it promises. The developers clearly care about user experience. This is my go-to app!",
     ],
     fiverr: [
       "Excellent freelancer experience. Delivery was on time, communication was clear, and the final work matched the brief perfectly.",
@@ -1680,22 +1670,6 @@ export const platformStyles: Record<Platform, any> = {
     hasEngagement: true,
     maxLength: 500,
   },
-  netflix: {
-    name: "Netflix",
-    color: "#E50914",
-    icon: getPlatformIcon("netflix"),
-    hasRating: true,
-    hasEngagement: true,
-    maxLength: 400,
-  },
-  spotify: {
-    name: "Spotify",
-    color: "#1DB954",
-    icon: getPlatformIcon("spotify"),
-    hasRating: true,
-    hasEngagement: true,
-    maxLength: 300,
-  },
   youtube: {
     name: "YouTube",
     color: "#FF0000",
@@ -1775,6 +1749,14 @@ export const platformStyles: Record<Platform, any> = {
     hasRating: true,
     hasEngagement: true,
     maxLength: 350,
+  },
+  appstore: {
+    name: "App Store",
+    color: "#555555",
+    icon: getPlatformIcon("appstore"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 400,
   },
   fiverr: {
     name: "Fiverr-Style Service Reviews",
@@ -1946,6 +1928,8 @@ export const generateRandomReviewData = async (
   const title = generateTitle(platform);
   const content = generateContent(platform);
   const productVariation = generateProductVariation(platform);
+  const appstoreTemplate =
+    platform === "appstore" ? getAppStoreTemplate() : undefined;
 
   // Generate rating based on platform
   const hasRating = platformStyles[platform].hasRating;
@@ -1956,8 +1940,6 @@ export const generateRandomReviewData = async (
     switch (platform) {
       case "trustpilot":
       case "google":
-      case "netflix":
-      case "spotify":
       case "yelp":
       case "amazon":
       case "steam":
@@ -1966,6 +1948,7 @@ export const generateRandomReviewData = async (
       case "tripadvisor":
       case "shopify":
       case "playstore":
+      case "appstore":
       case "fiverr":
       case "booking":
       case "ecommerce":
@@ -2013,6 +1996,7 @@ export const generateRandomReviewData = async (
     facebookContentType: platform === "facebook" ? "post" : undefined,
     facebookViewMode: platform === "facebook" ? "desktop" : undefined,
     googleContentType: platform === "google" ? "single" : undefined,
+    appstoreTemplate,
     productVariation,
     location: personData.location,
   };
@@ -2035,6 +2019,8 @@ export const generateRandomReviewDataSync = (
   const title = generateTitle(platform);
   const content = generateContent(platform);
   const productVariation = generateProductVariation(platform);
+  const appstoreTemplate =
+    platform === "appstore" ? getAppStoreTemplate() : undefined;
 
   // Generate rating based on platform
   const hasRating = platformStyles[platform].hasRating;
@@ -2045,8 +2031,6 @@ export const generateRandomReviewDataSync = (
     switch (platform) {
       case "trustpilot":
       case "google":
-      case "netflix":
-      case "spotify":
       case "yelp":
       case "amazon":
       case "steam":
@@ -2102,6 +2086,7 @@ export const generateRandomReviewDataSync = (
     facebookContentType: platform === "facebook" ? "post" : undefined,
     facebookViewMode: platform === "facebook" ? "desktop" : undefined,
     googleContentType: platform === "google" ? "single" : undefined,
+    appstoreTemplate,
     productVariation,
     location: {
       city: fakePerson.location.city,

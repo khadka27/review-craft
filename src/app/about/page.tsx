@@ -19,7 +19,7 @@ const AboutPage = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
             About ReviewCraft
           </h1>
           <p className="text-xl text-gray-600">
@@ -34,7 +34,6 @@ const AboutPage = () => {
               What is ReviewCraft?
             </h2>
             <p className="text-gray-600 mb-6">
-              ReviewCraft is an innovative educational tool designed to generate
               realistic-looking social media reviews for educational purposes,
               design mockups, and presentations. Our platform supports over 26
               popular social media and review platforms, creating pixel-perfect
@@ -94,8 +93,6 @@ const AboutPage = () => {
                 "Twitter/X",
                 "Instagram",
                 "Amazon",
-                "Netflix",
-                "Spotify",
                 "LinkedIn",
                 "YouTube",
                 "TikTok",
@@ -108,6 +105,7 @@ const AboutPage = () => {
                 "Discord",
                 "Airbnb",
                 "TripAdvisor",
+                "App Store",
                 "Shopify Product Reviews",
                 "Play Store Layouts",
                 "Fiverr-style Service Reviews",

@@ -30,7 +30,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: meta.name,
+    title: { absolute: meta.name },
     description: meta.description,
     alternates: {
       canonical: `/platform/${platform}`,

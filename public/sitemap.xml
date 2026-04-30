@@ -109,8 +109,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/netflix</loc>
-    <lastmod>2026-04-22</lastmod>
+    <loc>https://fakereviewgenerator.com/platform/appstore</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -129,12 +129,6 @@
   <url>
     <loc>https://fakereviewgenerator.com/platform/shopify</loc>
     <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fakereviewgenerator.com/platform/spotify</loc>
-    <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

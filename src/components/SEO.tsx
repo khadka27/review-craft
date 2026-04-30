@@ -13,8 +13,8 @@ interface SEOProps {
 // SEO is handled through metadata in layout.tsx and page metadata exports
 export const SEO = ({
   title = "ReviewCraft - AI-Powered Social Media Review Generator",
-  description = "Generate realistic, authentic-looking social media reviews for educational purposes, mockups, and presentations. Supports 16+ platforms including Reddit, Twitter, Instagram, Amazon, Google, and more.",
-  keywords = "review generator, social media mockup, fake reviews, educational tool, design mockup, UI components, social media templates, reddit review, twitter review, instagram review, amazon review, netflix review, spotify review",
+  description = "Generate realistic, authentic-looking social media reviews for educational purposes, mockups, and presentations. Supports 16+ platforms including Reddit, Twitter, Instagram, Amazon, Google, App Store, and more.",
+  keywords = "review generator, social media mockup, fake reviews, educational tool, design mockup, UI components, social media templates, reddit review, twitter review, instagram review, amazon review, app store review, play store review",
   image = "/images/og-image.png",
   url = "https://fakereviewgenerator.com",
   type = "website",

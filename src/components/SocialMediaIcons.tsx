@@ -1,4 +1,5 @@
 import React from "react";
+import { Apple } from "lucide-react";
 
 interface IconProps {
   size?: number;
@@ -96,24 +97,6 @@ export const AmazonIcon = ({ size = 20, className = "" }: IconProps) => (
   </svg>
 );
 
-export const NetflixIcon = ({ size = 20, className = "" }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
-    <path
-      fill="#E50914"
-      d="M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c2.873-.358 5.398-.898 5.398-.898V1.05z"
-    />
-  </svg>
-);
-
-export const SpotifyIcon = ({ size = 20, className = "" }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
-    <path
-      fill="#1DB954"
-      d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"
-    />
-  </svg>
-);
-
 export const YoutubeIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
     <path
@@ -169,51 +152,128 @@ export const ImdbIcon = ({ size = 20, className = "" }: IconProps) => (
 );
 
 export const PaytmIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/paytm.png" width={size} height={size} className={className} alt="Paytm" />
+  <img
+    src="/icons/payment/paytm.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="Paytm"
+  />
 );
 
 export const StripeIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/stripe.png" width={size} height={size} className={className} alt="Stripe" />
+  <img
+    src="/icons/payment/stripe.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="Stripe"
+  />
 );
 
 export const UPIIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/BHIM-UPI.png" width={size} height={size} className={className} alt="UPI" />
+  <img
+    src="/icons/payment/BHIM-UPI.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="UPI"
+  />
 );
 
 export const PhonePeIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/phone-pe.png" width={size} height={size} className={className} alt="PhonePe" />
+  <img
+    src="/icons/payment/phone-pe.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="PhonePe"
+  />
 );
 
-
 export const GoogleWalletIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/google-wallet.png" width={size} height={size} className={className} alt="Google Wallet" />
+  <img
+    src="/icons/payment/google-wallet.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="Google Wallet"
+  />
 );
 
 export const GooglePayIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/g-pay.png" width={size} height={size} className={className} alt="Google Pay" />
+  <img
+    src="/icons/payment/g-pay.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="Google Pay"
+  />
 );
 
 export const AppleIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/apple-pay.png" width={size} height={size} className={className} alt="Apple Pay" />
+  <img
+    src="/icons/payment/apple-pay.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="Apple Pay"
+  />
 );
 
-
 export const CashAppIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/cash-app.png" width={size} height={size} className={className} alt="Cash App" />
+  <img
+    src="/icons/payment/cash-app.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="Cash App"
+  />
 );
 
 export const VenmoIcon = ({ size = 20, className = "" }: IconProps) => (
-  <img src="/icons/payment/Venmo.png" width={size} height={size} className={className} alt="Venmo" />
+  <img
+    src="/icons/payment/Venmo.png"
+    width={size}
+    height={size}
+    className={className}
+    alt="Venmo"
+  />
 );
 
 export const FonepayIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className}>
-    <path fill="#ED1C24" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm-1-8h2v6h-2v-6z" />
+    <path
+      fill="#ED1C24"
+      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm-1-8h2v6h-2v-6z"
+    />
   </svg>
 );
 
+const STATIC_ICON_FACTORIES: Record<
+  string,
+  (props: IconProps) => React.ReactElement
+> = {
+  appstore: (props) => <Apple {...props} />,
+  paytm: (props) => <PaytmIcon {...props} />,
+  stripe: (props) => <StripeIcon {...props} />,
+  googlepay: (props) => <GooglePayIcon {...props} />,
+  upi: (props) => <UPIIcon {...props} />,
+  phonepay: (props) => <PhonePeIcon {...props} />,
+  googlewallet: (props) => <GoogleWalletIcon {...props} />,
+  applepay: (props) => <AppleIcon {...props} />,
+  venmo: (props) => <VenmoIcon {...props} />,
+  fonepay: (props) => <FonepayIcon {...props} />,
+  cashapp: (props) => <CashAppIcon {...props} />,
+};
+
 export const getPlatformIcon = (platform: string, size = 20) => {
   const iconProps = { size, className: "inline-block" };
+
+  const staticIconFactory = STATIC_ICON_FACTORIES[platform];
+  if (staticIconFactory) {
+    return staticIconFactory(iconProps);
+  }
 
   switch (platform) {
     case "reddit":
@@ -232,10 +292,6 @@ export const getPlatformIcon = (platform: string, size = 20) => {
       return <YelpIcon {...iconProps} />;
     case "amazon":
       return <AmazonIcon {...iconProps} />;
-    case "netflix":
-      return <NetflixIcon {...iconProps} />;
-    case "spotify":
-      return <SpotifyIcon {...iconProps} />;
     case "youtube":
       return <YoutubeIcon {...iconProps} />;
     case "linkedin":
@@ -253,7 +309,7 @@ export const getPlatformIcon = (platform: string, size = 20) => {
     case "tripadvisor":
       return <TrustpilotIcon {...iconProps} />;
     case "shopify":
-      return <SpotifyIcon {...iconProps} />;
+      return <AmazonIcon {...iconProps} />;
     case "playstore":
       return <GoogleIcon {...iconProps} />;
     case "fiverr":
@@ -270,26 +326,6 @@ export const getPlatformIcon = (platform: string, size = 20) => {
     case "generic1star":
     case "generic-1-star":
       return <YelpIcon {...iconProps} />;
-    case "paytm":
-      return <PaytmIcon {...iconProps} />;
-    case "stripe":
-      return <StripeIcon {...iconProps} />;
-    case "googlepay":
-      return <GooglePayIcon {...iconProps} />;
-    case "upi":
-      return <UPIIcon {...iconProps} />;
-    case "phonepay":
-      return <PhonePeIcon {...iconProps} />;
-    case "googlewallet":
-      return <GoogleWalletIcon {...iconProps} />;
-    case "applepay":
-      return <AppleIcon {...iconProps} />;
-    case "venmo":
-      return <VenmoIcon {...iconProps} />;
-    case "fonepay":
-      return <FonepayIcon {...iconProps} />;
-    case "cashapp":
-      return <CashAppIcon {...iconProps} />;
     default:
       return null;
   }

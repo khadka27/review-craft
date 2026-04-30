@@ -20,9 +20,9 @@ export const platformMeta: Record<
   { name: string; description: string; theme: PlatformTheme }
 > = {
   reddit: {
-    name: "Reddit Comment Generator – Fake Reddit Reviews & Threads",
+    name: "Reddit Comment Generator - Create Fake Reddit Threads",
     description:
-      "Generate realistic Reddit comments, threads, and review-style posts. Perfect for discussions, memes, and UI demos.",
+      "Generate realistic Reddit thread screenshots with editable usernames, replies, upvotes, comments, and discussions.",
     theme: {
       pageGradient: "bg-gradient-to-br from-orange-50 via-white to-amber-50",
       heroGradient: "bg-gradient-to-r from-[#FF4500] to-[#FF6A3D]",
@@ -38,9 +38,9 @@ export const platformMeta: Record<
     },
   },
   twitter: {
-    name: "Twitter/X Post Generator – Fake Tweets & Review Threads",
+    name: "Twitter Comment Generator - Create Fake X Comments",
     description:
-      "Create realistic tweets, replies, and review-style threads. Perfect for social media mockups and storytelling.",
+      "Create realistic Twitter and X comment screenshots with editable usernames, replies, likes, and engagement metrics.",
     theme: {
       pageGradient: "bg-gradient-to-br from-slate-100 via-white to-zinc-100",
       heroGradient: "bg-gradient-to-r from-black to-slate-700",
@@ -56,9 +56,9 @@ export const platformMeta: Record<
     },
   },
   instagram: {
-    name: "Instagram Comment & Review Generator – Fake IG Screenshots",
+    name: "Instagram Comment Generator - Create Fake IG Comments",
     description:
-      "Create realistic Instagram comments, captions, and review-style screenshots. Perfect for influencers, mockups, and social proof.",
+      "Generate realistic Instagram comment screenshots with editable usernames, likes, emojis, replies, and engagement details.",
     theme: {
       pageGradient: "bg-gradient-to-br from-pink-50 via-rose-50 to-orange-50",
       heroGradient:
@@ -75,9 +75,9 @@ export const platformMeta: Record<
     },
   },
   trustpilot: {
-    name: "Trustpilot Review Generator – Fake Customer Reviews",
+    name: "Trustpilot Fake Review Generator - Brand Reviews",
     description:
-      "Generate Trustpilot-style reviews and ratings instantly. Create customer feedback screenshots for demos and UI design.",
+      "Create realistic Trustpilot review screenshots with editable ratings, customer feedback, reviewer names, and business comments.",
     theme: {
       pageGradient: "bg-gradient-to-br from-emerald-50 via-white to-green-50",
       heroGradient: "bg-gradient-to-r from-[#00B67A] to-[#0E9F6E]",
@@ -93,9 +93,9 @@ export const platformMeta: Record<
     },
   },
   google: {
-    name: "Google Review Generator – Fake Google Reviews & Ratings",
+    name: "Google Fake Review Generator - Create Fake Google Reviews",
     description:
-      "Generate realistic Google reviews and star ratings instantly. Create business review screenshots for mockups and presentations.",
+      "Create realistic Google review screenshots instantly with editable ratings, usernames, dates, and business feedback for demos and mockups.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-white to-yellow-50",
       heroGradient:
@@ -112,9 +112,9 @@ export const platformMeta: Record<
     },
   },
   facebook: {
-    name: "Facebook Review Generator – Fake Facebook Reviews & Comments",
+    name: "Facebook Fake Review Generator - Create Fake Facebook Reviews",
     description:
-      "Instantly generate realistic Facebook reviews, comments, and post screenshots. Ideal for social proof mockups and marketing visuals.",
+      "Generate realistic Facebook review screenshots with editable recommendations, ratings, comments, and profile details instantly.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-sky-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#1877F2] to-[#0F5CC9]",
@@ -130,9 +130,9 @@ export const platformMeta: Record<
     },
   },
   yelp: {
-    name: "Yelp Review Generator – Fake Business Reviews & Ratings",
+    name: "Yelp Fake Review Generator - Create Fake Yelp Reviews",
     description:
-      "Generate realistic Yelp reviews and star ratings for restaurants and businesses. Ideal for mockups and presentations.",
+      "Generate realistic Yelp review screenshots with editable ratings, customer feedback, business details, and reviewer names instantly.",
     theme: {
       pageGradient: "bg-gradient-to-br from-red-50 via-rose-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#D32323] to-[#B91C1C]",
@@ -148,9 +148,9 @@ export const platformMeta: Record<
     },
   },
   amazon: {
-    name: "Amazon Fake Review Generator – Create Realistic Amazon Review Screenshots",
+    name: "Amazon Fake Review Generator - Create Fake Amazon Reviews",
     description:
-      "Generate realistic Amazon review screenshots instantly with our fake review generator. Create high-quality Amazon testimonials, ratings, and product reviews for demos and mockups.",
+      "Generate realistic Amazon review screenshots instantly with editable ratings, buyer feedback, verified badges, and product reviews.",
     theme: {
       pageGradient: "bg-gradient-to-br from-amber-50 via-yellow-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#FF9900] to-[#F59E0B]",
@@ -165,46 +165,10 @@ export const platformMeta: Record<
       disclaimerIcon: "text-amber-600",
     },
   },
-  netflix: {
-    name: "Netflix Review Generator – Fake Show & Movie Ratings",
-    description:
-      "Create Netflix-style reviews and ratings screenshots instantly. Great for entertainment UI mockups and concepts.",
-    theme: {
-      pageGradient: "bg-gradient-to-br from-red-950 via-zinc-950 to-black",
-      heroGradient: "bg-gradient-to-r from-[#E50914] to-[#B20710]",
-      heroDescriptionColor: "text-red-100",
-      tipsCard: "bg-zinc-900 border border-zinc-700",
-      tipsHeading: "text-red-300",
-      tipsText: "text-zinc-200",
-      tipsBullet: "text-red-400",
-      disclaimerCard: "bg-zinc-900 border border-zinc-700",
-      disclaimerHeading: "text-red-300",
-      disclaimerText: "text-zinc-200",
-      disclaimerIcon: "text-red-400",
-    },
-  },
-  spotify: {
-    name: "Spotify Review Generator – Fake Music Reviews & Ratings",
-    description:
-      "Create Spotify-style music reviews and ratings screenshots. Ideal for artists, mockups, and creative content.",
-    theme: {
-      pageGradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-white",
-      heroGradient: "bg-gradient-to-r from-[#1DB954] to-[#159947]",
-      heroDescriptionColor: "text-green-100",
-      tipsCard: "bg-green-50 border border-green-200",
-      tipsHeading: "text-green-900",
-      tipsText: "text-green-800",
-      tipsBullet: "text-green-600",
-      disclaimerCard: "bg-green-50 border border-green-200",
-      disclaimerHeading: "text-green-900",
-      disclaimerText: "text-green-800",
-      disclaimerIcon: "text-green-600",
-    },
-  },
   youtube: {
-    name: "YouTube Comment Generator – Fake Video Reviews & Comments",
+    name: "YouTube Comment Generator - Create Fake YT Comments",
     description:
-      "Create realistic YouTube comments and engagement screenshots. Perfect for creators, demos, and social proof visuals.",
+      "Generate realistic YouTube comment screenshots with editable usernames, likes, replies, and audience engagement details.",
     theme: {
       pageGradient: "bg-gradient-to-br from-rose-50 via-red-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#FF0000] to-[#C40000]",
@@ -220,9 +184,9 @@ export const platformMeta: Record<
     },
   },
   linkedin: {
-    name: "LinkedIn Recommendation Generator – Fake Professional Reviews",
+    name: "LinkedIn Recommendation Generator - Career Reviews",
     description:
-      "Generate realistic LinkedIn recommendations and reviews. Ideal for portfolio mockups and professional profile demos.",
+      "Generate realistic LinkedIn recommendation screenshots with editable job titles, endorsements, and professional feedback.",
     theme: {
       pageGradient: "bg-gradient-to-br from-sky-50 via-blue-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#0A66C2] to-[#084E96]",
@@ -238,9 +202,9 @@ export const platformMeta: Record<
     },
   },
   tiktok: {
-    name: "TikTok Comment Generator – Fake TikTok Reviews & Replies",
+    name: "TikTok Comment Generator - Create Fake TikTok Comments",
     description:
-      "Create realistic TikTok comments and engagement screenshots. Great for social media mockups and viral content ideas.",
+      "Create realistic TikTok comment screenshots with editable usernames, likes, reactions, replies, and engagement details.",
     theme: {
       pageGradient: "bg-gradient-to-br from-zinc-950 via-black to-zinc-900",
       heroGradient: "bg-gradient-to-r from-[#25F4EE] via-black to-[#FE2C55]",
@@ -256,9 +220,9 @@ export const platformMeta: Record<
     },
   },
   discord: {
-    name: "Discord Chat & Review Screenshot Generator – Fake Discord Messages",
+    name: "Discord Message Generator - Create Fake Discord Chats",
     description:
-      "Create realistic Discord chat and review screenshots in seconds. Perfect for mock conversations, testimonials, and UI demos.",
+      "Create realistic Discord message screenshots with editable usernames, timestamps, channels, and chat conversations.",
     theme: {
       pageGradient: "bg-gradient-to-br from-indigo-50 via-violet-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#5865F2] to-[#434ECF]",
@@ -274,9 +238,9 @@ export const platformMeta: Record<
     },
   },
   steam: {
-    name: "Steam Review Generator – Fake Game Reviews & Ratings",
+    name: "Steam Fake Review Generator - Create Fake Steam Reviews",
     description:
-      "Generate realistic Steam game reviews and ratings. Perfect for gaming mockups and product demos.",
+      "Create realistic Steam review screenshots with editable gamer feedback, playtime stats, recommendations, and ratings.",
     theme: {
       pageGradient:
         "bg-gradient-to-br from-slate-100 via-blue-100 to-slate-200",
@@ -293,9 +257,9 @@ export const platformMeta: Record<
     },
   },
   imdb: {
-    name: "IMDb Review Generator – Fake Movie Reviews & Ratings",
+    name: "IMDb Fake Review Generator - Create Fake Movie Reviews",
     description:
-      "Generate IMDb-style movie reviews and ratings instantly. Create realistic film review screenshots for demos and content.",
+      "Generate realistic IMDb review screenshots with editable movie ratings, usernames, audience feedback, and comments.",
     theme: {
       pageGradient: "bg-gradient-to-br from-yellow-50 via-amber-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#F5C518] to-[#EAB308]",
@@ -311,8 +275,9 @@ export const platformMeta: Record<
     },
   },
   airbnb: {
-    name: "Airbnb",
-    description: "Create realistic Airbnb review screenshots in seconds.",
+    name: "Airbnb Fake Review Generator - Create Fake Guest Reviews",
+    description:
+      "Create realistic Airbnb review screenshots with editable guest feedback, ratings, stay summaries, and traveler comments.",
     theme: {
       pageGradient: "bg-gradient-to-br from-rose-50 via-pink-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#FF5A5F] to-[#E11D48]",
@@ -328,8 +293,9 @@ export const platformMeta: Record<
     },
   },
   tripadvisor: {
-    name: "TripAdvisor",
-    description: "Create realistic TripAdvisor rating screenshots in seconds.",
+    name: "Tripadvisor Review Generator - Travel Review Mockups",
+    description:
+      "Create realistic Tripadvisor review screenshots with editable traveler feedback, hotel ratings, usernames, and comments.",
     theme: {
       pageGradient: "bg-gradient-to-br from-emerald-50 via-green-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#34E0A1] to-[#00AF87]",
@@ -345,8 +311,9 @@ export const platformMeta: Record<
     },
   },
   shopify: {
-    name: "Shopify Product Reviews",
-    description: "Create Shopify-style product review screenshots in seconds.",
+    name: "Shopify Fake Review Generator - Create Fake Product Reviews",
+    description:
+      "Generate realistic Shopify product reviews with editable customer feedback, ratings, names, and ecommerce testimonials.",
     theme: {
       pageGradient: "bg-gradient-to-br from-lime-50 via-green-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#95BF47] to-[#5E8E3E]",
@@ -362,8 +329,9 @@ export const platformMeta: Record<
     },
   },
   playstore: {
-    name: "Play Store Layouts",
-    description: "Create Play Store-style review layouts in seconds.",
+    name: "Play Store Review Generator - Fake App Reviews",
+    description:
+      "Generate realistic Play Store review screenshots with editable ratings, app feedback, usernames, and review comments.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#34A853] to-[#4285F4]",
@@ -378,9 +346,28 @@ export const platformMeta: Record<
       disclaimerIcon: "text-blue-600",
     },
   },
+  testimonial: {
+    name: "Fake Testimonial Generator - Create Testimonial Mockups",
+    description:
+      "Generate realistic testimonial screenshots instantly with editable customer feedback, ratings, names, and profile details for demos and mockups.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-sky-50 via-white to-indigo-50",
+      heroGradient: "bg-gradient-to-r from-[#2563EB] to-[#4F46E5]",
+      heroDescriptionColor: "text-blue-100",
+      tipsCard: "bg-sky-50 border border-sky-200",
+      tipsHeading: "text-sky-900",
+      tipsText: "text-sky-800",
+      tipsBullet: "text-sky-600",
+      disclaimerCard: "bg-sky-50 border border-sky-200",
+      disclaimerHeading: "text-sky-900",
+      disclaimerText: "text-sky-800",
+      disclaimerIcon: "text-sky-600",
+    },
+  },
   fiverr: {
-    name: "Fiverr-Style Service Reviews",
-    description: "Create Fiverr-style service review screenshots in seconds.",
+    name: "Fiverr Fake Review Generator - Create Fake Fiverr Reviews",
+    description:
+      "Create realistic Fiverr review screenshots with editable seller ratings, buyer feedback, delivery reviews, and comments.",
     theme: {
       pageGradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#1DBF73] to-[#0F9D58]",
@@ -396,8 +383,9 @@ export const platformMeta: Record<
     },
   },
   booking: {
-    name: "Booking-Style Ratings",
-    description: "Create Booking-style rating layouts in seconds.",
+    name: "Booking Review Generator - Create Hotel Reviews",
+    description:
+      "Create realistic Booking.com review screenshots with editable guest feedback, hotel ratings, and traveler comments.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-indigo-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#003580] to-[#1E5AA7]",
@@ -413,9 +401,9 @@ export const platformMeta: Record<
     },
   },
   ecommerce: {
-    name: "Ecommerce Review Generator – Fake Product Reviews & Ratings",
+    name: "Ecommerce Review Generator - Product Review Mockups",
     description:
-      "Create realistic ecommerce review layouts, ratings, and testimonials for any online store. Fast, customizable, and professional.",
+      "Generate realistic ecommerce review screenshots with editable ratings, customer feedback, and product testimonials.",
     theme: {
       pageGradient: "bg-gradient-to-br from-amber-50 via-orange-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#F59E0B] to-[#EA580C]",
@@ -448,7 +436,7 @@ export const platformMeta: Record<
     },
   },
   flipkart: {
-    name: "Flipkart Fake Review Generator – Create Flipkart Review Screenshots",
+    name: "Flipkart Fake Review Generator - Create Flipkart Review Screenshots",
     description:
       "Generate Flipkart-style product reviews and ratings with our easy fake review generator. Perfect for ecommerce demos and UI design.",
     theme: {
@@ -568,26 +556,10 @@ export const platformMeta: Record<
       disclaimerIcon: "text-orange-600",
     },
   },
-  testimonial: {
-    name: "Custom Testimonial Layouts",
-    description: "Create custom testimonial-style review layouts in seconds.",
-    theme: {
-      pageGradient: "bg-gradient-to-br from-sky-50 via-white to-indigo-50",
-      heroGradient: "bg-gradient-to-r from-[#2563EB] to-[#4F46E5]",
-      heroDescriptionColor: "text-blue-100",
-      tipsCard: "bg-sky-50 border border-sky-200",
-      tipsHeading: "text-sky-900",
-      tipsText: "text-sky-800",
-      tipsBullet: "text-sky-600",
-      disclaimerCard: "bg-sky-50 border border-sky-200",
-      disclaimerHeading: "text-sky-900",
-      disclaimerText: "text-sky-800",
-      disclaimerIcon: "text-sky-600",
-    },
-  },
   generic5star: {
-    name: "Generic 5-Star Review Templates",
-    description: "Create generic 5-star review templates in seconds.",
+    name: "5 Star Fake Review Generator - Create Fake Positive Reviews",
+    description:
+      "Create realistic 5 star review screenshots instantly with editable customer ratings, feedback, names, and testimonials.",
     theme: {
       pageGradient: "bg-gradient-to-br from-emerald-50 via-green-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#10B981] to-[#059669]",
@@ -603,8 +575,9 @@ export const platformMeta: Record<
     },
   },
   generic1star: {
-    name: "Generic 1-Star Review Templates",
-    description: "Create generic 1-star review templates in seconds.",
+    name: "1 Star Fake Review Generator - Create Fake Negative Reviews",
+    description:
+      "Generate realistic 1 star review screenshots with editable complaints, ratings, customer feedback, and reviewer details.",
     theme: {
       pageGradient: "bg-gradient-to-br from-red-50 via-rose-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#EF4444] to-[#DC2626]",
@@ -617,6 +590,24 @@ export const platformMeta: Record<
       disclaimerHeading: "text-red-900",
       disclaimerText: "text-red-800",
       disclaimerIcon: "text-red-600",
+    },
+  },
+  appstore: {
+    name: "App Store Review Generator - Fake Apple App Store Reviews",
+    description:
+      "Generate realistic Apple App Store review screenshots instantly with editable ratings, app feedback, usernames, and review comments.",
+    theme: {
+      pageGradient: "",
+      heroGradient: "",
+      heroDescriptionColor: "",
+      tipsCard: "",
+      tipsHeading: "",
+      tipsText: "",
+      tipsBullet: "",
+      disclaimerCard: "",
+      disclaimerHeading: "",
+      disclaimerText: "",
+      disclaimerIcon: "",
     },
   },
 };
