@@ -6,8 +6,8 @@ const paymentPlatformMeta: Record<
   { name: string; description: string; theme: PaymentPageTheme }
 > = {
   paytm: {
-    name: "Paytm",
-    description: "Create realistic Paytm transaction success screenshots.",
+    name: "Paytm Receipt Generator",
+    description: "Create realistic Paytm transaction success screenshots in seconds. Fully customizable amounts and details.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-white to-sky-50",
       heroGradient: "bg-gradient-to-r from-[#00baf2] to-[#002e6e]",
@@ -15,8 +15,8 @@ const paymentPlatformMeta: Record<
     },
   },
   stripe: {
-    name: "Stripe",
-    description: "Create realistic Stripe payment confirmation screenshots.",
+    name: "Stripe Payment Generator",
+    description: "Generate authentic-looking Stripe payment confirmation screenshots for your ecommerce mockups.",
     theme: {
       pageGradient: "bg-gradient-to-br from-indigo-50 via-white to-purple-50",
       heroGradient: "bg-gradient-to-r from-[#635bff] to-[#0a2540]",
@@ -24,8 +24,8 @@ const paymentPlatformMeta: Record<
     },
   },
   googlepay: {
-    name: "Google Pay",
-    description: "Create realistic Google Pay transaction screenshots.",
+    name: "Google Pay Generator",
+    description: "Create realistic Google Pay transaction screenshots for design presentations and demos.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-red-50 to-yellow-50",
       heroGradient: "bg-gradient-to-r from-[#4285F4] via-[#EA4335] to-[#FBBC05]",
@@ -33,8 +33,8 @@ const paymentPlatformMeta: Record<
     },
   },
   upi: {
-    name: "UPI",
-    description: "Create realistic BHIM UPI transaction screenshots.",
+    name: "UPI Receipt Generator",
+    description: "Create realistic BHIM UPI transaction screenshots with custom recipient names and amounts.",
     theme: {
       pageGradient: "bg-gradient-to-br from-orange-50 via-white to-green-50",
       heroGradient: "bg-gradient-to-r from-[#ff9933] to-[#138808]",
@@ -42,8 +42,8 @@ const paymentPlatformMeta: Record<
     },
   },
   phonepay: {
-    name: "PhonePe",
-    description: "Create realistic PhonePe transaction screenshots.",
+    name: "PhonePe Receipt Generator",
+    description: "Generate realistic PhonePe payment screenshots for your financial app prototypes.",
     theme: {
       pageGradient: "bg-gradient-to-br from-purple-50 via-white to-violet-50",
       heroGradient: "bg-gradient-to-r from-[#5f259f] to-[#8c52ff]",
@@ -51,8 +51,8 @@ const paymentPlatformMeta: Record<
     },
   },
   googlewallet: {
-    name: "Google Wallet",
-    description: "Create realistic Google Wallet pass and transaction screenshots.",
+    name: "Google Wallet Generator",
+    description: "Create realistic Google Wallet pass and transaction screenshots for mobile design mockups.",
     theme: {
       pageGradient: "bg-gradient-to-br from-slate-50 via-white to-blue-50",
       heroGradient: "bg-gradient-to-r from-[#1a73e8] to-[#0d47a1]",
@@ -60,8 +60,8 @@ const paymentPlatformMeta: Record<
     },
   },
   applepay: {
-    name: "Apple Pay",
-    description: "Create realistic Apple Pay transaction and wallet screenshots.",
+    name: "Apple Pay Generator",
+    description: "Generate realistic Apple Pay transaction and wallet screenshots for iOS app demos.",
     theme: {
       pageGradient: "bg-gradient-to-br from-slate-100 via-white to-zinc-100",
       heroGradient: "bg-gradient-to-r from-black to-slate-800",
@@ -69,8 +69,8 @@ const paymentPlatformMeta: Record<
     },
   },
   venmo: {
-    name: "Venmo",
-    description: "Create realistic Venmo payment and social feed screenshots.",
+    name: "Venmo Receipt Generator",
+    description: "Create realistic Venmo payment and social feed screenshots for your design presentations.",
     theme: {
       pageGradient: "bg-gradient-to-br from-sky-50 via-white to-blue-50",
       heroGradient: "bg-gradient-to-r from-[#008CFF] to-[#005FB8]",
@@ -78,8 +78,8 @@ const paymentPlatformMeta: Record<
     },
   },
   fonepay: {
-    name: "Fonepay",
-    description: "Create realistic Fonepay transaction success screenshots.",
+    name: "Fonepay Receipt Generator",
+    description: "Create realistic Fonepay transaction success screenshots for the Nepal market mockups.",
     theme: {
       pageGradient: "bg-gradient-to-br from-pink-50 via-white to-rose-50",
       heroGradient: "bg-gradient-to-r from-[#ed1c24] to-[#c1272d]",
@@ -87,8 +87,8 @@ const paymentPlatformMeta: Record<
     },
   },
   cashapp: {
-    name: "Cash App",
-    description: "Create realistic Cash App payment screenshots.",
+    name: "Cash App Generator",
+    description: "Generate realistic Cash App payment screenshots with custom $cashtags and amounts.",
     theme: {
       pageGradient: "bg-gradient-to-br from-emerald-50 via-white to-green-50",
       heroGradient: "bg-gradient-to-r from-[#00D64F] to-[#00A33C]",

@@ -1,26 +1,60 @@
-interface SEOProps {
+import { Metadata } from "next";
+
+interface MetadataProps {
   title?: string;
   description?: string;
-  keywords?: string;
   image?: string;
-  url?: string;
-  type?: string;
-  noindex?: boolean;
+  noIndex?: boolean;
 }
 
-// In Next.js App Router, we use metadata API instead of Head component
-// This component is kept for compatibility but doesn't render anything
-// SEO is handled through metadata in layout.tsx and page metadata exports
-export const SEO = ({
+export function constructMetadata({
   title = "ReviewCraft - AI-Powered Social Media Review Generator",
-  description = "Generate realistic, authentic-looking social media reviews for educational purposes, mockups, and presentations. Supports 16+ platforms including Reddit, Twitter, Instagram, Amazon, Google, App Store, and more.",
-  keywords = "review generator, social media mockup, fake reviews, educational tool, design mockup, UI components, social media templates, reddit review, twitter review, instagram review, amazon review, app store review, play store review",
-  image = "/images/og-image.png",
-  url = "https://fakereviewgenerator.com",
-  type = "website",
-  noindex = false,
-}: SEOProps) => {
-  // This component is now a no-op for compatibility
-  // In App Router, SEO is handled through metadata exports
+  description = "Generate realistic, authentic-looking social media reviews for educational purposes, mockups, and presentations. Supports 40+ platforms including Reddit, Twitter, Instagram, Amazon, Google, App Store, and more.",
+  image = "/logo/logo.png",
+  noIndex = false,
+}: MetadataProps = {}): Metadata {
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: image,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+      creator: "@ReviewCraft",
+    },
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
+    },
+    metadataBase: new URL("https://fakereviewgenerator.com"),
+    ...(noIndex && {
+      robots: {
+        index: false,
+        follow: false,
+      },
+    }),
+  };
+}
+
+// Keep the component for backward compatibility if needed, but it should not be used in App Router for SEO
+export const SEO = ({
+  title,
+  description,
+}: {
+  title?: string;
+  description?: string;
+}) => {
   return null;
 };
+
