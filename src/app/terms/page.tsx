@@ -23,7 +23,7 @@ const TermsPage = () => {
             Terms and Conditions
           </h1>
           <p className="text-xl text-gray-600">
-            Last updated: {new Date().toLocaleDateString()}
+            Last updated: {new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, '0')}-{String(new Date().getDate()).padStart(2, '0')}
           </p>
         </div>
 

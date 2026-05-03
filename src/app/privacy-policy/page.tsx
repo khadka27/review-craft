@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
             Privacy Policy
           </h1>
-          <p className="text-lg text-gray-600">Last updated: April 23, 2026</p>
+          <p className="text-lg text-gray-600">Last updated: {new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, '0')}-{String(new Date().getDate()).padStart(2, '0')}</p>
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8">

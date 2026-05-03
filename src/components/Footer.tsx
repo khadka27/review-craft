@@ -45,6 +45,14 @@ const Footer = () => {
       { name: "Twitter", href: "/platform/twitter" },
       { name: "Yelp", href: "/platform/yelp" },
       { name: "YouTube", href: "/platform/youtube" },
+      { name: "Daraz", href: "/platform/daraz" },
+      { name: "Flipkart", href: "/platform/flipkart" },
+      { name: "eBay", href: "/platform/ebay" },
+      { name: "Walmart", href: "/platform/walmart" },
+      { name: "Best Buy", href: "/platform/bestbuy" },
+      { name: "Etsy", href: "/platform/etsy" },
+      { name: "AliExpress", href: "/platform/aliexpress" },
+      { name: "Alibaba", href: "/platform/alibaba" },
     ],
     paymentPlatforms: [
       { name: "Paytm Success", href: "/payment/paytm" },
@@ -139,7 +147,7 @@ const Footer = () => {
             <h3 className="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-4">
               Payments
             </h3>
-            <ul className="space-y-2 max-h-64 overflow-y-auto pr-1">
+            <ul className="space-y-2 max-h-64 overflow-y-auto pr-2 scrollbar-thin">
               {footerLinks.paymentPlatforms.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -158,7 +166,7 @@ const Footer = () => {
             <h3 className="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-4">
               Review Platforms
             </h3>
-            <ul className="space-y-2 max-h-64 overflow-y-auto pr-1">
+            <ul className="space-y-2 max-h-64 overflow-y-auto pr-2 scrollbar-thin">
               {footerLinks.reviewPlatforms.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -197,8 +205,7 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="flex flex-wrap items-center justify-center sm:justify-start space-x-2 text-sm text-gray-400">
               <span>
-                © {currentYear} ReviewCraft. Educational tool for design
-                mockups.
+                © {currentYear} ReviewCraft. Updated: {currentYear}-{String(new Date().getMonth() + 1).padStart(2, '0')}-{String(new Date().getDate()).padStart(2, '0')}.
               </span>
             </div>
             <div className="text-xs sm:text-sm text-gray-400 text-center sm:text-right">
