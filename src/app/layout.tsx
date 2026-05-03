@@ -60,9 +60,9 @@ export const metadata: Metadata = {
     siteName: "ReviewCraft",
     images: [
       {
-        url: "/images/og-image.png",
-        width: 1200,
-        height: 630,
+        url: "/logo/logo.png",
+        width: 100,
+        height: 100,
         alt: "ReviewCraft - Social Media Review Generator",
       },
     ],
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     title: "Fake Review Generator for Mockups | ReviewCraft",
     description:
       "Create realistic review mockups for UI design, demos, and educational use across major social and ecommerce layouts.",
-    images: ["/images/og-image.png"],
+    images: ["/logo/logo.png"],
   },
   alternates: {
     canonical: "https://fakereviewgenerator.com",
