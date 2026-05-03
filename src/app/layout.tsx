@@ -100,7 +100,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <GoogleAnalytics
-          gaId={process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX"}
+          gaId={process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT"}
         />
       </body>
     </html>
