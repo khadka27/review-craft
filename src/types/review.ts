@@ -21,6 +21,14 @@ export interface ReviewData {
   images?: string[]; // Optional array of image URLs or file paths
   googleContentType?: "single" | "summary";
   productVariation?: string; // e.g. "Color: Black, Size: Large"
+  // Steam Specific
+  steamIsEarlyAccess?: boolean;
+  steamPlaytimeTotal?: string;
+  steamPlaytimeAtReview?: string;
+  steamPcSpecs?: string;
+  steamAwardCount?: number;
+  steamHelpfulCount?: number;
+  steamFunnyCount?: number;
   location?: {
     city: string;
     state: string;

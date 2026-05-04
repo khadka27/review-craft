@@ -1998,6 +1998,24 @@ export const generateRandomReviewData = async (
     googleContentType: platform === "google" ? "single" : undefined,
     appstoreTemplate,
     productVariation,
+    ...(platform === "steam"
+      ? {
+          steamIsEarlyAccess: Math.random() > 0.8,
+          steamPlaytimeTotal: (Math.random() * 500 + 10).toFixed(1) + " hrs",
+          steamPlaytimeAtReview: (Math.random() * 100 + 5).toFixed(1) + " hrs",
+          steamPcSpecs:
+            Math.random() > 0.5
+              ? getRandomItem([
+                  "Windows 11\nAMD Ryzen 5 8500G w/ Radeon 740M Graphics - RAM: 15 GB\nNVIDIA GeForce RTX 3060 - VRAM: 12 GB",
+                  "Windows 10\nIntel Core i7-12700K - RAM: 32 GB\nNVIDIA GeForce RTX 3080 - VRAM: 10 GB",
+                  "Windows 11\nIntel Core i5-13600K - RAM: 16 GB\nNVIDIA GeForce RTX 4070 - VRAM: 12 GB",
+                ])
+              : undefined,
+          steamAwardCount: Math.floor(Math.random() * 5),
+          steamHelpfulCount: Math.floor(Math.random() * 50),
+          steamFunnyCount: Math.floor(Math.random() * 20),
+        }
+      : {}),
     location: personData.location,
   };
 };
@@ -2088,6 +2106,24 @@ export const generateRandomReviewDataSync = (
     googleContentType: platform === "google" ? "single" : undefined,
     appstoreTemplate,
     productVariation,
+    ...(platform === "steam"
+      ? {
+          steamIsEarlyAccess: Math.random() > 0.8,
+          steamPlaytimeTotal: (Math.random() * 500 + 10).toFixed(1) + " hrs",
+          steamPlaytimeAtReview: (Math.random() * 100 + 5).toFixed(1) + " hrs",
+          steamPcSpecs:
+            Math.random() > 0.5
+              ? getRandomItem([
+                  "Windows 11\nAMD Ryzen 5 8500G w/ Radeon 740M Graphics - RAM: 15 GB\nNVIDIA GeForce RTX 3060 - VRAM: 12 GB",
+                  "Windows 10\nIntel Core i7-12700K - RAM: 32 GB\nNVIDIA GeForce RTX 3080 - VRAM: 10 GB",
+                  "Windows 11\nIntel Core i5-13600K - RAM: 16 GB\nNVIDIA GeForce RTX 4070 - VRAM: 12 GB",
+                ])
+              : undefined,
+          steamAwardCount: Math.floor(Math.random() * 5),
+          steamHelpfulCount: Math.floor(Math.random() * 50),
+          steamFunnyCount: Math.floor(Math.random() * 20),
+        }
+      : {}),
     location: {
       city: fakePerson.location.city,
       state: fakePerson.location.state,

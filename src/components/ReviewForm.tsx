@@ -639,6 +639,125 @@ export const ReviewForm = ({
         </div>
       </div>
 
+      {/* Steam Specific Settings */}
+      {reviewData.platform === "steam" && (
+        <div className="space-y-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+          <h3 className="text-sm font-bold text-gray-800 flex items-center gap-2">
+            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+            Steam Specific Settings
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="steamIsEarlyAccess"
+                checked={reviewData.steamIsEarlyAccess || false}
+                onChange={(e) =>
+                  handleInputChange("steamIsEarlyAccess", e.target.checked)
+                }
+                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+              <label
+                htmlFor="steamIsEarlyAccess"
+                className="text-xs sm:text-sm font-semibold text-gray-700"
+              >
+                Early Access Review
+              </label>
+            </div>
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Playtime Total
+              </label>
+              <input
+                type="text"
+                value={reviewData.steamPlaytimeTotal || ""}
+                onChange={(e) =>
+                  handleInputChange("steamPlaytimeTotal", e.target.value)
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                placeholder="e.g. 47.3 hrs"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Playtime at Review
+              </label>
+              <input
+                type="text"
+                value={reviewData.steamPlaytimeAtReview || ""}
+                onChange={(e) =>
+                  handleInputChange("steamPlaytimeAtReview", e.target.value)
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                placeholder="e.g. 14.1 hrs"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Helpful Count
+              </label>
+              <input
+                type="number"
+                value={reviewData.steamHelpfulCount || 0}
+                onChange={(e) =>
+                  handleInputChange(
+                    "steamHelpfulCount",
+                    parseInt(e.target.value) || 0,
+                  )
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Funny Count
+              </label>
+              <input
+                type="number"
+                value={reviewData.steamFunnyCount || 0}
+                onChange={(e) =>
+                  handleInputChange(
+                    "steamFunnyCount",
+                    parseInt(e.target.value) || 0,
+                  )
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Awards Count
+              </label>
+              <input
+                type="number"
+                value={reviewData.steamAwardCount || 0}
+                onChange={(e) =>
+                  handleInputChange(
+                    "steamAwardCount",
+                    parseInt(e.target.value) || 0,
+                  )
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+              />
+            </div>
+            <div className="space-y-2 sm:col-span-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                PC Specs (Optional)
+              </label>
+              <textarea
+                value={reviewData.steamPcSpecs || ""}
+                onChange={(e) =>
+                  handleInputChange("steamPcSpecs", e.target.value)
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                placeholder={"Windows 11\nAMD Ryzen 5..."}
+                rows={3}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Title Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">

@@ -354,6 +354,33 @@ export const platformMeta: Record<
       disclaimerText: "text-slate-800",
       disclaimerIcon: "text-slate-700",
     },
+    features: [
+      "Steam-style playtime stats (Total & Review time)",
+      "Recommended / Not Recommended toggles",
+      "Early Access review badge",
+      "Helpful, Funny, and Award counts",
+      "Detailed PC specs section support",
+    ],
+    useCases: [
+      "Game store page mockups",
+      "Gaming blog community discussions",
+      "Game development marketing assets",
+      "UI/UX research for gaming platforms",
+    ],
+    faqs: [
+      {
+        q: "Can I show 'Early Access' in the review?",
+        a: "Yes, you can toggle the Early Access badge to indicate if the review was written during development.",
+      },
+      {
+        q: "How do I add PC specs?",
+        a: "In the generator form, there is a dedicated field for 'PC Specs'. Entering text there will render a specific specs box in the review.",
+      },
+      {
+        q: "Can I customize the playtime?",
+        a: "Yes, you can independently set the 'Total Playtime' and 'Playtime at Review' to match any scenario.",
+      },
+    ],
   },
   imdb: {
     name: "IMDb Fake Review Generator - Create Fake Movie Reviews",
