@@ -29,6 +29,9 @@ interface ReviewGeneratorPageProps {
     disclaimerIcon: string;
   };
   platformCategory?: "social" | "ecommerce" | "professional" | "entertainment";
+  features?: string[];
+  useCases?: string[];
+  faqs?: { q: string; a: string }[];
 }
 
 export function ReviewGeneratorPage({
@@ -39,6 +42,9 @@ export function ReviewGeneratorPage({
   heroDescription = "Generate fake product reviews with realistic social media formatting for testing, mockups, and presentations. Our tool creates customer feedback posts that look authentic for educational purposes.",
   theme,
   platformCategory,
+  features,
+  useCases,
+  faqs,
 }: ReviewGeneratorPageProps) {
   const [reviewData, setReviewData] = useState<ReviewData>({
     id: "",
@@ -264,6 +270,69 @@ export function ReviewGeneratorPage({
             </div>
           </div>
         </div>
+
+        {/* Dynamic SEO Content Sections */}
+        {(features || useCases || faqs) && (
+          <div className="mt-12 sm:mt-16 lg:mt-24 space-y-12 sm:space-y-16">
+            {/* Features & Use Cases Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+              {features && (
+                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span className="p-2 bg-indigo-50 rounded-lg text-indigo-600">✨</span>
+                    Key Features
+                  </h2>
+                  <ul className="space-y-4">
+                    {features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3 text-gray-600">
+                        <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-indigo-400 shrink-0" />
+                        <span className="leading-relaxed">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {useCases && (
+                <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <span className="p-2 bg-emerald-50 rounded-lg text-emerald-600">🚀</span>
+                    Best Use Cases
+                  </h2>
+                  <ul className="space-y-4">
+                    {useCases.map((useCase, i) => (
+                      <li key={i} className="flex items-start gap-3 text-gray-600">
+                        <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                        <span className="leading-relaxed">{useCase}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Platform FAQs */}
+            {faqs && (
+              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                  Frequently Asked Questions
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                  {faqs.map((faq, i) => (
+                    <div key={i} className="space-y-3">
+                      <h3 className="font-bold text-gray-900 text-lg leading-snug">
+                        {faq.q}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {faq.a}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </main>
     </div>
   );

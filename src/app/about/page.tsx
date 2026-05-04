@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     url: "/about",
     type: "website",
   },
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 const AboutPage = () => {

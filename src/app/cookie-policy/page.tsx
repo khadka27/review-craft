@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     url: "/cookie-policy",
     type: "website",
   },
+  alternates: {
+    canonical: "/cookie-policy",
+  },
 };
 
 export default function CookiePolicyPage() {

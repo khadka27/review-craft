@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     url: "/acceptable-use",
     type: "website",
   },
+  alternates: {
+    canonical: "/acceptable-use",
+  },
 };
 
 export default function AcceptableUsePage() {

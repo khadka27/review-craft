@@ -2131,6 +2131,26 @@ Landing → Browse Platforms → Create First Mockup → Export/Download → Sha
 
 ---
 
+## 11. GOOGLE SEARCH CONSOLE - INDEXING TROUBLESHOOTING
+
+To maintain a healthy search presence, it's critical to monitor the **Page Indexing** report in Google Search Console. Below are the most common indexing statuses you will encounter and the required actions to resolve them.
+
+| Reason | Meaning | What You Can Do |
+| :--- | :--- | :--- |
+| **Server error (5xx)** | Google tried to access the page but your server returned an error (like 500, 502, 503). | Check your server logs and fix any backend or hosting issues. Then request indexing again. |
+| **Blocked by robots.txt** | Your robots.txt file explicitly prevents Googlebot from crawling that page. | Edit robots.txt to allow crawling if you want the page indexed. |
+| **Page with redirect** | The page redirects to another URL, so Google indexes the destination instead. | Ensure redirects are intentional and point to the correct canonical page. |
+| **Crawled – currently not indexed** | Google crawled the page but decided not to index it yet (often due to low quality or duplicate content). | Improve content quality, internal linking, and request indexing again. |
+| **Alternate page with proper canonical tag** | The page has a canonical tag pointing to another version, so Google indexes that canonical instead. | No action needed unless the canonical is incorrect. |
+
+### How to Monitor & Fix:
+1. **Regular Audits:** Check the "Indexing" tab in GSC at least once a week.
+2. **Inspect URL:** Use the "URL Inspection" tool for specific pages that aren't showing up.
+3. **Request Indexing:** After fixing an issue (like a 5xx error or robots.txt block), always click "Request Indexing" to alert Google.
+4. **Validation:** Use the "Validate Fix" button in the specific issue report to track progress.
+
+---
+
 ## Summary: 2026 SEO Best Practices
 
 ✅ **Do:**

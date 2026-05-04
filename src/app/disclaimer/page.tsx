@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     url: "/disclaimer",
     type: "website",
   },
+  alternates: {
+    canonical: "/disclaimer",
+  },
 };
 
 export default function DisclaimerPage() {

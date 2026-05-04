@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     images: ["/logo/logo.png"],
   },
   alternates: {
-    canonical: "https://fakereviewgenerator.com",
+    canonical: "/",
   },
 };
 

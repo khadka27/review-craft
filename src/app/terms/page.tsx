@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     url: "/terms",
     type: "website",
   },
+  alternates: {
+    canonical: "/terms",
+  },
 };
 
 const TermsPage = () => {

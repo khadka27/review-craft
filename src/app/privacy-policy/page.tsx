@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     url: "/privacy-policy",
     type: "website",
   },
+  alternates: {
+    canonical: "/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

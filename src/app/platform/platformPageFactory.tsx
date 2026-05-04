@@ -17,7 +17,14 @@ type PlatformTheme = {
 
 export const platformMeta: Record<
   Platform,
-  { name: string; description: string; theme: PlatformTheme }
+  {
+    name: string;
+    description: string;
+    theme: PlatformTheme;
+    features?: string[];
+    useCases?: string[];
+    faqs?: { q: string; a: string }[];
+  }
 > = {
   reddit: {
     name: "Reddit Comment Generator - Create Fake Reddit Threads",
@@ -54,6 +61,29 @@ export const platformMeta: Record<
       disclaimerText: "text-slate-800",
       disclaimerIcon: "text-slate-700",
     },
+    features: [
+      "X/Twitter style engagement metrics",
+      "Verified checkmark options",
+      "Dark mode & Light mode presets",
+      "Thread and reply formatting",
+      "Customizable views and likes",
+    ],
+    useCases: [
+      "Social media marketing mockups",
+      "Public relations crisis demos",
+      "X-platform UI design testing",
+      "Educational social media safety content",
+    ],
+    faqs: [
+      {
+        q: "Can I toggle the verified badge?",
+        a: "Yes, you can enable or disable the blue/gold verified checkmark for any user profile.",
+      },
+      {
+        q: "Do you support the new X branding?",
+        a: "Yes, the generator uses the latest X (formerly Twitter) UI patterns and icons.",
+      },
+    ],
   },
   instagram: {
     name: "Instagram Comment Generator - Create Fake IG Comments",
@@ -73,6 +103,29 @@ export const platformMeta: Record<
       disclaimerText: "text-pink-800",
       disclaimerIcon: "text-pink-600",
     },
+    features: [
+      "Instagram feed and story styles",
+      "Verified badge toggle",
+      "Emoji support in comments",
+      "Like counts and timestamp formatting",
+      "Custom avatar uploads",
+    ],
+    useCases: [
+      "Instagram marketing campaign previews",
+      "Influencer collaboration mockups",
+      "App interface design demos",
+      "Social proof visualization for ads",
+    ],
+    faqs: [
+      {
+        q: "Can I add multiple comments?",
+        a: "Yes, you can generate main posts and multiple nested replies to simulate a full thread.",
+      },
+      {
+        q: "Are the fonts accurate to the IG app?",
+        a: "We use system fonts that closely match the Instagram mobile and web experience for maximum realism.",
+      },
+    ],
   },
   trustpilot: {
     name: "Trustpilot Fake Review Generator - Brand Reviews",
@@ -110,6 +163,29 @@ export const platformMeta: Record<
       disclaimerText: "text-blue-800",
       disclaimerIcon: "text-blue-600",
     },
+    features: [
+      "Local Guides badge option",
+      "Response from business owner",
+      "Review images and gallery",
+      "Location tags and categories",
+      "Helpful counts (thumbs up/down)",
+    ],
+    useCases: [
+      "Local business Google My Business mockups",
+      "Restaurant or hotel review pages",
+      "Google Maps integrations",
+      "Marketing campaign mockups",
+    ],
+    faqs: [
+      {
+        q: "Can I add a business response?",
+        a: "Yes. Add the business owner's response to the review to show customer service interaction.",
+      },
+      {
+        q: "Can I customize the Local Guides badge?",
+        a: "Yes, toggle the Local Guides badge on or off based on your mockup needs.",
+      },
+    ],
   },
   facebook: {
     name: "Facebook Fake Review Generator - Create Fake Facebook Reviews",
@@ -164,6 +240,29 @@ export const platformMeta: Record<
       disclaimerText: "text-amber-800",
       disclaimerIcon: "text-amber-600",
     },
+    features: [
+      "Verified Purchase badge options",
+      "Helpful/unhelpful vote counts",
+      "Certified Reviewer badge",
+      "Top Reviewer badge option",
+      "Review images and galleries",
+    ],
+    useCases: [
+      "Product detail page mockups",
+      "Ecommerce website design",
+      "UI/UX portfolio examples",
+      "Investor pitch decks",
+    ],
+    faqs: [
+      {
+        q: "Can I customize the verified purchase badge?",
+        a: "Yes, toggle the verified purchase badge on or off to match your mockup needs.",
+      },
+      {
+        q: "Can I add images to the review?",
+        a: "Yes, you can upload product images to display alongside the review.",
+      },
+    ],
   },
   youtube: {
     name: "YouTube Comment Generator - Create Fake YT Comments",
@@ -623,6 +722,9 @@ export function renderPlatformPage(platform: Platform) {
       heroTitle={`${selectedPlatform.name}`}
       heroDescription={selectedPlatform.description}
       theme={selectedPlatform.theme}
+      features={selectedPlatform.features}
+      useCases={selectedPlatform.useCases}
+      faqs={selectedPlatform.faqs}
       platformCategory={
         platform === "ecommerce" ||
         [
