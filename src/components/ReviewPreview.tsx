@@ -17,6 +17,21 @@ import { GenericEcomReview } from "./platforms/GenericEcomReview";
 import { FlipkartReview } from "./platforms/FlipkartReview";
 import { PlaystoreReview } from "./platforms/PlaystoreReview";
 import { AppstoreReview } from "./platforms/AppstoreReview";
+import { AirbnbReview } from "./platforms/AirbnbReview";
+import { TripadvisorReview } from "./platforms/TripadvisorReview";
+import { ShopifyReview } from "./platforms/ShopifyReview";
+import { FiverrReview } from "./platforms/FiverrReview";
+import { BookingReview } from "./platforms/BookingReview";
+import { EbayReview } from "./platforms/EbayReview";
+import { WalmartReview } from "./platforms/WalmartReview";
+import { BestbuyReview } from "./platforms/BestbuyReview";
+import { EtsyReview } from "./platforms/EtsyReview";
+import { AliexpressReview } from "./platforms/AliexpressReview";
+import { AlibabaReview } from "./platforms/AlibabaReview";
+import { DarazReview } from "./platforms/DarazReview";
+import { TestimonialReview } from "./platforms/TestimonialReview";
+import { Generic5StarReview } from "./platforms/Generic5StarReview";
+import { Generic1StarReview } from "./platforms/Generic1StarReview";
 import { Download, Copy, RefreshCw, Loader2 } from "lucide-react";
 import {
   downloadReviewAsImage,
@@ -71,36 +86,43 @@ export const ReviewPreview = ({
       case "imdb":
         return <ImdbReview {...props} />;
       case "airbnb":
-        return <TrustpilotReview {...props} />;
+        return <AirbnbReview {...props} />;
       case "tripadvisor":
-        return <YelpReview {...props} />;
+        return <TripadvisorReview {...props} />;
       case "shopify":
-        return <AmazonReview {...props} />;
+        return <ShopifyReview {...props} />;
       case "playstore":
         return <PlaystoreReview {...props} />;
       case "appstore":
         return <AppstoreReview {...props} />;
       case "fiverr":
-        return <TrustpilotReview {...props} />;
+        return <FiverrReview {...props} />;
       case "booking":
-        return <TrustpilotReview {...props} />;
+        return <BookingReview {...props} />;
       case "flipkart":
         return <FlipkartReview {...props} />;
       case "daraz":
+        return <DarazReview {...props} />;
       case "ebay":
+        return <EbayReview {...props} />;
       case "walmart":
+        return <WalmartReview {...props} />;
       case "bestbuy":
+        return <BestbuyReview {...props} />;
       case "etsy":
+        return <EtsyReview {...props} />;
       case "aliexpress":
+        return <AliexpressReview {...props} />;
       case "alibaba":
+        return <AlibabaReview {...props} />;
       case "ecommerce":
         return <GenericEcomReview {...props} />;
       case "testimonial":
-        return <LinkedinReview {...props} />;
+        return <TestimonialReview {...props} />;
       case "generic5star":
-        return <TrustpilotReview {...props} />;
+        return <Generic5StarReview {...props} />;
       case "generic1star":
-        return <TrustpilotReview {...props} />;
+        return <Generic1StarReview {...props} />;
       default:
         return <div>Platform not supported</div>;
     }
