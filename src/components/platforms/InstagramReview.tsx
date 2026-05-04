@@ -6,6 +6,7 @@ import {
   Send,
   Bookmark,
   MoreHorizontal,
+  Verified,
 } from "lucide-react";
 
 interface InstagramReviewProps {
@@ -14,19 +15,30 @@ interface InstagramReviewProps {
 
 export const InstagramReview = ({ data }: InstagramReviewProps) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden w-full max-w-md mx-auto">
+    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden w-full max-w-md mx-auto shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between p-3 sm:p-4">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
           {data.avatar ? (
-            <img
-              src={data.avatar}
-              alt={data.name}
-              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gradient-to-r from-purple-400 to-pink-400 p-0.5 flex-shrink-0"
-            />
+            <div className="relative">
+              <img
+                src={data.avatar}
+                alt={data.name}
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
+              />
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full opacity-75 blur-sm"></div>
+              <img
+                src={data.avatar}
+                alt={data.name}
+                className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0 border-2 border-white"
+              />
+            </div>
           ) : (
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-gradient-to-r from-purple-400 to-pink-400 p-0.5 flex-shrink-0 bg-gray-200 flex items-center justify-center">
-              <span className="text-xs text-gray-600">?</span>
+            <div className="relative">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full opacity-75 blur-sm"></div>
+              <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 border-2 border-white">
+                <span className="text-xs text-gray-600">?</span>
+              </div>
             </div>
           )}
           <div className="min-w-0 flex-1">
@@ -35,19 +47,27 @@ export const InstagramReview = ({ data }: InstagramReviewProps) => {
                 {data.username.replace("@", "")}
               </span>
               {data.verified && (
-                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xs">✓</span>
-                </div>
+                <Verified size={14} className="text-blue-500 fill-current flex-shrink-0" />
               )}
             </div>
             <span className="text-xs text-gray-500 truncate block">
-              {data.name}
+              {data.location?.city || "Location"}
             </span>
           </div>
         </div>
         <button className="p-1 text-gray-600 hover:text-gray-800 transition-colors flex-shrink-0">
           <MoreHorizontal size={18} className="sm:w-5 sm:h-5" />
         </button>
+      </div>
+
+      {/* Image Placeholder */}
+      <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+        <div className="text-center text-gray-500">
+          <div className="w-16 h-16 mx-auto mb-2 bg-gray-300 rounded-lg flex items-center justify-center">
+            <span className="text-2xl">📸</span>
+          </div>
+          <p className="text-sm">Post Image</p>
+        </div>
       </div>
 
       {/* Actions */}
@@ -79,6 +99,12 @@ export const InstagramReview = ({ data }: InstagramReviewProps) => {
           </span>
           <span className="text-gray-700 ml-2 break-words">{data.content}</span>
         </div>
+
+        {data.replies > 0 && (
+          <button className="text-xs text-gray-500 mt-1 hover:text-gray-700 transition-colors">
+            View all {data.replies} comments
+          </button>
+        )}
 
         <div className="text-xs text-gray-500 mt-1 sm:mt-2">
           {formatDistanceToNow(data.date, { addSuffix: true }).toUpperCase()}

@@ -7,6 +7,7 @@ import {
   Share,
   MoreHorizontal,
   CheckCircle,
+  Verified,
 } from "lucide-react";
 
 interface TwitterReviewProps {
@@ -35,10 +36,19 @@ export const TwitterReview = ({ data }: TwitterReviewProps) => {
               {data.name}
             </span>
             {data.verified && (
-              <CheckCircle
-                size={14}
-                className="sm:w-4 sm:h-4 text-blue-400 fill-current flex-shrink-0"
-              />
+              <div className="flex-shrink-0">
+                {Math.random() > 0.5 ? (
+                  <CheckCircle
+                    size={14}
+                    className="sm:w-4 sm:h-4 text-blue-400 fill-current"
+                  />
+                ) : (
+                  <Verified
+                    size={14}
+                    className="sm:w-4 sm:h-4 text-yellow-500 fill-current"
+                  />
+                )}
+              </div>
             )}
             <span className="text-gray-500 text-sm truncate">
               @{data.username}
@@ -60,23 +70,31 @@ export const TwitterReview = ({ data }: TwitterReviewProps) => {
 
           {/* Engagement */}
           <div className="flex items-center justify-between mt-3 sm:mt-4 max-w-sm">
-            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-blue-400 transition-colors">
-              <MessageCircle size={14} className="sm:w-4 sm:h-4" />
+            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-blue-400 transition-colors group">
+              <div className="p-1.5 rounded-full group-hover:bg-blue-900 group-hover:bg-opacity-20 transition-colors">
+                <MessageCircle size={14} className="sm:w-4 sm:h-4" />
+              </div>
               <span className="text-xs sm:text-sm">{data.replies}</span>
             </button>
 
-            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-green-400 transition-colors">
-              <Repeat2 size={14} className="sm:w-4 sm:h-4" />
+            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-green-400 transition-colors group">
+              <div className="p-1.5 rounded-full group-hover:bg-green-900 group-hover:bg-opacity-20 transition-colors">
+                <Repeat2 size={14} className="sm:w-4 sm:h-4" />
+              </div>
               <span className="text-xs sm:text-sm">{data.shares || 1}</span>
             </button>
 
-            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-red-400 transition-colors">
-              <Heart size={14} className="sm:w-4 sm:h-4" />
+            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-red-400 transition-colors group">
+              <div className="p-1.5 rounded-full group-hover:bg-red-900 group-hover:bg-opacity-20 transition-colors">
+                <Heart size={14} className="sm:w-4 sm:h-4" />
+              </div>
               <span className="text-xs sm:text-sm">{data.likes}</span>
             </button>
 
-            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-blue-400 transition-colors">
-              <Share size={14} className="sm:w-4 sm:h-4" />
+            <button className="flex items-center gap-1 sm:gap-2 text-gray-500 hover:text-blue-400 transition-colors group">
+              <div className="p-1.5 rounded-full group-hover:bg-blue-900 group-hover:bg-opacity-20 transition-colors">
+                <Share size={14} className="sm:w-4 sm:h-4" />
+              </div>
               <span className="text-xs sm:text-sm">
                 {Math.floor(data.likes / 10) || 529}
               </span>

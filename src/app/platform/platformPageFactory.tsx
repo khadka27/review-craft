@@ -723,17 +723,17 @@ export const platformMeta: Record<
     description:
       "Generate realistic Apple App Store review screenshots instantly with editable ratings, app feedback, usernames, and review comments.",
     theme: {
-      pageGradient: "",
-      heroGradient: "",
-      heroDescriptionColor: "",
-      tipsCard: "",
-      tipsHeading: "",
-      tipsText: "",
-      tipsBullet: "",
-      disclaimerCard: "",
-      disclaimerHeading: "",
-      disclaimerText: "",
-      disclaimerIcon: "",
+      pageGradient: "bg-gradient-to-br from-blue-50 via-white to-gray-50",
+      heroGradient: "bg-gradient-to-r from-[#007AFF] to-[#5856D6]",
+      heroDescriptionColor: "text-blue-100",
+      tipsCard: "bg-blue-50 border border-blue-200",
+      tipsHeading: "text-blue-900",
+      tipsText: "text-blue-800",
+      tipsBullet: "text-blue-600",
+      disclaimerCard: "bg-blue-50 border border-blue-200",
+      disclaimerHeading: "text-blue-900",
+      disclaimerText: "text-blue-800",
+      disclaimerIcon: "text-blue-600",
     },
   },
 };
@@ -764,8 +764,16 @@ export function renderPlatformPage(platform: Platform) {
           "alibaba",
           "daraz",
           "flipkart",
+          "shopify",
         ].includes(platform)
           ? "ecommerce"
+          : platform === "testimonial" || 
+            ["generic5star", "generic1star"].includes(platform)
+          ? "professional"
+          : ["airbnb", "tripadvisor", "booking"].includes(platform)
+          ? "travel"
+          : ["fiverr"].includes(platform)
+          ? "freelance"
           : undefined
       }
     />
