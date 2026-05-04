@@ -768,12 +768,12 @@ export function renderPlatformPage(platform: Platform) {
         ].includes(platform)
           ? "ecommerce"
           : platform === "testimonial" || 
-            ["generic5star", "generic1star"].includes(platform)
+            ["generic5star", "generic1star", "linkedin"].includes(platform)
           ? "professional"
-          : ["airbnb", "tripadvisor", "booking"].includes(platform)
-          ? "travel"
-          : ["fiverr"].includes(platform)
-          ? "freelance"
+          : ["reddit", "twitter", "instagram", "facebook", "tiktok", "discord"].includes(platform)
+          ? "social"
+          : ["steam", "imdb", "youtube", "playstore", "appstore"].includes(platform)
+          ? "entertainment"
           : undefined
       }
     />
