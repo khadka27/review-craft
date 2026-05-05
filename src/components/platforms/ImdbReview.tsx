@@ -1,101 +1,82 @@
 import { ReviewData } from "@/types/review";
 import { format } from "date-fns";
-import { Star, ThumbsUp, Flag, ExternalLink } from "lucide-react";
+import { Star, ThumbsUp, ThumbsDown, MoreHorizontal } from "lucide-react";
 
 interface ImdbReviewProps {
   data: ReviewData;
 }
 
 export const ImdbReview = ({ data }: ImdbReviewProps) => {
+  const safeRating = Math.max(1, Math.min(10, Math.round(data.rating * 2)));
+
   return (
-    <div className="bg-white border border-gray-200 rounded p-6 max-w-2xl">
-      {/* Header */}
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <div className="flex items-center gap-1">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star
-                  key={star}
-                  size={16}
-                  className={
-                    star <= data.rating
-                      ? "text-yellow-400 fill-current"
-                      : "text-gray-300"
-                  }
-                />
-              ))}
-            </div>
-            <span className="font-bold text-lg text-gray-900">
-              {data.rating}/10
+    <div className="bg-white border border-gray-300 rounded-lg p-6 w-full max-w-4xl mx-auto">
+      {/* Rating */}
+      <div className="flex items-center gap-2 mb-3">
+        <Star size={20} className="text-yellow-500 fill-current" />
+        <span className="text-lg font-medium text-gray-900">
+          {safeRating}/10
+        </span>
+      </div>
+
+      {/* Title */}
+      <h3 className="text-lg font-medium text-gray-900 mb-4 cursor-pointer hover:text-blue-600">
+        {data.title || "Was I supposed to feel anything ?"}
+        <span className="ml-1 text-gray-400">▶</span>
+      </h3>
+
+      {/* Review Content */}
+      <div className="mb-6 space-y-4">
+        <p className="text-gray-700 leading-relaxed text-sm">
+          {data.content}
+        </p>
+      </div>
+
+      {/* Helpful Section */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-4">
+          <button className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors">
+            <ThumbsUp size={16} />
+            <span className="text-sm">Helpful • {data.likes || 674}</span>
+          </button>
+          <button className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors">
+            <ThumbsDown size={16} />
+            <span className="text-sm">{Math.floor((data.likes || 674) * 0.25)}</span>
+          </button>
+        </div>
+        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
+          <MoreHorizontal size={20} />
+        </button>
+      </div>
+
+      {/* User Info */}
+      <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+        {data.avatar ? (
+          <img
+            src={data.avatar}
+            alt={data.name}
+            className="w-10 h-10 rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+            <span className="text-white font-medium text-sm">
+              {(data.username || data.name).charAt(0).toUpperCase()}
             </span>
           </div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2">{data.title}</h3>
-        </div>
-        <div className="text-right">
-          <div className="text-sm text-gray-600">
-            by <span className="font-semibold">{data.username}</span>
-          </div>
-          <div className="text-sm text-gray-500">
-            {format(data.date, "MMMM d, yyyy")}
-          </div>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="mb-6">
-        <p className="text-gray-700 leading-relaxed">{data.content}</p>
-      </div>
-
-      {/* Footer */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors">
-            <ThumbsUp size={16} />
-            <span className="text-sm">{data.likes} found this helpful</span>
-          </button>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1 px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-            <Flag size={14} />
-            Report
-          </button>
-          <button className="flex items-center gap-1 px-3 py-1 bg-yellow-400 text-black rounded text-sm font-medium hover:bg-yellow-500 transition-colors">
-            <ExternalLink size={14} />
-            View on IMDb
-          </button>
-        </div>
-      </div>
-
-      {/* User info */}
-      <div className="mt-4 pt-4 border-t border-gray-100">
-        <div className="flex items-center gap-3">
-          {data.avatar ? (
-            <img
-              src={data.avatar}
-              alt={data.name}
-              className="w-8 h-8 rounded-full"
-            />
-          ) : (
-            <div className="w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center">
-              <span className="text-white text-xs">?</span>
-            </div>
-          )}
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-medium text-gray-900">{data.username}</span>
-              {data.verified && (
-                <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
-                  Top Reviewer
-                </span>
-              )}
-            </div>
-            <div className="text-sm text-gray-600">
-              {Math.floor(Math.random() * 500 + 50)} reviews •{" "}
-              {Math.floor(Math.random() * 1000 + 100)} helpful votes
-            </div>
-          </div>
+        )}
+        
+        <div className="flex items-center gap-2 text-sm">
+          <span className="text-blue-600 font-medium cursor-pointer hover:underline">
+            {data.username || "lone_samurai678"}
+          </span>
+          <span className="text-gray-400">•</span>
+          <span className="text-gray-600">
+            {format(data.date, "MMM d, yyyy")}
+          </span>
+          <span className="text-gray-400">•</span>
+          <span className="text-blue-600 cursor-pointer hover:underline">
+            Permalink
+          </span>
         </div>
       </div>
     </div>
