@@ -91,6 +91,8 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
     "paytm",
     "stripe",
     "phonepay",
+    "phonepe",
+    "bhim",
     "venmo",
     "fonepay",
     "cashapp",
