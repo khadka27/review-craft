@@ -30,7 +30,7 @@ export function PaymentGeneratorPage({
     id: "1",
     platform: initialPlatform,
     amount: "500.00",
-    currency: "USD",
+    currency: "INR", // Default to Indian Rupees for UPI apps
     senderName: "Abish Khadka",
     receiverName: "ReviewCraft Store",
     timestamp: new Date().toLocaleString(),
