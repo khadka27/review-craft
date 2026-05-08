@@ -8,7 +8,10 @@ export type PaymentPlatform =
   | "applepay"
   | "venmo"
   | "fonepay"
-  | "cashapp";
+  | "cashapp"
+  | "bhim"
+  | "phonepe"
+  | "gpay";
 
 export interface TransactionData {
   id: string;

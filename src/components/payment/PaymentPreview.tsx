@@ -9,6 +9,9 @@ import { ApplePayReceipt } from "./platforms/ApplePayReceipt";
 import { VenmoReceipt } from "./platforms/VenmoReceipt";
 import { FonepayReceipt } from "./platforms/FonepayReceipt";
 import { CashAppReceipt } from "./platforms/CashAppReceipt";
+import { PhonePeNewReceipt } from "./platforms/PhonePeNewReceipt";
+import { GPayReceipt } from "./platforms/GPayReceipt";
+import { BhimReceipt } from "./platforms/BhimReceipt";
 import { Wifi, Signal } from "lucide-react";
 
 interface PaymentPreviewProps {
@@ -106,6 +109,12 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
         return <UpiReceipt data={paymentData} />;
       case "phonepay":
         return <PhonePeReceipt data={paymentData} />;
+      case "phonepe":
+        return <PhonePeNewReceipt data={paymentData} />;
+      case "gpay":
+        return <GPayReceipt data={paymentData} />;
+      case "bhim":
+        return <BhimReceipt data={paymentData} />;
       case "googlewallet":
         return <GoogleWalletReceipt data={paymentData} />;
       case "applepay":

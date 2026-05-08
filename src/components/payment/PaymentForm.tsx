@@ -21,11 +21,23 @@ export const PaymentForm = ({ paymentData, onUpdate, showPlatformSelector = true
             onChange={(e) => onUpdate({ platform: e.target.value as PaymentPlatform })}
             className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 bg-white"
           >
-            <option value="paytm">Paytm</option>
-            <option value="stripe">Stripe</option>
-            <option value="googlepay">Google Pay</option>
-            <option value="upi">BHIM UPI</option>
-            <option value="phonepay">PhonePe</option>
+            <optgroup label="UPI Apps (India)">
+              <option value="phonepe">PhonePe</option>
+              <option value="gpay">Google Pay (GPay)</option>
+              <option value="paytm">Paytm</option>
+              <option value="bhim">BHIM (Bharat Interface for Money)</option>
+            </optgroup>
+            <optgroup label="International">
+              <option value="stripe">Stripe</option>
+              <option value="googlewallet">Google Wallet</option>
+              <option value="applepay">Apple Pay</option>
+              <option value="venmo">Venmo</option>
+              <option value="cashapp">Cash App</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option value="upi">Generic UPI</option>
+              <option value="fonepay">FonePay</option>
+            </optgroup>
           </select>
         </div>
       )}
