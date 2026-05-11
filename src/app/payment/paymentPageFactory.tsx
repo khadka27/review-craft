@@ -50,6 +50,33 @@ const paymentPlatformMeta: Record<
       heroDescriptionColor: "text-purple-100",
     },
   },
+  phonepe: {
+    name: "PhonePe UPI Generator",
+    description: "Generate realistic PhonePe UPI payment screenshots with Indian Rupees for financial app prototypes.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-purple-50 via-white to-violet-50",
+      heroGradient: "bg-gradient-to-r from-[#5f259f] to-[#7b2cbf]",
+      heroDescriptionColor: "text-purple-100",
+    },
+  },
+  gpay: {
+    name: "Google Pay (GPay) Generator",
+    description: "Create realistic Google Pay (GPay) UPI transaction screenshots with Indian Rupees for design presentations.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-blue-50 via-white to-green-50",
+      heroGradient: "bg-gradient-to-r from-[#4285f4] to-[#34a853]",
+      heroDescriptionColor: "text-white",
+    },
+  },
+  bhim: {
+    name: "BHIM UPI Generator",
+    description: "Create realistic BHIM (Bharat Interface for Money) UPI payment screenshots with Indian Rupees.",
+    theme: {
+      pageGradient: "bg-gradient-to-br from-orange-50 via-white to-red-50",
+      heroGradient: "bg-gradient-to-r from-[#ff9933] to-[#ff6600]",
+      heroDescriptionColor: "text-orange-50",
+    },
+  },
   googlewallet: {
     name: "Google Wallet Generator",
     description: "Create realistic Google Wallet pass and transaction screenshots for mobile design mockups.",

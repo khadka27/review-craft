@@ -10,6 +10,9 @@ export function generateStaticParams() {
     "googlepay",
     "upi",
     "phonepay",
+    "phonepe",
+    "gpay",
+    "bhim",
     "googlewallet",
     "applepay",
     "venmo",
@@ -49,6 +52,21 @@ const paymentMetadata: Record<
     title: "PhonePe Receipt Generator - Payment Screenshot Tool",
     description:
       "Generate realistic PhonePe payment screenshots with editable amounts, usernames, timestamps, and payment details.",
+  },
+  phonepe: {
+    title: "PhonePe Receipt Generator - UPI Payment Screenshots",
+    description:
+      "Generate realistic PhonePe UPI payment screenshots with editable amounts, usernames, timestamps, and payment details.",
+  },
+  gpay: {
+    title: "Google Pay (GPay) Generator - UPI Payment Screenshots",
+    description:
+      "Create realistic Google Pay (GPay) UPI payment screenshots with editable amounts, usernames, and transaction details.",
+  },
+  bhim: {
+    title: "BHIM UPI Generator - Create Fake BHIM Payment Receipts",
+    description:
+      "Generate realistic BHIM (Bharat Interface for Money) UPI payment screenshots with editable amounts and transaction details.",
   },
   googlewallet: {
     title: "Google Wallet Generator - Wallet Payment Screens",
@@ -123,6 +141,9 @@ export default async function PaymentPlatformPage({ params }: PageProps) {
     "googlepay",
     "upi",
     "phonepay",
+    "phonepe",
+    "gpay",
+    "bhim",
     "googlewallet",
     "applepay",
     "venmo",

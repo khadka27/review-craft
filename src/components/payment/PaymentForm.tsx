@@ -1,5 +1,5 @@
-import { TransactionData, PaymentPlatform } from "@/types/payment";
-import { User, Receipt, CreditCard, Calendar, Hash, FileText, CheckCircle2, Clock, AlertCircle } from "lucide-react";
+import { TransactionData } from "@/types/payment";
+import { User, Receipt, Calendar, Hash, FileText, CheckCircle2, Clock, AlertCircle } from "lucide-react";
 
 interface PaymentFormProps {
   paymentData: TransactionData;
@@ -7,40 +7,9 @@ interface PaymentFormProps {
   showPlatformSelector?: boolean;
 }
 
-export const PaymentForm = ({ paymentData, onUpdate, showPlatformSelector = true }: PaymentFormProps) => {
+export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
   return (
     <div className="space-y-6">
-      {/* Platform Selection */}
-      {showPlatformSelector && (
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-            <CreditCard size={16} /> Payment Platform
-          </label>
-          <select 
-            value={paymentData.platform}
-            onChange={(e) => onUpdate({ platform: e.target.value as PaymentPlatform })}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 bg-white"
-          >
-            <optgroup label="UPI Apps (India)">
-              <option value="phonepe">PhonePe</option>
-              <option value="gpay">Google Pay (GPay)</option>
-              <option value="paytm">Paytm</option>
-              <option value="bhim">BHIM (Bharat Interface for Money)</option>
-            </optgroup>
-            <optgroup label="International">
-              <option value="stripe">Stripe</option>
-              <option value="googlewallet">Google Wallet</option>
-              <option value="applepay">Apple Pay</option>
-              <option value="venmo">Venmo</option>
-              <option value="cashapp">Cash App</option>
-            </optgroup>
-            <optgroup label="Other">
-              <option value="upi">Generic UPI</option>
-              <option value="fonepay">FonePay</option>
-            </optgroup>
-          </select>
-        </div>
-      )}
 
       {/* Transaction Status */}
       <div className="space-y-2">
