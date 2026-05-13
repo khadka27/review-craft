@@ -27,14 +27,14 @@ export const TiktokReview = ({ data }: TiktokReviewProps) => {
         )}
 
         <div className="flex-1 min-w-0">
-          <div className="text-[14px] font-semibold text-gray-300">
+          <div className="text-[11px] font-semibold text-gray-300">
             {data.username}
           </div>
-          <div className="mt-1 text-[18px] leading-snug font-semibold text-white max-w-[290px]">
+          <div className="mt-1 text-[14px] leading-snug font-semibold text-white max-w-[290px]">
             {data.content}
           </div>
 
-          <div className="mt-3 flex items-center justify-between text-[16px] text-gray-400">
+          <div className="mt-3 flex items-center justify-between text-[13px] text-gray-400">
             <div className="flex items-center gap-4">
               <span>3-31</span>
               <button type="button" className="font-semibold">
@@ -49,7 +49,7 @@ export const TiktokReview = ({ data }: TiktokReviewProps) => {
 
           <button
             type="button"
-            className="mt-3 flex items-center gap-2 text-[16px] text-gray-400 font-semibold"
+            className="mt-3 flex items-center gap-2 text-[13px] text-gray-400 font-semibold"
           >
             <span className="text-gray-600">──</span>
             <span>View {Math.max(1, data.replies || 38)} replies</span>

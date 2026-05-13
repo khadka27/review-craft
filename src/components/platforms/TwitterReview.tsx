@@ -4,7 +4,6 @@ import {
   BarChart2,
   Bookmark,
   CheckCircle,
-  EyeOff,
   Heart,
   MessageCircle,
   MoreHorizontal,
@@ -62,7 +61,11 @@ export const TwitterReview = ({ data }: TwitterReviewProps) => {
             </div>
 
             <div className="flex items-center gap-3 text-[#71767b]">
-              <EyeOff size={18} />
+              <img
+                src="/icons/grok.svg"
+                alt="grok"
+                className="w-[18px] h-[18px]"
+              />
               <MoreHorizontal size={18} />
             </div>
           </div>

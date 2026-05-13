@@ -44,13 +44,13 @@ export const GoogleReview = ({ data }: GoogleReviewProps) => {
               className="w-10 h-10 rounded-full object-cover flex-shrink-0"
             />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-[#3c4043] text-[#e8eaed] flex items-center justify-center text-[16px] font-semibold flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-[#3c4043] text-[#e8eaed] flex items-center justify-center text-[10px] font-semibold flex-shrink-0">
               {initials}
             </div>
           )}
 
           <div className="min-w-0">
-            <div className="font-semibold text-[16px] truncate">
+            <div className="font-semibold text-[10px] truncate">
               {data.name}
             </div>
             <div className="text-[12px] text-[#9aa0a6]">
@@ -87,11 +87,11 @@ export const GoogleReview = ({ data }: GoogleReviewProps) => {
         <div className="text-[12px] text-[#9aa0a6]">{timeAgo}</div>
       </div>
 
-      <div className="mt-2 text-[14px] leading-relaxed text-[#e8eaed]">
+      <div className="mt-2 text-[11px] leading-relaxed text-[#e8eaed]">
         {data.content}
       </div>
 
-      <div className="mt-4 bg-[#2b2c2f] rounded-lg px-4 py-3 text-[14px] text-[#c9cdd2]">
+      <div className="mt-4 bg-[#2b2c2f] rounded-lg px-4 py-3 text-[11px] text-[#c9cdd2]">
         Food: {food}/5 <span className="text-[#5f6368]">|</span> Service:{" "}
         {service}/5 <span className="text-[#5f6368]">|</span> Atmosphere:{" "}
         {atmosphere}/5
@@ -113,7 +113,7 @@ export const GoogleReview = ({ data }: GoogleReviewProps) => {
       <div className="mt-4 flex items-center gap-4 text-[#9aa0a6]">
         <button type="button" className="flex items-center gap-2">
           <Heart size={18} />
-          <span className="text-[13px]">{Math.max(0, data.likes || 2)}</span>
+          <span className="text-[10px]">{Math.max(0, data.likes || 2)}</span>
         </button>
         <button type="button" className="flex items-center gap-2">
           <Share2 size={18} />
@@ -122,3 +122,4 @@ export const GoogleReview = ({ data }: GoogleReviewProps) => {
     </div>
   );
 };
+

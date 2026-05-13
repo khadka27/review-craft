@@ -10,17 +10,14 @@ import {
   Smile,
   Video,
 } from "lucide-react";
+import MobileStatusBar from "@/components/ui/MobileStatusBar";
 
 export const WhatsAppChat = ({ data }: { data: ChatData }) => {
   return (
     <div className="h-full flex flex-col font-sans bg-[#0b141a] text-[#e9edef]">
       {/* Status bar */}
-      <div className="px-5 pt-4 pb-1 flex items-center justify-between text-[14px] font-semibold">
-        <span>5:39</span>
-        <div className="flex items-center gap-2 text-[12px] text-gray-200">
-          <span>📶</span>
-          <span>87</span>
-        </div>
+      <div className="px-0 pt-4 pb-1">
+        <MobileStatusBar isDark batteryLevel={87} />
       </div>
 
       {/* Header */}

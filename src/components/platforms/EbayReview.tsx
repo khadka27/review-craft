@@ -30,23 +30,23 @@ export const EbayReview = ({ data }: EbayReviewProps) => {
               />
             ))}
           </div>
-          <div className="mt-2 text-[13px] text-gray-700">
+          <div className="mt-2 text-[10px] text-gray-700">
             by{" "}
             <span className="text-gray-900 underline underline-offset-2">
               {byLine}
             </span>
           </div>
-          <div className="text-[13px] text-gray-700">
+          <div className="text-[10px] text-gray-700">
             {format(data.date, "MMM d, yyyy")}
           </div>
         </div>
 
         {/* Right */}
         <div className="min-w-0 flex-1">
-          <div className="text-[22px] font-bold text-gray-900 leading-snug">
+          <div className="text-[11px] font-bold text-gray-900 leading-snug">
             {title}
           </div>
-          <div className="mt-2 text-[14px] text-gray-900">
+          <div className="mt-2 text-[11px] text-gray-900">
             {data.content}
           </div>
           <div className="mt-2 text-[12px] text-gray-500">

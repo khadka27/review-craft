@@ -45,7 +45,7 @@ export const BestbuyReview = ({ data }: BestbuyReviewProps) => {
                   />
                 ))}
               </div>
-              <div className="text-[13px] font-semibold text-gray-900 truncate">
+              <div className="text-[10px] font-semibold text-gray-900 truncate">
                 {data.title || data.productVariation || "Product"}
               </div>
             </div>

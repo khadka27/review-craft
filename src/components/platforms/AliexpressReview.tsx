@@ -60,7 +60,7 @@ export const AliexpressReview = ({ data }: AliexpressReviewProps) => {
               </div>
             )}
 
-            <div className="mt-1 text-[13px] text-gray-900 font-semibold leading-snug">
+            <div className="mt-1 text-[10px] text-gray-900 font-semibold leading-snug">
               {data.content}
             </div>
 
@@ -99,7 +99,7 @@ export const AliexpressReview = ({ data }: AliexpressReviewProps) => {
       <div className="flex items-center justify-end gap-3 mt-2 text-gray-700">
         <button
           type="button"
-          className="flex items-center gap-2 text-[13px] hover:text-gray-900 transition-colors"
+          className="flex items-center gap-2 text-[10px] hover:text-gray-900 transition-colors"
         >
           <ThumbsUp size={16} />
           <span>Helpful ({data.likes})</span>

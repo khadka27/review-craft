@@ -1,8 +1,12 @@
 import { ChatData } from "@/types/chat";
 import { Camera, ChevronLeft, Mic, Video } from "lucide-react";
+import MobileStatusBar from "@/components/ui/MobileStatusBar";
 
 export const IMessageChat = ({ data }: { data: ChatData }) => {
-  const contactInitial = (data.contactName || "R").trim().charAt(0).toUpperCase();
+  const contactInitial = (data.contactName || "R")
+    .trim()
+    .charAt(0)
+    .toUpperCase();
   const rendered = data.messages.slice(0, 5);
 
   return (
@@ -16,10 +20,9 @@ export const IMessageChat = ({ data }: { data: ChatData }) => {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[24px] bg-black rounded-b-2xl z-20" />
 
           {/* status bar */}
-          <div className="pt-6 px-5 flex items-center justify-between text-[11px] font-semibold text-black">
-            <span>9:41</span>
-            <div className="flex items-center gap-2 text-[#0a84ff]">
-              <Video size={16} />
+          <div className="pt-6">
+            <div className="px-0">
+              <MobileStatusBar />
             </div>
           </div>
 
@@ -52,7 +55,10 @@ export const IMessageChat = ({ data }: { data: ChatData }) => {
             {rendered.map((msg) => {
               const isMe = msg.sender === "me";
               return (
-                <div key={msg.id} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
+                <div
+                  key={msg.id}
+                  className={`flex ${isMe ? "justify-end" : "justify-start"}`}
+                >
                   <div
                     className={`max-w-[74%] px-3 py-2 rounded-[18px] text-[15px] leading-snug ${
                       isMe
@@ -66,7 +72,9 @@ export const IMessageChat = ({ data }: { data: ChatData }) => {
               );
             })}
 
-            <div className="text-[11px] text-gray-500 text-right pr-2">Delivered</div>
+            <div className="text-[11px] text-gray-500 text-right pr-2">
+              Delivered
+            </div>
           </div>
 
           {/* composer */}

@@ -188,7 +188,7 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
 
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1">
-              <div className="font-semibold text-[14px] text-gray-900 truncate">
+              <div className="font-semibold text-[11px] text-gray-900 truncate">
                 {data.name}
               </div>
               <CheckCircle2 size={14} className="text-[#1877F2]" />
@@ -207,16 +207,22 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
           </div>
 
           <div className="flex items-center gap-1 text-gray-500">
-            <button type="button" className="p-1 hover:bg-gray-100 rounded-full">
+            <button
+              type="button"
+              className="p-1 hover:bg-gray-100 rounded-full"
+            >
               <MoreHorizontal size={18} />
             </button>
-            <button type="button" className="p-1 hover:bg-gray-100 rounded-full">
+            <button
+              type="button"
+              className="p-1 hover:bg-gray-100 rounded-full"
+            >
               <X size={18} />
             </button>
           </div>
         </div>
 
-        <div className="mt-3 text-[14px] text-gray-900 leading-relaxed">
+        <div className="mt-3 text-[11px] text-gray-900 leading-relaxed">
           <span className="rc-line-clamp-2">{data.content}</span>{" "}
           <button type="button" className="text-gray-500 font-semibold">
             See more
@@ -239,37 +245,45 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
         )}
       </div>
 
-      {/* Footer counts */}
-      <div className="px-4 py-2 flex items-center justify-between text-[13px] text-gray-600">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center -space-x-1">
-            <div className="w-5 h-5 bg-[#1877F2] rounded-full flex items-center justify-center border border-white">
-              <span className="text-white text-[11px] leading-none">👍</span>
+      {/* Footer counts and Actions Combined */}
+      <div className="px-4 border-t border-gray-200">
+        {/* Counts Row */}
+        <div className="py-2 flex items-center justify-between text-[10px] text-gray-600 border-b border-gray-100">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center -space-x-1">
+              <div className="w-4 h-4 bg-[#1877F2] rounded-full flex items-center justify-center border border-white">
+                <span className="text-white text-[9px] leading-none">👍</span>
+              </div>
+              <div className="w-4 h-4 bg-[#F02849] rounded-full flex items-center justify-center border border-white">
+                <span className="text-white text-[9px] leading-none">❤️</span>
+              </div>
             </div>
-            <div className="w-5 h-5 bg-[#F02849] rounded-full flex items-center justify-center border border-white">
-              <span className="text-white text-[11px] leading-none">❤️</span>
+            <span className="font-medium">{data.likes}</span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <span>{data.replies}</span>
+            <span>{data.shares}</span>
+            <div className="flex items-center gap-1">
+              <span>😊</span>
+              <span>😂</span>
+              <span>😍</span>
             </div>
           </div>
-          <span>{data.likes}</span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <span>{data.replies} comments</span>
-          <span>{data.shares} shares</span>
+        {/* Actions Row */}
+        <div className="grid grid-cols-3 text-[10px] text-gray-600">
+          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 font-medium">
+            <ThumbsUp size={16} /> Like
+          </button>
+          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 font-medium">
+            <MessageCircle size={16} /> Comment
+          </button>
+          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 font-medium">
+            <Share2 size={16} /> Share
+          </button>
         </div>
-      </div>
-
-      {/* Actions */}
-      <div className="border-t border-gray-200 grid grid-cols-3 text-[13px] text-gray-600">
-        <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50">
-          <ThumbsUp size={16} /> Like
-        </button>
-        <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50">
-          <MessageCircle size={16} /> Comment
-        </button>
-        <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50">
-          <Share2 size={16} /> Share
-        </button>
       </div>
     </div>
   );

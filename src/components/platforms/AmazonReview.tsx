@@ -187,11 +187,9 @@ export const AmazonReview = ({
 
       {/* Helpful section */}
       <div className="pt-4 border-t border-gray-200">
-        <div className="text-sm text-gray-600 mb-3">
-          {data.likes} people found this helpful
-        </div>
+        
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+          <button className="px-4 py-2 border border-gray-300 rounded-3xl text-sm text-gray-700 hover:bg-gray-50 transition-colors">
             Helpful
           </button>
           <button className="text-sm text-gray-600 hover:text-gray-800 transition-colors">
@@ -202,3 +200,4 @@ export const AmazonReview = ({
     </div>
   );
 };
+

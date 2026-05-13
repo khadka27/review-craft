@@ -9,17 +9,14 @@ import {
   Smile,
   Video,
 } from "lucide-react";
+import MobileStatusBar from "@/components/ui/MobileStatusBar";
 
 export const InstagramChat = ({ data }: { data: ChatData }) => {
   return (
     <div className="h-full flex flex-col font-sans bg-black text-white">
       {/* Status bar */}
-      <div className="px-5 pt-4 pb-2 flex items-center justify-between text-[14px] font-semibold">
-        <span>5:43</span>
-        <div className="flex items-center gap-2 text-gray-200 text-[12px]">
-          <span>📶</span>
-          <span>87</span>
-        </div>
+      <div className="px-0 pt-4 pb-2">
+        <MobileStatusBar isDark />
       </div>
 
       {/* Header */}

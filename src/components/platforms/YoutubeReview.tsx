@@ -27,31 +27,31 @@ export const YoutubeReview = ({ data }: YoutubeReviewProps) => {
             </div>
           )}
           <div className="flex-1">
-            <div className="flex items-center gap-2 text-[16px]">
+            <div className="flex items-center gap-2 text-[10px]">
               <span className="font-semibold text-[#303030]">
                 @{data.username}
               </span>
               <span className="text-[#606060]">{timeAgo}</span>
             </div>
 
-            <div className="mt-1 text-[16px] text-[#0f0f0f] leading-snug">
+            <div className="mt-1 text-[10px] text-[#0f0f0f] leading-snug">
               {data.content}
             </div>
 
             <div className="mt-4 flex items-center gap-7 text-[#606060]">
-              <button className="flex items-center gap-2 text-[16px]">
+              <button className="flex items-center gap-2 text-[10px]">
                 <ThumbsUp size={22} />
                 <span>{Math.max(0, data.likes || 15)}</span>
               </button>
-              <button className="flex items-center gap-2 text-[16px]">
+              <button className="flex items-center gap-2 text-[10px]">
                 <ThumbsDown size={22} />
               </button>
-              <button className="text-[16px] font-semibold text-[#303030]">
+              <button className="text-[10px] font-semibold text-[#303030]">
                 Reply
               </button>
             </div>
 
-            <div className="mt-5 flex items-center gap-3 text-[#303030] font-semibold text-[18px]">
+            <div className="mt-5 flex items-center gap-3 text-[#303030] font-semibold text-[11px]">
               <span>{Math.max(1, data.replies || 3)} replies</span>
               <ChevronDown size={26} />
             </div>
@@ -61,3 +61,4 @@ export const YoutubeReview = ({ data }: YoutubeReviewProps) => {
     </div>
   );
 };
+

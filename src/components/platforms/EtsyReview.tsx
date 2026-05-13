@@ -26,11 +26,11 @@ export const EtsyReview = ({ data }: EtsyReviewProps) => {
         ))}
       </div>
 
-      <div className="mt-3 text-[18px] leading-snug text-gray-700">
+      <div className="mt-3 text-[11px] leading-snug text-gray-700">
         {data.content}
       </div>
 
-      <div className="mt-16 text-[20px] font-semibold text-gray-900">
+      <div className="mt-16 text-[10px] font-semibold text-gray-900">
         {data.name}
         <span className="font-normal text-gray-500">
           {" "}
@@ -38,7 +38,7 @@ export const EtsyReview = ({ data }: EtsyReviewProps) => {
         </span>
       </div>
 
-      <div className="mt-1 text-[18px] text-gray-500">
+      <div className="mt-1 text-[11px] text-gray-500">
         Purchased:{" "}
         <span className="text-gray-500 underline underline-offset-2">
           {purchasedLabel}

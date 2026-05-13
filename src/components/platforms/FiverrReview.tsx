@@ -26,7 +26,7 @@ export const FiverrReview = ({ data }: FiverrReviewProps) => {
 
         <div className="min-w-0 flex-1">
           <div className="flex items-baseline gap-2 flex-wrap">
-            <span className="text-[14px] font-semibold text-[#1dbf73]">
+            <span className="text-[11px] font-semibold text-[#1dbf73]">
               {data.name}
             </span>
             <span className="text-[12px] text-gray-500">
@@ -38,20 +38,20 @@ export const FiverrReview = ({ data }: FiverrReviewProps) => {
             Community Member @ Fiverr
           </div>
 
-          <div className="mt-3 text-[18px] text-gray-800 leading-snug">
+          <div className="mt-3 text-[11px] text-gray-800 leading-snug">
             {data.content}
           </div>
 
           <div className="mt-5 flex items-center justify-between">
             <button
               type="button"
-              className="flex items-center gap-2 text-[13px] text-gray-600 hover:text-gray-800"
+              className="flex items-center gap-2 text-[10px] text-gray-600 hover:text-gray-800"
             >
               <ThumbsUp size={16} />
               <span>Like</span>
             </button>
 
-            <div className="flex items-center gap-1 text-[13px] text-gray-600">
+            <div className="flex items-center gap-1 text-[10px] text-gray-600">
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-100">
                 🙏
               </span>

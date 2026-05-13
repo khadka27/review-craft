@@ -1,6 +1,6 @@
 import { ReviewData } from "@/types/review";
 import { format } from "date-fns";
-import { CheckCircle, MoreVertical, Star, ThumbsUp } from "lucide-react";
+import { Heart, MoreVertical, Star, ThumbsUp } from "lucide-react";
 
 interface DarazReviewProps {
   data: ReviewData;
@@ -34,30 +34,34 @@ export const DarazReview = ({ data }: DarazReviewProps) => {
             ))}
           </div>
 
-          <div className="mt-1 flex items-center gap-2 text-[13px]">
+          <div className="mt-1 flex items-center gap-2 text-[10px]">
             <span className="text-gray-700">{maskedName}</span>
             {data.verified && (
               <span className="inline-flex items-center gap-1 text-green-600">
-                <CheckCircle size={14} className="text-green-600" />
+                <Heart
+                  size={14}
+                  fill="currentColor"
+                  className="text-green-600"
+                />
                 <span className="font-medium">Verified Purchase</span>
               </span>
             )}
           </div>
         </div>
 
-        <div className="text-[13px] text-gray-500 whitespace-nowrap">
+        <div className="text-[10px] text-gray-500 whitespace-nowrap">
           {format(data.date, "dd MMM yyyy")}
         </div>
       </div>
 
-      <div className="mt-4 text-[14px] leading-relaxed text-gray-800 max-w-5xl">
+      <div className="mt-4 text-[11px] leading-relaxed text-gray-800 max-w-5xl">
         {data.content}
       </div>
 
       <div className="mt-4 flex items-center justify-between">
         <div className="flex items-center gap-2 text-gray-500">
           <ThumbsUp size={16} />
-          <span className="text-[13px]">{data.likes}</span>
+          <span className="text-[10px]">{data.likes}</span>
         </div>
 
         <button

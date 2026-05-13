@@ -23,23 +23,23 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
       <div className="relative bg-white border border-gray-300 rounded-lg px-5 py-5">
         <div className="flex items-center gap-1.5 mb-4">
           <Star size={16} className="text-[#f5c518] fill-[#f5c518]" />
-          <span className="text-[18px] font-medium leading-none text-gray-700">
+          <span className="text-[11px] font-medium leading-none text-gray-700">
             {safeRating}/10
           </span>
         </div>
 
-        <h3 className="text-[24px] font-bold leading-tight text-gray-900 mb-4 flex items-center gap-2">
+        <h3 className="text-[19px] font-bold leading-tight text-gray-900 mb-4 flex items-center gap-2">
           <span>{heading}</span>
           <ChevronRight size={30} className="text-gray-600" />
         </h3>
 
-        <div className="text-[15px] leading-[1.45] text-gray-800 rc-line-clamp-5">
+        <div className="text-[12px] leading-[1.45] text-gray-800 rc-line-clamp-5">
           {data.content}
         </div>
-        <div className="text-[22px] leading-none text-gray-900 -mt-2">...</div>
+        <div className="text-[11px] leading-none text-gray-900 -mt-2">...</div>
 
         <div className="mt-3 pt-3 border-t border-gray-200 flex items-center justify-between">
-          <div className="flex items-center gap-6 text-[16px] text-gray-800">
+          <div className="flex items-center gap-6 text-[10px] text-gray-800">
             <button className="flex items-center gap-2">
               <ThumbsUp size={24} />
               <span>Helpful · {helpfulCount}</span>
@@ -72,7 +72,7 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
           </div>
         )}
 
-        <div className="flex items-center gap-2 text-[16px]">
+        <div className="flex items-center gap-2 text-[10px]">
           <span className="text-[#0b57d0] font-semibold">
             {data.username || "blueastrid-76756"}
           </span>
@@ -87,3 +87,4 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
     </div>
   );
 };
+

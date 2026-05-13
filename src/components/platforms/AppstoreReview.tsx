@@ -80,13 +80,13 @@ export const AppstoreReview = ({ data }: AppstoreReviewProps) => {
 
       {/* Title */}
       <div className="mb-2">
-        <h3 className="text-[18px] font-semibold text-white leading-snug">
+        <h3 className="text-[11px] font-semibold text-white leading-snug">
           {data.title}
         </h3>
       </div>
 
       {/* Stars + meta line */}
-      <div className="flex items-center gap-2 text-[13px] text-gray-400 mb-3">
+      <div className="flex items-center gap-2 text-[10px] text-gray-400 mb-3">
         <div className="flex items-center gap-0.5">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
@@ -107,11 +107,11 @@ export const AppstoreReview = ({ data }: AppstoreReviewProps) => {
 
       {/* Content */}
       <div className="mb-3">
-        <p className="text-gray-300 leading-relaxed text-[13px] rc-line-clamp-5">
+        <p className="text-gray-300 leading-relaxed text-[10px] rc-line-clamp-5">
           {data.content}
         </p>
         {data.content && data.content.length > 150 && (
-          <div className="text-[13px] text-gray-400 mt-2">…</div>
+          <div className="text-[10px] text-gray-400 mt-2">…</div>
         )}
       </div>
 
@@ -124,3 +124,4 @@ export const AppstoreReview = ({ data }: AppstoreReviewProps) => {
     </div>
   );
 };
+

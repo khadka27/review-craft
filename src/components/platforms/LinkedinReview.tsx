@@ -50,11 +50,11 @@ export const LinkedinReview = ({ data }: LinkedinReviewProps) => {
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <div className="text-[22px] leading-tight font-semibold text-gray-900 truncate">
+                <div className="text-[11px] leading-tight font-semibold text-gray-900 truncate">
                   {data.name}{" "}
                   <span className="text-gray-500 font-normal">• 3rd+</span>
                 </div>
-                <div className="text-[13px] text-gray-600 truncate">
+                <div className="text-[10px] text-gray-600 truncate">
                   Full-Stack Developer | React & Next.js
                 </div>
                 <div className="mt-0.5 text-[12px] text-gray-500 flex items-center gap-1">
@@ -68,13 +68,13 @@ export const LinkedinReview = ({ data }: LinkedinReviewProps) => {
 
               <button
                 type="button"
-                className="text-[#0a66c2] font-semibold text-[16px] whitespace-nowrap"
+                className="text-[#0a66c2] font-semibold text-[10px] whitespace-nowrap"
               >
                 + Follow
               </button>
             </div>
 
-            <div className="mt-3 text-[16px] text-gray-800 leading-relaxed">
+            <div className="mt-3 text-[10px] text-gray-800 leading-relaxed">
               {data.content}
               <div className="text-gray-500 font-semibold">... more</div>
             </div>
@@ -102,7 +102,7 @@ export const LinkedinReview = ({ data }: LinkedinReviewProps) => {
                         className="w-full h-[72px] object-cover"
                       />
                       {isLast && remaining > 0 && (
-                        <div className="absolute inset-0 bg-black/55 flex items-center justify-center text-white text-[24px] font-semibold">
+                        <div className="absolute inset-0 bg-black/55 flex items-center justify-center text-white text-[19px] font-semibold">
                           +{remaining}
                         </div>
                       )}
@@ -118,7 +118,7 @@ export const LinkedinReview = ({ data }: LinkedinReviewProps) => {
           )}
         </div>
 
-        <div className="mt-2 flex items-center justify-between text-[14px] text-gray-600">
+        <div className="mt-2 flex items-center justify-between text-[11px] text-gray-600">
           <div className="flex items-center gap-2">
             <div className="flex items-center -space-x-1">
               <span className="w-4 h-4 rounded-full bg-[#0a66c2] text-white text-[10px] flex items-center justify-center">
@@ -136,7 +136,7 @@ export const LinkedinReview = ({ data }: LinkedinReviewProps) => {
           <div>{Math.max(0, data.replies || 2)} comments</div>
         </div>
 
-        <div className="mt-2 border-t border-gray-200 pt-2 grid grid-cols-4 text-[14px] text-gray-600">
+        <div className="mt-2 border-t border-gray-200 pt-2 grid grid-cols-4 text-[11px] text-gray-600">
           <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 rounded-md">
             <ThumbsUp size={16} />
             Like
@@ -158,3 +158,4 @@ export const LinkedinReview = ({ data }: LinkedinReviewProps) => {
     </div>
   );
 };
+

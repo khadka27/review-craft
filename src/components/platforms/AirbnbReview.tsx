@@ -37,17 +37,17 @@ export const AirbnbReview = ({ data }: AirbnbReviewProps) => {
         )}
 
         <div className="min-w-0 flex-1">
-          <div className="font-semibold text-[15px] text-gray-900 leading-tight">
+          <div className="font-semibold text-[12px] text-gray-900 leading-tight">
             {data.name}
           </div>
 
           {data.location && (
-            <div className="mt-0.5 text-[13px] text-gray-500">
+            <div className="mt-0.5 text-[10px] text-gray-500">
               {data.location.city}, {data.location.state}
             </div>
           )}
 
-          <div className="mt-2 flex items-center gap-2 text-[13px] text-gray-500">
+          <div className="mt-2 flex items-center gap-2 text-[10px] text-gray-500">
             <div className="flex items-center gap-0.5 text-gray-900">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star
@@ -69,7 +69,7 @@ export const AirbnbReview = ({ data }: AirbnbReviewProps) => {
 
       <div className="mt-3">
         <p
-          className={`text-[14px] leading-relaxed text-gray-800 ${
+          className={`text-[11px] leading-relaxed text-gray-800 ${
             isExpanded ? "" : "rc-line-clamp-3"
           }`}
         >
@@ -80,7 +80,7 @@ export const AirbnbReview = ({ data }: AirbnbReviewProps) => {
           <button
             type="button"
             onClick={() => setIsExpanded((v) => !v)}
-            className="mt-2 text-[14px] text-gray-900 underline underline-offset-2"
+            className="mt-2 text-[11px] text-gray-900 underline underline-offset-2"
           >
             {isExpanded ? "Show less" : "Show more"}
           </button>

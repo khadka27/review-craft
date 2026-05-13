@@ -93,3 +93,4 @@ export const GoogleReviewSummary = ({ data }: GoogleReviewSummaryProps) => {
     </div>
   );
 };
+

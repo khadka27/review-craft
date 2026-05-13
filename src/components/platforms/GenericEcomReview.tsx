@@ -185,3 +185,4 @@ export const GenericEcomReview = ({ data }: GenericEcomReviewProps) => {
     </div>
   );
 };
+

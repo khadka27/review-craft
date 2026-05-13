@@ -81,3 +81,4 @@ export const DiscordReview = ({ data }: DiscordReviewProps) => {
     </div>
   );
 };
+

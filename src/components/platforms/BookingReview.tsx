@@ -58,14 +58,14 @@ export const BookingReview = ({ data }: BookingReviewProps) => {
               <div className="font-semibold text-gray-900 leading-tight">
                 {data.name || "Guest"}
               </div>
-              <div className="mt-1 flex items-center gap-2 text-[13px] text-gray-600">
+              <div className="mt-1 flex items-center gap-2 text-[10px] text-gray-600">
                 <span aria-hidden="true">🇦🇺</span>
                 <span>{countryLabel}</span>
               </div>
             </div>
           </div>
 
-          <div className="mt-5 space-y-4 text-[13px] text-gray-700">
+          <div className="mt-5 space-y-4 text-[10px] text-gray-700">
             <div className="flex items-start gap-3">
               <BedDouble size={16} className="text-gray-500 mt-0.5" />
               <div className="leading-relaxed">{roomLine}</div>
@@ -88,19 +88,19 @@ export const BookingReview = ({ data }: BookingReviewProps) => {
               <div className="text-[12px] text-gray-500">
                 Reviewed: {reviewDate}
               </div>
-              <div className="mt-1 text-[22px] font-bold text-gray-900 leading-snug">
+              <div className="mt-1 text-[11px] font-bold text-gray-900 leading-snug">
                 {title}
               </div>
             </div>
 
             <div className="flex-shrink-0">
-              <div className="bg-[#003B95] text-white font-bold px-3 py-2 rounded-md text-[14px] min-w-[44px] text-center">
+              <div className="bg-[#003B95] text-white font-bold px-3 py-2 rounded-md text-[11px] min-w-[44px] text-center">
                 {safeRating.toFixed(1)}
               </div>
             </div>
           </div>
 
-          <div className="mt-6 space-y-4 text-[14px] text-gray-800">
+          <div className="mt-6 space-y-4 text-[11px] text-gray-800">
             <div className="flex items-start gap-3">
               <Smile size={18} className="text-emerald-600 mt-0.5" />
               <div>{prosLine}</div>
@@ -111,7 +111,7 @@ export const BookingReview = ({ data }: BookingReviewProps) => {
             </div>
           </div>
 
-          <div className="mt-10 flex items-center justify-end gap-10 text-[14px]">
+          <div className="mt-10 flex items-center justify-end gap-10 text-[11px]">
             <button
               type="button"
               className="flex items-center gap-2 text-[#006CE4] hover:underline font-semibold"

@@ -20,13 +20,13 @@ export const ShopifyReview = ({ data }: ShopifyReviewProps) => {
       <div className="flex items-start gap-12">
         {/* Left customer column */}
         <div className="w-[170px] flex-shrink-0 text-[#6d7175]">
-          <div className="text-[20px] font-semibold text-[#202223] leading-tight">
+          <div className="text-[10px] font-semibold text-[#202223] leading-tight">
             {data.name}
           </div>
-          <div className="mt-2 text-[15px]">
+          <div className="mt-2 text-[12px]">
             {data.location?.country || "United States"}
           </div>
-          <div className="mt-2 text-[15px]">
+          <div className="mt-2 text-[12px]">
             Almost {yearsUsingApp} years using the app
           </div>
         </div>
@@ -47,13 +47,13 @@ export const ShopifyReview = ({ data }: ShopifyReviewProps) => {
                 />
               ))}
             </div>
-            <div className="text-[15px] text-[#6d7175] whitespace-nowrap">
+            <div className="text-[12px] text-[#6d7175] whitespace-nowrap">
               {format(data.date, "MMM d, yyyy")}
             </div>
           </div>
 
           <div
-            className={`mt-3 text-[22px] leading-[1.45] text-[#42474c] ${
+            className={`mt-3 text-[11px] leading-[1.45] text-[#42474c] ${
               expanded ? "" : "rc-line-clamp-5"
             }`}
           >
@@ -63,7 +63,7 @@ export const ShopifyReview = ({ data }: ShopifyReviewProps) => {
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
-            className="mt-3 text-[16px] font-semibold text-[#202223] underline underline-offset-2"
+            className="mt-3 text-[10px] font-semibold text-[#202223] underline underline-offset-2"
           >
             {expanded ? "Show less" : "Show more"}
           </button>
@@ -72,3 +72,4 @@ export const ShopifyReview = ({ data }: ShopifyReviewProps) => {
     </div>
   );
 };
+

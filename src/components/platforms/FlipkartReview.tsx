@@ -56,18 +56,18 @@ export const FlipkartReview = ({ data }: FlipkartReviewProps) => {
       )}
 
       {/* User Info */}
-      <div className="text-[13px] text-[#878787] mb-3">
+      <div className="text-[10px] text-[#878787] mb-3">
         {data.name}, {city}
       </div>
 
       {/* Helpful & Dislike & Menu */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1.5 px-3 py-1.5 border border-[#e0e0e0] rounded-full text-[13px] font-medium text-[#878787] hover:bg-gray-50 transition-colors">
+          <button className="flex items-center gap-1.5 px-3 py-1.5 border border-[#e0e0e0] rounded-full text-[10px] font-medium text-[#878787] hover:bg-gray-50 transition-colors">
             <ThumbsUp size={14} className="text-[#878787]" />
             <span>Helpful for {data.likes}</span>
           </button>
-          <button className="flex items-center gap-1.5 px-3 py-1.5 border border-[#e0e0e0] rounded-full text-[13px] font-medium text-[#878787] hover:bg-gray-50 transition-colors">
+          <button className="flex items-center gap-1.5 px-3 py-1.5 border border-[#e0e0e0] rounded-full text-[10px] font-medium text-[#878787] hover:bg-gray-50 transition-colors">
             <MessageSquare size={14} className="text-[#878787]" />
             <span>{Math.max(0, data.replies || 73)}</span>
           </button>
@@ -78,7 +78,7 @@ export const FlipkartReview = ({ data }: FlipkartReviewProps) => {
       </div>
 
       {/* Verified Purchase and Date */}
-      <div className="flex items-center gap-1 text-[13px] text-[#878787] font-medium">
+      <div className="flex items-center gap-1 text-[10px] text-[#878787] font-medium">
         {data.verified && (
           <div className="flex items-center">
             <div className="bg-[#111112] rounded-full p-0.5 mr-1.5">
@@ -92,3 +92,4 @@ export const FlipkartReview = ({ data }: FlipkartReviewProps) => {
     </div>
   );
 };
+

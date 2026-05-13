@@ -28,7 +28,7 @@ export const PlaystoreReview = ({ data }: PlaystoreReviewProps) => {
             </div>
           )}
           <div className="flex-1">
-            <div className="font-medium text-[20px] text-[#202124]">
+            <div className="font-medium text-[10px] text-[#202124]">
               {data.name}
             </div>
           </div>
@@ -53,21 +53,22 @@ export const PlaystoreReview = ({ data }: PlaystoreReviewProps) => {
             />
           ))}
         </div>
-        <span className="text-[13px] text-[#5f6368]">
+        <span className="text-[10px] text-[#5f6368]">
           {format(data.date, "MMMM d, yyyy")}
         </span>
       </div>
 
       {/* Content */}
       <div className="mb-4">
-        <p className="text-[#5f6368] leading-relaxed text-[16px]">
+        <p className="text-[#5f6368] leading-relaxed text-[10px]">
           {data.content}
         </p>
       </div>
 
-      <div className="text-[13px] text-[#5f6368]">
+      <div className="text-[10px] text-[#5f6368]">
         {Math.max(1, data.likes || 5)} people found this review helpful
       </div>
     </div>
   );
 };
+

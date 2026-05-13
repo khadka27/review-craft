@@ -31,11 +31,11 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
           </div>
 
           <div className="min-w-0 flex-1 pt-0.5">
-            <div className="text-[13px] font-semibold text-gray-900">
+            <div className="text-[8px] font-semibold text-gray-900">
               {maskedName}
             </div>
 
-            <div className="mt-1.5 space-y-1 text-[12px]">
+            <div className="mt-1.5 space-y-1 text-[10px]">
               <div className="flex items-center gap-1.5 text-gray-700">
                 <span aria-hidden="true">🇦🇺</span>
                 <span>{countryLabel}</span>
@@ -47,7 +47,7 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
               </div>
 
               <div>
-                <span className="inline-flex items-center rounded bg-gray-100 px-2 py-0.5 text-[12px] text-gray-600">
+                <span className="inline-flex items-center rounded bg-gray-100 px-2 py-0.5 text-[10px] text-gray-600">
                   Repeat buyer
                 </span>
               </div>
@@ -56,7 +56,7 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
         </div>
 
         <div className="flex flex-col items-end flex-shrink-0 pt-0.5">
-          <div className="text-[12px] text-gray-500 whitespace-nowrap">
+          <div className="text-[10px] text-gray-500 whitespace-nowrap">
             {format(data.date, "MMM d, yyyy")}
           </div>
         </div>
@@ -69,7 +69,7 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star
                   key={star}
-                  size={14}
+                  size={11}
                   className={
                     star <= safeRating
                       ? "text-[#ff7a00] fill-[#ff7a00]"
@@ -80,7 +80,7 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
             </div>
           </div>
 
-          <div className="mt-1.5 text-[14px] text-gray-900 leading-snug max-w-3xl">
+          <div className="mt-1.5 text-[9px] text-gray-900 leading-snug max-w-3xl">
             {data.content}
           </div>
 
@@ -98,17 +98,17 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
             </div>
 
             <div className="min-w-0 flex-1">
-              <div className="text-[13px] text-gray-700 truncate">
+              <div className="text-[8px] text-gray-700 truncate">
                 {productTitle}
               </div>
-              <div className="text-[13px] font-semibold text-gray-900">
+              <div className="text-[8px] font-semibold text-gray-900">
                 {priceLine}
               </div>
             </div>
 
             <button
               type="button"
-              className="flex items-center gap-1 text-[12px] font-semibold text-gray-700 hover:text-gray-900 whitespace-nowrap"
+              className="flex items-center gap-1 text-[10px] font-semibold text-gray-700 hover:text-gray-900 whitespace-nowrap"
             >
               See product details <ChevronRight size={16} />
             </button>
@@ -116,7 +116,7 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
 
           <div className="mt-3 flex items-center gap-2 text-gray-600">
             <ThumbsUp size={16} />
-            <span className="text-[12px]">Helpful ({data.likes})</span>
+            <span className="text-[10px]">Helpful ({data.likes})</span>
           </div>
         </div>
       </div>
