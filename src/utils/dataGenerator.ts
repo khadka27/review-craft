@@ -1398,13 +1398,7 @@ const generateTitle = (platform: Platform): string => {
       "Good value and reliable seller",
       "Would order again from this seller",
     ],
-    alibaba: [
-      "Excellent bulk pricing and quality",
-      "Professional supplier and good communication",
-      "Great for wholesale orders",
-      "Reliable delivery and good packaging",
-      "Recommend for business purchases",
-    ],
+    alibaba: [""],
     testimonial: [
       "Working with this team has been a fantastic experience.",
       "Professional, responsive, and results-driven from start to finish.",

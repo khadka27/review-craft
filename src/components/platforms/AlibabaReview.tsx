@@ -18,36 +18,31 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
 
   const initials = (data.name || "J").trim().charAt(0).toUpperCase() || "J";
   const countryLabel = data.location?.country || "Australia";
-  const productTitle =
-    data.productVariation ||
-    data.title ||
-    "2016 2017 2018 Landwind X7 2.0T Panoramic Premium Edition Auto...";
+  const productTitle = data.productVariation || data.title || "";
   const priceLine = "NPR 437,642.05-503,333.67";
   const productImage = data.images?.[0];
 
   return (
-    <div className="bg-white w-full max-w-5xl mx-auto px-5 py-5">
-      <div className="flex items-start justify-between gap-6">
-        <div className="flex items-start gap-4 min-w-0 flex-1">
+    <div className="bg-white w-full max-w-5xl mx-auto px-4 py-4">
+      <div className="grid grid-cols-[1fr_auto] items-start gap-5">
+        <div className="flex items-start gap-3.5 min-w-0">
           <div className="w-10 h-10 rounded-full bg-[#d55200] text-white flex items-center justify-center font-semibold flex-shrink-0">
             {initials}
           </div>
 
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1 pt-0.5">
             <div className="text-[13px] font-semibold text-gray-900">
               {maskedName}
             </div>
 
-            <div className="mt-2 space-y-1.5 text-[12px]">
-              <div className="flex items-center gap-2 text-gray-700">
-                <span className="text-[14px]" aria-hidden="true">
-                  🇦🇺
-                </span>
+            <div className="mt-1.5 space-y-1 text-[12px]">
+              <div className="flex items-center gap-1.5 text-gray-700">
+                <span aria-hidden="true">🇦🇺</span>
                 <span>{countryLabel}</span>
               </div>
 
-              <div className="flex items-center gap-2 text-emerald-700">
-                <CheckCircle2 size={14} className="text-emerald-600" />
+              <div className="flex items-center gap-1.5 text-emerald-700">
+                <CheckCircle2 size={13} className="text-emerald-600" />
                 <span>Verified purchase</span>
               </div>
 
@@ -60,14 +55,14 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
           </div>
         </div>
 
-        <div className="flex flex-col items-end flex-shrink-0">
-          <div className="text-[12px] text-gray-500">
+        <div className="flex flex-col items-end flex-shrink-0 pt-0.5">
+          <div className="text-[12px] text-gray-500 whitespace-nowrap">
             {format(data.date, "MMM d, yyyy")}
           </div>
         </div>
       </div>
 
-      <div className="mt-4 flex items-start justify-between gap-6">
+      <div className="mt-3.5 flex items-start justify-between gap-5">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-0.5">
@@ -85,12 +80,12 @@ export const AlibabaReview = ({ data }: AlibabaReviewProps) => {
             </div>
           </div>
 
-          <div className="mt-2 text-[14px] text-gray-900 leading-snug">
+          <div className="mt-1.5 text-[14px] text-gray-900 leading-snug max-w-3xl">
             {data.content}
           </div>
 
-          <div className="mt-3 bg-gray-100 rounded px-3 py-2 flex items-center gap-3">
-            <div className="w-10 h-10 rounded bg-white border border-gray-200 overflow-hidden flex items-center justify-center flex-shrink-0">
+          <div className="mt-2.5 bg-gray-100 rounded px-3 py-2 flex items-center gap-3 max-w-4xl">
+            <div className="w-12 h-12 rounded bg-white border border-gray-200 overflow-hidden flex items-center justify-center flex-shrink-0">
               {productImage ? (
                 <img
                   src={productImage}
