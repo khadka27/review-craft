@@ -1,6 +1,6 @@
 import { ReviewData } from "@/types/review";
 import { format } from "date-fns";
-import { Star, MapPin, Camera, ThumbsUp, Flag } from "lucide-react";
+import { MoreHorizontal, ThumbsUp } from "lucide-react";
 
 interface TripadvisorReviewProps {
   data: ReviewData;
@@ -8,131 +8,112 @@ interface TripadvisorReviewProps {
 
 export const TripadvisorReview = ({ data }: TripadvisorReviewProps) => {
   const safeRating = Math.max(1, Math.min(5, Math.round(data.rating || 5)));
+  const photo = data.images?.[0];
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 w-full max-w-2xl mx-auto">
-      {/* Header */}
-      <div className="flex items-start gap-3 sm:gap-4 mb-4">
-        {data.avatar ? (
-          <img
-            src={data.avatar}
-            alt={data.name}
-            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover flex-shrink-0 border-2 border-green-500"
-          />
-        ) : (
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center flex-shrink-0 border-2 border-green-500">
-            <span className="text-white font-bold text-lg">
-              {data.name.charAt(0).toUpperCase()}
-            </span>
-          </div>
-        )}
-        
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-bold text-gray-900 text-base sm:text-lg truncate">
-              {data.name}
-            </h3>
-            <div className="bg-orange-100 text-orange-800 px-2 py-0.5 rounded text-xs font-medium">
-              Level 3 Contributor
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-            <span>127 contributions</span>
-            <span className="text-gray-400">•</span>
-            <span>45 helpful votes</span>
-          </div>
-          
-          {data.location && (
-            <div className="flex items-center gap-1 text-sm text-gray-600">
-              <MapPin size={14} />
-              <span>{data.location.city}, {data.location.state}</span>
+    <div className="bg-white border border-gray-200 rounded-lg px-8 py-7 w-full max-w-4xl mx-auto">
+      <div className="flex items-start justify-between gap-6">
+        <div className="flex items-start gap-3">
+          {data.avatar ? (
+            <img
+              src={data.avatar}
+              alt={data.name}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 font-semibold">
+              {data.name?.charAt(0)?.toUpperCase() || "U"}
             </div>
           )}
+
+          <div>
+            <div className="text-[17px] font-semibold text-[#0f2b24]">
+              {data.name}
+            </div>
+            <div className="text-[13px] text-[#65767b]">
+              {Math.max(1, data.replies || 3)} contributions
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 text-[#0f2b24]">
+          <button className="flex items-center gap-1 text-[13px]">
+            <ThumbsUp size={14} />
+            <span>{Math.max(0, data.likes)}</span>
+          </button>
+          <button type="button">
+            <MoreHorizontal size={16} />
+          </button>
         </div>
       </div>
 
-      {/* Rating and Date */}
-      <div className="flex items-center gap-3 mb-3">
-        <div className="flex items-center gap-1">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <div
-              key={star}
-              className={`w-4 h-4 rounded-full ${
-                star <= safeRating ? "bg-green-500" : "bg-gray-300"
-              }`}
-            />
+      <div className="mt-6">
+        <div className="flex items-start justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((dot) => (
+                <span
+                  key={dot}
+                  className={`w-4 h-4 rounded-full inline-block ${
+                    dot <= safeRating ? "bg-[#00aa6c]" : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="mt-2 text-[22px] leading-tight font-semibold text-[#0f2b24]">
+              {data.title || "The Casual Greek - Restaurant in New York"}
+            </div>
+
+            <div className="mt-2 text-[18px] text-[#223f39]">
+              {format(data.date, "MMM yyyy")} • Family
+            </div>
+          </div>
+
+          <div className="bg-[#013220] text-white text-[13px] font-semibold px-3 py-1 rounded-md whitespace-nowrap">
+            Restaurant's favorite review
+          </div>
+        </div>
+
+        <div className="mt-4 text-[16px] leading-relaxed text-[#223f39] max-w-5xl">
+          {data.content}
+        </div>
+
+        <div className="mt-5 grid grid-cols-3 gap-x-8 gap-y-4 max-w-3xl">
+          {["Value", "Service", "Food", "Atmosphere"].map((label) => (
+            <div key={label}>
+              <div className="text-[15px] font-semibold text-[#0f2b24]">
+                {label}
+              </div>
+              <div className="mt-1 flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((d) => (
+                  <span key={d} className="w-4 h-4 rounded-full bg-[#00aa6c]" />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-        <span className="text-sm text-gray-600">
-          Reviewed {format(data.date, "MMMM d, yyyy")}
-        </span>
-      </div>
 
-      {/* Review Title */}
-      {data.title && (
-        <h4 className="font-bold text-gray-900 text-lg mb-3 break-words">
-          {data.title}
-        </h4>
-      )}
-
-      {/* Review Content */}
-      <div className="mb-4">
-        <p className="text-gray-800 leading-relaxed text-sm sm:text-base break-words">
-          {data.content}
-        </p>
-      </div>
-
-      {/* Trip Details */}
-      <div className="bg-gray-50 rounded-lg p-3 mb-4">
-        <div className="text-sm text-gray-700">
-          <div className="flex items-center gap-4 mb-1">
-            <span className="font-medium">Trip type:</span>
-            <span>Traveled as a couple</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="font-medium">Date of experience:</span>
-            <span>{format(data.date, "MMMM yyyy")}</span>
-          </div>
+        <div className="mt-6">
+          {photo ? (
+            <img
+              src={photo}
+              alt="Review"
+              className="w-24 h-24 object-cover rounded-md border border-gray-200"
+            />
+          ) : (
+            <div className="w-24 h-24 rounded-md border border-gray-200 bg-gray-100" />
+          )}
         </div>
-      </div>
 
-      {/* Images */}
-      {data.images && data.images.length > 0 && (
-        <div className="mb-4">
-          <div className="flex gap-2 overflow-x-auto">
-            {data.images.slice(0, 4).map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Review photo ${index + 1}`}
-                className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
-              />
-            ))}
-            {data.images.length > 4 && (
-              <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Camera size={20} className="text-gray-500" />
-                <span className="text-xs text-gray-600 ml-1">+{data.images.length - 4}</span>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Footer Actions */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-green-600 transition-colors">
-            <ThumbsUp size={16} />
-            <span>Helpful ({data.likes})</span>
-          </button>
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors">
-            <Flag size={16} />
-            <span>Report</span>
-          </button>
-        </div>
-        <div className="text-xs text-gray-500">
+        <div className="mt-5 text-[13px] text-[#3f5257]">
           Written {format(data.date, "MMMM d, yyyy")}
+        </div>
+        <div className="mt-2 text-[12px] text-[#65767b] max-w-5xl">
+          This review is the subjective opinion of a Tripadvisor member and not
+          of Tripadvisor LLC. Tripadvisor performs checks on reviews as part of
+          our industry-leading trust & safety standards. Read our transparency
+          report to learn more.
         </div>
       </div>
     </div>

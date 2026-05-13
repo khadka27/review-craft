@@ -1,6 +1,14 @@
 import { ReviewData } from "@/types/review";
 import { formatDistanceToNow } from "date-fns";
-import { ThumbsUp, MessageCircle, Share2, MoreHorizontal } from "lucide-react";
+import {
+  CheckCircle2,
+  Globe,
+  MessageCircle,
+  MoreHorizontal,
+  Share2,
+  ThumbsUp,
+  X,
+} from "lucide-react";
 
 interface FacebookReviewProps {
   data: ReviewData;
@@ -162,75 +170,106 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
   }
 
   return (
-    <div className="bg-[#e9eff7] p-5 w-full max-w-2xl mx-auto rounded-xl">
-      <div className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden">
-        <div className="p-4">
-          <div className="flex items-start gap-3">
-            {data.avatar ? (
-              <img
-                src={data.avatar}
-                alt={data.name}
-                className="w-10 h-10 rounded-full object-cover"
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm">
-                ?
-              </div>
-            )}
-            <div className="flex-1 min-w-0">
-              <div className="font-semibold text-sm text-gray-900 truncate">
+    <div className="bg-white w-full max-w-[520px] mx-auto border border-gray-200 rounded-xl overflow-hidden">
+      {/* Header */}
+      <div className="px-4 pt-4">
+        <div className="flex items-start gap-3">
+          {data.avatar ? (
+            <img
+              src={data.avatar}
+              alt={data.name}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 font-semibold">
+              {(data.name || "P").trim().charAt(0).toUpperCase()}
+            </div>
+          )}
+
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1">
+              <div className="font-semibold text-[14px] text-gray-900 truncate">
                 {data.name}
               </div>
-              <div className="text-xs text-gray-500">
-                {formatDistanceToNow(data.date, { addSuffix: true }).replace(
+              <CheckCircle2 size={14} className="text-[#1877F2]" />
+            </div>
+
+            <div className="mt-0.5 flex items-center gap-1 text-[12px] text-gray-500">
+              <span>
+                {formatDistanceToNow(data.date, { addSuffix: false }).replace(
                   "about ",
                   "",
                 )}
-              </div>
+              </span>
+              <span>·</span>
+              <Globe size={12} className="text-gray-500" />
             </div>
-            <MoreHorizontal size={18} className="text-gray-500" />
           </div>
 
-          <p className="text-sm text-gray-900 mt-3 leading-relaxed">
-            {data.content}
-          </p>
+          <div className="flex items-center gap-1 text-gray-500">
+            <button type="button" className="p-1 hover:bg-gray-100 rounded-full">
+              <MoreHorizontal size={18} />
+            </button>
+            <button type="button" className="p-1 hover:bg-gray-100 rounded-full">
+              <X size={18} />
+            </button>
+          </div>
         </div>
 
-        <div className="bg-gray-100 overflow-hidden">
-          {postImages.length > 0 ? (
-            <img
-              src={postImages[0]}
-              alt="Post media"
-              className="w-full h-52 object-cover"
-            />
-          ) : (
-            <div className="h-52 flex items-center justify-center text-gray-400">
-              <div className="text-center text-sm">Image Placeholder</div>
+        <div className="mt-3 text-[14px] text-gray-900 leading-relaxed">
+          <span className="rc-line-clamp-2">{data.content}</span>{" "}
+          <button type="button" className="text-gray-500 font-semibold">
+            See more
+          </button>
+        </div>
+      </div>
+
+      {/* Media */}
+      <div className="mt-3 bg-gray-100">
+        {postImages.length > 0 ? (
+          <img
+            src={postImages[0]}
+            alt="Post media"
+            className="w-full object-cover"
+          />
+        ) : (
+          <div className="h-72 flex items-center justify-center text-gray-400">
+            <div className="text-center text-sm">Image Placeholder</div>
+          </div>
+        )}
+      </div>
+
+      {/* Footer counts */}
+      <div className="px-4 py-2 flex items-center justify-between text-[13px] text-gray-600">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center -space-x-1">
+            <div className="w-5 h-5 bg-[#1877F2] rounded-full flex items-center justify-center border border-white">
+              <span className="text-white text-[11px] leading-none">👍</span>
             </div>
-          )}
+            <div className="w-5 h-5 bg-[#F02849] rounded-full flex items-center justify-center border border-white">
+              <span className="text-white text-[11px] leading-none">❤️</span>
+            </div>
+          </div>
+          <span>{data.likes}</span>
         </div>
 
-        <div className="px-4 py-2 flex items-center justify-between text-xs text-gray-600 border-t border-gray-200">
-          <div className="flex items-center gap-1">
-            <span>👍 ❤️</span>
-            <span>{data.likes}</span>
-          </div>
-          <div>
-            {data.replies} comments • {data.shares} shares
-          </div>
+        <div className="flex items-center gap-3">
+          <span>{data.replies} comments</span>
+          <span>{data.shares} shares</span>
         </div>
+      </div>
 
-        <div className="px-2 py-1 border-t border-gray-100 grid grid-cols-3 text-sm text-gray-600">
-          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 rounded-md">
-            <ThumbsUp size={16} /> Like
-          </button>
-          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 rounded-md">
-            <MessageCircle size={16} /> Comment
-          </button>
-          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 rounded-md">
-            <Share2 size={16} /> Share
-          </button>
-        </div>
+      {/* Actions */}
+      <div className="border-t border-gray-200 grid grid-cols-3 text-[13px] text-gray-600">
+        <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50">
+          <ThumbsUp size={16} /> Like
+        </button>
+        <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50">
+          <MessageCircle size={16} /> Comment
+        </button>
+        <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50">
+          <Share2 size={16} /> Share
+        </button>
       </div>
     </div>
   );

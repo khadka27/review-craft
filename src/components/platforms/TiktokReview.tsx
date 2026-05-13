@@ -1,85 +1,59 @@
 import { ReviewData } from "@/types/review";
-import { formatDistanceToNow } from "date-fns";
-import {
-  Heart,
-  MessageCircle,
-  Share2,
-  Bookmark,
-  MoreHorizontal,
-} from "lucide-react";
+import { ChevronDown, Heart } from "lucide-react";
 
 interface TiktokReviewProps {
   data: ReviewData;
 }
 
 export const TiktokReview = ({ data }: TiktokReviewProps) => {
+  const likesLabel =
+    data.likes >= 1000 ? `${(data.likes / 1000).toFixed(1)}K` : `${data.likes}`;
+
   return (
-    <div className="bg-black text-white rounded-lg p-4 max-w-lg">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-4">
+    <div className="bg-black text-white w-full max-w-md px-3 py-3">
+      <div className="flex items-start gap-3">
         {data.avatar ? (
           <img
             src={data.avatar}
             alt={data.name}
-            className="w-10 h-10 rounded-full"
+            className="w-9 h-9 rounded-full object-cover"
           />
         ) : (
-          <div className="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center">
-            <span className="text-white text-xs">?</span>
+          <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center">
+            <span className="text-white text-xs">
+              {(data.name || "u").trim().charAt(0)}
+            </span>
           </div>
         )}
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-white">{data.username}</span>
-            {data.verified && (
-              <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
-              </div>
-            )}
+
+        <div className="flex-1 min-w-0">
+          <div className="text-[14px] font-semibold text-gray-300">
+            {data.username}
           </div>
-          <span className="text-xs text-gray-400">
-            {formatDistanceToNow(data.date, { addSuffix: true })}
-          </span>
-        </div>
-      </div>
+          <div className="mt-1 text-[18px] leading-snug font-semibold text-white max-w-[290px]">
+            {data.content}
+          </div>
 
-      {/* Content */}
-      <div className="mb-4">
-        <p className="text-white text-sm leading-relaxed mb-2">
-          {data.content}
-        </p>
+          <div className="mt-3 flex items-center justify-between text-[16px] text-gray-400">
+            <div className="flex items-center gap-4">
+              <span>3-31</span>
+              <button type="button" className="font-semibold">
+                Reply
+              </button>
+            </div>
+            <button type="button" className="flex items-center gap-1">
+              <Heart size={16} />
+              <span>{likesLabel}</span>
+            </button>
+          </div>
 
-        <div className="flex flex-wrap gap-1">
-          <span className="text-blue-400 text-sm">#trending</span>
-          <span className="text-blue-400 text-sm">#viral</span>
-          <span className="text-blue-400 text-sm">#fyp</span>
-        </div>
-      </div>
-
-      {/* Engagement */}
-      <div className="flex items-center gap-6 pt-3 border-t border-gray-800">
-        <div className="flex items-center gap-3 mb-3">
-          <button className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors">
-            <Heart size={18} />
-            <span className="text-sm">
-              {data.likes > 1000
-                ? `${(data.likes / 1000).toFixed(1)}K`
-                : data.likes}
-            </span>
-          </button>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors">
-            <MessageCircle size={18} />
-            <span className="text-sm">{data.replies}</span>
-          </button>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 text-gray-400 hover:text-green-400 transition-colors">
-            <Share2 size={18} />
-            <span className="text-sm">{data.shares}</span>
+          <button
+            type="button"
+            className="mt-3 flex items-center gap-2 text-[16px] text-gray-400 font-semibold"
+          >
+            <span className="text-gray-600">──</span>
+            <span>View {Math.max(1, data.replies || 38)} replies</span>
+            <ChevronDown size={14} />
           </button>
         </div>
       </div>

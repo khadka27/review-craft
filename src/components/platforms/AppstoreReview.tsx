@@ -1,7 +1,6 @@
 import { ReviewData } from "@/types/review";
 import { formatDistanceToNow } from "date-fns";
 import { Star } from "lucide-react";
-import { getPlatformIcon } from "@/components/SocialMediaIcons";
 
 interface AppstoreReviewProps {
   data: ReviewData;
@@ -67,7 +66,7 @@ export const AppstoreReview = ({ data }: AppstoreReviewProps) => {
   }
 
   return (
-    <div className="bg-gray-950 text-white rounded-lg p-6 max-w-2xl">
+    <div className="bg-[#232527] text-white rounded-2xl p-6 max-w-md shadow-lg">
       {/* Editors' Choice Badge */}
       {data.verified && (
         <div className="flex items-center justify-center gap-3 mb-4 pb-4 border-b border-gray-800">
@@ -79,41 +78,40 @@ export const AppstoreReview = ({ data }: AppstoreReviewProps) => {
         </div>
       )}
 
-      {/* Header with Title and Date */}
-      <div className="flex items-start justify-between mb-2">
-        <h3 className="text-base font-semibold text-white flex-1">
+      {/* Title */}
+      <div className="mb-2">
+        <h3 className="text-[18px] font-semibold text-white leading-snug">
           {data.title}
         </h3>
-        <span className="text-xs text-gray-400 ml-4 whitespace-nowrap">
-          {formatDistanceToNow(data.date, { addSuffix: true })}
+      </div>
+
+      {/* Stars + meta line */}
+      <div className="flex items-center gap-2 text-[13px] text-gray-400 mb-3">
+        <div className="flex items-center gap-0.5">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <Star
+              key={star}
+              size={14}
+              className={
+                star <= data.rating
+                  ? "text-white fill-white"
+                  : "text-gray-600 fill-gray-600"
+              }
+            />
+          ))}
+        </div>
+        <span className="whitespace-nowrap">
+          {formatDistanceToNow(data.date, { addSuffix: true })} · {data.username}
         </span>
       </div>
 
-      {/* Rating Stars */}
-      <div className="flex items-center gap-1 mb-2">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <Star
-            key={star}
-            size={14}
-            className={
-              star <= data.rating
-                ? "text-yellow-400 fill-current"
-                : "text-gray-600"
-            }
-          />
-        ))}
-      </div>
-
-      {/* Username */}
-      <div className="text-xs text-gray-400 mb-3">{data.username}</div>
-
       {/* Content */}
       <div className="mb-3">
-        <p className="text-gray-300 leading-relaxed text-sm">{data.content}</p>
+        <p className="text-gray-300 leading-relaxed text-[13px] rc-line-clamp-5">
+          {data.content}
+        </p>
         {data.content && data.content.length > 150 && (
-          <button className="text-blue-400 hover:text-blue-300 text-sm mt-2 transition-colors">
-            more
-          </button>
+          <div className="text-[13px] text-gray-400 mt-2">…</div>
         )}
       </div>
 

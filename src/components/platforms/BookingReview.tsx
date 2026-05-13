@@ -1,6 +1,14 @@
 import { ReviewData } from "@/types/review";
 import { format } from "date-fns";
-import { Star, MapPin, Calendar, Users, ThumbsUp, ThumbsDown } from "lucide-react";
+import {
+  BedDouble,
+  Calendar,
+  Smile,
+  Frown,
+  ThumbsUp,
+  ThumbsDown,
+  Users,
+} from "lucide-react";
 
 interface BookingReviewProps {
   data: ReviewData;
@@ -8,134 +16,115 @@ interface BookingReviewProps {
 
 export const BookingReview = ({ data }: BookingReviewProps) => {
   const safeRating = Math.max(1, Math.min(10, Math.round((data.rating || 5) * 2)));
-  const ratingColor = safeRating >= 8 ? "bg-green-600" : safeRating >= 6 ? "bg-yellow-500" : "bg-red-500";
-  const ratingText = safeRating >= 9 ? "Superb" : safeRating >= 8 ? "Very good" : safeRating >= 7 ? "Good" : safeRating >= 6 ? "Pleasant" : "Poor";
+  const reviewDate = format(data.date, "MMM d, yyyy");
+  const countryLabel = data.location?.country || "Australia";
+  const roomLine =
+    data.productVariation ||
+    "Deluxe Double Room with 15% Off on FNB& SPA, Welcome Drink on Arrival. Room upgrade to Next Category as per subject to availability";
+  const stayLine = `1 night · ${format(data.date, "MMM yyyy")}`;
+  const travelerType = "Family";
+  const title = data.title || "Decent place but won’t be back";
+
+  const [prosLine, consLine] = (() => {
+    const parts = (data.content || "").split(/\n+/).map((s) => s.trim()).filter(Boolean);
+    if (parts.length === 0) {
+      return ["Decent property with good quality food", "The service is not good enough for the brand image"];
+    }
+    if (parts.length === 1) {
+      return [parts[0], "The service is not good enough for the brand image"];
+    }
+    return [parts[0], parts[1]];
+  })();
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 w-full max-w-2xl mx-auto">
-      {/* Header */}
-      <div className="flex items-start gap-3 sm:gap-4 mb-4">
-        {data.avatar ? (
-          <img
-            src={data.avatar}
-            alt={data.name}
-            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover flex-shrink-0"
-          />
-        ) : (
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-lg">
-              {data.name.charAt(0).toUpperCase()}
-            </span>
-          </div>
-        )}
-        
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-semibold text-gray-900 text-base sm:text-lg truncate">
-              {data.name}
-            </h3>
-            <div className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded text-xs">
-              {data.location?.country || "United States"}
+    <div className="bg-white w-full max-w-6xl mx-auto px-6 py-6">
+      <div className="flex gap-8">
+        {/* Left column */}
+        <div className="w-[260px] flex-shrink-0">
+          <div className="flex items-start gap-3">
+            {data.avatar ? (
+              <img
+                src={data.avatar}
+                alt={data.name}
+                className="w-10 h-10 rounded-full object-cover"
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-semibold text-gray-700">
+                {(data.name || "B").trim().charAt(0).toUpperCase()}
+              </div>
+            )}
+
+            <div className="min-w-0">
+              <div className="font-semibold text-gray-900 leading-tight">
+                {data.name || "Guest"}
+              </div>
+              <div className="mt-1 flex items-center gap-2 text-[13px] text-gray-600">
+                <span aria-hidden="true">🇦🇺</span>
+                <span>{countryLabel}</span>
+              </div>
             </div>
           </div>
-          
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-            <Calendar size={14} />
-            <span>Stayed {format(data.date, "MMMM yyyy")}</span>
-          </div>
-          
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Users size={14} />
-            <span>Couple</span>
-            <span className="text-gray-400">•</span>
-            <span>3 nights</span>
-          </div>
-        </div>
-        
-        {/* Rating Score */}
-        <div className="flex flex-col items-end">
-          <div className={`${ratingColor} text-white px-2 py-1 rounded text-sm font-bold min-w-[40px] text-center`}>
-            {safeRating.toFixed(1)}
-          </div>
-          <div className="text-xs text-gray-600 mt-1">{ratingText}</div>
-        </div>
-      </div>
 
-      {/* Review Content */}
-      <div className="mb-4">
-        <p className="text-gray-800 leading-relaxed text-sm sm:text-base break-words">
-          {data.content}
-        </p>
-      </div>
-
-      {/* Category Ratings */}
-      <div className="bg-gray-50 rounded-lg p-4 mb-4">
-        <div className="grid grid-cols-2 gap-3 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-600">Staff</span>
-            <span className="font-semibold">{(safeRating - 0.5).toFixed(1)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Facilities</span>
-            <span className="font-semibold">{safeRating.toFixed(1)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Cleanliness</span>
-            <span className="font-semibold">{(safeRating + 0.3).toFixed(1)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Comfort</span>
-            <span className="font-semibold">{(safeRating - 0.2).toFixed(1)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Value for money</span>
-            <span className="font-semibold">{(safeRating - 0.8).toFixed(1)}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Location</span>
-            <span className="font-semibold">{(safeRating + 0.5).toFixed(1)}</span>
+          <div className="mt-5 space-y-4 text-[13px] text-gray-700">
+            <div className="flex items-start gap-3">
+              <BedDouble size={16} className="text-gray-500 mt-0.5" />
+              <div className="leading-relaxed">{roomLine}</div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Calendar size={16} className="text-gray-500" />
+              <div>{stayLine}</div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Users size={16} className="text-gray-500" />
+              <div>{travelerType}</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Room Type */}
-      <div className="bg-blue-50 rounded-lg p-3 mb-4">
-        <div className="text-sm">
-          <span className="font-medium text-blue-900">Room type:</span>
-          <span className="text-blue-800 ml-2">Superior Double Room</span>
-        </div>
-      </div>
+        {/* Right column */}
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start justify-between gap-6">
+            <div className="min-w-0">
+              <div className="text-[12px] text-gray-500">
+                Reviewed: {reviewDate}
+              </div>
+              <div className="mt-1 text-[22px] font-bold text-gray-900 leading-snug">
+                {title}
+              </div>
+            </div>
 
-      {/* Review Images */}
-      {data.images && data.images.length > 0 && (
-        <div className="mb-4">
-          <div className="flex gap-2 overflow-x-auto">
-            {data.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Hotel photo ${index + 1}`}
-                className="w-20 h-20 object-cover rounded-lg flex-shrink-0 border border-gray-200"
-              />
-            ))}
+            <div className="flex-shrink-0">
+              <div className="bg-[#003B95] text-white font-bold px-3 py-2 rounded-md text-[14px] min-w-[44px] text-center">
+                {safeRating.toFixed(1)}
+              </div>
+            </div>
           </div>
-        </div>
-      )}
 
-      {/* Footer */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors">
-            <ThumbsUp size={14} />
-            <span>Helpful ({data.likes})</span>
-          </button>
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-red-600 transition-colors">
-            <ThumbsDown size={14} />
-            <span>Not helpful</span>
-          </button>
-        </div>
-        <div className="text-xs text-gray-500">
-          Reviewed: {format(data.date, "d MMMM yyyy")}
+          <div className="mt-6 space-y-4 text-[14px] text-gray-800">
+            <div className="flex items-start gap-3">
+              <Smile size={18} className="text-emerald-600 mt-0.5" />
+              <div>{prosLine}</div>
+            </div>
+            <div className="flex items-start gap-3">
+              <Frown size={18} className="text-gray-500 mt-0.5" />
+              <div>{consLine}</div>
+            </div>
+          </div>
+
+          <div className="mt-10 flex items-center justify-end gap-10 text-[14px]">
+            <button
+              type="button"
+              className="flex items-center gap-2 text-[#006CE4] hover:underline font-semibold"
+            >
+              <ThumbsUp size={16} /> Helpful
+            </button>
+            <button
+              type="button"
+              className="flex items-center gap-2 text-[#006CE4] hover:underline font-semibold"
+            >
+              <ThumbsDown size={16} /> Not helpful
+            </button>
+          </div>
         </div>
       </div>
     </div>

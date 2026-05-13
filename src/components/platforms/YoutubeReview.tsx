@@ -1,77 +1,62 @@
 import { ReviewData } from "@/types/review";
-import { formatDistanceToNow } from "date-fns";
-import { ThumbsUp, ThumbsDown, Reply, MoreVertical } from "lucide-react";
+import { formatDistanceToNowStrict } from "date-fns";
+import { ChevronDown, ThumbsDown, ThumbsUp } from "lucide-react";
 
 interface YoutubeReviewProps {
   data: ReviewData;
 }
 
 export const YoutubeReview = ({ data }: YoutubeReviewProps) => {
+  const timeAgo = `${formatDistanceToNowStrict(data.date).replace("about ", "")} ago`;
+
   return (
-    <div className="bg-white rounded-lg p-4 max-w-2xl">
-      {/* Header */}
-      <div className="flex items-start gap-3 mb-3">
-        {data.avatar ? (
-          <img
-            src={data.avatar}
-            alt={data.name}
-            className="w-10 h-10 rounded-full"
-          />
-        ) : (
-          <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
-            <span className="text-white text-xs">?</span>
-          </div>
-        )}
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="font-medium text-gray-900">{data.username}</span>
-            {data.verified && (
-              <div className="w-4 h-4 bg-gray-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
-              </div>
-            )}
-            <span className="text-sm text-gray-500">
-              {formatDistanceToNow(data.date, { addSuffix: true })}
-            </span>
-          </div>
+    <div className="bg-white w-full max-w-3xl mx-auto px-6 py-5">
+      <div className="relative pl-10">
+        <div className="absolute left-[16px] top-[42px] w-[2px] h-[120px] border-l border-b border-[#e5e5e5] rounded-bl-2xl" />
 
-          <div className="mb-3">
-            <p className="text-gray-900 leading-relaxed">{data.content}</p>
-          </div>
-
-          {/* Actions */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <button className="flex items-center gap-1 p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors">
-                <ThumbsUp size={16} />
-              </button>
-              <span className="text-sm text-gray-600">{data.likes}</span>
-              <button className="flex items-center gap-1 p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors">
-                <ThumbsDown size={16} />
-              </button>
-            </div>
-
-            <button className="flex items-center gap-2 px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-full transition-colors">
-              <Reply size={16} />
-              <span className="text-sm font-medium">Reply</span>
-            </button>
-          </div>
-
-          {/* Replies indicator */}
-          {data.replies > 0 && (
-            <div className="mt-3 pt-3">
-              <button className="flex items-center gap-2 text-blue-600 hover:bg-blue-50 px-3 py-1 rounded transition-colors">
-                <span className="text-sm font-medium">
-                  View {data.replies} {data.replies === 1 ? "reply" : "replies"}
-                </span>
-              </button>
+        <div className="flex items-start gap-3 mb-3">
+          {data.avatar ? (
+            <img
+              src={data.avatar}
+              alt={data.name}
+              className="w-12 h-12 rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+              <span className="text-gray-700 text-xs">?</span>
             </div>
           )}
-        </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2 text-[16px]">
+              <span className="font-semibold text-[#303030]">
+                @{data.username}
+              </span>
+              <span className="text-[#606060]">{timeAgo}</span>
+            </div>
 
-        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
-          <MoreVertical size={16} />
-        </button>
+            <div className="mt-1 text-[16px] text-[#0f0f0f] leading-snug">
+              {data.content}
+            </div>
+
+            <div className="mt-4 flex items-center gap-7 text-[#606060]">
+              <button className="flex items-center gap-2 text-[16px]">
+                <ThumbsUp size={22} />
+                <span>{Math.max(0, data.likes || 15)}</span>
+              </button>
+              <button className="flex items-center gap-2 text-[16px]">
+                <ThumbsDown size={22} />
+              </button>
+              <button className="text-[16px] font-semibold text-[#303030]">
+                Reply
+              </button>
+            </div>
+
+            <div className="mt-5 flex items-center gap-3 text-[#303030] font-semibold text-[18px]">
+              <span>{Math.max(1, data.replies || 3)} replies</span>
+              <ChevronDown size={26} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

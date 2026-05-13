@@ -1,6 +1,6 @@
 import { ReviewData } from "@/types/review";
-import { format } from "date-fns";
-import { Star, CheckCircle, ThumbsUp, ThumbsDown, Flag } from "lucide-react";
+import { format, formatDistanceToNowStrict } from "date-fns";
+import { Check, CheckCircle, Star } from "lucide-react";
 
 interface BestbuyReviewProps {
   data: ReviewData;
@@ -8,137 +8,109 @@ interface BestbuyReviewProps {
 
 export const BestbuyReview = ({ data }: BestbuyReviewProps) => {
   const safeRating = Math.max(1, Math.min(5, Math.round(data.rating || 5)));
+  const postedAgo = (() => {
+    try {
+      return formatDistanceToNowStrict(data.date, { addSuffix: true });
+    } catch {
+      return "just now";
+    }
+  })();
+  const paragraphs = (data.content || "").split(/\n\s*\n/).filter(Boolean);
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 w-full max-w-2xl mx-auto">
-      {/* Header */}
-      <div className="flex items-start gap-3 sm:gap-4 mb-4">
-        {data.avatar ? (
-          <img
-            src={data.avatar}
-            alt={data.name}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
-          />
-        ) : (
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-blue-600 to-yellow-400 flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-semibold text-sm">
-              {data.name.charAt(0).toUpperCase()}
-            </span>
+    <div className="bg-white w-full max-w-5xl mx-auto px-6 py-6">
+      <div className="border-t border-gray-200 pt-6">
+        <div className="flex items-start gap-8">
+          <div className="w-[120px] flex-shrink-0">
+            <button
+              type="button"
+              className="text-[12px] text-[#0046be] hover:underline font-semibold"
+            >
+              {data.username || data.name || "User"}
+            </button>
           </div>
-        )}
-        
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-semibold text-gray-900 text-sm sm:text-base truncate">
-              {data.name}
-            </h3>
-            {data.verified && (
-              <div className="flex items-center gap-1 bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs">
-                <CheckCircle size={12} />
-                <span>Verified Purchaser</span>
+
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-0.5">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star
+                    key={star}
+                    size={14}
+                    className={
+                      star <= safeRating
+                        ? "text-[#ffce00] fill-[#ffce00]"
+                        : "text-gray-300 fill-gray-300"
+                    }
+                  />
+                ))}
+              </div>
+              <div className="text-[13px] font-semibold text-gray-900 truncate">
+                {data.title || data.productVariation || "Product"}
+              </div>
+            </div>
+
+            <div className="mt-2 flex items-center gap-2 text-[11px] text-gray-700">
+              {data.verified && (
+                <span className="inline-flex items-center gap-1">
+                  <CheckCircle size={12} className="text-gray-800" />
+                  <span className="font-semibold">Verified Purchase</span>
+                </span>
+              )}
+              <span className="text-gray-400">|</span>
+              <span>Posted {postedAgo}.</span>
+            </div>
+
+            <div className="mt-1 text-[9px] text-gray-500">
+              This reviewer received promo considerations or sweepstakes entry
+              for writing a review.
+            </div>
+
+            <div className="mt-4 space-y-3 text-[11px] leading-relaxed text-gray-900">
+              {(paragraphs.length > 0 ? paragraphs : [data.content]).map(
+                (p, i) => (
+                  <p key={`${i}-${p.slice(0, 24)}`}>{p}</p>
+                ),
+              )}
+            </div>
+
+            {data.images && data.images.length > 0 && (
+              <div className="mt-5">
+                <img
+                  src={data.images[0]}
+                  alt="Customer"
+                  className="w-[56px] h-[56px] object-cover rounded border border-gray-200"
+                />
               </div>
             )}
-          </div>
-          
-          <div className="flex items-center gap-2 mb-2">
-            <div className="flex items-center gap-0.5">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star
-                  key={star}
-                  size={14}
-                  className={`${
-                    star <= safeRating
-                      ? "text-yellow-400 fill-current"
-                      : "text-gray-300"
-                  }`}
-                />
-              ))}
+
+            <div className="mt-6 flex items-center gap-2 text-[10px] text-gray-700">
+              <Check size={14} className="text-green-700" />
+              <span>I would recommend this to a friend</span>
             </div>
-            <span className="text-sm text-gray-600">
-              {format(data.date, "M/d/yyyy")}
-            </span>
+
+            <div className="mt-6 flex items-center gap-4 text-[11px] text-[#0046be]">
+              <button
+                type="button"
+                className="px-2 py-1 border border-gray-200 rounded hover:bg-gray-50"
+              >
+                Helpful ({data.likes})
+              </button>
+              <button type="button" className="hover:underline">
+                Unhelpful (0)
+              </button>
+              <button type="button" className="hover:underline">
+                Report
+              </button>
+              <button type="button" className="hover:underline">
+                Comment
+              </button>
+            </div>
           </div>
-          
-          <div className="text-xs text-gray-600">
-            My Best Buy member since {format(new Date(data.date.getFullYear() - Math.floor(Math.random() * 5) - 1, 0, 1), "yyyy")}
+
+          <div className="w-[140px] flex-shrink-0 text-right text-[11px] text-gray-500">
+            {format(data.date, "MMM d, yyyy")}
           </div>
-        </div>
-      </div>
-
-      {/* Review Title */}
-      {data.title && (
-        <h4 className="font-semibold text-gray-900 text-base mb-3 break-words">
-          {data.title}
-        </h4>
-      )}
-
-      {/* Review Content */}
-      <div className="mb-4">
-        <p className="text-gray-800 leading-relaxed text-sm sm:text-base break-words">
-          {data.content}
-        </p>
-      </div>
-
-      {/* Recommendation */}
-      <div className="bg-blue-50 rounded-lg p-3 mb-4">
-        <div className="flex items-center gap-2 text-sm">
-          <CheckCircle size={16} className="text-blue-600" />
-          <span className="font-medium text-blue-900">
-            {safeRating >= 4 ? "Yes, I would recommend this to a friend" : "No, I would not recommend this to a friend"}
-          </span>
-        </div>
-      </div>
-
-      {/* Product Details */}
-      {data.productVariation && (
-        <div className="bg-gray-50 rounded-lg p-3 mb-4">
-          <div className="text-sm text-gray-700">
-            <span className="font-medium">Product:</span> {data.productVariation}
-          </div>
-        </div>
-      )}
-
-      {/* Review Images */}
-      {data.images && data.images.length > 0 && (
-        <div className="mb-4">
-          <div className="flex gap-2 overflow-x-auto">
-            {data.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Customer photo ${index + 1}`}
-                className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg flex-shrink-0 border border-gray-200"
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Helpful Section */}
-      <div className="mb-4">
-        <div className="text-sm text-gray-700">
-          <span className="font-medium">{data.likes} customers found this review helpful</span>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition-colors">
-            <ThumbsUp size={14} />
-            <span>Helpful</span>
-          </button>
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-red-600 transition-colors">
-            <ThumbsDown size={14} />
-            <span>Not helpful</span>
-          </button>
-          <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-800 transition-colors">
-            <Flag size={14} />
-            <span>Report</span>
-          </button>
-        </div>
-        <div className="text-xs text-gray-500">
-          Was this review helpful?
         </div>
       </div>
     </div>

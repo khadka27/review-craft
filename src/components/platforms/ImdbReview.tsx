@@ -1,6 +1,12 @@
 import { ReviewData } from "@/types/review";
 import { format } from "date-fns";
-import { Star, ThumbsUp, ThumbsDown, MoreHorizontal } from "lucide-react";
+import {
+  ChevronRight,
+  MoreVertical,
+  Star,
+  ThumbsDown,
+  ThumbsUp,
+} from "lucide-react";
 
 interface ImdbReviewProps {
   data: ReviewData;
@@ -8,49 +14,50 @@ interface ImdbReviewProps {
 
 export const ImdbReview = ({ data }: ImdbReviewProps) => {
   const safeRating = Math.max(1, Math.min(10, Math.round(data.rating * 2)));
+  const helpfulCount = data.likes || 591;
+  const unhelpfulCount = Math.max(0, Math.floor(helpfulCount * 0.14));
+  const heading = data.title || "Jaafar Jackson wow";
 
   return (
-    <div className="bg-white border border-gray-300 rounded-lg p-6 w-full max-w-4xl mx-auto">
-      {/* Rating */}
-      <div className="flex items-center gap-2 mb-3">
-        <Star size={20} className="text-yellow-500 fill-current" />
-        <span className="text-lg font-medium text-gray-900">
-          {safeRating}/10
-        </span>
-      </div>
+    <div className="w-full max-w-5xl mx-auto">
+      <div className="relative bg-white border border-gray-300 rounded-lg px-5 py-5">
+        <div className="flex items-center gap-1.5 mb-4">
+          <Star size={16} className="text-[#f5c518] fill-[#f5c518]" />
+          <span className="text-[18px] font-medium leading-none text-gray-700">
+            {safeRating}/10
+          </span>
+        </div>
 
-      {/* Title */}
-      <h3 className="text-lg font-medium text-gray-900 mb-4 cursor-pointer hover:text-blue-600">
-        {data.title || "Was I supposed to feel anything ?"}
-        <span className="ml-1 text-gray-400">▶</span>
-      </h3>
+        <h3 className="text-[24px] font-bold leading-tight text-gray-900 mb-4 flex items-center gap-2">
+          <span>{heading}</span>
+          <ChevronRight size={30} className="text-gray-600" />
+        </h3>
 
-      {/* Review Content */}
-      <div className="mb-6 space-y-4">
-        <p className="text-gray-700 leading-relaxed text-sm">
+        <div className="text-[15px] leading-[1.45] text-gray-800 rc-line-clamp-5">
           {data.content}
-        </p>
-      </div>
+        </div>
+        <div className="text-[22px] leading-none text-gray-900 -mt-2">...</div>
 
-      {/* Helpful Section */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors">
-            <ThumbsUp size={16} />
-            <span className="text-sm">Helpful • {data.likes || 674}</span>
-          </button>
-          <button className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors">
-            <ThumbsDown size={16} />
-            <span className="text-sm">{Math.floor((data.likes || 674) * 0.25)}</span>
+        <div className="mt-3 pt-3 border-t border-gray-200 flex items-center justify-between">
+          <div className="flex items-center gap-6 text-[16px] text-gray-800">
+            <button className="flex items-center gap-2">
+              <ThumbsUp size={24} />
+              <span>Helpful · {helpfulCount}</span>
+            </button>
+            <button className="flex items-center gap-2">
+              <ThumbsDown size={24} />
+              <span>{unhelpfulCount}</span>
+            </button>
+          </div>
+          <button className="text-gray-500">
+            <MoreVertical size={24} />
           </button>
         </div>
-        <button className="p-1 text-gray-400 hover:text-gray-600 transition-colors">
-          <MoreHorizontal size={20} />
-        </button>
+
+        <div className="absolute -bottom-[7px] left-9 w-3.5 h-3.5 bg-white border-l border-b border-gray-300 rotate-[-45deg]" />
       </div>
 
-      {/* User Info */}
-      <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+      <div className="flex items-center gap-3 pt-4">
         {data.avatar ? (
           <img
             src={data.avatar}
@@ -64,19 +71,17 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
             </span>
           </div>
         )}
-        
-        <div className="flex items-center gap-2 text-sm">
-          <span className="text-blue-600 font-medium cursor-pointer hover:underline">
-            {data.username || "lone_samurai678"}
+
+        <div className="flex items-center gap-2 text-[16px]">
+          <span className="text-[#0b57d0] font-semibold">
+            {data.username || "blueastrid-76756"}
           </span>
-          <span className="text-gray-400">•</span>
-          <span className="text-gray-600">
+          <span className="text-gray-500">·</span>
+          <span className="text-gray-700">
             {format(data.date, "MMM d, yyyy")}
           </span>
-          <span className="text-gray-400">•</span>
-          <span className="text-blue-600 cursor-pointer hover:underline">
-            Permalink
-          </span>
+          <span className="text-gray-500">·</span>
+          <span className="text-[#0b57d0]">Permalink</span>
         </div>
       </div>
     </div>
