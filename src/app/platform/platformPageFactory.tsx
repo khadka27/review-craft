@@ -1,5 +1,17 @@
 import { ReviewGeneratorPage } from "@/components/ReviewGeneratorPage";
 import { Platform } from "@/types/review";
+import { TestimonialGuide } from "@/components/TestimonialGuide";
+import { GoogleReviewGuide } from "@/components/GoogleReviewGuide";
+import { YelpReviewGuide } from "@/components/YelpReviewGuide";
+import { AmazonReviewGuide } from "@/components/AmazonReviewGuide";
+import { TrustpilotReviewGuide } from "@/components/TrustpilotReviewGuide";
+import { FacebookReviewGuide } from "@/components/FacebookReviewGuide";
+import { Generic1StarReviewGuide } from "@/components/Generic1StarReviewGuide";
+import { TripadvisorReviewGuide } from "@/components/TripadvisorReviewGuide";
+import { InstagramReviewGuide } from "@/components/InstagramReviewGuide";
+import { TwitterReviewGuide } from "@/components/TwitterReviewGuide";
+import { LinkedinRecommendationGuide } from "@/components/LinkedinRecommendationGuide";
+import { AirbnbReviewGuide } from "@/components/AirbnbReviewGuide";
 
 type PlatformTheme = {
   pageGradient: string;
@@ -775,6 +787,33 @@ export function renderPlatformPage(platform: Platform) {
           : ["steam", "imdb", "youtube", "playstore", "appstore"].includes(platform)
           ? "entertainment"
           : undefined
+      }
+      extraContent={
+        platform === "testimonial" ? (
+          <TestimonialGuide />
+        ) : platform === "google" ? (
+          <GoogleReviewGuide />
+        ) : platform === "yelp" ? (
+          <YelpReviewGuide />
+        ) : platform === "amazon" ? (
+          <AmazonReviewGuide />
+        ) : platform === "trustpilot" ? (
+          <TrustpilotReviewGuide />
+        ) : platform === "facebook" ? (
+          <FacebookReviewGuide />
+        ) : platform === "generic1star" ? (
+          <Generic1StarReviewGuide />
+        ) : platform === "tripadvisor" ? (
+          <TripadvisorReviewGuide />
+        ) : platform === "instagram" ? (
+          <InstagramReviewGuide />
+        ) : platform === "twitter" ? (
+          <TwitterReviewGuide />
+        ) : platform === "linkedin" ? (
+          <LinkedinRecommendationGuide />
+        ) : platform === "airbnb" ? (
+          <AirbnbReviewGuide />
+        ) : undefined
       }
     />
   );

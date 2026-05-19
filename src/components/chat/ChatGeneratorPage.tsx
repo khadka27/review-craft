@@ -17,6 +17,7 @@ interface ChatGeneratorPageProps {
     heroGradient: string;
     heroDescriptionColor: string;
   };
+  extraContent?: React.ReactNode;
 }
 
 export function ChatGeneratorPage({
@@ -25,6 +26,7 @@ export function ChatGeneratorPage({
   heroTitle = "Fake Social Media Chat Generator",
   heroDescription = "Create realistic chat screenshots for WhatsApp, Instagram, Messenger and more. Perfect for mockups, storytelling, and design presentations.",
   theme,
+  extraContent,
 }: ChatGeneratorPageProps) {
   const [chatData, setChatData] = useState<ChatData>({
     id: "1",
@@ -109,6 +111,12 @@ export function ChatGeneratorPage({
             </div>
           </div>
         </div>
+
+        {extraContent && (
+          <div className="mt-16 border-t border-gray-200/80 pt-12">
+            {extraContent}
+          </div>
+        )}
       </main>
     </div>
   );

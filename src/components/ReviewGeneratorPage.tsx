@@ -32,6 +32,7 @@ interface ReviewGeneratorPageProps {
   features?: string[];
   useCases?: string[];
   faqs?: { q: string; a: string }[];
+  extraContent?: React.ReactNode;
 }
 
 export function ReviewGeneratorPage({
@@ -45,6 +46,7 @@ export function ReviewGeneratorPage({
   features,
   useCases,
   faqs,
+  extraContent,
 }: ReviewGeneratorPageProps) {
   const [reviewData, setReviewData] = useState<ReviewData>({
     id: "",
@@ -331,6 +333,12 @@ export function ReviewGeneratorPage({
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {extraContent && (
+          <div className="mt-12 sm:mt-16 lg:mt-24 border-t border-gray-200/50 pt-8 sm:pt-12">
+            {extraContent}
           </div>
         )}
       </main>

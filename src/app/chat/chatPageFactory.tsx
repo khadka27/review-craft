@@ -1,5 +1,8 @@
 import { ChatGeneratorPage } from "@/components/chat/ChatGeneratorPage";
 import { ChatPlatform } from "@/types/chat";
+import { TwitterChatGuide } from "@/components/TwitterChatGuide";
+import { DiscordChatGuide } from "@/components/DiscordChatGuide";
+import { ImessageChatGuide } from "@/components/ImessageChatGuide";
 
 type ChatTheme = {
   pageGradient: string;
@@ -86,6 +89,15 @@ export function renderChatPlatformPage(platform: ChatPlatform) {
       heroTitle={`${selectedPlatform.name} Chat Generator`}
       heroDescription={selectedPlatform.description}
       theme={selectedPlatform.theme}
+      extraContent={
+        platform === "twitter" ? (
+          <TwitterChatGuide />
+        ) : platform === "discord" ? (
+          <DiscordChatGuide />
+        ) : platform === "imessage" ? (
+          <ImessageChatGuide />
+        ) : undefined
+      }
     />
   );
 }
