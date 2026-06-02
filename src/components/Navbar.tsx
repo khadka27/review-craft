@@ -14,11 +14,12 @@ const Navbar = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [desktopDropdown, setDesktopDropdown] = useState<
-    "reviews" | "chats" | "payments" | null
+    "reviews" | "chats" | "payments" | "ai" | null
   >(null);
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
   const [isChatsOpen, setIsChatsOpen] = useState(false);
   const [isPaymentsOpen, setIsPaymentsOpen] = useState(false);
+  const [isAIOpen, setIsAIOpen] = useState(false);
   const desktopMenuRef = useRef<HTMLDivElement>(null);
 
   const navigation = [
@@ -91,6 +92,8 @@ const Navbar = () => {
     setIsMenuOpen(false);
     setIsReviewsOpen(false);
     setIsChatsOpen(false);
+    setIsPaymentsOpen(false);
+    setIsAIOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -288,6 +291,44 @@ const Navbar = () => {
               )}
             </div>
 
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() =>
+                  setDesktopDropdown((open) =>
+                    open === "ai" ? null : "ai",
+                  )
+                }
+                className={desktopMenuClass(
+                  desktopDropdown === "ai",
+                )}
+                aria-expanded={desktopDropdown === "ai"}
+                aria-haspopup="menu"
+              >
+                AI Tools
+                <ChevronDownIcon
+                  className={`h-4 w-4 transition-transform ${
+                    desktopDropdown === "ai" ? "rotate-180" : ""
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+
+              {desktopDropdown === "ai" && (
+                <div className="absolute left-0 top-full mt-2 w-[18rem] rounded-2xl border border-gray-200 bg-white p-3 shadow-xl overflow-hidden z-50">
+                  <div className="grid grid-cols-1 gap-1">
+                    <Link
+                      href="/ai-generator"
+                      onClick={() => setDesktopDropdown(null)}
+                      className="text-left w-full rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors block"
+                    >
+                      Generate AI Reviews
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div className="ml-2 h-6 w-px bg-gray-200" aria-hidden="true" />
 
             <div className="ml-2 flex items-center space-x-2 text-xs text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">
@@ -454,6 +495,43 @@ const Navbar = () => {
                         {platform.name}
                       </Link>
                     ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="px-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsAIOpen((open) => !open)}
+                  className={`w-full flex items-center justify-between px-3 py-3 rounded-xl text-base font-medium transition-colors ${
+                    isAIOpen
+                      ? "bg-indigo-100 text-indigo-700"
+                      : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                  }`}
+                  aria-expanded={isAIOpen}
+                  aria-haspopup="menu"
+                >
+                  <span>AI Tools</span>
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform ${
+                      isAIOpen ? "rotate-180" : ""
+                    }`}
+                    aria-hidden="true"
+                  />
+                </button>
+
+                {isAIOpen && (
+                  <div className="mt-2 rounded-xl border border-gray-200 bg-gray-50 overflow-hidden">
+                    <Link
+                      href="/ai-generator"
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsAIOpen(false);
+                      }}
+                      className="w-full text-left block px-6 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                    >
+                      Generate AI Reviews
+                    </Link>
                   </div>
                 )}
               </div>
