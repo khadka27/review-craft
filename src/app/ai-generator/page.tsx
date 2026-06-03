@@ -140,6 +140,8 @@ export default function AIReviewGeneratorPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [copiedBulk, setCopiedBulk] = useState<string | null>(null);
   const [loadingStepIdx, setLoadingStepIdx] = useState(0);
+  const [downloadingId, setDownloadingId] = useState<string | null>(null);
+  const [isZipping, setIsZipping] = useState(false);
 
   const actualReviewCount = reviewCountPreset === "Custom Number" ? customReviewCount : parseInt(reviewCountPreset, 10);
 
@@ -286,6 +288,98 @@ export default function AIReviewGeneratorPage() {
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
+  };
+
+  const handleDownloadCard = async (id: string, name: string) => {
+    const cardEl = document.getElementById(`review-card-${id}`);
+    if (!cardEl) return;
+    setDownloadingId(id);
+    try {
+      const { toPng } = await import("html-to-image");
+      const footer = cardEl.querySelector(".card-footer-actions") as HTMLElement;
+      let originalDisplay = "";
+      if (footer) {
+        originalDisplay = footer.style.display;
+        footer.style.display = "none";
+      }
+
+      const dataUrl = await toPng(cardEl, {
+        pixelRatio: 3,
+        backgroundColor: "#090d12",
+        style: {
+          borderRadius: "16px",
+          boxShadow: "none",
+          border: "1px solid #1e293b",
+        }
+      });
+
+      if (footer) {
+        footer.style.display = originalDisplay;
+      }
+
+      const link = document.createElement("a");
+      link.download = `review-${name.toLowerCase().replace(/\s+/g, "-")}-${Date.now()}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Failed to download review card:", err);
+    } finally {
+      setDownloadingId(null);
+    }
+  };
+
+  const handleDownloadZip = async () => {
+    if (reviews.length === 0) return;
+    setIsZipping(true);
+    try {
+      const JSZip = (await import("jszip")).default;
+      const { toPng } = await import("html-to-image");
+      const zip = new JSZip();
+
+      const footers = document.querySelectorAll(".card-footer-actions");
+      const originalDisplays: string[] = [];
+      footers.forEach((el, idx) => {
+        const htmlEl = el as HTMLElement;
+        originalDisplays[idx] = htmlEl.style.display;
+        htmlEl.style.display = "none";
+      });
+
+      for (let i = 0; i < reviews.length; i++) {
+        const review = reviews[i];
+        const cardEl = document.getElementById(`review-card-${review.id}`);
+        if (cardEl) {
+          const dataUrl = await toPng(cardEl, {
+            pixelRatio: 2.5,
+            backgroundColor: "#090d12",
+            style: {
+              borderRadius: "16px",
+              boxShadow: "none",
+              border: "1px solid #1e293b",
+            }
+          });
+          const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
+          const { name } = getReviewerDetails(review.id, i, language, review.reviewerName);
+          const filename = `${i + 1}_review_${name.toLowerCase().replace(/\s+/g, "_")}.png`;
+          zip.file(filename, base64Data, { base64: true });
+        }
+      }
+
+      footers.forEach((el, idx) => {
+        (el as HTMLElement).style.display = originalDisplays[idx] || "flex";
+      });
+
+      const content = await zip.generateAsync({ type: "blob" });
+      const downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(content);
+      downloadLink.download = `ai-reviews-images-${Date.now()}.zip`;
+      downloadLink.click();
+      URL.revokeObjectURL(downloadLink.href);
+    } catch (err) {
+      console.error("Failed to generate ZIP of reviews:", err);
+      setError("Failed to generate ZIP download. Please try downloading cards individually.");
+    } finally {
+      setIsZipping(false);
+    }
   };
 
   // Metrics Calculations
@@ -571,11 +665,12 @@ export default function AIReviewGeneratorPage() {
                     <span>CSV</span>
                   </button>
                   <button
-                    onClick={handleExportJSON}
-                    className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:opacity-90 rounded-xl transition-all shadow-md shadow-emerald-600/10"
+                    onClick={handleDownloadZip}
+                    disabled={isZipping}
+                    className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:opacity-90 rounded-xl transition-all shadow-md shadow-emerald-600/10 disabled:opacity-50 disabled:cursor-wait"
                   >
                     <Download className="w-3.5 h-3.5" />
-                    <span>Save All</span>
+                    <span>{isZipping ? "Creating ZIP..." : "Download ZIP"}</span>
                   </button>
                 </div>
               )}
@@ -686,6 +781,7 @@ export default function AIReviewGeneratorPage() {
                       return (
                         <div 
                           key={review.id} 
+                          id={`review-card-${review.id}`}
                           className="bg-slate-950/50 border border-slate-800/80 rounded-2xl p-5 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 transition-all flex flex-col justify-between group relative overflow-hidden"
                         >
                           <div>
@@ -726,7 +822,16 @@ export default function AIReviewGeneratorPage() {
                           </div>
 
                           {/* Card Footer Actions */}
-                          <div className="flex justify-end items-center gap-2 mt-4 pt-3 border-t border-slate-900 opacity-0 group-hover:opacity-100 transition-all duration-200">
+                          <div className="card-footer-actions flex justify-end items-center gap-2 mt-4 pt-3 border-t border-slate-900 opacity-0 group-hover:opacity-100 transition-all duration-200">
+                            <button
+                              onClick={() => handleDownloadCard(review.id, name)}
+                              disabled={downloadingId === review.id}
+                              className="flex items-center gap-1 text-[11px] font-bold text-slate-400 border-slate-800 hover:text-white bg-slate-900 hover:bg-slate-800 border hover:border-slate-700 py-1.5 px-2.5 rounded-lg transition-all disabled:opacity-50"
+                              title="Download Card Image"
+                            >
+                              <Download className="w-3.5 h-3.5" />
+                              <span>{downloadingId === review.id ? "Downloading..." : "Image"}</span>
+                            </button>
                             <button
                               onClick={() => copyToClipboard(`Rating: ${review.rating}/5\n${review.review}`, review.id)}
                               className={`flex items-center gap-1 text-[11px] font-bold ${copiedId === review.id ? 'text-emerald-400 border-emerald-500/30' : 'text-slate-400 border-slate-800'} hover:text-white bg-slate-900 hover:bg-slate-800 border hover:border-slate-700 py-1.5 px-2.5 rounded-lg transition-all`}
