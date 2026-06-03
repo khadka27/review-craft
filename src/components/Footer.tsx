@@ -8,12 +8,12 @@ const Footer = () => {
 
   const footerLinks = {
     product: [
-      { name: "Generator", href: "/" },
+      { name: "Home", href: "/" },
       { name: "About", href: "/about" },
       { name: "Features", href: "/home#features" },
     ],
     legal: [
-      { name: "Terms & Conditions", href: "/terms" },
+      { name: "Terms", href: "/terms" },
       { name: "Privacy Policy", href: "/privacy-policy" },
       { name: "Cookie Policy", href: "/cookie-policy" },
       { name: "Disclaimer", href: "/disclaimer" },
