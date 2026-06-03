@@ -142,6 +142,7 @@ export default function AIReviewGeneratorPage() {
   const [loadingStepIdx, setLoadingStepIdx] = useState(0);
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
   const [isZipping, setIsZipping] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   const actualReviewCount = reviewCountPreset === "Custom Number" ? customReviewCount : parseInt(reviewCountPreset, 10);
 
@@ -255,6 +256,11 @@ export default function AIReviewGeneratorPage() {
 
   const handleDelete = (id: string) => {
     setReviews(reviews.filter((r) => r.id !== id));
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
   };
 
   const handleCopyAll = () => {
@@ -328,8 +334,35 @@ export default function AIReviewGeneratorPage() {
     }
   };
 
+  const toggleSelectReview = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedIds.size === reviews.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(reviews.map((r) => r.id)));
+    }
+  };
+
   const handleDownloadZip = async () => {
     if (reviews.length === 0) return;
+
+    const targets = selectedIds.size > 0
+      ? reviews.filter((r) => selectedIds.has(r.id))
+      : reviews;
+
+    if (targets.length === 0) return;
+
     setIsZipping(true);
     try {
       const JSZip = (await import("jszip")).default;
@@ -344,8 +377,13 @@ export default function AIReviewGeneratorPage() {
         htmlEl.style.display = "none";
       });
 
-      for (let i = 0; i < reviews.length; i++) {
-        const review = reviews[i];
+      const selectors = document.querySelectorAll(".card-selector-checkbox");
+      selectors.forEach((el) => {
+        (el as HTMLElement).style.display = "none";
+      });
+
+      for (let i = 0; i < targets.length; i++) {
+        const review = targets[i];
         const cardEl = document.getElementById(`review-card-${review.id}`);
         if (cardEl) {
           const dataUrl = await toPng(cardEl, {
@@ -368,10 +406,15 @@ export default function AIReviewGeneratorPage() {
         (el as HTMLElement).style.display = originalDisplays[idx] || "flex";
       });
 
+      selectors.forEach((el) => {
+        (el as HTMLElement).style.display = "flex";
+      });
+
       const content = await zip.generateAsync({ type: "blob" });
       const downloadLink = document.createElement("a");
       downloadLink.href = URL.createObjectURL(content);
-      downloadLink.download = `ai-reviews-images-${Date.now()}.zip`;
+      const zipName = selectedIds.size > 0 ? "selected" : "all";
+      downloadLink.download = `ai-reviews-${zipName}-${Date.now()}.zip`;
       downloadLink.click();
       URL.revokeObjectURL(downloadLink.href);
     } catch (err) {
@@ -644,6 +687,18 @@ export default function AIReviewGeneratorPage() {
 
                   {/* Bulk Actions */}
                   <button
+                    onClick={toggleSelectAll}
+                    className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-300 bg-[#111827] hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-xl transition-all"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={reviews.length > 0 && selectedIds.size === reviews.length}
+                      onChange={() => {}}
+                      className="w-3.5 h-3.5 rounded border-slate-700 text-emerald-500 bg-slate-950 focus:ring-emerald-500/30 cursor-pointer pointer-events-none"
+                    />
+                    <span>{selectedIds.size === reviews.length ? "Deselect All" : "Select All"}</span>
+                  </button>
+                  <button
                     onClick={handleCopyAll}
                     className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-300 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/50 hover:border-slate-600 rounded-xl transition-all"
                   >
@@ -670,7 +725,13 @@ export default function AIReviewGeneratorPage() {
                     className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:opacity-90 rounded-xl transition-all shadow-md shadow-emerald-600/10 disabled:opacity-50 disabled:cursor-wait"
                   >
                     <Download className="w-3.5 h-3.5" />
-                    <span>{isZipping ? "Creating ZIP..." : "Download ZIP"}</span>
+                    <span>
+                      {isZipping 
+                        ? "Creating ZIP..." 
+                        : selectedIds.size > 0 
+                        ? `Download Selected (${selectedIds.size})` 
+                        : "Download ZIP (All)"}
+                    </span>
                   </button>
                 </div>
               )}
@@ -788,6 +849,14 @@ export default function AIReviewGeneratorPage() {
                             {/* Card Header */}
                             <div className="flex items-center justify-between gap-3 mb-3">
                               <div className="flex items-center gap-3">
+                                <div className="card-selector-checkbox flex items-center pr-1">
+                                  <input
+                                    type="checkbox"
+                                    checked={selectedIds.has(review.id)}
+                                    onChange={() => toggleSelectReview(review.id)}
+                                    className="w-4 h-4 rounded border-slate-800 text-emerald-500 bg-slate-950 focus:ring-emerald-500/30 cursor-pointer"
+                                  />
+                                </div>
                                 <div className={`w-9 h-9 rounded-full bg-gradient-to-tr ${color} flex items-center justify-center text-xs font-black text-white shadow-inner uppercase`}>
                                   {initials}
                                 </div>
@@ -861,6 +930,14 @@ export default function AIReviewGeneratorPage() {
                     <table className="min-w-full divide-y divide-slate-800">
                       <thead className="bg-slate-900/80">
                         <tr>
+                          <th scope="col" className="px-5 py-3.5 text-left w-10">
+                            <input
+                              type="checkbox"
+                              checked={reviews.length > 0 && selectedIds.size === reviews.length}
+                              onChange={toggleSelectAll}
+                              className="w-4 h-4 rounded border-slate-800 text-emerald-500 bg-slate-950 focus:ring-emerald-500/30 cursor-pointer"
+                            />
+                          </th>
                           <th scope="col" className="px-5 py-3.5 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider w-28">
                             Rating
                           </th>
@@ -878,6 +955,14 @@ export default function AIReviewGeneratorPage() {
                       <tbody className="divide-y divide-slate-900">
                         {reviews.map((review) => (
                           <tr key={review.id} className="hover:bg-slate-900/40 transition-colors">
+                            <td className="px-5 py-4 whitespace-nowrap align-top pt-5 w-10">
+                              <input
+                                type="checkbox"
+                                checked={selectedIds.has(review.id)}
+                                onChange={() => toggleSelectReview(review.id)}
+                                className="w-4 h-4 rounded border-slate-800 text-emerald-500 bg-slate-950 focus:ring-emerald-500/30 cursor-pointer"
+                              />
+                            </td>
                             <td className="px-5 py-4 whitespace-nowrap align-top pt-5">
                               <div className="flex text-amber-400">
                                 {Array.from({ length: 5 }).map((_, i) => (
