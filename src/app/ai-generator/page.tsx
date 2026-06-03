@@ -88,6 +88,40 @@ const getReviewerDetails = (id: string, index: number, language: string, overrid
   return { name, color, initials };
 };
 
+const getLanguageCountrySuffix = (langName: string): string => {
+  const mapping: Record<string, string> = {
+    "English": "US/UK/AU",
+    "Hindi": "India",
+    "Nepali": "Nepal",
+    "Bengali": "Bangladesh/India",
+    "Urdu": "Pakistan",
+    "Tamil": "India/Sri Lanka",
+    "Telugu": "India",
+    "Chinese": "China/Taiwan",
+    "Japanese": "Japan",
+    "Korean": "South Korea",
+    "French": "France/Canada",
+    "German": "Germany/Austria",
+    "Spanish": "Spain/LATAM",
+    "Italian": "Italy",
+    "Portuguese": "Brazil/Portugal",
+    "Russian": "Russia",
+    "Dutch": "Netherlands/Belgium",
+    "Polish": "Poland",
+    "Swedish": "Sweden",
+    "Arabic": "Arab World",
+    "Turkish": "Turkey",
+    "Persian": "Iran/Afghanistan",
+    "Swahili": "East Africa",
+    "Hausa": "Nigeria/Niger",
+    "Thai": "Thailand",
+    "Vietnamese": "Vietnam",
+    "Indonesian": "Indonesia",
+    "Malay": "Malaysia/Singapore",
+  };
+  return mapping[langName] ? ` (${mapping[langName]})` : "";
+};
+
 export default function AIReviewGeneratorPage() {
   const [targetType, setTargetType] = useState<"Service" | "Product" | "Goods" | "Post">("Service");
   const [reviewType, setReviewType] = useState("Positive Review");
@@ -426,7 +460,9 @@ export default function AIReviewGeneratorPage() {
                       className="w-full appearance-none bg-slate-950/80 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 text-white rounded-xl py-2.5 pl-4 pr-10 text-sm placeholder-slate-700 transition-all outline-none cursor-pointer"
                     >
                       {ISO6391.getAllNames().sort().map((lang) => (
-                        <option key={lang} value={lang} className="bg-slate-950 text-slate-200">{lang}</option>
+                        <option key={lang} value={lang} className="bg-slate-950 text-slate-200">
+                          {lang}{getLanguageCountrySuffix(lang)}
+                        </option>
                       ))}
                     </select>
                     <ChevronDown className="absolute right-3 top-3.5 w-4 h-4 text-slate-500 pointer-events-none group-hover:text-slate-300 transition-colors" />

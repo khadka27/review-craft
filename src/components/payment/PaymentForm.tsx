@@ -299,7 +299,7 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
           icon={Calendar}
           value={paymentData.timestamp}
           onChange={(v) => onUpdate({ timestamp: v })}
-          placeholder="01/01/2025, 10:00:00"
+          placeholder="03 Jun 2026, 03:15 PM"
         />
       </div>
 

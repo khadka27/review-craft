@@ -19,6 +19,21 @@ interface PaymentGeneratorPageProps {
   };
 }
 
+const getRealisticDefaultTimestamp = () => {
+  const d = new Date();
+  const day = d.getDate();
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const month = monthNames[d.getMonth()];
+  const year = d.getFullYear();
+  let hours = d.getHours();
+  const minutes = String(d.getMinutes()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  const time = `${String(hours).padStart(2, "0")}:${minutes} ${ampm}`;
+  return `${day} ${month} ${year}, ${time}`;
+};
+
 export function PaymentGeneratorPage({
   initialPlatform = "paytm",
   lockPlatform = false,
@@ -33,7 +48,7 @@ export function PaymentGeneratorPage({
     currency: "INR",
     senderName: "Abish Khadka",
     receiverName: "ReviewCraft Store",
-    timestamp: new Date().toLocaleString(),
+    timestamp: getRealisticDefaultTimestamp(),
     transactionId: "TXN" + Math.random().toString(36).substring(2, 10).toUpperCase(),
     status: "success",
     note: "Payment for subscription",
