@@ -20,24 +20,19 @@ export const InstagramReview = ({ data }: InstagramReviewProps) => {
       <div className="flex items-center justify-between p-3 sm:p-4">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
           {data.avatar ? (
-            <div className="relative">
+            <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
+              <div className="absolute -inset-[2px] bg-gradient-to-tr from-[#f9ce0f] via-[#e1306c] to-[#833ab4] rounded-full"></div>
               <img
                 src={data.avatar}
                 alt={data.name}
-                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
-              />
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full opacity-75 blur-sm"></div>
-              <img
-                src={data.avatar}
-                alt={data.name}
-                className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0 border-2 border-white"
+                className="relative w-full h-full rounded-full object-cover border-2 border-white"
               />
             </div>
           ) : (
-            <div className="relative">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full opacity-75 blur-sm"></div>
-              <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 border-2 border-white">
-                <span className="text-xs text-gray-600">?</span>
+            <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
+              <div className="absolute -inset-[2px] bg-gradient-to-tr from-[#f9ce0f] via-[#e1306c] to-[#833ab4] rounded-full"></div>
+              <div className="relative w-full h-full rounded-full bg-gray-200 flex items-center justify-center border-2 border-white">
+                <span className="text-xs text-gray-600 font-semibold">?</span>
               </div>
             </div>
           )}

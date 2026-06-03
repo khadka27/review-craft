@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TransactionData, PaymentPlatform } from "@/types/payment";
 import { PaymentForm } from "./PaymentForm";
 import { PaymentPreview } from "./PaymentPreview";
@@ -48,11 +48,19 @@ export function PaymentGeneratorPage({
     currency: "INR",
     senderName: "Abish Khadka",
     receiverName: "ReviewCraft Store",
-    timestamp: getRealisticDefaultTimestamp(),
-    transactionId: "TXN" + Math.random().toString(36).substring(2, 10).toUpperCase(),
+    timestamp: "3 Jun 2026, 03:15 PM",
+    transactionId: "TXN78451296",
     status: "success",
     note: "Payment for subscription",
   });
+
+  useEffect(() => {
+    setPaymentData((prev) => ({
+      ...prev,
+      timestamp: getRealisticDefaultTimestamp(),
+      transactionId: "TXN" + Math.random().toString(36).substring(2, 10).toUpperCase(),
+    }));
+  }, []);
 
   const [isDownloading, setIsDownloading] = useState(false);
 

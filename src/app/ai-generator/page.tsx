@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import LottiePlayer from "@/components/ui/LottiePlayer";
 import ISO6391 from "iso-639-1";
 import { 
   Trash2, 
@@ -302,11 +303,19 @@ export default function AIReviewGeneratorPage() {
     setDownloadingId(id);
     try {
       const { toPng } = await import("html-to-image");
+      
       const footer = cardEl.querySelector(".card-footer-actions") as HTMLElement;
       let originalDisplay = "";
       if (footer) {
         originalDisplay = footer.style.display;
         footer.style.display = "none";
+      }
+
+      const selector = cardEl.querySelector(".card-selector-checkbox") as HTMLElement;
+      let originalSelectorDisplay = "";
+      if (selector) {
+        originalSelectorDisplay = selector.style.display;
+        selector.style.display = "none";
       }
 
       const dataUrl = await toPng(cardEl, {
@@ -321,6 +330,9 @@ export default function AIReviewGeneratorPage() {
 
       if (footer) {
         footer.style.display = originalDisplay;
+      }
+      if (selector) {
+        selector.style.display = originalSelectorDisplay;
       }
 
       const link = document.createElement("a");
@@ -457,7 +469,7 @@ export default function AIReviewGeneratorPage() {
             AI Review <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Generator</span>
           </h1>
           <p className="mt-2 text-base text-slate-400 max-w-2xl">
-            Generate highly realistic, platform-agnostic feedback mockups and content variations. Driven by advanced DeepSeek models.
+            Generate highly realistic, platform-agnostic feedback mockups and content variations
           </p>
         </div>
 
@@ -772,40 +784,21 @@ export default function AIReviewGeneratorPage() {
 
             {/* Active Output Section */}
             {isLoading ? (
-              
-              /* Skeleton Loader */
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 bg-slate-900 border border-slate-800/80 p-4 rounded-2xl">
-                  <div className="w-4 h-4 rounded-full border-2 border-emerald-450 border-t-transparent animate-spin animate-duration-1000"></div>
-                  <span className="text-sm font-bold text-emerald-300 animate-pulse">{LOADING_STEPS[loadingStepIdx]}</span>
+              <div className="flex flex-col items-center justify-center py-12 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-8 shadow-2xl space-y-6 my-auto min-h-[360px]">
+                <LottiePlayer
+                  src="/9fbeb5fe-1178-11ee-be3f-8ff4cb4e23c2.json"
+                  background="transparent"
+                  speed={1.2}
+                  style={{ width: "180px", height: "180px" }}
+                  loop
+                  autoplay
+                />
+                <div className="flex items-center gap-3 bg-slate-950 px-5 py-2.5 rounded-full border border-slate-850 shadow-inner">
+                  <div className="w-4 h-4 rounded-full border-2 border-emerald-500 border-t-transparent animate-spin"></div>
+                  <span className="text-sm font-bold text-emerald-400 animate-pulse">{LOADING_STEPS[loadingStepIdx]}</span>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {Array.from({ length: Math.min(actualReviewCount, 4) }).map((_, i) => (
-                    <div key={i} className="bg-slate-900/30 border border-slate-800/60 rounded-2xl p-5 space-y-4 animate-pulse">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-slate-800 animate-pulse"></div>
-                          <div className="space-y-2">
-                            <div className="h-3 w-24 bg-slate-800 rounded"></div>
-                            <div className="h-2 w-16 bg-slate-800 rounded"></div>
-                          </div>
-                        </div>
-                        <div className="h-3 w-16 bg-slate-800 rounded"></div>
-                      </div>
-                      <div className="flex gap-1">
-                        {Array.from({ length: 5 }).map((_, j) => (
-                          <div key={j} className="w-3.5 h-3.5 bg-slate-800 rounded-full"></div>
-                        ))}
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-3 w-full bg-slate-800 rounded"></div>
-                        <div className="h-3 w-5/6 bg-slate-800 rounded"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="text-slate-400 text-sm animate-pulse">Generating bulk review mockups, please wait...</div>
               </div>
-
             ) : reviews.length === 0 ? (
               
               /* Empty State */
