@@ -26,8 +26,9 @@ Length: ${reviewLength}
 Rules:
 - Generate exactly ${reviewCount} reviews.
 - Each review must be different.
-- Use natural human language.
+- Write each review in the specified Language: ${language}.
 - Include a rating between 1 and 5.
+- For each review, generate a realistic reviewer name that is culturally authentic for the region/country where ${language} is primarily spoken. For example: Hindi → Indian names, Japanese → Japanese names, Arabic → Arabic names, French → French names, etc.
 - Do not repeat sentences.
 - Return JSON only.
 
@@ -37,7 +38,8 @@ Output Format:
   "reviews": [
     {
       "rating": 5,
-      "review": "Excellent service..."
+      "reviewerName": "culturally authentic name for ${language} language",
+      "review": "Review text in ${language}..."
     }
   ]
 }`;

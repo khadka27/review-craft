@@ -20,18 +20,54 @@ interface GeneratedReview {
   id: string;
   rating: number;
   review: string;
+  reviewerName: string;
   generatedAt: Date;
 }
 
-const REVIEWER_NAMES = [
-  "Alexander Wright", "Sophia Jenkins", "Liam Carter", "Olivia Vance",
-  "Noah Brooks", "Emma Higgins", "Ethan Vance", "Ava Caldwell",
-  "Mason Graves", "Isabella Vance", "William Thorne", "Mia Sterling",
-  "Jameson Blake", "Charlotte Finch", "Lucas Thorne", "Amelia Vance",
-  "Benjamin Hayes", "Harper Sterling", "Oliver Vance", "Evelyn Graves",
-  "Marcus Vance", "Elena Rostova", "Klaus Fischer", "Chloe Sterling",
-  "Nikhil Sharma", "Aisha Rahman", "Yuki Tanaka", "Carlos Santana"
-];
+// Locale-matched reviewer name pools keyed by language name
+const LOCALE_NAMES: Record<string, string[]> = {
+  // English-speaking
+  "English":    ["James Miller", "Emma Wilson", "Oliver Harris", "Sophia Brown", "William Taylor", "Charlotte Davis", "Noah Anderson", "Amelia Thomas", "Liam Jackson", "Harper White"],
+  // South Asian
+  "Hindi":      ["Aarav Sharma", "Priya Singh", "Rohit Gupta", "Sneha Patel", "Vikram Mehta", "Anjali Verma", "Arjun Nair", "Pooja Joshi", "Rahul Kapoor", "Riya Yadav"],
+  "Nepali":     ["Sanjay Thapa", "Sunita Rai", "Bikash Shrestha", "Anita Gurung", "Ramesh Poudel", "Sita Tamang", "Dipak Adhikari", "Maya Karki", "Pratik Bhandari", "Binita Oli"],
+  "Bengali":    ["Rahul Chatterjee", "Priya Das", "Arjun Ghosh", "Mita Roy", "Sushant Bose", "Rupa Sen", "Debashish Mondal", "Rina Dey", "Sourav Mukherjee", "Puja Sarkar"],
+  "Urdu":       ["Hamza Khan", "Fatima Ali", "Usman Sheikh", "Ayesha Malik", "Bilal Ahmed", "Sana Hussain", "Tariq Mahmood", "Zainab Raza", "Asad Iqbal", "Nadia Qureshi"],
+  "Tamil":      ["Arun Kumar", "Priya Venkat", "Suresh Raj", "Kavitha Sundaram", "Muthu Krishnan", "Selvi Natarajan", "Karthik Balan", "Meena Subramanian", "Vijay Palani", "Divya Anand"],
+  "Telugu":     ["Venkat Rao", "Lakshmi Devi", "Ravi Chandra", "Sunitha Reddy", "Krishna Murthy", "Padma Varma", "Srinivas Babu", "Anitha Naidu", "Ramesh Goud", "Kavya Sharma"],
+  // East Asian
+  "Chinese":    ["Wei Zhang", "Fang Liu", "Jian Wang", "Mei Chen", "Hao Li", "Xin Yang", "Peng Zhao", "Ling Huang", "Kai Wu", "Yan Zhou"],
+  "Japanese":   ["Kenji Tanaka", "Yuki Sato", "Hiroshi Yamamoto", "Akiko Suzuki", "Takeshi Nakamura", "Emi Watanabe", "Ryu Kobayashi", "Hana Kato", "Sora Ito", "Nao Yamada"],
+  "Korean":     ["MinJun Kim", "JiYeon Park", "Seungho Lee", "Yuna Choi", "Jaehyun Jeong", "Soyeon Jung", "Hyunwoo Kang", "Mirae Yoon", "Dongwoo Lim", "Chaewon Han"],
+  // European
+  "French":     ["Louis Dupont", "Camille Martin", "Hugo Bernard", "Manon Leroy", "Ethan Moreau", "Chloé Simon", "Julien Laurent", "Emma Thomas", "Lucas Robert", "Léa Petit"],
+  "German":     ["Lukas Müller", "Sophie Schmidt", "Felix Wagner", "Anna Becker", "Paul Fischer", "Lena Hoffmann", "Jonas Weber", "Marie Koch", "Maximilian Schäfer", "Laura Meyer"],
+  "Spanish":    ["Carlos García", "Lucía Martínez", "Miguel Rodríguez", "Sofía López", "Alejandro González", "Valeria Sánchez", "Daniel Pérez", "Isabella Ramírez", "Pablo Flores", "Camila Torres"],
+  "Italian":    ["Marco Russo", "Giulia Ferrari", "Luca Esposito", "Sofia Romano", "Matteo Bianchi", "Chiara Ricci", "Alessandro Conti", "Valentina Marino", "Gabriele Gallo", "Federica Lombardi"],
+  "Portuguese": ["João Silva", "Ana Oliveira", "Pedro Santos", "Maria Costa", "Bruno Ferreira", "Catarina Pereira", "Ricardo Almeida", "Inês Carvalho", "Tiago Rodrigues", "Beatriz Sousa"],
+  "Russian":    ["Alexei Petrov", "Natasha Ivanova", "Dmitri Sokolov", "Elena Novikova", "Sergei Volkov", "Maria Kozlova", "Pavel Lebedev", "Anna Morozova", "Mikhail Popov", "Olga Smirnova"],
+  "Dutch":      ["Lars de Vries", "Emma Bakker", "Daan Janssen", "Sophie Smit", "Tim Meijer", "Anna de Boer", "Lotte Visser", "Tom van den Berg", "Finn Bos", "Roos Mulder"],
+  "Polish":     ["Mateusz Kowalski", "Zofia Wiśniewska", "Piotr Wójcik", "Aleksandra Kamińska", "Marek Kowalczyk", "Natalia Lewandowska", "Jakub Zieliński", "Karolina Szymańska", "Bartosz Woźniak", "Magdalena Dąbrowska"],
+  "Swedish":    ["Erik Johansson", "Anna Andersson", "Lukas Karlsson", "Emma Nilsson", "Oscar Eriksson", "Maja Larsson", "Adam Olsson", "Saga Persson", "Emil Svensson", "Wilma Gustafsson"],
+  // Middle Eastern
+  "Arabic":     ["Mohammed Al-Hassan", "Fatima Al-Rashid", "Omar Abdullah", "Layla Al-Mansouri", "Khalid Al-Farsi", "Aisha Suleiman", "Ibrahim Al-Sayed", "Nour Al-Din", "Youssef El-Amin", "Sara Al-Khatib"],
+  "Turkish":    ["Mehmet Yılmaz", "Zeynep Kaya", "Ahmet Demir", "Ayşe Çelik", "Mustafa Şahin", "Elif Yıldız", "İbrahim Doğan", "Fatma Arslan", "Hasan Öztürk", "Merve Çetin"],
+  "Persian":    ["Amir Hosseini", "Maryam Karimi", "Reza Ahmadi", "Zahra Mohammadi", "Ali Rahimi", "Sara Moradi", "Hassan Sadeghi", "Fatemeh Jafari", "Dariush Kazemi", "Leila Bahrami"],
+  // African
+  "Swahili":    ["Amani Ouma", "Zawadi Njeri", "Jabari Kamau", "Amara Wanjiru", "Seun Mwangi", "Zuri Akinyi", "Kofi Otieno", "Nia Wambui", "Jomo Kariuki", "Imani Adhiambo"],
+  "Hausa":      ["Abubakar Musa", "Halima Yusuf", "Ibrahim Sani", "Fatimah Bello", "Usman Garba", "Zainab Adamu", "Lawal Abdullahi", "Hadiza Idris", "Salihu Shuaibu", "Maryam Umar"],
+  // Southeast Asian
+  "Thai":       ["Somchai Jaidee", "Nattaya Srisuk", "Krit Boonmee", "Pawaree Charoenwong", "Pongpat Suwannarat", "Kanokwan Thongsuk", "Artit Pornpun", "Siriporn Kanchai", "Niran Phimthong", "Malee Rattana"],
+  "Vietnamese": ["Nguyễn Văn An", "Trần Thị Hoa", "Lê Minh Tuấn", "Phạm Thu Hương", "Hoàng Đức Hùng", "Vũ Thị Lan", "Đặng Minh Khoa", "Bùi Thị Mai", "Phan Văn Nam", "Ngô Thị Thủy"],
+  "Indonesian": ["Budi Santoso", "Sari Dewi", "Ahmad Fauzi", "Putri Rahayu", "Dian Pratama", "Rina Wulandari", "Eko Susanto", "Fitri Handayani", "Hendra Kurniawan", "Lestari Permatasari"],
+  "Malay":      ["Ahmad bin Ali", "Siti binti Hassan", "Muhammad Fariz", "Nurul Ain", "Azlan Hussain", "Faridah Osman", "Hafiz bin Razak", "Zainab binti Ismail", "Roslan Nordin", "Aishah binti Yusof"],
+  // Default fallback
+  "default":    ["Alex Morgan", "Jordan Lee", "Casey Williams", "Taylor Brown", "Riley Smith", "Morgan Davis", "Cameron Wilson", "Peyton Johnson", "Quinn Martinez", "Drew Thompson"]
+};
+
+const getLocaleNames = (language: string): string[] => {
+  return LOCALE_NAMES[language] || LOCALE_NAMES["default"];
+};
 
 const AVATAR_COLORS = [
   "from-emerald-400 to-teal-500",
@@ -41,19 +77,19 @@ const AVATAR_COLORS = [
   "from-sky-400 to-teal-400",
 ];
 
-const getReviewerDetails = (id: string, index: number) => {
+const getReviewerDetails = (id: string, index: number, language: string, overrideName?: string) => {
+  const names = getLocaleNames(language);
   const codeSum = id.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const nameIdx = (index + codeSum) % REVIEWER_NAMES.length;
+  const nameIdx = (index + codeSum) % names.length;
   const colorIdx = (index + codeSum) % AVATAR_COLORS.length;
-  
-  const name = REVIEWER_NAMES[nameIdx];
+  const name = overrideName || names[nameIdx];
   const color = AVATAR_COLORS[colorIdx];
   const initials = name.split(" ").map(n => n[0]).join("");
   return { name, color, initials };
 };
 
 export default function AIReviewGeneratorPage() {
-  const [targetType, setTargetType] = useState("Service");
+  const [targetType, setTargetType] = useState<"Service" | "Product" | "Goods" | "Post">("Service");
   const [reviewType, setReviewType] = useState("Positive Review");
   const [reviewCountPreset, setReviewCountPreset] = useState("3");
   const [customReviewCount, setCustomReviewCount] = useState(1);
@@ -103,12 +139,9 @@ export default function AIReviewGeneratorPage() {
       "Detailed Analysis",
       "Expert Perspective"
     ];
-    if (targetType === "Service") {
-      options.push("Customer Perspective");
-    }
-    if (targetType === "Post") {
-      options.push("SEO Review");
-    }
+    if (targetType === "Service") options.push("Customer Perspective");
+    if (targetType === "Product" || targetType === "Goods") options.push("Buyer Review", "Unboxing Experience");
+    if (targetType === "Post") options.push("SEO Review");
     return options;
   };
 
@@ -153,12 +186,17 @@ export default function AIReviewGeneratorPage() {
         throw new Error("Invalid response format received.");
       }
 
-      const newReviews: GeneratedReview[] = data.reviews.map((r: any) => ({
-        id: Math.random().toString(36).substring(7),
-        rating: r.rating,
-        review: r.review,
-        generatedAt: new Date(),
-      }));
+      const localeNames = getLocaleNames(language);
+      const newReviews: GeneratedReview[] = data.reviews.map((r: any, idx: number) => {
+        const fallbackName = localeNames[idx % localeNames.length];
+        return {
+          id: Math.random().toString(36).substring(7),
+          rating: r.rating,
+          review: r.review,
+          reviewerName: r.reviewerName || fallbackName,
+          generatedAt: new Date(),
+        };
+      });
 
       setReviews((prev) => [...newReviews, ...prev]);
     } catch (err: any) {
@@ -263,34 +301,20 @@ export default function AIReviewGeneratorPage() {
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Review Target</label>
                 <div className="grid grid-cols-2 gap-2 bg-slate-950/80 p-1 rounded-xl border border-slate-800">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setTargetType("Service");
-                      setReviewType("Positive Review");
-                    }}
-                    className={`py-2 text-xs font-bold rounded-lg transition-all ${
-                      targetType === "Service"
-                        ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 shadow-md shadow-emerald-950/50"
-                        : "text-slate-400 hover:text-slate-200"
-                    }`}
-                  >
-                    Service
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setTargetType("Post");
-                      setReviewType("Positive Review");
-                    }}
-                    className={`py-2 text-xs font-bold rounded-lg transition-all ${
-                      targetType === "Post"
-                        ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 shadow-md shadow-emerald-950/50"
-                        : "text-slate-400 hover:text-slate-200"
-                    }`}
-                  >
-                    Post
-                  </button>
+                  {(["Service", "Product", "Goods", "Post"] as const).map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => { setTargetType(type); setReviewType("Positive Review"); }}
+                      className={`py-2 text-xs font-bold rounded-lg transition-all ${
+                        targetType === type
+                          ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 shadow-md shadow-emerald-950/50"
+                          : "text-slate-400 hover:text-slate-200"
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -622,7 +646,7 @@ export default function AIReviewGeneratorPage() {
                 {viewMode === "cards" && (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {reviews.map((review, index) => {
-                      const { name, color, initials } = getReviewerDetails(review.id, index);
+                      const { name, color, initials } = getReviewerDetails(review.id, index, language, review.reviewerName);
                       return (
                         <div 
                           key={review.id} 

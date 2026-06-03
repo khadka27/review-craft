@@ -1,5 +1,17 @@
+"use client";
+
 import { TransactionData } from "@/types/payment";
-import { User, Receipt, Calendar, Hash, FileText, CheckCircle2, Clock, AlertCircle } from "lucide-react";
+import {
+  User,
+  Receipt,
+  Calendar,
+  Hash,
+  FileText,
+  CheckCircle2,
+  Clock,
+  AlertCircle,
+  RefreshCw,
+} from "lucide-react";
 
 interface PaymentFormProps {
   paymentData: TransactionData;
@@ -7,133 +19,324 @@ interface PaymentFormProps {
   showPlatformSelector?: boolean;
 }
 
-export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
-  return (
-    <div className="space-y-6">
+/* ── Shared style tokens ── */
+const INPUT_STYLE: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 14px",
+  borderRadius: "10px",
+  background: "#0B0F14",
+  border: "1px solid #1E293B",
+  color: "#F8FAFC",
+  fontSize: "14px",
+  outline: "none",
+  transition: "border-color 0.15s, box-shadow 0.15s",
+};
 
-      {/* Transaction Status */}
-      <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-          Status
-        </label>
-        <div className="flex gap-2">
-          {[
-            { id: "success", label: "Success", icon: CheckCircle2, color: "text-green-600 bg-green-50 border-green-200" },
-            { id: "pending", label: "Pending", icon: Clock, color: "text-amber-600 bg-amber-50 border-amber-200" },
-            { id: "failed", label: "Failed", icon: AlertCircle, color: "text-red-600 bg-red-50 border-red-200" }
-          ].map((status) => (
-            <button
-              key={status.id}
-              onClick={() => onUpdate({ status: status.id as any })}
-              className={`flex-1 flex items-center justify-center gap-2 p-2 rounded-lg border text-sm font-medium transition-all ${
-                paymentData.status === status.id 
-                  ? status.color + " ring-2 ring-offset-1 ring-indigo-500" 
-                  : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
-              }`}
-            >
-              <status.icon size={16} />
-              {status.label}
-            </button>
-          ))}
+const LABEL_STYLE: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: "6px",
+  fontSize: "11px",
+  fontWeight: 600,
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.07em",
+  color: "#94A3B8",
+  marginBottom: "8px",
+};
+
+const DIVIDER_STYLE: React.CSSProperties = {
+  borderTop: "1px solid #1E293B",
+  margin: "0",
+};
+
+function InputField({
+  id,
+  label,
+  icon: Icon,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+  rightSlot,
+}: {
+  id: string;
+  label: string;
+  icon?: React.ElementType;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  type?: string;
+  rightSlot?: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} style={LABEL_STYLE}>
+        {Icon && <Icon size={12} style={{ color: "#2563EB" }} />}
+        {label}
+      </label>
+      <div style={{ position: "relative" }}>
+        <input
+          id={id}
+          type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          style={{ ...INPUT_STYLE, paddingRight: rightSlot ? "42px" : "14px" }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "#2563EB";
+            e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.15)";
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "#1E293B";
+            e.currentTarget.style.boxShadow = "none";
+          }}
+        />
+        {rightSlot && (
+          <div
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "50%",
+              transform: "translateY(-50%)",
+            }}
+          >
+            {rightSlot}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
+  const generateTxnId = () => {
+    onUpdate({
+      transactionId:
+        "TXN" + Math.random().toString(36).substring(2, 10).toUpperCase(),
+    });
+  };
+
+  const statusOptions: {
+    id: TransactionData["status"];
+    label: string;
+    icon: React.ElementType;
+    activeStyle: React.CSSProperties;
+  }[] = [
+    {
+      id: "success",
+      label: "Success",
+      icon: CheckCircle2,
+      activeStyle: {
+        background: "rgba(52,211,153,0.12)",
+        border: "1px solid rgba(52,211,153,0.4)",
+        color: "#34d399",
+        boxShadow: "0 0 0 2px rgba(52,211,153,0.15)",
+      },
+    },
+    {
+      id: "pending",
+      label: "Pending",
+      icon: Clock,
+      activeStyle: {
+        background: "rgba(251,191,36,0.12)",
+        border: "1px solid rgba(251,191,36,0.4)",
+        color: "#fbbf24",
+        boxShadow: "0 0 0 2px rgba(251,191,36,0.15)",
+      },
+    },
+    {
+      id: "failed",
+      label: "Failed",
+      icon: AlertCircle,
+      activeStyle: {
+        background: "rgba(248,113,113,0.12)",
+        border: "1px solid rgba(248,113,113,0.4)",
+        color: "#f87171",
+        boxShadow: "0 0 0 2px rgba(248,113,113,0.15)",
+      },
+    },
+  ];
+
+  const inactiveStatusStyle: React.CSSProperties = {
+    background: "#0B0F14",
+    border: "1px solid #1E293B",
+    color: "#475569",
+  };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
+      {/* ── Status ── */}
+      <div>
+        <div style={LABEL_STYLE}>
+          <CheckCircle2 size={12} style={{ color: "#2563EB" }} />
+          Transaction Status
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px" }}>
+          {statusOptions.map((s) => {
+            const isActive = paymentData.status === s.id;
+            return (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => onUpdate({ status: s.id })}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "6px",
+                  padding: "9px 12px",
+                  borderRadius: "10px",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "all 0.18s",
+                  ...(isActive ? s.activeStyle : inactiveStatusStyle),
+                }}
+              >
+                <s.icon size={14} />
+                {s.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Amount & Currency */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-            <Receipt size={16} /> Amount
-          </label>
-          <input 
-            type="text"
-            value={paymentData.amount}
-            onChange={(e) => onUpdate({ amount: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-            placeholder="500.00"
-          />
-        </div>
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-            Currency
-          </label>
-          <select 
+      <div style={DIVIDER_STYLE} />
+
+      {/* ── Amount & Currency ── */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+        <InputField
+          id="payment-amount"
+          label="Amount"
+          icon={Receipt}
+          value={paymentData.amount}
+          onChange={(v) => onUpdate({ amount: v })}
+          placeholder="500.00"
+        />
+        <div>
+          <div style={LABEL_STYLE}>Currency</div>
+          <select
+            id="payment-currency"
             value={paymentData.currency}
             onChange={(e) => onUpdate({ currency: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 bg-white"
+            style={{ ...INPUT_STYLE, cursor: "pointer" }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = "#2563EB";
+              e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.15)";
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = "#1E293B";
+              e.currentTarget.style.boxShadow = "none";
+            }}
           >
-            <option value="INR">INR (₹)</option>
-            <option value="USD">USD ($)</option>
-            <option value="EUR">EUR (€)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="NPR">NPR (Rs.)</option>
+            <option value="INR" style={{ background: "#111827" }}>INR (₹)</option>
+            <option value="USD" style={{ background: "#111827" }}>USD ($)</option>
+            <option value="EUR" style={{ background: "#111827" }}>EUR (€)</option>
+            <option value="GBP" style={{ background: "#111827" }}>GBP (£)</option>
+            <option value="NPR" style={{ background: "#111827" }}>NPR (Rs.)</option>
           </select>
         </div>
       </div>
 
-      {/* Sender & Receiver */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t pt-4">
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-            <User size={16} /> Sender Name
-          </label>
-          <input 
-            type="text"
-            value={paymentData.senderName}
-            onChange={(e) => onUpdate({ senderName: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-            <User size={16} /> Receiver Name
-          </label>
-          <input 
-            type="text"
-            value={paymentData.receiverName}
-            onChange={(e) => onUpdate({ receiverName: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-      </div>
+      <div style={DIVIDER_STYLE} />
 
-      {/* Transaction ID & Time */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t pt-4">
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-            <Hash size={16} /> Transaction ID
-          </label>
-          <input 
-            type="text"
-            value={paymentData.transactionId}
-            onChange={(e) => onUpdate({ transactionId: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-        <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-            <Calendar size={16} /> Date & Time
-          </label>
-          <input 
-            type="text"
-            value={paymentData.timestamp}
-            onChange={(e) => onUpdate({ timestamp: e.target.value })}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-      </div>
-
-      {/* Note */}
-      <div className="space-y-2 border-t pt-4">
-        <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
-          <FileText size={16} /> Payment Note
-        </label>
-        <textarea 
-          value={paymentData.note}
-          onChange={(e) => onUpdate({ note: e.target.value })}
-          className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 h-20"
-          placeholder="What's this payment for?"
+      {/* ── Sender & Receiver ── */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+        <InputField
+          id="payment-sender"
+          label="Sender Name"
+          icon={User}
+          value={paymentData.senderName}
+          onChange={(v) => onUpdate({ senderName: v })}
+          placeholder="John Doe"
+        />
+        <InputField
+          id="payment-receiver"
+          label="Receiver Name"
+          icon={User}
+          value={paymentData.receiverName}
+          onChange={(v) => onUpdate({ receiverName: v })}
+          placeholder="Jane Smith"
         />
       </div>
+
+      <div style={DIVIDER_STYLE} />
+
+      {/* ── Transaction ID & Date ── */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+        <InputField
+          id="payment-txn-id"
+          label="Transaction ID"
+          icon={Hash}
+          value={paymentData.transactionId}
+          onChange={(v) => onUpdate({ transactionId: v })}
+          placeholder="TXN123456"
+          rightSlot={
+            <button
+              type="button"
+              onClick={generateTxnId}
+              title="Generate random ID"
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "#475569",
+                padding: "2px",
+                display: "flex",
+                alignItems: "center",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#2563EB")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#475569")}
+            >
+              <RefreshCw size={13} />
+            </button>
+          }
+        />
+        <InputField
+          id="payment-timestamp"
+          label="Date & Time"
+          icon={Calendar}
+          value={paymentData.timestamp}
+          onChange={(v) => onUpdate({ timestamp: v })}
+          placeholder="01/01/2025, 10:00:00"
+        />
+      </div>
+
+      <div style={DIVIDER_STYLE} />
+
+      {/* ── Note ── */}
+      <div>
+        <div style={LABEL_STYLE}>
+          <FileText size={12} style={{ color: "#2563EB" }} />
+          Payment Note
+        </div>
+        <textarea
+          id="payment-note"
+          value={paymentData.note}
+          onChange={(e) => onUpdate({ note: e.target.value })}
+          placeholder="What's this payment for?"
+          rows={3}
+          style={{
+            ...INPUT_STYLE,
+            resize: "none",
+            lineHeight: "1.5",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "#2563EB";
+            e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.15)";
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "#1E293B";
+            e.currentTarget.style.boxShadow = "none";
+          }}
+        />
+      </div>
+
+      {/* tip */}
+      <p style={{ fontSize: "11px", color: "#334155", textAlign: "center" }}>
+        ✦ All changes reflect instantly in the preview
+      </p>
     </div>
   );
 };

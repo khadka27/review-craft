@@ -1,131 +1,122 @@
 import { TransactionData } from "@/types/payment";
-import {
-  CheckCircle,
-  Share2,
-  HelpCircle,
-  Download,
-  Clock,
-  AlertCircle,
-} from "lucide-react";
 import { getCurrencySymbol } from "@/utils/payment";
+
+// ── Inline SVG icons ─────────────────────────────────────────────────────────
+const CheckIcon = ({ size = 38, color = "white" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 6L9 17l-5-5" />
+  </svg>
+);
+const XIcon = ({ size = 32, color = "white" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
+const ClockIcon = ({ size = 28, color = "white" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+  </svg>
+);
+const DownloadIcon = ({ size = 16, color = "#555" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
+const ShareIcon = ({ size = 18, color = "rgba(255,255,255,0.8)" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+  </svg>
+);
+const HelpIcon = ({ size = 20, color = "rgba(255,255,255,0.8)" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" />
+  </svg>
+);
 
 export const FonepayReceipt = ({ data }: { data: TransactionData }) => {
   const isPending = data.status === "pending";
   const isFailed = data.status === "failed";
+  const isSuccess = data.status === "success";
+  const sym = getCurrencySymbol(data.currency);
+
+  const statusColor = isSuccess ? "#22c55e" : isFailed ? "#ef4444" : "#f59e0b";
+  const statusRing = isSuccess ? "rgba(34,197,94,0.12)" : isFailed ? "rgba(239,68,68,0.12)" : "rgba(245,158,11,0.12)";
+  const statusText = isSuccess ? "Payment Successful" : isFailed ? "Payment Failed" : "Payment Pending";
 
   return (
-    <div className="w-full bg-white font-sans text-gray-800 flex flex-col min-h-full">
-      {/* Fonepay Header */}
-      <div className="bg-[#ed1c24] p-4 pt-6 flex justify-between items-center text-white">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1">
-            <span className="text-[#ed1c24] font-black text-xs">f</span>
+    <div style={{ width: "100%", minHeight: "100%", backgroundColor: "white", fontFamily: "'Roboto',sans-serif", display: "flex", flexDirection: "column" }}>
+
+      {/* ── Fonepay Red Header ── */}
+      <div style={{ background: "#ed1c24", padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ width: 34, height: 34, background: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ color: "#ed1c24", fontWeight: 900, fontSize: 16, fontStyle: "italic" }}>f</span>
           </div>
-          <span className="font-black text-lg tracking-tight italic">
-            fonepay
-          </span>
+          <span style={{ color: "white", fontWeight: 900, fontSize: 18, fontStyle: "italic", letterSpacing: -0.5 }}>fonepay</span>
         </div>
-        <div className="flex gap-4">
-          <HelpCircle size={20} />
-          <Share2 size={20} />
+        {/* SVG icons instead of text arrows */}
+        <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
+          <HelpIcon size={20} color="rgba(255,255,255,0.8)" />
+          <ShareIcon size={18} color="rgba(255,255,255,0.8)" />
         </div>
       </div>
 
-      <div className="p-8 flex flex-col items-center">
-        {/* Status Check */}
-        <div
-          className={`w-20 h-20 rounded-full flex items-center justify-center mb-6 text-white ring-8 shadow-lg ${
-            isFailed
-              ? "bg-red-500 ring-red-50 shadow-red-100"
-              : isPending
-                ? "bg-amber-500 ring-amber-50 shadow-amber-100"
-                : "bg-green-500 ring-green-50 shadow-green-100"
-          }`}
-        >
-          {isFailed ? (
-            <AlertCircle size={48} strokeWidth={2.5} />
-          ) : isPending ? (
-            <Clock size={48} strokeWidth={2.5} />
-          ) : (
-            <CheckCircle size={48} strokeWidth={2.5} />
-          )}
+      {/* ── Status hero ── */}
+      <div style={{ padding: "28px 20px 24px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{
+          width: 76, height: 76, borderRadius: "50%",
+          background: statusColor,
+          boxShadow: `0 0 0 10px ${statusRing}`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          marginBottom: 14,
+        }}>
+          {isSuccess
+            ? <CheckIcon size={38} color="white" />
+            : isFailed
+            ? <XIcon size={32} color="white" />
+            : <ClockIcon size={28} color="white" />}
         </div>
 
-        <h2
-          className={`text-xl font-black mb-1 uppercase tracking-tight ${
-            isFailed
-              ? "text-red-600"
-              : isPending
-                ? "text-amber-600"
-                : "text-green-600"
-          }`}
-        >
-          {isFailed
-            ? "Payment Failed"
-            : isPending
-              ? "Payment Pending"
-              : "Payment Successful"}
-        </h2>
-        <p className="text-gray-400 text-xs font-bold mb-8 uppercase tracking-widest">
-          {data.timestamp}
+        <p style={{ margin: "0 0 2px", fontWeight: 900, fontSize: 18, textTransform: "uppercase", letterSpacing: 0.5, color: statusColor }}>
+          {statusText}
         </p>
+        <p style={{ margin: 0, fontSize: 11, color: "#aaa", fontWeight: 600, letterSpacing: 1, textTransform: "uppercase" }}>{data.timestamp}</p>
 
-        <div className="text-5xl font-black text-[#ed1c24] mb-12 tracking-tighter">
-          {getCurrencySymbol(data.currency)} {data.amount}
-        </div>
-
-        {/* Transaction Summary Box */}
-        <div className="w-full bg-gray-50 rounded-2xl p-6 space-y-5 border border-gray-100">
-          <div className="flex justify-between items-center border-b border-gray-200 border-dashed pb-4">
-            <span className="text-[11px] text-gray-600 font-bold uppercase tracking-wide">
-              Recipient
-            </span>
-            <span className="text-sm font-black text-gray-900">
-              {data.receiverName}
-            </span>
-          </div>
-          <div className="flex justify-between items-center border-b border-gray-200 border-dashed pb-4">
-            <span className="text-[11px] text-gray-600 font-bold uppercase tracking-wide">
-              Sender
-            </span>
-            <span className="text-sm font-black text-gray-900">
-              {data.senderName}
-            </span>
-          </div>
-          <div className="flex justify-between items-center border-b border-gray-200 border-dashed pb-4">
-            <span className="text-[11px] text-gray-600 font-bold uppercase tracking-wide">
-              Reference ID
-            </span>
-            <span className="text-xs font-mono font-bold text-gray-800 tracking-tighter">
-              {data.transactionId.slice(0, 12)}
-            </span>
-          </div>
-          {data.note && (
-            <div className="flex justify-between items-start">
-              <span className="text-[11px] text-gray-600 font-bold uppercase tracking-wide">
-                Note
-              </span>
-              <span className="text-sm font-medium text-gray-800 text-right max-w-[150px]">
-                {data.note}
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="w-full mt-8 grid grid-cols-2 gap-4">
-          <button className="flex items-center justify-center gap-2 p-4 bg-gray-100 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-200 transition-colors">
-            <Download size={16} /> Save
-          </button>
-          <button className="flex items-center justify-center gap-2 p-4 bg-[#ed1c24] text-white rounded-xl font-bold text-sm shadow-lg shadow-red-100 hover:bg-red-700 transition-colors">
-            Done
-          </button>
-        </div>
+        <p style={{ margin: "16px 0 2px", fontSize: 46, fontWeight: 900, color: "#ed1c24", letterSpacing: -2 }}>
+          {sym}{parseFloat(data.amount).toLocaleString("en", { minimumFractionDigits: 2 })}
+        </p>
       </div>
 
-      {/* Powered By */}
-      <div className="mt-auto p-4 flex justify-center opacity-30">
-        <p className="text-[9px] font-black uppercase tracking-[0.3em]">
+      {/* ── Details box ── */}
+      <div style={{ margin: "4px 16px 0", background: "#f9f9f9", borderRadius: 16, overflow: "hidden", border: "1px solid #f0f0f0" }}>
+        {[
+          { label: "Merchant / Recipient", value: data.receiverName },
+          { label: "Sender", value: data.senderName },
+          { label: "Reference ID", value: data.transactionId.slice(0, 12).toUpperCase(), mono: true },
+          { label: "Trace ID", value: data.transactionId.replace(/\D/g, "").slice(0, 10).padEnd(10, "0"), mono: true },
+          ...(data.note ? [{ label: "Remarks", value: data.note }] : []),
+        ].map(({ label, value, mono }: any, i, arr) => (
+          <div key={label} style={{ padding: "13px 16px", borderBottom: i < arr.length - 1 ? "1px dashed #e8e8e8" : "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: 11, color: "#999", fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.5 }}>{label}</span>
+            <span style={{ fontSize: 13, color: "#1a1a1a", fontWeight: 700, fontFamily: mono ? "monospace" : "inherit", textAlign: "right", maxWidth: "55%" }}>{value}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Buttons ── */}
+      <div style={{ margin: "16px 16px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+        <button style={{ padding: "13px", background: "#f5f5f5", border: "none", borderRadius: 12, fontWeight: 700, fontSize: 13, color: "#555", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
+          <DownloadIcon size={15} color="#555" /> Save
+        </button>
+        <button style={{ padding: "13px", background: "#ed1c24", border: "none", borderRadius: 12, fontWeight: 700, fontSize: 13, color: "white", cursor: "pointer" }}>
+          Done
+        </button>
+      </div>
+
+      {/* ── Footer ── */}
+      <div style={{ padding: "20px 0 12px", textAlign: "center" }}>
+        <p style={{ margin: 0, fontSize: 9, color: "#ccc", fontWeight: 900, letterSpacing: 3, textTransform: "uppercase" }}>
           Interoperable QR Network
         </p>
       </div>

@@ -1,104 +1,148 @@
 import { TransactionData } from "@/types/payment";
-import { Heart, MessageCircle, Share, MoreHorizontal } from "lucide-react";
-import { getCurrencySymbol } from "@/utils/payment";
+
+// ── Inline SVG icons ─────────────────────────────────────────────────────────
+const HeartIcon = ({ size = 22, color = "#aaa" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+  </svg>
+);
+const MessageIcon = ({ size = 22, color = "#aaa" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+);
+const ShareIcon = ({ size = 22, color = "#3D95CE" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+  </svg>
+);
+const HomeIcon = ({ size = 22, color = "#999" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+  </svg>
+);
+const ListIcon = ({ size = 22, color = "#999" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+    <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+  </svg>
+);
+const MenuIcon = ({ size = 22, color = "#999" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+);
+const MoreHorizontalIcon = ({ size = 22, color = "rgba(255,255,255,0.8)" }: { size?: number; color?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
+    <circle cx="5" cy="12" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="19" cy="12" r="2" />
+  </svg>
+);
 
 export const VenmoReceipt = ({ data }: { data: TransactionData }) => {
+  const isSuccess = data.status === "success";
+  const isFailed = data.status === "failed";
+  const getCurrencySymbol = (c: string) => c === "USD" ? "$" : c === "EUR" ? "€" : c === "GBP" ? "£" : c === "INR" ? "₹" : "$";
+  const sym = getCurrencySymbol(data.currency);
+
+  const senderHandle = `@${data.senderName.toLowerCase().replace(/\s+/g, "")}`;
+  const receiverHandle = `@${data.receiverName.toLowerCase().replace(/\s+/g, "")}`;
+
   return (
-    <div className="w-full bg-white font-sans text-gray-900 min-h-full flex flex-col">
-      {/* Venmo Header */}
-      <div className="bg-[#008CFF] p-4 pt-10 flex justify-between items-center text-white sticky top-0 z-10">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-white rounded overflow-hidden flex items-center justify-center p-1">
-            <img
-              src="/icons/payment/Venmo.png"
-              alt="Venmo"
-              className="w-full h-auto object-contain"
-            />
+    <div style={{ width: "100%", minHeight: "100%", backgroundColor: "white", fontFamily: "'Roboto',sans-serif", display: "flex", flexDirection: "column" }}>
+
+      {/* ── Venmo blue header ── */}
+      <div style={{ background: "#3D95CE", padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ width: 30, height: 30, background: "white", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ color: "#3D95CE", fontWeight: 900, fontSize: 18, lineHeight: 1 }}>V</span>
           </div>
-          <span className="font-bold text-lg">Venmo</span>
+          <span style={{ color: "white", fontWeight: 700, fontSize: 18 }}>venmo</span>
         </div>
-        <MoreHorizontal size={24} />
+        <MoreHorizontalIcon size={22} color="rgba(255,255,255,0.85)" />
       </div>
 
-      <div className="p-6">
-        {/* User Profiles */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="relative flex -space-x-4">
-            <div className="w-14 h-14 bg-blue-100 rounded-full border-2 border-white flex items-center justify-center text-blue-600 font-bold text-xl">
-              {data.senderName.charAt(0)}
+      {/* ── Transaction post ── */}
+      <div style={{ padding: "16px 16px 0" }}>
+        {/* Avatars + names */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+          <div style={{ display: "flex", flexShrink: 0 }}>
+            <div style={{ width: 46, height: 46, borderRadius: "50%", background: "#3D95CE", border: "3px solid white", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
+              <span style={{ color: "white", fontWeight: 800, fontSize: 18 }}>{(data.senderName || "S")[0].toUpperCase()}</span>
             </div>
-            <div className="w-14 h-14 bg-sky-100 rounded-full border-2 border-white flex items-center justify-center text-sky-600 font-bold text-xl">
-              {data.receiverName.charAt(0)}
+            <div style={{ width: 46, height: 46, borderRadius: "50%", background: "#5bb8e8", border: "3px solid white", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: -14 }}>
+              <span style={{ color: "white", fontWeight: 800, fontSize: 18 }}>{(data.receiverName || "R")[0].toUpperCase()}</span>
             </div>
           </div>
           <div>
-            <p className="text-lg font-medium leading-tight">
-              <span className="font-bold">{data.senderName}</span> paid{" "}
-              <span className="font-bold">{data.receiverName}</span>
+            <p style={{ margin: 0, fontSize: 15, fontWeight: 500, color: "#1a1a1a", lineHeight: 1.3 }}>
+              <strong>{data.senderName}</strong> paid <strong>{data.receiverName}</strong>
             </p>
-            <p className="text-sm text-gray-500 mt-0.5">{data.timestamp}</p>
+            <p style={{ margin: "3px 0 0", fontSize: 12, color: "#999" }}>{data.timestamp}</p>
           </div>
         </div>
 
-        {/* Note / Emoji */}
-        <div className="bg-[#f0f9ff] p-6 rounded-3xl mb-8 border border-blue-50">
-          <p className="text-2xl mb-1">{data.note || "💸 Payment"}</p>
-          <p className="text-xs text-blue-600 font-bold uppercase tracking-widest">
-            Payment Memo
+        {/* Note bubble */}
+        <div style={{ background: "#f0f9ff", borderRadius: 12, padding: "14px 16px", marginBottom: 4, border: "1px solid #e0f0fc" }}>
+          <p style={{ margin: "0 0 4px", fontSize: 16, color: "#1a1a1a", fontWeight: 500 }}>
+            {data.note && data.note.length > 0 ? data.note : "Payment"}
           </p>
+          <p style={{ margin: 0, fontSize: 10, color: "#3D95CE", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }}>Payment memo</p>
         </div>
 
-        {/* Amount */}
-        <div className="flex flex-col items-center py-8 border-t border-b border-gray-100 mb-8">
-          <p className="text-6xl font-black text-[#008CFF] tracking-tighter">
-            {getCurrencySymbol(data.currency)}
-            {data.amount}
-          </p>
-          <div
-            className={`flex items-center gap-2 mt-4 px-4 py-1.5 rounded-full text-xs font-bold border uppercase tracking-widest ${
-              data.status === "failed"
-                ? "bg-red-50 text-red-700 border-red-100"
-                : data.status === "pending"
-                  ? "bg-amber-50 text-amber-700 border-amber-100"
-                  : "bg-green-50 text-green-700 border-green-100"
-            }`}
-          >
-            {data.status === "failed"
-              ? "Failed"
-              : data.status === "pending"
-                ? "Pending"
-                : "Completed"}
-          </div>
-        </div>
-
-        {/* Social Actions */}
-        <div className="flex justify-around items-center pt-2">
-          <div className="flex flex-col items-center gap-1.5 text-gray-400">
-            <Heart size={24} />
-            <span className="text-[10px] font-bold">LIKE</span>
-          </div>
-          <div className="flex flex-col items-center gap-1.5 text-gray-400">
-            <MessageCircle size={24} />
-            <span className="text-[10px] font-bold">COMMENT</span>
-          </div>
-          <div className="flex flex-col items-center gap-1.5 text-[#008CFF]">
-            <Share size={24} />
-            <span className="text-[10px] font-bold">SHARE</span>
-          </div>
+        {/* Like / Comment / Share */}
+        <div style={{ display: "flex", padding: "10px 0", borderBottom: "1px solid #f0f0f0", gap: 20 }}>
+          <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
+            <HeartIcon size={22} color="#aaa" />
+          </button>
+          <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
+            <MessageIcon size={22} color="#aaa" />
+          </button>
+          <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
+            <ShareIcon size={22} color="#3D95CE" />
+          </button>
         </div>
       </div>
 
-      {/* Transaction ID Footer */}
-      <div className="mt-auto p-6 bg-gray-50 flex flex-col items-center border-t border-gray-100">
-        <p className="text-[9px] text-gray-600 uppercase font-bold tracking-widest mb-2">
-          Reference Number
+      {/* ── Amount section ── */}
+      <div style={{ padding: "20px 16px", borderBottom: "1px solid #f0f0f0", textAlign: "center" }}>
+        <p style={{ fontSize: 54, fontWeight: 900, color: "#3D95CE", margin: "0 0 10px", letterSpacing: -2 }}>
+          {sym}{parseFloat(data.amount).toLocaleString("en-US", { minimumFractionDigits: 2 })}
         </p>
-        <p className="text-[10px] font-mono text-gray-800 font-bold uppercase tracking-wider">
-          {data.transactionId.slice(0, 12)}
-        </p>
-        <p className="text-[8px] text-gray-500 mt-2 uppercase tracking-wide">
-          Venmo • Completed
-        </p>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 14px", borderRadius: 20, background: isSuccess ? "#e6f7ee" : isFailed ? "#fef2f2" : "#fffbeb", border: `1px solid ${isSuccess ? "#b7ebc9" : isFailed ? "#fecaca" : "#fde68a"}` }}>
+          <span style={{ width: 7, height: 7, borderRadius: "50%", background: isSuccess ? "#16a34a" : isFailed ? "#dc2626" : "#d97706", display: "inline-block" }} />
+          <span style={{ fontSize: 12, fontWeight: 700, color: isSuccess ? "#15803d" : isFailed ? "#dc2626" : "#d97706" }}>
+            {isSuccess ? "Completed" : isFailed ? "Failed" : "Pending"}
+          </span>
+        </div>
+      </div>
+
+      {/* ── Details ── */}
+      <div style={{ padding: "16px", flex: 1 }}>
+        {[
+          { label: "From", value: `${data.senderName} ${senderHandle}` },
+          { label: "To", value: `${data.receiverName} ${receiverHandle}` },
+          { label: "Reference", value: data.transactionId.slice(0, 12), mono: true },
+        ].map(({ label, value, mono }: any, i, arr) => (
+          <div key={label} style={{ display: "flex", justifyContent: "space-between", paddingBottom: i < arr.length - 1 ? 12 : 0, marginBottom: i < arr.length - 1 ? 12 : 0, borderBottom: i < arr.length - 1 ? "1px solid #f5f5f5" : "none" }}>
+            <span style={{ fontSize: 13, color: "#999", fontWeight: 500 }}>{label}</span>
+            <span style={{ fontSize: 13, color: "#333", fontWeight: 600, fontFamily: mono ? "monospace" : "inherit" }}>{value}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Bottom tab bar ── */}
+      <div style={{ background: "#f7f7f7", borderTop: "1px solid #eee", padding: "10px 0 6px", display: "flex", justifyContent: "space-around" }}>
+        {[
+          { Icon: HomeIcon, label: "Home" },
+          { Icon: ListIcon, label: "Activity" },
+          { Icon: MenuIcon, label: "More" },
+        ].map(({ Icon, label }) => (
+          <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+            <Icon size={22} color="#999" />
+            <span style={{ fontSize: 9, color: "#999", fontWeight: 600, letterSpacing: 0.3 }}>{label}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
