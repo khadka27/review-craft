@@ -148,7 +148,7 @@ export default function AIReviewGeneratorPage() {
   const actualReviewCount = reviewCountPreset === "Custom Number" ? customReviewCount : parseInt(reviewCountPreset, 10);
 
   const LOADING_STEPS = [
-    "Connecting to DeepSeek AI...",
+    "Connecting to AI...",
     "Analyzing specifications & target audience...",
     "Structuring narrative tone patterns...",
     "Generating realistic variations...",

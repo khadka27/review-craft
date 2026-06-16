@@ -46,10 +46,10 @@ export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
 
       {/* ── Paytm Top Nav ── */}
       <div style={{ backgroundColor: "#002970", padding: "14px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <svg width="70" height="22" viewBox="0 0 70 22" fill="none">
-          <text x="0" y="18" fontSize="20" fontWeight="900" fill="#00baf2" fontFamily="Arial">Pay</text>
-          <text x="33" y="18" fontSize="20" fontWeight="900" fill="white" fontFamily="Arial">tm</text>
-        </svg>
+        <div style={{ fontSize: 22, fontWeight: 900, fontFamily: "Arial, sans-serif", letterSpacing: "-0.5px", display: "flex", alignItems: "center" }}>
+          <span style={{ color: "#00baf2" }}>Pay</span>
+          <span style={{ color: "white" }}>tm</span>
+        </div>
         <div style={{ width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <XIcon size={16} color="white" />
         </div>
