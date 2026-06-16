@@ -467,7 +467,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-slate-900 bg-[#0B0F14]/98 backdrop-blur-md absolute left-0 right-0 top-16 shadow-2xl p-4 space-y-3 max-h-[calc(100vh-4rem)] overflow-y-auto z-50">
+          <div className="md:hidden border-t border-slate-900 bg-[#0B0F14] absolute left-0 right-0 top-16 shadow-2xl p-4 space-y-3 max-h-[calc(100vh-4rem)] overflow-y-auto z-50">
             <div className="space-y-1">
               {navigation.map((item) => (
                 <Link
