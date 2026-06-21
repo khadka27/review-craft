@@ -137,17 +137,24 @@ const PAYMENT_PLATFORMS = [
   { name: "Cash App", href: "/payment/cashapp", slug: "cashapp", description: "Cash App successful transfer receipt" },
 ];
 
+const BILL_PLATFORMS = [
+  { name: "Amazon Invoice", href: "/bill-generator/amazon", slug: "amazon", description: "Official Amazon order invoice PDF mockup" },
+  { name: "Walmart Invoice", href: "/bill-generator/walmart", slug: "walmart", description: "Standard Walmart order details layout" },
+  { name: "Supplement Receipt", href: "/bill-generator/supplement", slug: "supplement", description: "Vitamins and supplement shop invoice" },
+];
+
 const Navbar = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [desktopDropdown, setDesktopDropdown] = useState<
-    "reviews" | "chats" | "payments" | "ai" | null
+    "reviews" | "chats" | "payments" | "bills" | "ai" | null
   >(null);
   
   // Mobile accordion states
   const [mobileReviewsOpen, setMobileReviewsOpen] = useState(false);
   const [mobileChatsOpen, setMobileChatsOpen] = useState(false);
   const [mobilePaymentsOpen, setMobilePaymentsOpen] = useState(false);
+  const [mobileBillsOpen, setMobileBillsOpen] = useState(false);
   const [mobileAIOpen, setMobileAIOpen] = useState(false);
   
   const desktopMenuRef = useRef<HTMLDivElement>(null);
@@ -160,6 +167,7 @@ const Navbar = () => {
     setMobileReviewsOpen(false);
     setMobileChatsOpen(false);
     setMobilePaymentsOpen(false);
+    setMobileBillsOpen(false);
     setMobileAIOpen(false);
   }, [pathname]);
 
@@ -183,6 +191,7 @@ const Navbar = () => {
   const isReviewRoute = pathname.startsWith("/platform/");
   const isChatRoute = pathname.startsWith("/chat");
   const isPaymentRoute = pathname.startsWith("/payment");
+  const isBillRoute = pathname.startsWith("/bill-generator");
 
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-900 bg-[#0B0F14]/90 backdrop-blur-md text-slate-100 shadow-lg">
@@ -362,6 +371,56 @@ const Navbar = () => {
                 <div className="absolute left-0 top-full mt-2 w-[34rem] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
                   <div className="grid grid-cols-2 gap-2">
                     {PAYMENT_PLATFORMS.map((platform) => (
+                      <Link
+                        key={platform.slug}
+                        href={platform.href}
+                        className="group/item flex gap-3 rounded-xl p-2.5 hover:bg-slate-800/60 transition-all duration-200"
+                        onClick={() => setDesktopDropdown(null)}
+                      >
+                        <div className="flex items-center justify-center shrink-0 w-8 h-8 rounded-xl bg-slate-800/80 border border-slate-700/30 group-hover/item:bg-slate-700/80 group-hover/item:border-slate-600 transition-colors">
+                          {getBrandIcon(platform.slug, 16)}
+                        </div>
+                        <div className="min-w-0 text-left">
+                          <div className="text-sm font-semibold text-slate-200 group-hover/item:text-white transition-colors">{platform.name}</div>
+                          <div className="text-[11px] text-slate-400 truncate mt-0.5 group-hover/item:text-slate-300 transition-colors">{platform.description}</div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Bill Generator Link */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() =>
+                  setDesktopDropdown((open) =>
+                    open === "bills" ? null : "bills",
+                  )
+                }
+                className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all duration-200 inline-flex items-center gap-1 ${
+                  desktopDropdown === "bills" || isBillRoute
+                    ? "bg-indigo-950/60 text-indigo-300 border border-indigo-500/30"
+                    : "text-slate-300 hover:bg-slate-800/50 hover:text-white"
+                }`}
+                aria-expanded={desktopDropdown === "bills"}
+                aria-haspopup="menu"
+              >
+                Bill Generator
+                <ChevronDownIcon
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    desktopDropdown === "bills" ? "rotate-180" : ""
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+
+              {desktopDropdown === "bills" && (
+                <div className="absolute left-0 top-full mt-2 w-[34rem] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
+                  <div className="grid grid-cols-2 gap-2">
+                    {BILL_PLATFORMS.map((platform) => (
                       <Link
                         key={platform.slug}
                         href={platform.href}
@@ -607,6 +666,47 @@ const Navbar = () => {
                         onClick={() => {
                           setIsMenuOpen(false);
                           setMobilePaymentsOpen(false);
+                        }}
+                      >
+                        <span className="shrink-0">{getBrandIcon(platform.slug, 14)}</span>
+                        <span>{platform.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Bill Generator accordion */}
+              <div className="pt-1.5">
+                <button
+                  type="button"
+                  onClick={() => setMobileBillsOpen(!mobileBillsOpen)}
+                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                    isBillRoute
+                      ? "bg-indigo-950/40 text-indigo-300 border border-indigo-500/20"
+                      : "text-slate-300 hover:text-white hover:bg-slate-800/40"
+                  }`}
+                  aria-expanded={mobileBillsOpen}
+                >
+                  <span>Bill Generator</span>
+                  <ChevronDownIcon
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      mobileBillsOpen ? "rotate-180" : ""
+                    }`}
+                    aria-hidden="true"
+                  />
+                </button>
+
+                {mobileBillsOpen && (
+                  <div className="mt-2 rounded-2xl border border-slate-800 bg-slate-900/40 p-2 space-y-0.5 max-h-[15rem] overflow-y-auto">
+                    {BILL_PLATFORMS.map((platform) => (
+                      <Link
+                        key={platform.slug}
+                        href={platform.href}
+                        className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setMobileBillsOpen(false);
                         }}
                       >
                         <span className="shrink-0">{getBrandIcon(platform.slug, 14)}</span>

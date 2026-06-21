@@ -6,11 +6,34 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
 import { trackPageView } from "@/utils/analytics";
 import { ReviewGeneratorPage } from "@/components/ReviewGeneratorPage";
+import { FileText } from "lucide-react";
 
 type SupportedPlatformCard = {
   name: string;
   slug: string;
   subtitle: string;
+};
+
+const getPlatformHref = (slug: string) => {
+  const paymentSlugs = [
+    "paytm",
+    "stripe",
+    "googlepay",
+    "googlewallet",
+    "applepay",
+    "venmo",
+    "upi",
+    "phonepay",
+    "fonepay",
+    "cashapp",
+  ];
+  if (paymentSlugs.includes(slug)) {
+    return `/payment/${slug}`;
+  }
+  if (slug.endsWith("-bill")) {
+    return `/bill-generator/${slug.replace("-bill", "")}`;
+  }
+  return `/platform/${slug}`;
 };
 
 const HomePage = () => {
@@ -196,6 +219,21 @@ const HomePage = () => {
       subtitle: "Cash App Transaction",
       slug: "cashapp",
     },
+    {
+      name: "Amazon Invoice",
+      subtitle: "Amazon PDF Invoice Mockup",
+      slug: "amazon-bill",
+    },
+    {
+      name: "Walmart Invoice",
+      subtitle: "Walmart Order Invoice Mockup",
+      slug: "walmart-bill",
+    },
+    {
+      name: "Supplement Receipt",
+      subtitle: "Supplement Store Invoice Mockup",
+      slug: "supplement-bill",
+    },
   ];
   const usefulness = [
     "Create realistic review screenshots quickly for mockups and demos.",
@@ -348,12 +386,14 @@ const HomePage = () => {
             {supportedPlatforms.map((platform) => (
               <Link
                 key={platform.slug}
-                href={`/platform/${platform.slug}`}
+                href={getPlatformHref(platform.slug)}
                 className="rounded-2xl border border-gray-200 bg-white px-4 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
               >
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 shrink-0 text-gray-900">
-                    {getPlatformIcon(platform.slug, 26)}
+                    {getPlatformIcon(platform.slug.replace("-bill", ""), 26) || (
+                      <FileText size={26} className="text-emerald-600" />
+                    )}
                   </div>
                   <div className="min-w-0 text-left">
                     <div className="text-lg font-semibold text-gray-950 leading-tight">
