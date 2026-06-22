@@ -114,15 +114,38 @@ export const downloadComponentAsImage = async (
     hiddenContainer.appendChild(cloneNode);
     document.body.appendChild(hiddenContainer);
 
-    // Sync scroll positions from original node to cloned node (general fallback)
+    // Sync scroll positions from original node to cloned node using CSS translate transform
+    // This is because html-to-image internally clones the node again and loses the scrollTop property values of scrollable elements.
     const originalScrollables = Array.from(node.querySelectorAll('.overflow-y-auto, [style*="overflow-y: auto"], [style*="overflow: auto"]'));
     const clonedScrollables = Array.from(cloneNode.querySelectorAll('.overflow-y-auto, [style*="overflow-y: auto"], [style*="overflow: auto"]'));
     
     originalScrollables.forEach((orig, idx) => {
       const cloned = clonedScrollables[idx] as HTMLElement;
       if (cloned) {
-        cloned.scrollTop = (orig as HTMLElement).scrollTop;
-        cloned.scrollLeft = (orig as HTMLElement).scrollLeft;
+        const scrollTop = (orig as HTMLElement).scrollTop;
+        const scrollLeft = (orig as HTMLElement).scrollLeft;
+        
+        if (scrollTop > 0 || scrollLeft > 0) {
+          const wrapperDiv = document.createElement('div');
+          wrapperDiv.style.transform = `translate(-${scrollLeft}px, -${scrollTop}px)`;
+          wrapperDiv.style.width = '100%';
+          wrapperDiv.style.display = 'flex';
+          wrapperDiv.style.flexDirection = 'column';
+          wrapperDiv.style.flex = '1';
+          
+          // Copy layouts & spacing classes to preserve message gaps
+          Array.from(cloned.classList).forEach(cls => {
+            if (cls.startsWith('space-y-') || cls.startsWith('space-x-') || cls.startsWith('gap-') || cls.startsWith('flex-')) {
+              wrapperDiv.classList.add(cls);
+            }
+          });
+          
+          while (cloned.firstChild) {
+            wrapperDiv.appendChild(cloned.firstChild);
+          }
+          cloned.appendChild(wrapperDiv);
+        }
+        
         cloned.style.scrollbarWidth = 'none';
         cloned.style.setProperty('-ms-overflow-style', 'none');
       }
@@ -164,102 +187,42 @@ export const downloadComponentAsImage = async (
     // Give a brief moment for layout/rendering to settle
     await new Promise((r) => setTimeout(r, 250));
 
-    // Detect scroll container in original node to check if pagination is needed
-    const originalScrollElement = node.querySelector('.overflow-y-auto') as HTMLElement;
-    const clonedScrollContainer = cloneNode.querySelector('.overflow-y-auto') as HTMLElement;
-    
-    const clientHeight = originalScrollElement ? originalScrollElement.clientHeight : 0;
-    const scrollHeight = originalScrollElement ? originalScrollElement.scrollHeight : 0;
-    // If scroll height is significantly greater than client height, paginated export is required
-    const isScrollable = originalScrollElement && scrollHeight > clientHeight + 15;
-
-    // Helper function to capture the image of the clone node at a specific scroll offset
-    const capturePage = async (pageIdx: number): Promise<string> => {
-      if (clonedScrollContainer && originalScrollElement) {
-        const targetScroll = Math.min(pageIdx * clientHeight, scrollHeight - clientHeight);
-        clonedScrollContainer.scrollTop = targetScroll;
-      }
-      
-      // Allow scroll offset to settle
-      await new Promise((r) => setTimeout(r, 150));
-      
-      if (activeFormat === 'webp') {
-        const canvas = await toCanvas(cloneNode);
-        return canvas.toDataURL('image/webp', quality);
-      } else if (activeFormat === 'jpeg' || activeFormat === 'jpg') {
-        return await toJpeg(cloneNode, { quality, backgroundColor: '#ffffff' });
-      } else {
-        return await toPng(cloneNode, { pixelRatio: 2 });
-      }
-    };
-
     // PDF Export
     if (activeFormat === 'pdf') {
-      const pdf = new jsPDF({
-        orientation: exportWidth > exportHeight ? 'landscape' : 'portrait',
-        unit: 'px',
-        format: [exportWidth, exportHeight]
-      });
-
-      if (isScrollable) {
-        const totalPages = Math.ceil(scrollHeight / clientHeight);
-        for (let i = 0; i < totalPages; i++) {
-          const targetScroll = Math.min(i * clientHeight, scrollHeight - clientHeight);
-          if (clonedScrollContainer) {
-            clonedScrollContainer.scrollTop = targetScroll;
-          }
-          await new Promise((r) => setTimeout(r, 150));
-          const dataUrl = await toPng(cloneNode, { pixelRatio: 2 });
-          
-          if (i > 0) {
-            pdf.addPage([exportWidth, exportHeight], exportWidth > exportHeight ? 'landscape' : 'portrait');
-          }
-          pdf.addImage(dataUrl, 'PNG', 0, 0, exportWidth, exportHeight);
-        }
-      } else {
-        const dataUrl = await toPng(cloneNode, { pixelRatio: 2 });
-        pdf.addImage(dataUrl, 'PNG', 0, 0, exportWidth, exportHeight);
-      }
+      const dataUrl = await toPng(cloneNode, { pixelRatio: 2 });
+      const width = exportWidth;
+      const height = exportHeight;
       
+      const pdf = new jsPDF({
+        orientation: width > height ? 'landscape' : 'portrait',
+        unit: 'px',
+        format: [width, height]
+      });
+      
+      pdf.addImage(dataUrl, 'PNG', 0, 0, width, height);
       pdf.save(`${fileName}.pdf`);
       return;
     }
 
     // Image Export (PNG/JPG/WEBP)
-    if (isScrollable) {
-      const totalPages = Math.ceil(scrollHeight / clientHeight);
-      for (let i = 0; i < totalPages; i++) {
-        const dataUrl = await capturePage(i);
-        let fileExt = activeFormat === 'webp' ? 'webp' : (activeFormat === 'jpeg' || activeFormat === 'jpg' ? 'jpg' : 'png');
-        
-        const link = document.createElement('a');
-        link.download = `${fileName}-page-${i + 1}.${fileExt}`;
-        link.href = dataUrl;
-        link.click();
-        
-        // Wait 600ms between downloads to prevent chrome from blocking simultaneous downloads
-        await new Promise((r) => setTimeout(r, 600));
-      }
+    let dataUrl: string;
+    let fileExt = activeFormat;
+
+    if (activeFormat === 'webp') {
+      const canvas = await toCanvas(cloneNode);
+      dataUrl = canvas.toDataURL('image/webp', quality);
+    } else if (activeFormat === 'jpeg' || activeFormat === 'jpg') {
+      dataUrl = await toJpeg(cloneNode, { quality, backgroundColor: '#ffffff' });
+      fileExt = 'jpg';
     } else {
-      let dataUrl: string;
-      let fileExt = activeFormat;
-
-      if (activeFormat === 'webp') {
-        const canvas = await toCanvas(cloneNode);
-        dataUrl = canvas.toDataURL('image/webp', quality);
-      } else if (activeFormat === 'jpeg' || activeFormat === 'jpg') {
-        dataUrl = await toJpeg(cloneNode, { quality, backgroundColor: '#ffffff' });
-        fileExt = 'jpg';
-      } else {
-        dataUrl = await toPng(cloneNode, { pixelRatio: 2 });
-        fileExt = 'png';
-      }
-
-      const link = document.createElement('a');
-      link.download = `${fileName}.${fileExt}`;
-      link.href = dataUrl;
-      link.click();
+      dataUrl = await toPng(cloneNode, { pixelRatio: 2 });
+      fileExt = 'png';
     }
+
+    const link = document.createElement('a');
+    link.download = `${fileName}.${fileExt}`;
+    link.href = dataUrl;
+    link.click();
   } catch (error) {
     console.error('Error exporting file:', error);
   } finally {
