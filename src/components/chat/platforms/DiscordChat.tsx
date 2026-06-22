@@ -53,7 +53,7 @@ export const DiscordChat = ({ data }: { data: ChatData }) => {
                   </div>
                 )}
                 {msg.text && (
-                  <div className="text-[14px] leading-relaxed break-words">
+                  <div className="text-[14px] leading-relaxed break-words whitespace-pre-wrap">
                     {msg.text}
                   </div>
                 )}

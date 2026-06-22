@@ -66,7 +66,7 @@ export const IMessageChat = ({ data }: { data: ChatData }) => {
                         : "bg-[#ececef] text-[#111] rounded-bl-md"
                     }`}
                   >
-                    {msg.text}
+                    <div className="break-words whitespace-pre-wrap">{msg.text}</div>
                   </div>
                 </div>
               );

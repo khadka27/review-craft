@@ -71,7 +71,7 @@ export const InstagramChat = ({ data }: { data: ChatData }) => {
                     : "bg-[#27292d] text-white rounded-bl-md"
                 }`}
               >
-                {msg.text}
+                <div className="break-words whitespace-pre-wrap">{msg.text}</div>
               </div>
             </div>
           );

@@ -50,7 +50,7 @@ export const MessengerChat = ({ data }: { data: ChatData }) => {
                     <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover" />
                   </div>
                 )}
-                {msg.text && <p className="leading-snug">{msg.text}</p>}
+                {msg.text && <p className="leading-snug break-words whitespace-pre-wrap">{msg.text}</p>}
               </div>
             </div>
           );
