@@ -139,10 +139,10 @@ export function BillGeneratorPage({
   useEffect(() => {
     const randomName = getRandomUSName();
     
-    // Check local storage for custom logo overrides
-    const savedLogo = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_image") : null;
-    const savedName = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_name") : null;
-    const savedExt = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_ext") : null;
+    // Check local storage for custom logo overrides (scoped by platform)
+    const savedLogo = typeof window !== "undefined" ? localStorage.getItem(`reviewcraft_bill_${initialPlatform}_logo_image`) : null;
+    const savedName = typeof window !== "undefined" ? localStorage.getItem(`reviewcraft_bill_${initialPlatform}_logo_name`) : null;
+    const savedExt = typeof window !== "undefined" ? localStorage.getItem(`reviewcraft_bill_${initialPlatform}_logo_ext`) : null;
 
     setBillData({
       ...DEFAULT_MOCK_DATA[initialPlatform],
@@ -154,27 +154,27 @@ export function BillGeneratorPage({
     });
   }, [initialPlatform]);
 
-  // Save logo settings to LocalStorage when they change
+  // Save logo settings to LocalStorage when they change (scoped by platform)
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && billData.platform) {
       if (billData.logoImage) {
-        localStorage.setItem("reviewcraft_bill_logo_image", billData.logoImage);
+        localStorage.setItem(`reviewcraft_bill_${billData.platform}_logo_image`, billData.logoImage);
       } else {
-        localStorage.removeItem("reviewcraft_bill_logo_image");
+        localStorage.removeItem(`reviewcraft_bill_${billData.platform}_logo_image`);
       }
     }
-  }, [billData.logoImage]);
+  }, [billData.logoImage, billData.platform]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && billData.platform) {
       if (billData.logoName) {
-        localStorage.setItem("reviewcraft_bill_logo_name", billData.logoName);
+        localStorage.setItem(`reviewcraft_bill_${billData.platform}_logo_name`, billData.logoName);
       }
       if (billData.logoExtension !== undefined) {
-        localStorage.setItem("reviewcraft_bill_logo_ext", billData.logoExtension);
+        localStorage.setItem(`reviewcraft_bill_${billData.platform}_logo_ext`, billData.logoExtension);
       }
     }
-  }, [billData.logoName, billData.logoExtension]);
+  }, [billData.logoName, billData.logoExtension, billData.platform]);
 
   const handleDownload = async () => {
     setIsDownloading(true);
@@ -193,13 +193,14 @@ export function BillGeneratorPage({
     // If platform changes, load its default mock data
     if (updates.platform && updates.platform !== billData.platform) {
       const randomName = getRandomUSName();
+      const nextPlatform = updates.platform;
       
-      const savedLogo = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_image") : null;
-      const savedName = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_name") : null;
-      const savedExt = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_ext") : null;
+      const savedLogo = typeof window !== "undefined" ? localStorage.getItem(`reviewcraft_bill_${nextPlatform}_logo_image`) : null;
+      const savedName = typeof window !== "undefined" ? localStorage.getItem(`reviewcraft_bill_${nextPlatform}_logo_name`) : null;
+      const savedExt = typeof window !== "undefined" ? localStorage.getItem(`reviewcraft_bill_${nextPlatform}_logo_ext`) : null;
 
       setBillData({
-        ...DEFAULT_MOCK_DATA[updates.platform],
+        ...DEFAULT_MOCK_DATA[nextPlatform],
         billingName: randomName,
         shippingName: randomName,
         ...(savedLogo ? { logoImage: savedLogo } : {}),

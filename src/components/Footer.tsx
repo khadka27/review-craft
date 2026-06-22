@@ -1,10 +1,20 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentYear = mounted ? new Date().getFullYear() : 2026;
+  const currentDateString = mounted 
+    ? `${currentYear}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`
+    : "2026-06-22";
 
   const footerLinks = {
     product: [
@@ -78,7 +88,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white" suppressHydrationWarning={true}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
           {/* Brand Section */}
@@ -236,9 +246,12 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <div className="flex flex-wrap items-center justify-center sm:justify-start space-x-2 text-sm text-gray-400">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start space-x-2.5 text-sm text-gray-400">
               <span>
-                © {currentYear} ReviewCraft. Updated: {currentYear}-{String(new Date().getMonth() + 1).padStart(2, '0')}-{String(new Date().getDate()).padStart(2, '0')}.
+                © {currentYear} ReviewCraft. Updated: {currentDateString}.
+              </span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 border border-blue-500/25 text-blue-400 select-none">
+                v2.0
               </span>
             </div>
             <div className="text-xs sm:text-sm text-gray-400 text-center sm:text-right">

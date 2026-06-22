@@ -493,7 +493,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
             
             {/* Custom Logo Image Dropzone & URL Link */}
             <div className="col-span-1 sm:col-span-2 mt-2 pt-2 border-t border-[#1E293B]">
-              <label style={LABEL_STYLE}>Custom Logo Image (Overrides Text Logo)</label>
+              <label style={LABEL_STYLE}>Custom Logo Image (Renders next to brand name)</label>
               
               <div 
                 onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = "#3b82f6"; }}

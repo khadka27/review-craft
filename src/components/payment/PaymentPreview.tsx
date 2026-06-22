@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { TransactionData } from "@/types/payment";
 import { PaytmReceipt } from "./platforms/PaytmReceipt";
 import { StripeReceipt } from "./platforms/StripeReceipt";
@@ -25,11 +26,19 @@ const MobileStatusBar = ({
   isDark: boolean;
   batteryLevel?: number;
 }) => {
-  const time = new Date().toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const time = mounted 
+    ? new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+    : "09:41";
   // Render status bar elements in black for consistency
   const textColor = "text-black";
   const batteryGradientOffset = Math.min(100, Math.max(0, batteryLevel));

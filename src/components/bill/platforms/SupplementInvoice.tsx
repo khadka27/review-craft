@@ -43,20 +43,15 @@ export const SupplementInvoice = ({ data }: SupplementInvoiceProps) => {
       >
         {/* Top Header / Branding */}
         <div className="flex justify-between items-start border-b border-emerald-500 pb-5 mb-5">
-          {data.logoImage ? (
-            <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
+            {/* Logo Image or Health leaf logo in SVG */}
+            {data.logoImage ? (
               <img 
                 src={data.logoImage} 
                 alt="Logo" 
-                className="max-h-12 max-w-[180px] object-contain bg-white rounded p-1 border border-emerald-100/50"
+                className="max-h-12 max-w-[120px] object-contain bg-white rounded p-1 border border-emerald-100/50"
               />
-              <div>
-                <p className="text-xs text-gray-500 font-semibold">Premium Products & Custom Order Invoice</p>
-              </div>
-            </div>
-          ) : (
-            <>
-              {/* Health leaf logo in SVG */}
+            ) : (
               <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl border border-emerald-200">
                 <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m10.607 10.607l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
@@ -64,14 +59,14 @@ export const SupplementInvoice = ({ data }: SupplementInvoiceProps) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8 12c2.5 0 4-1.5 4-4s-1.5-2.5-4-2.5S4 7 4 9.5s1.5 2.5 4 2.5z" />
                 </svg>
               </div>
-              <div>
-                <h1 className="text-xl font-extrabold text-emerald-800 tracking-tight flex items-center gap-0.5">
-                  {renderLogo()}
-                </h1>
-                <p className="text-xs text-gray-500 mt-0.5 font-semibold">Premium Products & Custom Order Invoice</p>
-              </div>
-            </>
-          )}
+            )}
+            <div>
+              <h1 className="text-xl font-extrabold text-emerald-800 tracking-tight flex items-center gap-0">
+                {renderLogo()}
+              </h1>
+              <p className="text-xs text-gray-500 mt-0.5 font-semibold">Premium Products & Custom Order Invoice</p>
+            </div>
+          </div>
           <div className="text-right">
             <div className="text-sm font-bold text-emerald-800 tracking-wider uppercase">Official Invoice</div>
             <div className="text-xs text-gray-500 mt-1">Invoice ID: <span className="font-semibold text-gray-800">#{data.invoiceNumber || `VV-${data.orderId.substring(0, 7)}`}</span></div>
@@ -260,15 +255,14 @@ export const SupplementInvoice = ({ data }: SupplementInvoiceProps) => {
 
         {/* Center Header Details */}
         <div className="text-center mb-6 flex flex-col items-center">
-          {data.logoImage ? (
+          {data.logoImage && (
             <img 
               src={data.logoImage} 
               alt="Receipt Logo" 
               className="max-h-12 max-w-[150px] object-contain mb-2 filter grayscale"
             />
-          ) : (
-            <h2 className="text-lg font-bold tracking-widest">{receiptLogo}</h2>
           )}
+          <h2 className="text-lg font-bold tracking-widest">{receiptLogo}</h2>
           <p className="text-[10px] text-gray-500 uppercase tracking-wider mt-0.5">Official Sales Receipt</p>
           <div className="text-[11px] text-gray-700 mt-3 space-y-0.5 font-semibold">
             <p className="whitespace-pre-line">{data.sellerAddress || "VitaVibe Fulfillment Center\n1800 Health Parkway, Suite 100\nDenver, CO 80202"}</p>
@@ -451,18 +445,19 @@ export const SupplementInvoice = ({ data }: SupplementInvoiceProps) => {
         {/* Top Header Deep Blue Banner */}
         <div className="bg-[#1E293B] text-white p-6 rounded-xl flex justify-between items-center mb-6 shadow-sm">
           <div>
-            {data.logoImage ? (
-              <img 
-                src={data.logoImage} 
-                alt="Logo" 
-                className="max-h-10 max-w-[180px] object-contain bg-white rounded p-1 border border-slate-100"
-              />
-            ) : (
-              <h1 className="text-2xl font-black tracking-tight flex items-center gap-1">
+            <div className="flex items-center gap-3">
+              {data.logoImage && (
+                <img 
+                  src={data.logoImage} 
+                  alt="Logo" 
+                  className="max-h-10 max-w-[120px] object-contain bg-white rounded p-1 border border-slate-100"
+                />
+              )}
+              <h1 className="text-2xl font-black tracking-tight flex items-center gap-0">
                 <span>{main}</span>
                 <span className="text-[#38bdf8]">{ext}</span>
               </h1>
-            )}
+            </div>
             <p className="text-xs text-slate-300 mt-1 font-medium tracking-wide uppercase font-semibold">Transaction Invoice</p>
           </div>
           <div className="text-right">

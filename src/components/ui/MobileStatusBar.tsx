@@ -12,11 +12,19 @@ export const MobileStatusBar: React.FC<MobileStatusBarProps> = ({
   batteryLevel = 76,
   className = "",
 }) => {
-  const time = new Date().toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const time = mounted 
+    ? new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+    : "09:41";
 
   const textColor = isDark ? "text-white" : "text-black";
   const batteryGradientOffset = Math.min(100, Math.max(0, batteryLevel));
