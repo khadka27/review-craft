@@ -181,6 +181,39 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Bill Platform Links */}
+        <div className="mt-8 pt-8 border-t border-gray-800">
+          <h3 className="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-4">
+            E-Commerce Bill Generator
+          </h3>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2">
+            <li>
+              <Link
+                href="/bill-generator/amazon"
+                className="block rounded-lg border border-gray-800 bg-gray-800/40 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+              >
+                Amazon Invoice Mockup
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/bill-generator/walmart"
+                className="block rounded-lg border border-gray-800 bg-gray-800/40 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+              >
+                Walmart Invoice Mockup
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/bill-generator/supplement"
+                className="block rounded-lg border border-gray-800 bg-gray-800/40 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 transition-colors"
+              >
+                Product Bill (Custom Receipt)
+              </Link>
+            </li>
+          </ul>
+        </div>
+
         {/* Chat Platform Links */}
         <div className="mt-8 pt-8 border-t border-gray-800">
           <h3 className="text-sm font-semibold text-gray-200 uppercase tracking-wider mb-4">

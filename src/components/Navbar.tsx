@@ -140,7 +140,7 @@ const PAYMENT_PLATFORMS = [
 const BILL_PLATFORMS = [
   { name: "Amazon Invoice", href: "/bill-generator/amazon", slug: "amazon", description: "Official Amazon order invoice PDF mockup" },
   { name: "Walmart Invoice", href: "/bill-generator/walmart", slug: "walmart", description: "Standard Walmart order details layout" },
-  { name: "Supplement Receipt", href: "/bill-generator/supplement", slug: "supplement", description: "Vitamins and supplement shop invoice" },
+  { name: "Product Bill", href: "/bill-generator/supplement", slug: "supplement", description: "Custom product invoice & POS receipt mockup" },
 ];
 
 const Navbar = () => {

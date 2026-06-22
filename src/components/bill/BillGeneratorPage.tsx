@@ -37,14 +37,6 @@ const DEFAULT_MOCK_DATA: Record<BillPlatform, BillData> = {
         quantity: 1,
         sku: "B08N5N65X2",
         specifications: "Satin Nickel / Standard"
-      },
-      {
-        id: "amz-item-2",
-        name: "Echo Dot (5th Gen, 2022 release) with clock | Cloud Blue",
-        price: "49.99",
-        quantity: 2,
-        sku: "B09B8V1LZ3",
-        specifications: "Cloud Blue / 5th Generation"
       }
     ],
     shippingCost: "0.00",
@@ -77,14 +69,6 @@ const DEFAULT_MOCK_DATA: Record<BillPlatform, BillData> = {
         quantity: 1,
         sku: "592817",
         specifications: "Black / 4K Ultra HD"
-      },
-      {
-        id: "wm-item-2",
-        name: "Mainstays 20 inch Box 3-Speed Cooling Fan, Black",
-        price: "21.84",
-        quantity: 2,
-        sku: "718291",
-        specifications: "Black / 20-inch"
       }
     ],
     shippingCost: "5.99",
@@ -92,7 +76,7 @@ const DEFAULT_MOCK_DATA: Record<BillPlatform, BillData> = {
     discount: "5.00",
     currencySymbol: "$",
     currencyCode: "USD",
-    logoName: "Walmart",
+    logoName: "walmart",
     logoExtension: ""
   },
   supplement: {
@@ -102,8 +86,8 @@ const DEFAULT_MOCK_DATA: Record<BillPlatform, BillData> = {
     invoiceDate: "Jun 15, 2026",
     invoiceNumber: "VV-92810",
     paymentMethod: "Apple Pay",
-    sellerName: "VitaVibe.com",
-    sellerAddress: "VitaVibe Fulfillment Center, 1800 Health Parkway, Suite 100, Denver, CO 80202, US",
+    sellerName: "VitaVibe LLC",
+    sellerAddress: "VitaVibe Fulfillment Center\n1800 Health Parkway, Suite 100\nDenver, CO 80202\nUnited States",
     sellerTaxId: "TAX-72-831920",
     billingName: "Abish Khadka",
     billingAddress: "382 Ocean Ave, Apt 5A\nJersey City, NJ 07305\nUnited States",
@@ -117,22 +101,6 @@ const DEFAULT_MOCK_DATA: Record<BillPlatform, BillData> = {
         quantity: 1,
         sku: "ON-WHEY-CHOC",
         specifications: "Double Rich Chocolate / 5 lbs"
-      },
-      {
-        id: "supp-item-2",
-        name: "Creatine Monohydrate Powder (Microized Supplement)",
-        price: "29.99",
-        quantity: 2,
-        sku: "ON-CREA-UNFL",
-        specifications: "Unflavored / 60 Servings"
-      },
-      {
-        id: "supp-item-3",
-        name: "Daily Multivitamin Pack for Men (Essential Nutrient Tablets)",
-        price: "19.99",
-        quantity: 1,
-        sku: "VIT-M-DAILY",
-        specifications: "90 Tablets"
       }
     ],
     shippingCost: "0.00",
@@ -140,7 +108,7 @@ const DEFAULT_MOCK_DATA: Record<BillPlatform, BillData> = {
     discount: "10.00",
     currencySymbol: "$",
     currencyCode: "USD",
-    logoName: "VitaVibe",
+    logoName: "vitavibe",
     logoExtension: ".com"
   }
 };
@@ -165,23 +133,58 @@ export function BillGeneratorPage({
 }: BillGeneratorPageProps) {
   const [billData, setBillData] = useState<BillData>(DEFAULT_MOCK_DATA[initialPlatform]);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [exportFormat, setExportFormat] = useState<'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'>('png');
 
   // Sync state if initialPlatform changes and assign random names on mount/change to avoid hydration mismatch
   useEffect(() => {
     const randomName = getRandomUSName();
+    
+    // Check local storage for custom logo overrides
+    const savedLogo = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_image") : null;
+    const savedName = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_name") : null;
+    const savedExt = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_ext") : null;
+
     setBillData({
       ...DEFAULT_MOCK_DATA[initialPlatform],
       billingName: randomName,
       shippingName: randomName,
+      ...(savedLogo ? { logoImage: savedLogo } : {}),
+      ...(savedName ? { logoName: savedName } : {}),
+      ...(savedExt !== null ? { logoExtension: savedExt } : {}),
     });
   }, [initialPlatform]);
 
+  // Save logo settings to LocalStorage when they change
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (billData.logoImage) {
+        localStorage.setItem("reviewcraft_bill_logo_image", billData.logoImage);
+      } else {
+        localStorage.removeItem("reviewcraft_bill_logo_image");
+      }
+    }
+  }, [billData.logoImage]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (billData.logoName) {
+        localStorage.setItem("reviewcraft_bill_logo_name", billData.logoName);
+      }
+      if (billData.logoExtension !== undefined) {
+        localStorage.setItem("reviewcraft_bill_logo_ext", billData.logoExtension);
+      }
+    }
+  }, [billData.logoName, billData.logoExtension]);
+
   const handleDownload = async () => {
     setIsDownloading(true);
-    // Export the component using export utility
+    // Export the component using export utility using the logoName and extension
+    const logoNameClean = (billData.logoName || billData.platform).trim().toLowerCase().replace(/\s+/g, "");
+    const logoExtClean = (billData.logoExtension || "").trim().toLowerCase().replace(/\s+/g, "");
     await downloadComponentAsImage(
       "bill-invoice-capture",
-      `invoice-${billData.platform}-${Date.now()}`
+      `invoice-${logoNameClean}${logoExtClean}-${Date.now()}`,
+      { format: exportFormat }
     );
     setTimeout(() => setIsDownloading(false), 1500);
   };
@@ -190,10 +193,18 @@ export function BillGeneratorPage({
     // If platform changes, load its default mock data
     if (updates.platform && updates.platform !== billData.platform) {
       const randomName = getRandomUSName();
+      
+      const savedLogo = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_image") : null;
+      const savedName = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_name") : null;
+      const savedExt = typeof window !== "undefined" ? localStorage.getItem("reviewcraft_bill_logo_ext") : null;
+
       setBillData({
         ...DEFAULT_MOCK_DATA[updates.platform],
         billingName: randomName,
         shippingName: randomName,
+        ...(savedLogo ? { logoImage: savedLogo } : {}),
+        ...(savedName ? { logoName: savedName } : {}),
+        ...(savedExt !== null ? { logoExtension: savedExt } : {}),
       });
     } else {
       setBillData((prev) => ({ ...prev, ...updates } as BillData));
@@ -203,7 +214,7 @@ export function BillGeneratorPage({
   const platformDisplayNames: Record<BillPlatform, string> = {
     amazon: "Amazon",
     walmart: "Walmart",
-    supplement: "Supplement Store",
+    supplement: "Product Bill",
   };
 
   const platformName = platformDisplayNames[billData.platform];
@@ -379,26 +390,42 @@ export function BillGeneratorPage({
                   </div>
                 </div>
 
-                {/* Export CTA Button */}
-                <button
-                  id="download-invoice-btn"
-                  onClick={handleDownload}
-                  disabled={isDownloading}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-60 text-white"
-                  style={{
-                    background: isDownloading ? "#1D4ED8" : "#2563EB",
-                    boxShadow: "0 2px 12px rgba(37,99,235,0.35)",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isDownloading) (e.currentTarget.style.background = "#1D4ED8");
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isDownloading) (e.currentTarget.style.background = "#2563EB");
-                  }}
-                >
-                  <Download size={14} className={isDownloading ? "animate-bounce" : ""} />
-                  {isDownloading ? "Generating Image…" : "Download Receipt PNG"}
-                </button>
+                {/* Export Options & Button */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                  <select
+                    value={exportFormat}
+                    onChange={(e) => setExportFormat(e.target.value as any)}
+                    className="bg-[#0B0F14] border border-[#1E293B] hover:border-blue-500/50 text-[#F8FAFC] px-3.5 py-2.5 rounded-xl text-sm font-semibold focus:border-blue-500 outline-none cursor-pointer transition-all duration-200"
+                    style={{
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    <option value="png">PNG Image</option>
+                    <option value="webp">WEBP Image</option>
+                    <option value="jpg">JPG Image</option>
+                    <option value="pdf">PDF Document</option>
+                  </select>
+                  
+                  <button
+                    id="download-invoice-btn"
+                    onClick={handleDownload}
+                    disabled={isDownloading}
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-60 text-white cursor-pointer"
+                    style={{
+                      background: isDownloading ? "#1D4ED8" : "#2563EB",
+                      boxShadow: "0 2px 12px rgba(37,99,235,0.35)",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isDownloading) (e.currentTarget.style.background = "#1D4ED8");
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isDownloading) (e.currentTarget.style.background = "#2563EB");
+                    }}
+                  >
+                    <Download size={14} className={isDownloading ? "animate-bounce" : ""} />
+                    {isDownloading ? "Generating..." : `Download ${exportFormat.toUpperCase()}`}
+                  </button>
+                </div>
               </div>
             </div>
 

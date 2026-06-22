@@ -47,12 +47,20 @@ export const AmazonInvoice = ({ data }: AmazonInvoiceProps) => {
           <p className="text-gray-500 text-xs mt-1">Print this page for your records.</p>
         </div>
         <div className="flex flex-col items-end">
-          {/* Custom / Amazon Logo */}
+          {/* Custom Logo Image / Text */}
           <div className="text-black font-bold text-xl tracking-tight flex flex-col items-end">
-            <span className="italic font-extrabold text-2xl flex items-center">
-              {data.logoName || "amazon"}<span className="text-[#FF9900]">{data.logoExtension !== undefined ? data.logoExtension : ".com"}</span>
-            </span>
-            <span className="text-[10px] text-gray-500 tracking-wide font-normal -mt-1">Order Invoice</span>
+            {data.logoImage ? (
+              <img 
+                src={data.logoImage} 
+                alt="Logo" 
+                className="max-h-10 max-w-[150px] object-contain"
+              />
+            ) : (
+              <span className="italic font-extrabold text-2xl flex items-center">
+                {data.logoName || "amazon"}<span className="text-[#FF9900]">{data.logoExtension !== undefined ? data.logoExtension : ".com"}</span>
+              </span>
+            )}
+            <span className="text-[10px] text-gray-500 tracking-wide font-normal mt-0.5">Order Invoice</span>
           </div>
         </div>
       </div>

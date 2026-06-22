@@ -47,15 +47,23 @@ export const WalmartInvoice = ({ data }: WalmartInvoiceProps) => {
       {/* Top Header Logo */}
       <div className="flex justify-between items-center border-b-2 border-[#0071dc] pb-5 mb-5">
         <div className="flex items-center gap-2">
-          {/* Custom SVG Walmart spark logo */}
+          {/* Custom Logo Image / Text */}
           <div className="flex items-center">
-            <span className="text-[#0071dc] text-3xl font-extrabold tracking-tight flex items-center">
-              {data.logoName || "Walmart"}
-              {data.logoExtension && <span className="text-[#ffc220] font-semibold text-xl self-end mb-1">{data.logoExtension}</span>}
-              <svg className="w-8 h-8 ml-1 text-[#ffc220] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-              </svg>
-            </span>
+            {data.logoImage ? (
+              <img 
+                src={data.logoImage} 
+                alt="Logo" 
+                className="max-h-10 max-w-[150px] object-contain"
+              />
+            ) : (
+              <span className="text-[#0071dc] text-3xl font-extrabold tracking-tight flex items-center">
+                {data.logoName || "Walmart"}
+                {data.logoExtension && <span className="text-[#ffc220] font-semibold text-xl self-end mb-1">{data.logoExtension}</span>}
+                <svg className="w-8 h-8 ml-1 text-[#ffc220] flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+                </svg>
+              </span>
+            )}
           </div>
         </div>
         <div className="text-right">

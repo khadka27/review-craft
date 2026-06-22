@@ -44,6 +44,8 @@ export interface BillData {
   currencyCode: string;
   logoName?: string;
   logoExtension?: string;
+  templateStyle?: "classic" | "pos" | "modern";
+  logoImage?: string;
 }
 
 export interface BillPageTheme {

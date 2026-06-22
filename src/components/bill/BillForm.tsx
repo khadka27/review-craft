@@ -115,6 +115,154 @@ const US_NAMES = [
   "Anthony Green", "Harper Baker", "Mark Adams", "Evelyn Carter", "Donald Mitchell"
 ];
 
+const STATE_TAX_RATES: Record<string, number> = {
+  AL: 4.00,
+  AK: 0.00,
+  AZ: 5.60,
+  AR: 6.50,
+  CA: 7.25,
+  CO: 2.90,
+  CT: 6.35,
+  DE: 0.00,
+  DC: 6.00,
+  FL: 6.00,
+  GA: 4.00,
+  HI: 4.00,
+  ID: 6.00,
+  IL: 6.25,
+  IN: 7.00,
+  IA: 6.00,
+  KS: 6.50,
+  KY: 6.00,
+  LA: 4.45,
+  ME: 5.50,
+  MD: 6.00,
+  MA: 6.25,
+  MI: 6.00,
+  MN: 6.875,
+  MS: 7.00,
+  MO: 4.225,
+  MT: 0.00,
+  NE: 5.50,
+  NV: 6.85,
+  NH: 0.00,
+  NJ: 6.625,
+  NM: 4.875,
+  NY: 4.00,
+  NC: 4.75,
+  ND: 5.00,
+  OH: 5.75,
+  OK: 4.50,
+  OR: 0.00,
+  PA: 6.00,
+  RI: 7.00,
+  SC: 6.00,
+  SD: 4.20,
+  TN: 7.00,
+  TX: 6.25,
+  UT: 6.10,
+  VT: 6.00,
+  VA: 5.30,
+  WA: 6.50,
+  WV: 6.00,
+  WI: 5.00,
+  WY: 4.00
+};
+
+const STATE_TAX_NAMES: Record<string, string> = {
+  AL: "Alabama",
+  AK: "Alaska",
+  AZ: "Arizona",
+  AR: "Arkansas",
+  CA: "California",
+  CO: "Colorado",
+  CT: "Connecticut",
+  DE: "Delaware",
+  DC: "District of Columbia",
+  FL: "Florida",
+  GA: "Georgia",
+  HI: "Hawaii",
+  ID: "Idaho",
+  IL: "Illinois",
+  IN: "Indiana",
+  IA: "Iowa",
+  KS: "Kansas",
+  KY: "Kentucky",
+  LA: "Louisiana",
+  ME: "Maine",
+  MD: "Maryland",
+  MA: "Massachusetts",
+  MI: "Michigan",
+  MN: "Minnesota",
+  MS: "Mississippi",
+  MO: "Missouri",
+  MT: "Montana",
+  NE: "Nebraska",
+  NV: "Nevada",
+  NH: "New Hampshire",
+  NJ: "New Jersey",
+  NM: "New Mexico",
+  NY: "New York",
+  NC: "North Carolina",
+  ND: "North Dakota",
+  OH: "Ohio",
+  OK: "Oklahoma",
+  OR: "Oregon",
+  PA: "Pennsylvania",
+  RI: "Rhode Island",
+  SC: "South Carolina",
+  SD: "South Dakota",
+  TN: "Tennessee",
+  TX: "Texas",
+  UT: "Utah",
+  VT: "Vermont",
+  VA: "Virginia",
+  WA: "Washington",
+  WV: "West Virginia",
+  WI: "Wisconsin",
+  WY: "Wyoming"
+};
+
+const detectStateTaxRate = (address: string): number | null => {
+  const abbrMatch = address.match(/\b([A-Z]{2})\b\s+\d{5}/i);
+  if (abbrMatch) {
+    const stateCode = abbrMatch[1].toUpperCase();
+    if (stateCode in STATE_TAX_RATES) {
+      return STATE_TAX_RATES[stateCode];
+    }
+  }
+
+  for (const [code, name] of Object.entries(STATE_TAX_NAMES)) {
+    const escapedName = name.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const regex = new RegExp(`\\b${escapedName}\\b`, 'i');
+    if (regex.test(address)) {
+      return STATE_TAX_RATES[code];
+    }
+  }
+
+  return null;
+};
+
+const getSelectedStateCode = (address: string): string => {
+  if (!address) return "";
+  const abbrMatch = address.match(/\b([A-Z]{2})\b\s+\d{5}/i);
+  if (abbrMatch) {
+    const stateCode = abbrMatch[1].toUpperCase();
+    if (stateCode in STATE_TAX_RATES) {
+      return stateCode;
+    }
+  }
+
+  for (const [code, name] of Object.entries(STATE_TAX_NAMES)) {
+    const escapedName = name.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const regex = new RegExp(`\\b${escapedName}\\b`, 'i');
+    if (regex.test(address)) {
+      return code;
+    }
+  }
+  return "";
+};
+
 const US_ADDRESSES = [
   { street: "742 Evergreen Terrace", city: "Springfield", state: "OR", zip: "97477" },
   { street: "1600 Amphitheatre Pkwy", city: "Mountain View", state: "CA", zip: "94043" },
@@ -130,7 +278,11 @@ const US_ADDRESSES = [
   { street: "2200 Mission College Blvd", city: "Santa Clara", state: "CA", zip: "95054" },
   { street: "1600 Pennsylvania Ave NW", city: "Washington", state: "DC", zip: "20500" },
   { street: "1200 Intrepid Ave", city: "Philadelphia", state: "PA", zip: "19112" },
-  { street: "300 Pintail Rock Rd", city: "Grants Pass", state: "OR", zip: "97527" }
+  { street: "300 Pintail Rock Rd", city: "Grants Pass", state: "OR", zip: "97527" },
+  { street: "111 Congress Ave", city: "Austin", state: "TX", zip: "78701" },
+  { street: "401 Biscayne Blvd", city: "Miami", state: "FL", zip: "33132" },
+  { street: "150 E Gay St", city: "Columbus", state: "OH", zip: "43215" },
+  { street: "100 N Tryon St", city: "Charlotte", state: "NC", zip: "28202" }
 ];
 
 const US_PAYMENTS = [
@@ -211,6 +363,10 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
     const orderDate = getRandomPastDate(15);
     const invoiceDate = orderDate;
 
+    const detectedTaxRate = STATE_TAX_RATES[shipAddrObj.state] !== undefined
+      ? STATE_TAX_RATES[shipAddrObj.state].toFixed(3)
+      : billData.taxRate;
+
     onUpdate({
       shippingName: shipName,
       shippingAddress: shipAddress,
@@ -223,6 +379,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
       paymentMethod: randomPayment,
       orderDate,
       invoiceDate,
+      taxRate: detectedTaxRate,
     });
   };
 
@@ -275,7 +432,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                       : "bg-[#0B0F14] border-[#1E293B] text-slate-400 hover:text-slate-200"
                   }`}
                 >
-                  {p === "supplement" ? "Supplement" : p}
+                  {p === "supplement" ? "Product Bill" : p}
                 </button>
               );
             })}
@@ -308,16 +465,107 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
               id="bill-logo-name"
               label="Logo Brand Name"
               value={billData.logoName || ""}
-              onChange={(v) => onUpdate({ logoName: v })}
-              placeholder="e.g. VitaVibe"
+              onChange={(v) => onUpdate({ logoName: v.toLowerCase().replace(/\s+/g, "") })}
+              placeholder="e.g. vitavibe"
             />
             <InputField
               id="bill-logo-ext"
               label="Logo Domain Extension"
               value={billData.logoExtension || ""}
-              onChange={(v) => onUpdate({ logoExtension: v })}
+              onChange={(v) => onUpdate({ logoExtension: v.toLowerCase().replace(/\s+/g, "") })}
               placeholder="e.g. .com"
             />
+            {billData.platform === "supplement" && (
+              <div className="col-span-1 sm:col-span-2">
+                <label htmlFor="bill-template-style" style={LABEL_STYLE}>Template Style Preset</label>
+                <select
+                  id="bill-template-style"
+                  value={billData.templateStyle || "classic"}
+                  onChange={(e) => onUpdate({ templateStyle: e.target.value as any })}
+                  style={INPUT_STYLE}
+                >
+                  <option value="classic" style={{ background: "#111827" }}>Classic Emerald Invoice Layout</option>
+                  <option value="pos" style={{ background: "#111827" }}>POS Retail Thermal Receipt Layout</option>
+                  <option value="modern" style={{ background: "#111827" }}>Modern Corporate Product Invoice</option>
+                </select>
+              </div>
+            )}
+            
+            {/* Custom Logo Image Dropzone & URL Link */}
+            <div className="col-span-1 sm:col-span-2 mt-2 pt-2 border-t border-[#1E293B]">
+              <label style={LABEL_STYLE}>Custom Logo Image (Overrides Text Logo)</label>
+              
+              <div 
+                onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = "#3b82f6"; }}
+                onDragLeave={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = "#1e293b"; }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  e.currentTarget.style.borderColor = "#1e293b";
+                  const file = e.dataTransfer.files?.[0];
+                  if (file && file.type.startsWith("image/")) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                      const base64 = event.target?.result as string;
+                      onUpdate({ logoImage: base64 });
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                }}
+                className="border-2 border-dashed border-[#1E293B] rounded-xl p-4 text-center cursor-pointer hover:border-blue-500/50 transition-colors bg-[#0B0F14]/50 flex flex-col items-center justify-center min-h-[90px]"
+                onClick={() => document.getElementById("bill-logo-file-input")?.click()}
+              >
+                {billData.logoImage ? (
+                  <div className="flex flex-col items-center gap-2">
+                    <img 
+                      src={billData.logoImage} 
+                      alt="Custom Logo Preview" 
+                      className="max-h-12 max-w-[200px] object-contain rounded bg-white p-1"
+                    />
+                    <span className="text-xs text-rose-400 font-bold hover:underline" onClick={(e) => {
+                      e.stopPropagation();
+                      onUpdate({ logoImage: "" });
+                    }}>
+                      Remove Custom Logo Image
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center gap-1.5 text-slate-400">
+                    <svg className="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                    </svg>
+                    <p className="text-xs font-semibold text-slate-300">Drag & Drop Image or Click to Browse</p>
+                    <p className="text-[9px] text-slate-500">Supports PNG, JPG, SVG, WebP</p>
+                  </div>
+                )}
+                <input 
+                  id="bill-logo-file-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onload = (event) => {
+                        const base64 = event.target?.result as string;
+                        onUpdate({ logoImage: base64 });
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  }}
+                  className="hidden"
+                />
+              </div>
+
+              <div className="mt-3">
+                <InputField
+                  id="bill-logo-image-url"
+                  label="Or paste Logo Image URL/Link"
+                  value={billData.logoImage && !billData.logoImage.startsWith("data:") ? billData.logoImage : ""}
+                  onChange={(v) => onUpdate({ logoImage: v })}
+                  placeholder="https://example.com/logo.png"
+                />
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -410,6 +658,12 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                 rows={3}
                 value={billData.shippingAddress}
                 onChange={(e) => onUpdate({ shippingAddress: e.target.value })}
+                onBlur={(e) => {
+                  const detectedRate = detectStateTaxRate(e.target.value);
+                  if (detectedRate !== null) {
+                    onUpdate({ taxRate: detectedRate.toFixed(3) });
+                  }
+                }}
                 placeholder="123 Main St&#10;Apartment 4B&#10;New York, NY 10001"
                 style={{ ...INPUT_STYLE, resize: "none" }}
               />
@@ -569,10 +823,10 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                     placeholder="Product title"
                   />
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <InputField
                       id={`item-price-${item.id}`}
-                      label="Price"
+                      label="Unit Price"
                       icon={DollarSign}
                       value={item.price}
                       onChange={(v) => handleUpdateItem(item.id, { price: v })}
@@ -591,6 +845,22 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                         ))}
                       </select>
                     </div>
+                    <InputField
+                      id={`item-total-${item.id}`}
+                      label="Total Price"
+                      icon={DollarSign}
+                      value={((parseFloat(item.price) || 0) * item.quantity).toFixed(2)}
+                      onChange={(v) => {
+                        const parsedTotal = parseFloat(v);
+                        if (!isNaN(parsedTotal)) {
+                          const computedUnitPrice = (parsedTotal / item.quantity).toFixed(2);
+                          handleUpdateItem(item.id, { price: computedUnitPrice });
+                        } else if (v === "") {
+                          handleUpdateItem(item.id, { price: "" });
+                        }
+                      }}
+                      placeholder="29.99"
+                    />
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
@@ -653,6 +923,37 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
               onChange={(v) => onUpdate({ taxRate: v })}
               placeholder="8.25"
             />
+            <div>
+              <label htmlFor="bill-tax-preset" style={LABEL_STYLE}>
+                <Percent size={12} className="text-blue-500 mr-1.5" />
+                State Tax Preset
+              </label>
+              <select
+                id="bill-tax-preset"
+                value={getSelectedStateCode(billData.shippingAddress)}
+                onChange={(e) => {
+                  const stateCode = e.target.value;
+                  if (stateCode && STATE_TAX_RATES[stateCode] !== undefined) {
+                    onUpdate({ taxRate: STATE_TAX_RATES[stateCode].toFixed(3) });
+                  }
+                }}
+                style={INPUT_STYLE}
+              >
+                <option value="" style={{ background: "#111827" }}>-- Select State Preset --</option>
+                {Object.entries(STATE_TAX_RATES).sort((a, b) => {
+                  const nameA = STATE_TAX_NAMES[a[0]] || a[0];
+                  const nameB = STATE_TAX_NAMES[b[0]] || b[0];
+                  return nameA.localeCompare(nameB);
+                }).map(([state, rate]) => {
+                  const fullName = STATE_TAX_NAMES[state] || state;
+                  return (
+                    <option key={state} value={state} style={{ background: "#111827" }}>
+                      {fullName} ({rate.toFixed(2)}%)
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
             <InputField
               id="bill-discount"
               label="Discount Amount"
