@@ -28,10 +28,14 @@ export const MessengerChat = ({ data }: { data: ChatData }) => {
       <div className="flex-1 overflow-y-auto p-3 space-y-2">
         {data.messages.map((msg, index) => {
           const isMe = msg.sender === "me";
+          const hasImage = !!msg.image;
+          const hasText = !!msg.text;
+          const hasReaction = !!msg.reaction;
+
           return (
             <div 
               key={msg.id} 
-              className={`flex items-end gap-2 ${isMe ? "flex-row-reverse" : "flex-row"}`}
+              className={`flex items-end gap-2 relative ${isMe ? "flex-row-reverse" : "flex-row"} ${hasReaction ? "mb-3" : ""}`}
             >
               {!isMe && (
                 <div className="w-7 h-7 rounded-full bg-gray-300 overflow-hidden flex-shrink-0">
@@ -39,18 +43,29 @@ export const MessengerChat = ({ data }: { data: ChatData }) => {
                 </div>
               )}
               <div className={`
-                max-w-[70%] p-2.5 px-4 rounded-[20px] text-[15px]
-                ${isMe 
-                  ? "bg-blue-600 text-white"
-                  : (isDark ? "bg-[#242526]" : "bg-[#f0f0f0]")
+                max-w-[70%] text-[15px] relative
+                ${(hasImage && !hasText)
+                  ? ""
+                  : `p-2.5 px-4 rounded-[20px] ${
+                      isMe 
+                        ? "bg-blue-600 text-white" 
+                        : (isDark ? "bg-[#242526]" : "bg-[#f0f0f0]")
+                    }`
                 }
               `}>
-                {msg.image && (
-                  <div className="mb-2 rounded-2xl overflow-hidden">
-                    <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover" />
+                {hasImage && (
+                  <div className={`overflow-hidden rounded-[18px] ${hasText ? "mb-2" : ""}`}>
+                    <img src={msg.image} alt="" className="w-full h-auto max-h-[300px] object-cover block" />
                   </div>
                 )}
-                {msg.text && <p className="leading-snug break-words whitespace-pre-wrap">{msg.text}</p>}
+                {hasText && <p className="leading-snug break-words whitespace-pre-wrap">{msg.text}</p>}
+
+                {/* Floating Reaction badge for Messenger */}
+                {hasReaction && (
+                  <div className={`absolute -bottom-2.5 right-2 z-10 flex items-center bg-white dark:bg-[#3a3b3c] border ${isDark ? "border-[#4e4f50]" : "border-gray-200"} shadow-sm rounded-full px-1.5 py-0.5 text-[11px] select-none text-black dark:text-white`}>
+                    <span>{msg.reaction}</span>
+                  </div>
+                )}
               </div>
             </div>
           );

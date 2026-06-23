@@ -102,23 +102,62 @@ export const WhatsAppChat = ({ data }: { data: ChatData }) => {
 
         {data.messages.map((msg) => {
           const isMe = msg.sender === "me";
+          const hasImage = !!msg.image;
+          const hasText = !!msg.text;
+          const hasReaction = !!msg.reaction;
+
           return (
             <div
               key={msg.id}
-              className={`flex ${isMe ? "justify-end" : "justify-start"}`}
+              className={`flex ${isMe ? "justify-end" : "justify-start"} ${hasReaction ? "mb-3" : ""}`}
             >
               <div
-                className={`max-w-[80%] px-3 py-2 rounded-lg text-[14px] leading-snug ${
+                className={`max-w-[80%] rounded-lg text-[14px] leading-snug relative ${
                   isMe
                     ? (isDark ? "bg-[#005c4b] text-[#e9edef] rounded-tr-sm" : "bg-[#d9fdd3] text-[#111b21] rounded-tr-sm")
                     : (isDark ? "bg-[#202c33] text-[#e9edef] rounded-tl-sm" : "bg-[#ffffff] text-[#111b21] rounded-tl-sm")
+                } ${
+                  hasImage
+                    ? (hasText ? "p-[4px] pb-1" : "p-[3px]")
+                    : "px-3 py-2"
                 }`}
               >
-                <div className="break-words whitespace-pre-wrap">{msg.text}</div>
-                <div className={`mt-1 flex items-center justify-end gap-1 text-[11px] ${isDark ? "text-[#aebac1]" : "text-[#667781]"}`}>
-                  <span>{msg.timestamp || "8:20 PM"}</span>
-                  {isMe && renderTicks(msg.status)}
-                </div>
+                {hasImage ? (
+                  <div className="relative">
+                    <img
+                      src={msg.image}
+                      alt=""
+                      className="w-full h-auto max-h-[300px] object-cover rounded-md block"
+                    />
+                    {!hasText && (
+                      <div className="absolute bottom-1.5 right-1.5 bg-black/45 text-white rounded px-1.5 py-0.5 text-[10px] flex items-center gap-1 backdrop-blur-[1px] select-none">
+                        <span>{msg.timestamp || "8:20 PM"}</span>
+                        {isMe && renderTicks(msg.status)}
+                      </div>
+                    )}
+                  </div>
+                ) : null}
+
+                {hasText && (
+                  <div className={`break-words whitespace-pre-wrap ${hasImage ? "px-2 pt-1.5 pb-0.5" : ""}`}>
+                    {msg.text}
+                  </div>
+                )}
+
+                {/* For text-only or image-with-text, show timestamp underneath */}
+                {(!hasImage || hasText) && (
+                  <div className={`flex items-center justify-end gap-1 text-[11px] ${hasImage ? "px-2 pb-0.5 mt-0.5" : "mt-1"} ${isDark ? "text-[#aebac1]" : "text-[#667781]"}`}>
+                    <span>{msg.timestamp || "8:20 PM"}</span>
+                    {isMe && renderTicks(msg.status)}
+                  </div>
+                )}
+
+                {/* Floating Reaction badge for WhatsApp */}
+                {hasReaction && (
+                  <div className={`absolute -bottom-2.5 left-3 z-10 flex items-center bg-white dark:bg-[#202c33] border ${isDark ? "border-[#374248]" : "border-gray-200"} shadow-sm rounded-full px-1.5 py-0.5 text-[12px] select-none`}>
+                    <span>{msg.reaction}</span>
+                  </div>
+                )}
               </div>
             </div>
           );

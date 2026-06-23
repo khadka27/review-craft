@@ -9,11 +9,12 @@ export type ChatPlatform =
 
 export interface ChatMessage {
   id: string;
-  text: string;
+  text?: string;
   sender: "me" | "them";
   timestamp: string;
   status?: "sent" | "delivered" | "read";
   image?: string;
+  reaction?: string;
 }
 
 export interface ChatData {

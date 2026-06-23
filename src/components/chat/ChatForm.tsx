@@ -61,11 +61,11 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
   };
 
   const addMessage = () => {
-    if (!newMessage.trim()) return;
+    if (!newMessage.trim() && !newMessageImage) return;
     
     const message: ChatMessage = {
       id: Date.now().toString(),
-      text: newMessage,
+      text: newMessage.trim() || undefined,
       sender: newSender,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       status: "read",
@@ -258,7 +258,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
         <label className="block text-sm font-semibold text-gray-700">Messages</label>
         <div className="space-y-4 max-h-[400px] overflow-y-auto p-2 border rounded-lg bg-gray-50">
           {chatData.messages.map((msg) => (
-            <div key={msg.id} className={`flex flex-col gap-1 ${msg.sender === "me" ? "items-end" : "items-start"}`}>
+            <div key={msg.id} className={`flex flex-col gap-1.5 ${msg.sender === "me" ? "items-end" : "items-start"}`}>
               <div className="flex items-center gap-2 w-full max-w-[90%]">
                 <div className={`flex-1 p-2 rounded-lg text-sm shadow-sm ${msg.sender === "me" ? "bg-blue-600 text-white" : "bg-white text-gray-800 border"}`}>
                   {msg.image && (
@@ -273,7 +273,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                     </div>
                   )}
                   <textarea 
-                    value={msg.text}
+                    value={msg.text || ""}
                     onChange={(e) => updateMessage(msg.id, { text: e.target.value })}
                     className="w-full bg-transparent border-none focus:ring-0 resize-none p-0 min-h-[1.25rem]"
                     rows={1}
@@ -287,30 +287,58 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                 </button>
               </div>
               
-              <div className={`flex items-center gap-2 text-[10px] ${msg.sender === "me" ? "flex-row-reverse mr-1" : "ml-1"} text-gray-500`}>
-                <input 
-                  type="text" 
-                  value={msg.timestamp}
-                  onChange={(e) => updateMessage(msg.id, { timestamp: e.target.value })}
-                  className="bg-transparent border-none p-0 focus:ring-0 w-16 text-[10px]"
-                />
+              <div className={`flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] ${msg.sender === "me" ? "flex-row-reverse mr-1" : "ml-1"} text-gray-500`}>
+                <div className="flex items-center gap-1">
+                  <span className="font-semibold">Time:</span>
+                  <input 
+                    type="text" 
+                    value={msg.timestamp}
+                    onChange={(e) => updateMessage(msg.id, { timestamp: e.target.value })}
+                    className="bg-transparent border border-gray-200 rounded px-1 py-0.5 focus:ring-1 focus:ring-blue-500 w-16 text-[10px]"
+                  />
+                </div>
                 {msg.sender === "me" && (
-                  <select 
-                    value={msg.status}
-                    onChange={(e) => updateMessage(msg.id, { status: e.target.value as any })}
-                    className="bg-transparent border-none p-0 focus:ring-0 text-[10px] cursor-pointer"
-                  >
-                    <option value="sent">Sent</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="read">Read</option>
-                  </select>
+                  <div className="flex items-center gap-1">
+                    <span className="font-semibold">Status:</span>
+                    <select 
+                      value={msg.status}
+                      onChange={(e) => updateMessage(msg.id, { status: e.target.value as any })}
+                      className="bg-transparent border border-gray-200 rounded px-1 py-0.5 focus:ring-1 focus:ring-blue-500 text-[10px] cursor-pointer"
+                    >
+                      <option value="sent">Sent</option>
+                      <option value="delivered">Delivered</option>
+                      <option value="read">Read</option>
+                    </select>
+                  </div>
                 )}
                 <button 
                   onClick={() => updateMessage(msg.id, { sender: msg.sender === "me" ? "them" : "me" })}
-                  className="hover:text-blue-500 transition-colors"
+                  className="hover:text-blue-500 transition-colors border border-gray-200 rounded px-1.5 py-0.5 bg-white shadow-sm"
                 >
                   Switch Side
                 </button>
+
+                {/* Reaction Tool */}
+                <div className="flex items-center gap-1 bg-white border border-gray-200 rounded px-1.5 py-0.5 shadow-sm">
+                  <span className="font-semibold text-gray-400">React:</span>
+                  {["👍", "❤️", "😂", "😮", "😢", "😡"].map(emoji => (
+                    <button
+                      key={emoji}
+                      onClick={() => updateMessage(msg.id, { reaction: msg.reaction === emoji ? undefined : emoji })}
+                      className={`w-4 h-4 flex items-center justify-center rounded-full text-[10px] transition-all hover:scale-125 ${msg.reaction === emoji ? "bg-blue-100 border border-blue-300 scale-110" : ""}`}
+                      title={emoji}
+                    >
+                      {emoji}
+                    </button>
+                  ))}
+                  <input
+                    type="text"
+                    placeholder="Other..."
+                    value={msg.reaction || ""}
+                    onChange={(e) => updateMessage(msg.id, { reaction: e.target.value || undefined })}
+                    className="w-12 bg-transparent border-l border-gray-200 pl-1 ml-1 text-[10px] h-3.5 focus:ring-0 focus:border-none p-0 outline-none"
+                  />
+                </div>
               </div>
             </div>
           ))}
