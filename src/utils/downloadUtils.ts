@@ -342,7 +342,7 @@ const fallbackCopyTextToClipboard = (text: string): void => {
 export const downloadReviewAsImage = async (
   elementId: string,
   filename: string = "review",
-  format: "png" | "jpeg" = "png",
+  format: "png" | "jpeg" | "webp" = "png",
 ): Promise<void> => {
   let hiddenContainer: HTMLDivElement | null = null;
   let renderTarget: HTMLElement | null = null;
@@ -569,6 +569,9 @@ export const downloadReviewAsImage = async (
     try {
       if (format === "png") {
         dataUrl = await htmlToImage.toPng(renderTarget, options);
+      } else if (format === "webp") {
+        const canvas = await htmlToImage.toCanvas(renderTarget, options);
+        dataUrl = canvas.toDataURL("image/webp", 0.95);
       } else {
         dataUrl = await htmlToImage.toJpeg(renderTarget, options);
       }
@@ -606,6 +609,9 @@ export const downloadReviewAsImage = async (
       try {
         if (format === "png") {
           dataUrl = await htmlToImage.toPng(renderTarget, simpleOptions);
+        } else if (format === "webp") {
+          const canvas = await htmlToImage.toCanvas(renderTarget, simpleOptions);
+          dataUrl = canvas.toDataURL("image/webp", 0.95);
         } else {
           dataUrl = await htmlToImage.toJpeg(renderTarget, simpleOptions);
         }
@@ -623,10 +629,10 @@ export const downloadReviewAsImage = async (
             renderTarget,
             minimalOptions,
           );
-          dataUrl = canvas.toDataURL(
-            format === "jpeg" ? "image/jpeg" : "image/png",
-            0.9,
-          );
+          let mimeType = "image/png";
+          if (format === "jpeg") mimeType = "image/jpeg";
+          if (format === "webp") mimeType = "image/webp";
+          dataUrl = canvas.toDataURL(mimeType, 0.9);
           console.log("Canvas fallback succeeded");
         } catch (canvasError) {
           console.error("Canvas attempt failed:", canvasError);
@@ -660,9 +666,10 @@ export const downloadReviewAsImage = async (
                 fallbackCanvas.height / 2 + 15,
               );
 
-              dataUrl = fallbackCanvas.toDataURL(
-                format === "jpeg" ? "image/jpeg" : "image/png",
-              );
+              let mimeType = "image/png";
+              if (format === "jpeg") mimeType = "image/jpeg";
+              if (format === "webp") mimeType = "image/webp";
+              dataUrl = fallbackCanvas.toDataURL(mimeType);
               console.log("Manual canvas fallback created");
             } else {
               throw new Error("Cannot create fallback canvas");
@@ -697,7 +704,7 @@ export const downloadReviewAsImage = async (
     document.body.appendChild(link);
 
     // Use setTimeout to ensure the click happens after DOM update
-    setTimeout(() => {
+    setTimeout(async () => {
       link.click();
 
       // Track download event
@@ -705,6 +712,23 @@ export const downloadReviewAsImage = async (
         ? elementId.split("-")[0]
         : "unknown";
       trackDownload(platform, format);
+
+      // Also download webp if format is not webp
+      if (format !== "webp" as any) {
+        try {
+          const canvas = await htmlToImage.toCanvas(renderTarget!, options);
+          const webpDataUrl = canvas.toDataURL("image/webp", 0.95);
+          const webpLink = document.createElement("a");
+          webpLink.download = `${filename}.webp`;
+          webpLink.href = webpDataUrl;
+          webpLink.style.display = "none";
+          document.body.appendChild(webpLink);
+          webpLink.click();
+          document.body.removeChild(webpLink);
+        } catch (webpError) {
+          console.error("Failed to generate WebP download alongside:", webpError);
+        }
+      }
 
       // Clean up after successful download
       setTimeout(() => {

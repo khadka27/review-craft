@@ -6,6 +6,7 @@ import { BillForm } from "./BillForm";
 import { BillPreview } from "./BillPreview";
 import { Shield, Download, Sparkles, Zap, Lock } from "lucide-react";
 import { downloadComponentAsImage } from "@/utils/export";
+import { useToast } from "@/components/ui/Toast";
 
 interface BillGeneratorPageProps {
   initialPlatform?: BillPlatform;
@@ -176,6 +177,8 @@ export function BillGeneratorPage({
     }
   }, [billData.logoName, billData.logoExtension, billData.platform]);
 
+  const { success } = useToast();
+
   const handleDownload = async () => {
     setIsDownloading(true);
     // Export the component using export utility using the logoName and extension
@@ -186,6 +189,7 @@ export function BillGeneratorPage({
       `invoice-${logoNameClean}${logoExtClean}-${Date.now()}`,
       { format: exportFormat }
     );
+    success(`${exportFormat.toUpperCase()} downloaded successfully!`);
     setTimeout(() => setIsDownloading(false), 1500);
   };
 

@@ -51,11 +51,16 @@ export default function ContactPage() {
                   <div className="p-3.5 bg-blue-50/80 text-blue-600 rounded-2xl group-hover:bg-blue-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-600/20 transition-all duration-300">
                     <Mail size={24} />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-1 text-lg">Email Us</h4>
-                    <a href="mailto:info@fakereviewgenerator.com" className="text-gray-500 hover:text-blue-600 transition-colors font-medium">
-                      info@fakereviewgenerator.com
-                    </a>
+                  <div className="flex-grow">
+                    <h4 className="font-semibold text-gray-900 mb-2 text-lg">Email Us</h4>
+                    <div className="flex flex-col gap-1">
+                      <a href="mailto:support@fakereviewgenerator.com" className="text-gray-500 hover:text-blue-600 transition-colors font-medium block">
+                        support@fakereviewgenerator.com
+                      </a>
+                      <a href="mailto:info@fakereviewgenerator.com" className="text-gray-500 hover:text-blue-600 transition-colors font-medium block">
+                        info@fakereviewgenerator.com
+                      </a>
+                    </div>
                   </div>
                 </div>
 

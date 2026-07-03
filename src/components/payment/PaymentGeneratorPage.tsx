@@ -6,6 +6,7 @@ import { PaymentForm } from "./PaymentForm";
 import { PaymentPreview } from "./PaymentPreview";
 import { Shield, Download, Sparkles, Zap, Lock, ChevronRight } from "lucide-react";
 import { downloadComponentAsImage } from "@/utils/export";
+import { useToast } from "@/components/ui/Toast";
 
 interface PaymentGeneratorPageProps {
   initialPlatform?: PaymentPlatform;
@@ -62,14 +63,18 @@ export function PaymentGeneratorPage({
     }));
   }, []);
 
+  const { success } = useToast();
   const [isDownloading, setIsDownloading] = useState(false);
+  const [exportFormat, setExportFormat] = useState<'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'>('png');
 
   const handleDownload = async () => {
     setIsDownloading(true);
     await downloadComponentAsImage(
       "payment-receipt-capture",
-      `payment-${paymentData.platform}-${Date.now()}`
+      `payment-${paymentData.platform}-${Date.now()}`,
+      { format: exportFormat }
     );
+    success(`${exportFormat.toUpperCase()} downloaded successfully!`);
     setTimeout(() => setIsDownloading(false), 1500);
   };
 
@@ -280,27 +285,42 @@ export function PaymentGeneratorPage({
                   </div>
                 </div>
 
-                {/* Download button */}
-                <button
-                  id="download-receipt-btn"
-                  onClick={handleDownload}
-                  disabled={isDownloading}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-60"
-                  style={{
-                    background: isDownloading ? "#1D4ED8" : "#2563EB",
-                    color: "#F8FAFC",
-                    boxShadow: "0 2px 12px rgba(37,99,235,0.35)",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isDownloading) (e.currentTarget.style.background = "#1D4ED8");
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isDownloading) (e.currentTarget.style.background = "#2563EB");
-                  }}
-                >
-                  <Download size={14} className={isDownloading ? "animate-bounce" : ""} />
-                  {isDownloading ? "Downloading…" : "Download"}
-                </button>
+                {/* Export Options & Button */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                  <select
+                    value={exportFormat}
+                    onChange={(e) => setExportFormat(e.target.value as any)}
+                    className="bg-[#0B0F14] border border-[#1E293B] hover:border-blue-500/50 text-[#F8FAFC] px-3.5 py-2.5 rounded-xl text-sm font-semibold focus:border-blue-500 outline-none cursor-pointer transition-all duration-200"
+                    style={{
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    <option value="png">PNG Image</option>
+                    <option value="webp">WEBP Image</option>
+                    <option value="jpg">JPG Image</option>
+                    <option value="pdf">PDF Document</option>
+                  </select>
+                  
+                  <button
+                    id="download-receipt-btn"
+                    onClick={handleDownload}
+                    disabled={isDownloading}
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-60 text-white cursor-pointer"
+                    style={{
+                      background: isDownloading ? "#1D4ED8" : "#2563EB",
+                      boxShadow: "0 2px 12px rgba(37,99,235,0.35)",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isDownloading) (e.currentTarget.style.background = "#1D4ED8");
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isDownloading) (e.currentTarget.style.background = "#2563EB");
+                    }}
+                  >
+                    <Download size={14} className={isDownloading ? "animate-bounce" : ""} />
+                    {isDownloading ? "Generating..." : `Download ${exportFormat.toUpperCase()}`}
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -324,7 +344,7 @@ export function PaymentGeneratorPage({
                 style={{ color: "#475569" }}
               >
                 <ChevronRight size={11} />
-                <span>High-quality PNG • Mobile size • No watermark</span>
+                <span>High-quality {exportFormat.toUpperCase()} • Mobile size • No watermark</span>
               </div>
             </div>
           </div>

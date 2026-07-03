@@ -6,6 +6,7 @@ import { ChatForm } from "./ChatForm";
 import { ChatPreview } from "./ChatPreview";
 import { Shield, Download } from "lucide-react";
 import { downloadComponentAsImage } from "@/utils/export";
+import { useToast } from "@/components/ui/Toast";
 
 interface ChatGeneratorPageProps {
   initialPlatform?: ChatPlatform;
@@ -49,6 +50,21 @@ export function ChatGeneratorPage({
     heroDescriptionColor: "text-white opacity-90",
   };
 
+  const { success } = useToast();
+  const [exportFormat, setExportFormat] = useState<'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'>('png');
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownload = async () => {
+    setIsDownloading(true);
+    await downloadComponentAsImage(
+      "chat-screen-capture",
+      `chat-${chatData.platform}-${Date.now()}`,
+      { format: exportFormat }
+    );
+    success(`${exportFormat.toUpperCase()} downloaded successfully!`);
+    setTimeout(() => setIsDownloading(false), 1500);
+  };
+
   const updateChatData = (updates: Partial<ChatData>) => {
     setChatData((prev) => ({ ...prev, ...updates }));
   };
@@ -78,15 +94,34 @@ export function ChatGeneratorPage({
 
           {/* Right: Preview */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sticky top-8">
-             <div className="flex items-center justify-between mb-6">
+             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mb-6 gap-4">
                 <h2 className="text-2xl font-bold text-gray-900">Preview</h2>
-                <button
-                  onClick={() => downloadComponentAsImage("chat-screen-capture", `chat-${chatData.platform}-${Date.now()}`)}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-sm text-sm font-medium"
-                >
-                  <Download size={16} />
-                  Download Image
-                </button>
+                
+                {/* Export Options & Button */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <select
+                    value={exportFormat}
+                    onChange={(e) => setExportFormat(e.target.value as any)}
+                    className="bg-white border border-gray-300 hover:border-green-500/50 text-gray-700 px-3.5 py-2 rounded-lg text-sm font-semibold focus:border-green-500 outline-none cursor-pointer transition-all duration-200"
+                    style={{
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <option value="png">PNG Image</option>
+                    <option value="webp">WEBP Image</option>
+                    <option value="jpg">JPG Image</option>
+                    <option value="pdf">PDF Document</option>
+                  </select>
+                  
+                  <button
+                    onClick={handleDownload}
+                    disabled={isDownloading}
+                    className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-60 transition-colors shadow-sm text-sm font-medium cursor-pointer"
+                  >
+                    <Download size={16} />
+                    {isDownloading ? "Downloading..." : `Download ${exportFormat.toUpperCase()}`}
+                  </button>
+                </div>
              </div>
              <ChatPreview chatData={chatData} />
              

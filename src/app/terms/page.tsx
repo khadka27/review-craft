@@ -274,6 +274,13 @@ const TermsPage = () => {
               <li>
                 <strong>Email:</strong>{" "}
                 <a
+                  href="mailto:support@fakereviewgenerator.com"
+                  className="text-blue-600 hover:underline"
+                >
+                  support@fakereviewgenerator.com
+                </a>{" "}
+                /{" "}
+                <a
                   href="mailto:info@fakereviewgenerator.com"
                   className="text-blue-600 hover:underline"
                 >

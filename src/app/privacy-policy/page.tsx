@@ -321,9 +321,9 @@ export default function PrivacyPolicyPage() {
                     </li>
                   </ul>
                   <p className="mt-2 text-sm">
-                    To submit a request, email us at info@fakereviewgenerator.com
-                    with “California Privacy Request” in the subject. We may need to
-                    verify your identity.
+                    To submit a request, email us at support@fakereviewgenerator.com or info@fakereviewgenerator.com
+                  with “California Privacy Request” in the subject. We may need to
+                  verify your identity.
                   </p>
                 </div>
 
@@ -455,6 +455,13 @@ export default function PrivacyPolicyPage() {
               <ul className="space-y-1">
                 <li>
                   <strong>Email:</strong>{" "}
+                  <a
+                    href="mailto:support@fakereviewgenerator.com"
+                    className="text-blue-600 hover:underline"
+                  >
+                    support@fakereviewgenerator.com
+                  </a>{" "}
+                  /{" "}
                   <a
                     href="mailto:info@fakereviewgenerator.com"
                     className="text-blue-600 hover:underline"

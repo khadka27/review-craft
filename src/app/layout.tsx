@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ToastProvider } from "@/components/ui/Toast";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -96,12 +97,14 @@ export default function RootLayout({
         {/* Google Analytics */}
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <GoogleAnalytics
-          gaId={process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT"}
-        />
+        <ToastProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <GoogleAnalytics
+            gaId={process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT"}
+          />
+        </ToastProvider>
       </body>
     </html>
   );

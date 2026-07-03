@@ -13,9 +13,6 @@ import { MessageSquare, Sparkles } from "lucide-react";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
 
 const getBrandIcon = (slug: string, size = 18) => {
-  const existing = getPlatformIcon(slug, size);
-  if (existing) return existing;
-
   const iconStyle = { width: size, height: size };
   
   if (slug === "whatsapp") {
@@ -46,6 +43,161 @@ const getBrandIcon = (slug: string, size = 18) => {
       </svg>
     );
   }
+  if (slug === "aliexpress") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#E62E04]" style={iconStyle}>
+        <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm4.5 10c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 1.67 1.5 2.5-.67.5-1.5.5zm-9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 1.67 1.5 2.5-.67.5-1.5.5z" />
+      </svg>
+    );
+  }
+  if (slug === "alibaba") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#FF6A00]" style={iconStyle}>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 14h-7c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h7c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1zm-4.5-3.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z" />
+      </svg>
+    );
+  }
+  if (slug === "bestbuy") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#FFF200]" style={iconStyle}>
+        <path d="M21.4 11.6l-9-9c-.4-.4-.9-.6-1.4-.6H3c-1.1 0-2 .9-2 2v8c0 .5.2 1 .6 1.4l9 9c.4.4.9.6 1.4.6s1-.2 1.4-.6l8-8c.8-.8.8-2 0-2.8zM5.5 7C4.7 7 4 6.3 4 5.5S4.7 4 5.5 4 7 4.7 7 5.5 6.3 7 5.5 7z" />
+      </svg>
+    );
+  }
+  if (slug === "ebay") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" style={iconStyle}>
+        <text x="0" y="18" fontStyle="normal" fontWeight="bold" fontSize="18" fontFamily="sans-serif">
+          <tspan fill="#E53238">e</tspan>
+          <tspan fill="#0064D2">b</tspan>
+          <tspan fill="#F5AF02">a</tspan>
+          <tspan fill="#86B817">y</tspan>
+        </text>
+      </svg>
+    );
+  }
+  if (slug === "etsy") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#D5641C]" style={iconStyle}>
+        <rect width="24" height="24" rx="4" />
+        <text x="6" y="17" fill="white" fontWeight="bold" fontSize="16" fontFamily="serif">E</text>
+      </svg>
+    );
+  }
+  if (slug === "shopify") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#96BF48]" style={iconStyle}>
+        <path d="M19 6h-3c0-2.21-1.79-4-4-4S8 3.79 8 6H5c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-2c1.1 0 2 .9 2 2H10c0-1.1.9-2 2-2zm5 12h-2c0-1.66-1.34-3-3-3s-3 1.34-3 3H7c0-2.76 2.24-5 5-5s5 2.24 5 5z" />
+      </svg>
+    );
+  }
+  if (slug === "walmart") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#FFC220]" style={iconStyle}>
+        <rect x="11" y="2" width="2" height="6" rx="1" transform="rotate(0 12 12)" />
+        <rect x="11" y="2" width="2" height="6" rx="1" transform="rotate(60 12 12)" />
+        <rect x="11" y="2" width="2" height="6" rx="1" transform="rotate(120 12 12)" />
+        <rect x="11" y="2" width="2" height="6" rx="1" transform="rotate(180 12 12)" />
+        <rect x="11" y="2" width="2" height="6" rx="1" transform="rotate(240 12 12)" />
+        <rect x="11" y="2" width="2" height="6" rx="1" transform="rotate(300 12 12)" />
+      </svg>
+    );
+  }
+  if (slug === "flipkart") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#2874F0]" style={iconStyle}>
+        <rect width="24" height="24" rx="4" />
+        <path fill="#FFE11B" d="M17 9h-3c0-1.5-1-2.5-2.5-2.5S9 7.5 9 9H6v9h11V9zm-5-1.5c.8 0 1.5.7 1.5 1.5h-3c0-.8.7-1.5 1.5-1.5z" />
+        <text x="10" y="16" fill="white" fontWeight="bold" fontSize="10" fontFamily="sans-serif">f</text>
+      </svg>
+    );
+  }
+  if (slug === "daraz") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#FF5000]" style={iconStyle}>
+        <path d="M12 2L2 7l10 5 10-5-10-5zm0 10L2 7v10l10 5 10-5V7l-10 5z" />
+      </svg>
+    );
+  }
+  if (slug === "ecommerce") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-amber-400" style={iconStyle}>
+        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+      </svg>
+    );
+  }
+  if (slug === "tripadvisor") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#00AF87]" style={iconStyle}>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zm-10 0C5.62 13.5 4.5 12.38 4.5 11s1.12-2.5 2.5-2.5S9.5 9.62 9.5 11s-1.12 2.5-2.5 2.5zM12 18c-2.33 0-4.31-1.37-5.18-3.35h10.36c-.87 1.98-2.85 3.35-5.18 3.35z" />
+      </svg>
+    );
+  }
+  if (slug === "airbnb") {
+    return (
+      <svg viewBox="0 0 32 32" fill="currentColor" className="text-[#FF5A5F]" style={iconStyle}>
+        <path d="M16 1c-2.008 0-3.916 1.179-5.11 3.161L3.064 17.009c-2.124 3.513-2.124 7.844 0 11.357C4.195 30.221 6.103 31 8.11 31c1.474 0 2.94-.482 4.148-1.45L16 26.541l3.742 3.009c1.208.968 2.674 1.45 4.148 1.45 2.007 0 3.915-.779 5.046-2.634 2.124-3.513 2.124-7.844 0-11.357L21.11 4.161C19.916 2.179 18.008 1 16 1zm0 3c1.237 0 2.45.748 3.238 2.051l7.828 12.929c1.439 2.378 1.439 5.3 0 7.678-.718 1.186-1.921 1.792-3.148 1.792-.931 0-1.85-.304-2.617-.918L16 23.364l-5.301 4.268c-.767.614-1.686.918-2.617.918-1.227 0-2.43-.606-3.148-1.792-1.439-2.378-1.439-5.3 0-7.678l7.828-12.929C13.55 4.748 14.763 4 16 4zm0 6c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 2c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2z" />
+      </svg>
+    );
+  }
+  if (slug === "booking") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#003580]" style={iconStyle}>
+        <rect width="24" height="24" rx="4" />
+        <path fill="white" d="M6 6h4.5c1.4 0 2.3.8 2.3 2 0 .9-.6 1.6-1.4 1.8.9.2 1.6.9 1.6 2.1 0 1.5-1.1 2.1-2.5 2.1H6V6zm2 2.2v1.8h2.3c.5 0 .8-.2.8-.8s-.3-1-1-1H8zm0 3.8v2.4h2.5c.5 0 .9-.2.9-1s-.4-1.4-1.2-1.4H8zM16 14a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+      </svg>
+    );
+  }
+  if (slug === "playstore") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" style={iconStyle}>
+        <path d="M3.2 2.1C3.1 2.3 3 2.7 3 3.1V20.9c0 .4.1.8.2 1L12.4 12 3.2 2.1z" fill="#34A853" />
+        <path d="M15.8 8.6L3.2 2.1C3.2 2.1 3.2 2.1 3.2 2.1c.3-.2.8-.2 1.3.1l11.3 6.4 0 0z" fill="#4285F4" />
+        <path d="M12.4 12L3.2 21.9c.5.3 1 .3 1.3.1l11.3-6.4 0 0L12.4 12z" fill="#EA4335" />
+        <path d="M20.7 11.4l-4.9-2.8 0 0L12.4 12l3.4 3.4 4.9-2.8c.6-.3.9-.9.9-1.3 0-.4-.3-1-.9-1.3z" fill="#FBBC05" />
+      </svg>
+    );
+  }
+  if (slug === "fiverr") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#1DBF73]" style={iconStyle}>
+        <rect width="24" height="24" rx="4" />
+        <text x="4" y="17" fill="white" fontWeight="bold" fontSize="13" fontFamily="sans-serif">fi</text>
+      </svg>
+    );
+  }
+  if (slug === "testimonial") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-violet-400" style={iconStyle}>
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
+      </svg>
+    );
+  }
+  if (slug === "generic-1-star" || slug === "generic1star") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-red-500" style={iconStyle}>
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+      </svg>
+    );
+  }
+  if (slug === "generic-5-star" || slug === "generic5star") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-[#FFC72C]" style={iconStyle}>
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+      </svg>
+    );
+  }
+  if (slug === "supplement") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="text-teal-400" style={iconStyle}>
+        <path d="M16 2h-8c-1.1 0-2 .9-2 2v2h12V4c0-1.1-.9-2-2-2zm2 6H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V8zm-6 10c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
+      </svg>
+    );
+  }
+
+  // Fall back to getPlatformIcon if available
+  const existing = getPlatformIcon(slug, size);
+  if (existing) return existing;
 
   return <MessageSquare className="text-slate-400" style={iconStyle} />;
 };

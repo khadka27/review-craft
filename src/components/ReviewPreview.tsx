@@ -39,6 +39,7 @@ import {
   preloadImagesForDownload,
 } from "@/utils/downloadUtils";
 import { useState } from "react";
+import { useToast } from "@/components/ui/Toast";
 
 interface ReviewPreviewProps {
   reviewData: ReviewData;
@@ -49,6 +50,7 @@ export const ReviewPreview = ({
   reviewData,
   onRefresh,
 }: ReviewPreviewProps) => {
+  const { success, error: toastError } = useToast();
   const [isDownloading, setIsDownloading] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
   const isMobileView = (reviewData.deviceViewMode || "desktop") === "mobile";
@@ -128,7 +130,7 @@ export const ReviewPreview = ({
     }
   };
 
-  const handleDownload = async (format: "png" | "jpeg" = "png") => {
+  const handleDownload = async (format: "png" | "jpeg" | "webp" = "png") => {
     if (isDownloading) return;
 
     setIsDownloading(true);
@@ -161,7 +163,7 @@ export const ReviewPreview = ({
       );
 
       // Show success feedback
-      alert(`${format.toUpperCase()} downloaded successfully!`);
+      success(`${format.toUpperCase()} downloaded successfully!`);
 
       // Small delay to show success state
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -184,9 +186,7 @@ export const ReviewPreview = ({
           "Download completed with a generated avatar due to browser security restrictions.";
       }
 
-      alert(
-        `${userMessage}\n\nTip: Try refreshing the review to generate new images, or check your internet connection.`,
-      );
+      toastError(userMessage);
     } finally {
       setIsDownloading(false);
     }
@@ -211,16 +211,14 @@ export const ReviewPreview = ({
       await new Promise((resolve) => setTimeout(resolve, 300));
 
       await copyToClipboard("review-preview");
-      alert("Review copied to clipboard!");
+      success("Review copied to clipboard!");
       // Small delay to show success state
       await new Promise((resolve) => setTimeout(resolve, 500));
     } catch (error) {
       console.error("Failed to copy to clipboard:", error);
       const message =
         error instanceof Error ? error.message : "Unknown error occurred";
-      alert(
-        `Copy failed: ${message}. Please ensure your browser supports clipboard access.`,
-      );
+      toastError(`Copy failed: ${message}`);
     } finally {
       setIsCopying(false);
     }
@@ -283,6 +281,13 @@ export const ReviewPreview = ({
                 className="block w-full px-3 sm:px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
               >
                 JPEG
+              </button>
+              <button
+                onClick={() => handleDownload("webp")}
+                disabled={isDownloading}
+                className="block w-full px-3 sm:px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
+              >
+                WEBP
               </button>
             </div>
           </div>
