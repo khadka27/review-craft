@@ -22,7 +22,7 @@ interface ReviewFormProps {
   onUpdate: (data: Partial<ReviewData>) => void;
   onGenerateRandom: () => void;
   showPlatformSelector?: boolean;
-  platformCategory?: "social" | "ecommerce" | "professional" | "entertainment";
+  platformCategory?: "social" | "ecommerce" | "professional" | "entertainment" | "business";
 }
 
 export const ReviewForm = ({
