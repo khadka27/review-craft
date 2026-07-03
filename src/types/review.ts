@@ -29,6 +29,32 @@ export interface ReviewData {
   steamAwardCount?: number;
   steamHelpfulCount?: number;
   steamFunnyCount?: number;
+  // Clutch Specific
+  clutchMinProjectSize?: string;
+  clutchAvgHourlyRate?: string;
+  clutchEmployees?: string;
+  clutchServicesProvided?: string;
+  clutchReviewCount?: number;
+  clutchBottomTags?: string[];
+  // BBB Specific
+  bbbRating?: string; // A+, A, B+, B, C+, C, D+, D, F
+  bbbYearsInBusiness?: number;
+  bbbComplaintsCount?: number;
+  bbbAccredited?: boolean;
+  bbbCategory?: string;
+  // G2 / Capterra Specific
+  b2bCategory?: string;
+  b2bUsersCount?: number;
+  b2bBadge?: string; // e.g. "Leader", "High Performer", "Momentum Leader"
+  b2bPros?: string;
+  b2bCons?: string;
+  b2bCompanySize?: string;
+  b2bIndustry?: string;
+  // Angi Specific
+  angiGrade?: string; // A, B, C, D, F
+  angiServiceCategory?: string;
+  angiCostPaid?: string;
+  angiDateOfService?: string;
   location?: {
     city: string;
     state: string;
@@ -71,6 +97,12 @@ export type Platform =
   | "testimonial"
   | "generic5star"
   | "generic1star"
+  | "clutch"
+  | "bbb"
+  | "consumerreports"
+  | "g2"
+  | "capterra"
+  | "angi"
   | "appstore";
 
 export interface PlatformStyle {

@@ -53,7 +53,7 @@ const softwareSchema = {
     price: "0",
     priceCurrency: "USD",
   },
-  url: "https://fakereviewgenerator.com",
+  url: "https://www.fakereviewgenerator.com",
   description:
     "A web tool that generates review and comment mockups for product demos, UI design, and education.",
 };

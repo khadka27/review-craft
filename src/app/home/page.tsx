@@ -115,6 +115,36 @@ const HomePage = () => {
       slug: "linkedin",
     },
     {
+      name: "Clutch",
+      subtitle: "Clutch B2B Review Generator",
+      slug: "clutch",
+    },
+    {
+      name: "BBB",
+      subtitle: "Better Business Bureau Review",
+      slug: "bbb",
+    },
+    {
+      name: "Consumer Reports",
+      subtitle: "Product Score & Recommendation",
+      slug: "consumerreports",
+    },
+    {
+      name: "G2",
+      subtitle: "G2 Software Review Generator",
+      slug: "g2",
+    },
+    {
+      name: "Capterra",
+      subtitle: "Capterra Software Review",
+      slug: "capterra",
+    },
+    {
+      name: "Angi",
+      subtitle: "Angi Home Services Review",
+      slug: "angi",
+    },
+    {
       name: "Play Store",
       subtitle: "Play Store Layouts",
       slug: "playstore",

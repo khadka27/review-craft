@@ -1,176 +1,212 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fakereviewgenerator.com/</loc>
+    <loc>https://www.fakereviewgenerator.com/</loc>
     <lastmod>2025-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/home</loc>
+    <loc>https://www.fakereviewgenerator.com/home</loc>
     <lastmod>2025-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/about</loc>
+    <loc>https://www.fakereviewgenerator.com/about</loc>
     <lastmod>2025-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/terms</loc>
+    <loc>https://www.fakereviewgenerator.com/terms</loc>
     <lastmod>2025-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/amazon</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/amazon</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/airbnb</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/airbnb</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/booking</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/booking</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/testimonial</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/testimonial</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/discord</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/discord</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/ecommerce</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/ecommerce</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/facebook</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/facebook</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/fiverr</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/fiverr</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/generic-1-star</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://fakereviewgenerator.com/platform/generic-5-star</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/generic-1-star</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/google</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/generic-5-star</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.fakereviewgenerator.com/platform/google</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/imdb</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/imdb</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/instagram</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/instagram</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/linkedin</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/linkedin</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/appstore</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/appstore</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/playstore</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/playstore</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/reddit</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/reddit</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/shopify</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/shopify</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/steam</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/steam</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/tiktok</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/tiktok</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/tripadvisor</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/tripadvisor</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/trustpilot</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/trustpilot</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/twitter</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/twitter</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/yelp</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/yelp</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fakereviewgenerator.com/platform/youtube</loc>
+    <loc>https://www.fakereviewgenerator.com/platform/youtube</loc>
     <lastmod>2026-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.fakereviewgenerator.com/platform/clutch</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.fakereviewgenerator.com/platform/bbb</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.fakereviewgenerator.com/platform/consumerreports</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.fakereviewgenerator.com/platform/g2</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.fakereviewgenerator.com/platform/capterra</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.fakereviewgenerator.com/platform/angi</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

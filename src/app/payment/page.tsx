@@ -1,9 +1,16 @@
-"use client";
-
+import type { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
 import { Sparkles, CreditCard, ChevronRight, Check } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Fake Payment Receipt Generator - ReviewCraft",
+  description: "Create realistic payment receipt screenshots for GPay, Apple Pay, Stripe, Paytm, and more.",
+  alternates: {
+    canonical: "/payment",
+  },
+};
 
 interface PaymentPlatformInfo {
   name: string;

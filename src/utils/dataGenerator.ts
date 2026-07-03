@@ -1237,6 +1237,48 @@ const generateTitle = (platform: Platform): string => {
       "Exactly as described",
       "Highly recommend this product",
     ],
+    clutch: [
+      "Top Software Development Partner",
+      "Exceptional engineering and project delivery",
+      "Highly professional and responsive team",
+      "Reliable mobile and web solutions",
+      "Outstanding communication and results",
+    ],
+    bbb: [
+      "Excellent customer service and reliability",
+      "A+ business with outstanding professionalism",
+      "Highly trustworthy and accredited business",
+      "Resolved my concerns quickly and professionally",
+      "Consistent quality and business integrity",
+    ],
+    consumerreports: [
+      "Best-in-class performance and reliability",
+      "Excellent value for the price point",
+      "Highly recommended by independent testing",
+      "Top-rated product in its category",
+      "Outstanding build quality and durability",
+    ],
+    g2: [
+      "Game-changing software for our team",
+      "Best CRM we've used in years",
+      "Streamlined our entire workflow",
+      "Excellent support and onboarding experience",
+      "Worth every penny — ROI is incredible",
+    ],
+    capterra: [
+      "Transformed our business operations",
+      "Excellent software with great support",
+      "Easy to implement, powerful features",
+      "Best value for money in its category",
+      "Highly recommended for small businesses",
+    ],
+    angi: [
+      "Exceptional home service — would hire again",
+      "Professional, on-time, and affordable",
+      "Cleaned up perfectly after the job",
+      "Highly recommend for any home project",
+      "Exceeded expectations from start to finish",
+    ],
     netflix: [
       "Amazing show, binged it all!",
       "Great storyline and acting",
@@ -1467,6 +1509,36 @@ const generateContent = (platform: Platform): string => {
       "Amazing value for money! The product works perfectly and the build quality is impressive. Customer service was responsive when I had questions. Will definitely be purchasing from this seller again.",
       "Exactly what I was looking for! The product arrived quickly and was packaged securely. Quality is top-notch and it's been working flawlessly. Highly recommend to anyone considering this purchase!",
     ],
+    clutch: [
+      "Working with them has been a game-changer for our B2B product. Their technical expertise is stellar, but what really sets them apart is their project management. They delivered every milestone on time, kept communication lines open, and acted as a true strategic partner.",
+      "The engineering team delivered a highly polished mobile app on schedule. Their developers adapted quickly to our technical environment and provided valuable input on architectural decisions. The communication was seamless, and the quality of code was top-notch.",
+      "They demonstrated exceptional commitment to our web project from inception to launch. Their ability to solve complex technical challenges while keeping within our budget constraints was impressive. Genuinely professional agency that I would highly recommend.",
+    ],
+    bbb: [
+      "We had an issue with a recent order and contacted customer support. The team responded within 24 hours, acknowledged the problem, and offered a full replacement at no charge. This is what a trustworthy business looks like. Highly recommend.",
+      "This company has been accredited with the BBB for years and it shows in how they operate. Every interaction has been professional, timely, and honest. No hidden fees, no runarounds — just reliable service that does what it promises.",
+      "I filed a complaint with the BBB after a billing discrepancy and the business responded quickly to resolve the issue. They refunded the overcharge and followed up to ensure my satisfaction. That kind of accountability is rare and worth noting.",
+    ],
+    consumerreports: [
+      "After extensive testing across multiple use cases, this product stood out for its consistent performance and build quality. The control interface is intuitive and the energy efficiency rating is among the best in its class. Highly recommended by our testing panel.",
+      "Our testing found this product delivers on all its advertised claims. Battery life, performance under stress, and overall reliability ranked significantly above the category average. Members who prioritize longevity and build quality will not be disappointed.",
+      "Independent lab tests confirmed this product outperforms three comparable alternatives in its price range. Ease of setup, user-friendliness, and long-term reliability scores were all excellent. This is a solid, no-compromise choice for most consumers.",
+    ],
+    g2: [
+      "We evaluated five competing platforms before choosing this one. The onboarding was smooth and the learning curve was much gentler than expected. Our sales team was fully operational within a week. Support has been consistently responsive and knowledgeable.",
+      "The automation features alone saved us roughly 8 hours per week across our team. The integrations with our existing stack worked seamlessly out of the box. The UI is clean, logical, and easy to navigate even for non-technical users. Absolutely worth the investment.",
+      "We've been using this platform for six months and the ROI is very clear. Reporting has become dramatically easier, our pipeline is better managed, and visibility across departments has improved significantly. The customer success team genuinely cares about our outcomes.",
+    ],
+    capterra: [
+      "We switched to this platform from a legacy system and the difference has been night and day. Data migration was handled professionally and downtime was minimal. The feature set covers everything our team needs and the support team is quick to respond.",
+      "This software checks every box for our organization: ease of use, depth of features, and price point. We particularly appreciate the customizable dashboards and real-time reporting. Training new staff takes a fraction of the time it used to.",
+      "Capterra helped us narrow down to this platform and after six months of use, we have no regrets. The product does exactly what it promises, the vendor actively solicits feedback, and they push meaningful updates regularly. Very satisfied overall.",
+    ],
+    angi: [
+      "Hired this contractor for a bathroom remodel and could not be happier. The estimate was accurate, the crew was respectful of our home, and the finished work exceeded our expectations. They also cleaned up completely after the job. Will definitely hire again.",
+      "Called for an emergency plumbing repair on a Saturday and they had someone out within two hours. Fixed the issue efficiently and the pricing was fair and transparent. This is exactly the kind of reliable home service that is hard to find. Absolutely recommend.",
+      "We used Angi to find an electrician for a panel upgrade. The contractor arrived on time, explained everything clearly before starting, and completed the work ahead of schedule. The inspection passed on the first attempt. Professional, skilled, and honest.",
+    ],
     youtube: [
       "This video was incredibly helpful! The explanation was clear and easy to follow. I learned so much in just a few minutes. The production quality is excellent too. Subscribed!",
       "Amazing content as always! Your tutorials are the best on YouTube. The step-by-step approach makes everything so easy to understand. Keep up the fantastic work!",
@@ -1662,6 +1734,54 @@ export const platformStyles: Record<Platform, any> = {
     icon: getPlatformIcon("amazon"),
     hasRating: true,
     hasEngagement: true,
+    maxLength: 500,
+  },
+  clutch: {
+    name: "Clutch Reviews",
+    color: "#E2231A",
+    icon: getPlatformIcon("clutch"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 500,
+  },
+  bbb: {
+    name: "Better Business Bureau",
+    color: "#003087",
+    icon: getPlatformIcon("bbb"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 600,
+  },
+  consumerreports: {
+    name: "Consumer Reports",
+    color: "#C8102E",
+    icon: getPlatformIcon("consumerreports"),
+    hasRating: true,
+    hasEngagement: false,
+    maxLength: 500,
+  },
+  g2: {
+    name: "G2 Reviews",
+    color: "#FF492C",
+    icon: getPlatformIcon("g2"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 600,
+  },
+  capterra: {
+    name: "Capterra Reviews",
+    color: "#055AEF",
+    icon: getPlatformIcon("capterra"),
+    hasRating: true,
+    hasEngagement: true,
+    maxLength: 600,
+  },
+  angi: {
+    name: "Angi Reviews",
+    color: "#FF6B35",
+    icon: getPlatformIcon("angi"),
+    hasRating: true,
+    hasEngagement: false,
     maxLength: 500,
   },
   youtube: {
@@ -1945,6 +2065,7 @@ export const generateRandomReviewData = async (
       case "appstore":
       case "fiverr":
       case "booking":
+      case "clutch":
       case "ecommerce":
       case "generic5star":
       case "generic1star":
@@ -2010,6 +2131,66 @@ export const generateRandomReviewData = async (
           steamFunnyCount: Math.floor(Math.random() * 20),
         }
       : {}),
+    ...(platform === "clutch"
+      ? {
+          clutchMinProjectSize: "$25,000+",
+          clutchAvgHourlyRate: "$50 - $99 / hr",
+          clutchEmployees: "250 - 999",
+          clutchServicesProvided: "20% Mobile App Development, 10% AI Agents, 10% AI Consulting, +6 services",
+          clutchReviewCount: 33,
+          clutchBottomTags: [
+            "Experienced",
+            "Reviewed 6 times in the past 6 months",
+            "4.8 out of 5.0 rating for cost",
+            "Completed projects in 3 countries"
+          ]
+        }
+      : {}),
+    ...(platform === "bbb"
+      ? {
+          bbbRating: "A+",
+          bbbYearsInBusiness: Math.floor(Math.random() * 20) + 3,
+          bbbComplaintsCount: Math.floor(Math.random() * 10),
+          bbbAccredited: true,
+          bbbCategory: "Professional Services",
+        }
+      : {}),
+    ...(platform === "consumerreports"
+      ? {
+          b2bCategory: "Electronics",
+          b2bUsersCount: Math.floor(Math.random() * 5000) + 500,
+        }
+      : {}),
+    ...(platform === "g2"
+      ? {
+          b2bCategory: "CRM Software",
+          b2bUsersCount: Math.floor(Math.random() * 8000) + 1000,
+          b2bBadge: ["Leader", "High Performer", "Momentum Leader", "Best Support"][Math.floor(Math.random() * 4)],
+          b2bPros: "Intuitive interface, excellent customer support, and seamless integrations.",
+          b2bCons: "Pricing can be steep for smaller teams. Some features have a learning curve.",
+          b2bCompanySize: "Mid-Market (51-1000 emp.)",
+          b2bIndustry: "Information Technology & Services",
+        }
+      : {}),
+    ...(platform === "capterra"
+      ? {
+          b2bCategory: "Project Management Software",
+          b2bUsersCount: Math.floor(Math.random() * 4000) + 500,
+          b2bBadge: "Top Rated",
+          b2bPros: "Very easy to onboard. Dashboard gives a clear overview and integrations work seamlessly.",
+          b2bCons: "Mobile app could use improvement. Some reporting features feel limited.",
+          b2bCompanySize: "Small Business (1-50 employees)",
+          b2bIndustry: "Marketing & Advertising",
+        }
+      : {}),
+    ...(platform === "angi"
+      ? {
+          angiGrade: ["A", "A", "A", "B", "A+"][Math.floor(Math.random() * 5)],
+          angiServiceCategory: ["General Contractor", "Plumber", "Electrician", "Painter", "Landscaper"][Math.floor(Math.random() * 5)],
+          angiCostPaid: ["$500 - $1,000", "$1,000 - $2,500", "$2,500 - $5,000", "$250 - $500"][Math.floor(Math.random() * 4)],
+          angiDateOfService: new Date(Date.now() - Math.random() * 90 * 24 * 60 * 60 * 1000).toLocaleDateString("en-US", { month: "long", year: "numeric" }),
+        }
+      : {}),
     location: personData.location,
   };
 };
@@ -2053,6 +2234,7 @@ export const generateRandomReviewDataSync = (
       case "playstore":
       case "fiverr":
       case "booking":
+      case "clutch":
       case "ecommerce":
       case "generic5star":
       case "generic1star":
@@ -2116,6 +2298,66 @@ export const generateRandomReviewDataSync = (
           steamAwardCount: Math.floor(Math.random() * 5),
           steamHelpfulCount: Math.floor(Math.random() * 50),
           steamFunnyCount: Math.floor(Math.random() * 20),
+        }
+      : {}),
+    ...(platform === "clutch"
+      ? {
+          clutchMinProjectSize: "$25,000+",
+          clutchAvgHourlyRate: "$50 - $99 / hr",
+          clutchEmployees: "250 - 999",
+          clutchServicesProvided: "20% Mobile App Development, 10% AI Agents, 10% AI Consulting, +6 services",
+          clutchReviewCount: 33,
+          clutchBottomTags: [
+            "Experienced",
+            "Reviewed 6 times in the past 6 months",
+            "4.8 out of 5.0 rating for cost",
+            "Completed projects in 3 countries"
+          ]
+        }
+      : {}),
+    ...(platform === "bbb"
+      ? {
+          bbbRating: "A+",
+          bbbYearsInBusiness: Math.floor(Math.random() * 20) + 3,
+          bbbComplaintsCount: Math.floor(Math.random() * 10),
+          bbbAccredited: true,
+          bbbCategory: "Professional Services",
+        }
+      : {}),
+    ...(platform === "consumerreports"
+      ? {
+          b2bCategory: "Electronics",
+          b2bUsersCount: Math.floor(Math.random() * 5000) + 500,
+        }
+      : {}),
+    ...(platform === "g2"
+      ? {
+          b2bCategory: "CRM Software",
+          b2bUsersCount: Math.floor(Math.random() * 8000) + 1000,
+          b2bBadge: ["Leader", "High Performer", "Momentum Leader", "Best Support"][Math.floor(Math.random() * 4)],
+          b2bPros: "Intuitive interface, excellent customer support, and seamless integrations.",
+          b2bCons: "Pricing can be steep for smaller teams. Some features have a learning curve.",
+          b2bCompanySize: "Mid-Market (51-1000 emp.)",
+          b2bIndustry: "Information Technology & Services",
+        }
+      : {}),
+    ...(platform === "capterra"
+      ? {
+          b2bCategory: "Project Management Software",
+          b2bUsersCount: Math.floor(Math.random() * 4000) + 500,
+          b2bBadge: "Top Rated",
+          b2bPros: "Very easy to onboard. Dashboard gives a clear overview and integrations work seamlessly.",
+          b2bCons: "Mobile app could use improvement. Some reporting features feel limited.",
+          b2bCompanySize: "Small Business (1-50 employees)",
+          b2bIndustry: "Marketing & Advertising",
+        }
+      : {}),
+    ...(platform === "angi"
+      ? {
+          angiGrade: ["A", "A", "A", "B", "A+"][Math.floor(Math.random() * 5)],
+          angiServiceCategory: ["General Contractor", "Plumber", "Electrician", "Painter", "Landscaper"][Math.floor(Math.random() * 5)],
+          angiCostPaid: ["$500 - $1,000", "$1,000 - $2,500", "$2,500 - $5,000", "$250 - $500"][Math.floor(Math.random() * 4)],
+          angiDateOfService: new Date(Date.now() - Math.random() * 90 * 24 * 60 * 60 * 1000).toLocaleDateString("en-US", { month: "long", year: "numeric" }),
         }
       : {}),
     location: {

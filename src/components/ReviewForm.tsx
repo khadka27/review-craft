@@ -758,6 +758,133 @@ export const ReviewForm = ({
         </div>
       )}
 
+      {/* Clutch Specific Settings */}
+      {reviewData.platform === "clutch" && (
+        <div className="space-y-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+          <h3 className="text-sm font-bold text-gray-800 flex items-center gap-2">
+            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+            Clutch Specific Settings
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="clutchVerified"
+                checked={reviewData.verified || false}
+                onChange={(e) =>
+                  handleInputChange("verified", e.target.checked)
+                }
+                className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+              />
+              <label
+                htmlFor="clutchVerified"
+                className="text-xs sm:text-sm font-semibold text-gray-700"
+              >
+                Premier Verified Badge
+              </label>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Min. Project Size
+              </label>
+              <input
+                type="text"
+                value={reviewData.clutchMinProjectSize || ""}
+                onChange={(e) =>
+                  handleInputChange("clutchMinProjectSize", e.target.value)
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                placeholder="e.g. $25,000+"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Avg. Hourly Rate
+              </label>
+              <input
+                type="text"
+                value={reviewData.clutchAvgHourlyRate || ""}
+                onChange={(e) =>
+                  handleInputChange("clutchAvgHourlyRate", e.target.value)
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                placeholder="e.g. $50 - $99 / hr"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Employee Count
+              </label>
+              <input
+                type="text"
+                value={reviewData.clutchEmployees || ""}
+                onChange={(e) =>
+                  handleInputChange("clutchEmployees", e.target.value)
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                placeholder="e.g. 250 - 999"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Reviews Count Link
+              </label>
+              <input
+                type="number"
+                value={reviewData.clutchReviewCount || 0}
+                onChange={(e) =>
+                  handleInputChange("clutchReviewCount", parseInt(e.target.value) || 0)
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                placeholder="e.g. 33"
+              />
+            </div>
+
+            <div className="space-y-2 sm:col-span-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+                Services Provided (Legend)
+              </label>
+              <input
+                type="text"
+                value={reviewData.clutchServicesProvided || ""}
+                onChange={(e) =>
+                  handleInputChange("clutchServicesProvided", e.target.value)
+                }
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm"
+                placeholder="e.g. 20% Mobile App Dev, 10% AI Agents, 10% AI Consulting, +6 services"
+              />
+            </div>
+
+            {/* Bottom tag fields */}
+            <div className="space-y-2 sm:col-span-2">
+              <label className="block text-xs sm:text-sm font-bold text-gray-800">
+                Bottom Badges / Tags (4 items)
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[0, 1, 2, 3].map((idx) => (
+                  <input
+                    key={idx}
+                    type="text"
+                    value={(reviewData.clutchBottomTags || [])[idx] || ""}
+                    onChange={(e) => {
+                      const tags = [...(reviewData.clutchBottomTags || ["", "", "", ""])];
+                      tags[idx] = e.target.value;
+                      handleInputChange("clutchBottomTags", tags);
+                    }}
+                    className="w-full p-2 border border-gray-300 rounded-lg text-xs"
+                    placeholder={`Tag ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Title Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">

@@ -326,7 +326,67 @@ export const getPlatformIcon = (platform: string, size = 20) => {
     case "generic1star":
     case "generic-1-star":
       return <YelpIcon {...iconProps} />;
+    case "clutch":
+      return <ClutchIcon {...iconProps} />;
+    case "bbb":
+      return <BBBIcon {...iconProps} />;
+    case "consumerreports":
+      return <ConsumerReportsIcon {...iconProps} />;
+    case "g2":
+      return <G2Icon {...iconProps} />;
+    case "capterra":
+      return <CapterraIcon {...iconProps} />;
+    case "angi":
+      return <AngiIcon {...iconProps} />;
     default:
       return null;
   }
 };
+
+export const ClutchIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="12" fill="#E2231A" />
+    <path
+      d="M16.5 15.5c-1.1 1.2-2.7 1.8-4.5 1.8-3.5 0-6.1-2.5-6.1-5.8s2.6-5.8 6.1-5.8c1.8 0 3.4.6 4.5 1.8l-2.2 2.1c-.6-.6-1.3-.9-2.3-.9-1.9 0-3.3 1.3-3.3 2.8s1.4 2.8 3.3 2.8c1 0 1.7-.3 2.3-.9l2.2 2.1z"
+      fill="white"
+    />
+  </svg>
+);
+
+export const BBBIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="3" fill="#003087" />
+    <text x="3" y="17" fontFamily="Arial" fontWeight="900" fontSize="10" fill="white">BBB</text>
+  </svg>
+);
+
+export const ConsumerReportsIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="3" fill="#C8102E" />
+    <path d="M12 5a7 7 0 0 0-7 7 7 7 0 0 0 7 7 7 7 0 0 0 4.95-2.05l-1.41-1.41A5 5 0 0 1 12 17a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 3.54 1.46l1.41-1.41A7 7 0 0 0 12 5z" fill="white"/>
+    <circle cx="12" cy="12" r="2" fill="white"/>
+  </svg>
+);
+
+export const G2Icon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="#FF492C" />
+    <text x="4" y="17" fontFamily="Arial" fontWeight="900" fontSize="13" fill="white">G2</text>
+  </svg>
+);
+
+export const CapterraIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="#055AEF" />
+    {/* Stylized C */}
+    <path d="M15 9.5a5 5 0 1 0 0 5M15 9.5H9M15 14.5H9" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);
+
+export const AngiIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="24" height="24" rx="4" fill="#FF6B35" />
+    <text x="3" y="17" fontFamily="Arial" fontWeight="900" fontSize="11" fontStyle="italic" fill="white">Angi</text>
+  </svg>
+);
+

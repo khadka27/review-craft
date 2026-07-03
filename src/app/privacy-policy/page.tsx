@@ -469,17 +469,15 @@ export default function PrivacyPolicyPage() {
                     info@fakereviewgenerator.com
                   </a>
                 </li>
-                <li>
                   <strong>Contact Page:</strong>{" "}
                   <a
-                    href="https://fakereviewgenerator.com/contact"
+                    href="https://www.fakereviewgenerator.com/contact"
                     className="text-blue-600 hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    https://fakereviewgenerator.com/contact
+                    https://www.fakereviewgenerator.com/contact
                   </a>
-                </li>
                 <li>
                   <strong>Postal Address:</strong> 100 Market Street, Suite 300, San Francisco, CA 94111, USA
                 </li>

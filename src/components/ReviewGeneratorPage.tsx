@@ -28,7 +28,7 @@ interface ReviewGeneratorPageProps {
     disclaimerText: string;
     disclaimerIcon: string;
   };
-  platformCategory?: "social" | "ecommerce" | "professional" | "entertainment";
+  platformCategory?: "social" | "ecommerce" | "professional" | "entertainment" | "business";
   features?: string[];
   useCases?: string[];
   faqs?: { q: string; a: string }[];

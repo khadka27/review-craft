@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/admin/", "/_next/"],
       },
     ],
-    sitemap: "https://fakereviewgenerator.com/sitemap.xml",
-    host: "https://fakereviewgenerator.com",
+    sitemap: "https://www.fakereviewgenerator.com/sitemap.xml",
+    host: "https://www.fakereviewgenerator.com",
   };
 }

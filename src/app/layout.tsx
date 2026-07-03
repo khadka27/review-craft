@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fakereviewgenerator.com"),
+  metadataBase: new URL("https://www.fakereviewgenerator.com"),
   title: {
     default: "Fake Review Generator for Mockups | ReviewCraft",
     template: "%s | ReviewCraft",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     description:
       "Create realistic review and comment mockups for UI design, demos, and educational workflows across 40+ platform styles.",
     type: "website",
-    url: "https://fakereviewgenerator.com",
+    url: "https://www.fakereviewgenerator.com",
     siteName: "ReviewCraft",
     images: [
       {

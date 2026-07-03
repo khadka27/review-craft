@@ -250,6 +250,19 @@ const REVIEW_CATEGORIES = [
     ],
   },
   {
+    title: "Business & B2B",
+    icon: "🏢",
+    color: "text-blue-400 bg-blue-500/10 border-blue-500/20",
+    platforms: [
+      { name: "Clutch Reviews", href: "/platform/clutch", slug: "clutch" },
+      { name: "BBB Reviews", href: "/platform/bbb", slug: "bbb" },
+      { name: "Consumer Reports", href: "/platform/consumerreports", slug: "consumerreports" },
+      { name: "G2 Reviews", href: "/platform/g2", slug: "g2" },
+      { name: "Capterra Reviews", href: "/platform/capterra", slug: "capterra" },
+      { name: "Angi Reviews", href: "/platform/angi", slug: "angi" },
+    ],
+  },
+  {
     title: "Apps & Custom Layouts",
     icon: "⚙️",
     color: "text-purple-400 bg-purple-500/10 border-purple-500/20",

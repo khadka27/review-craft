@@ -16,6 +16,12 @@ import { ImdbReview } from "./platforms/ImdbReview";
 import { GenericEcomReview } from "./platforms/GenericEcomReview";
 import { FlipkartReview } from "./platforms/FlipkartReview";
 import { PlaystoreReview } from "./platforms/PlaystoreReview";
+import { ClutchReview } from "./platforms/ClutchReview";
+import { BBBReview } from "./platforms/BBBReview";
+import { ConsumerReportsReview } from "./platforms/ConsumerReportsReview";
+import { G2Review } from "./platforms/G2Review";
+import { CapterraReview } from "./platforms/CapterraReview";
+import { AngiReview } from "./platforms/AngiReview";
 import { AppstoreReview } from "./platforms/AppstoreReview";
 import { AirbnbReview } from "./platforms/AirbnbReview";
 import { TripadvisorReview } from "./platforms/TripadvisorReview";
@@ -95,6 +101,18 @@ export const ReviewPreview = ({
         return <ShopifyReview {...props} />;
       case "playstore":
         return <PlaystoreReview {...props} />;
+      case "clutch":
+        return <ClutchReview {...props} />;
+      case "bbb":
+        return <BBBReview {...props} />;
+      case "consumerreports":
+        return <ConsumerReportsReview {...props} />;
+      case "g2":
+        return <G2Review {...props} />;
+      case "capterra":
+        return <CapterraReview {...props} />;
+      case "angi":
+        return <AngiReview {...props} />;
       case "appstore":
         return <AppstoreReview {...props} />;
       case "fiverr":
@@ -297,7 +315,13 @@ export const ReviewPreview = ({
       <div className="flex justify-center w-full">
         <div
           id="review-preview"
-          className={`w-full ${isMobileView ? "max-w-[390px]" : "max-w-2xl"}`}
+          className={`w-full ${
+            ["clutch", "bbb", "consumerreports", "g2", "capterra", "angi"].includes(reviewData.platform)
+              ? "max-w-full"
+              : isMobileView
+                ? "max-w-[390px]"
+                : "max-w-2xl"
+          }`}
           style={{
             backgroundColor: "white",
             padding: "0",

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { platformMeta } from "./platform/platformPageFactory";
 
-const baseUrl = "https://fakereviewgenerator.com";
+const baseUrl = "https://www.fakereviewgenerator.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

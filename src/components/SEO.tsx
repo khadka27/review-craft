@@ -37,7 +37,7 @@ export function constructMetadata({
       shortcut: "/favicon.ico",
       apple: "/apple-touch-icon.png",
     },
-    metadataBase: new URL("https://fakereviewgenerator.com"),
+    metadataBase: new URL("https://www.fakereviewgenerator.com"),
     ...(noIndex && {
       robots: {
         index: false,
