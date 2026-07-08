@@ -5,16 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Footer = () => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const currentYear = mounted ? new Date().getFullYear() : 2026;
-  const currentDateString = mounted 
-    ? `${currentYear}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`
-    : "2026-06-22";
+  const currentYear = new Date().getFullYear();
+  const currentDateString = `${currentYear}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`;
 
   const footerLinks = {
     product: [
@@ -106,8 +98,7 @@ const Footer = () => {
                 alt="ReviewCraft Logo"
                 width={200}
                 height={40}
-                className="h-8 sm:h-10 w-auto"
-                unoptimized
+                className="h-8 sm:h-10 w-[160px] sm:w-[200px]"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
@@ -254,7 +245,7 @@ const Footer = () => {
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="flex flex-wrap items-center justify-center sm:justify-start space-x-2.5 text-sm text-gray-400">
-              <span>
+              <span suppressHydrationWarning={true}>
                 © {currentYear} ReviewCraft. Updated: {currentDateString}.
               </span>
               <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/10 border border-blue-500/25 text-blue-400 select-none">

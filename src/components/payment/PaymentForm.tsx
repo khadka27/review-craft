@@ -276,6 +276,7 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
               type="button"
               onClick={generateTxnId}
               title="Generate random ID"
+              aria-label="Generate random transaction ID"
               style={{
                 background: "none",
                 border: "none",

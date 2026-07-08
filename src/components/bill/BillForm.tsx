@@ -809,6 +809,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                       onClick={() => handleDeleteItem(item.id)}
                       className="text-rose-500 hover:text-rose-400 p-1 hover:bg-rose-500/10 rounded transition-all"
                       title="Delete item"
+                      aria-label={`Delete item ${index + 1}`}
                       disabled={billData.items.length <= 1}
                     >
                       <Trash2 size={14} />

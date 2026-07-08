@@ -374,8 +374,7 @@ const Navbar = () => {
                 alt="ReviewCraft Logo"
                 width={200}
                 height={40}
-                className="h-8 sm:h-10 w-auto brightness-0 invert filter transition-all duration-300 hover:opacity-90"
-                unoptimized
+                className="h-8 sm:h-10 w-[160px] sm:w-[200px] brightness-0 invert filter transition-all duration-300 hover:opacity-90"
               />
             </Link>
           </div>

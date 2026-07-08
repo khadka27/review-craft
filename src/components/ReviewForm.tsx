@@ -159,12 +159,13 @@ export const ReviewForm = ({
         {/* Platform Selection */}
         {showPlatformSelector && (
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="platform" className="block text-xs sm:text-sm font-semibold text-gray-700">
               {platformCategory
                 ? `${platformCategory.charAt(0).toUpperCase() + platformCategory.slice(1)} Platform`
                 : "Platform"}
             </label>
             <select
+              id="platform"
               value={reviewData.platform}
               onChange={(e) =>
                 handleInputChange("platform", e.target.value as Platform)
@@ -207,10 +208,11 @@ export const ReviewForm = ({
 
         {/* Gender Selection */}
         <div className="space-y-2">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+          <label htmlFor="gender" className="block text-xs sm:text-sm font-semibold text-gray-700">
             Gender
           </label>
           <select
+            id="gender"
             value={reviewData.gender}
             onChange={(e) => handleInputChange("gender", e.target.value)}
             className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
@@ -269,10 +271,11 @@ export const ReviewForm = ({
         {/* Phone Model Selection - Only show when Mobile is selected */}
         {(reviewData.deviceViewMode || "desktop") === "mobile" && (
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="phoneModel" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Phone Model
             </label>
             <select
+              id="phoneModel"
               value={reviewData.phoneModel || "iPhone 15 Pro"}
               onChange={(e) => onUpdate({ phoneModel: e.target.value })}
               className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
@@ -389,7 +392,9 @@ export const ReviewForm = ({
               <div className="space-y-2">
                 {/* File Upload */}
                 <div className="flex gap-2">
+                  <label htmlFor="avatarUpload" className="sr-only">Upload Avatar</label>
                   <input
+                    id="avatarUpload"
                     type="file"
                     ref={avatarInputRef}
                     onChange={handleCustomAvatarUpload}
@@ -408,7 +413,9 @@ export const ReviewForm = ({
 
                 {/* URL Input */}
                 <div className="flex gap-2">
+                  <label htmlFor="customAvatarUrl" className="sr-only">Custom Avatar URL</label>
                   <input
+                    id="customAvatarUrl"
                     type="text"
                     value={customAvatarUrl}
                     onChange={(e) => setCustomAvatarUrl(e.target.value)}
@@ -549,18 +556,20 @@ export const ReviewForm = ({
         {/* Name Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Name
             </label>
             <button
               onClick={() => generateRandomForField("name")}
               className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
               title="Generate random name"
+              aria-label="Generate random name"
             >
               <User size={14} className="sm:w-4 sm:h-4" />
             </button>
           </div>
           <input
+            id="name"
             type="text"
             value={reviewData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
@@ -571,10 +580,11 @@ export const ReviewForm = ({
 
         {/* Username Input */}
         <div className="space-y-2">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+          <label htmlFor="username" className="block text-xs sm:text-sm font-semibold text-gray-700">
             Username
           </label>
           <input
+            id="username"
             type="text"
             value={reviewData.username}
             onChange={(e) => handleInputChange("username", e.target.value)}
@@ -594,6 +604,7 @@ export const ReviewForm = ({
                 <button
                   key={star}
                   onClick={() => handleInputChange("rating", star)}
+                  aria-label={`Rate ${star} stars`}
                   className={`p-1 transition-colors ${
                     star <= reviewData.rating
                       ? "text-yellow-400 hover:text-yellow-500"
@@ -617,18 +628,20 @@ export const ReviewForm = ({
         {/* Date Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="date" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Date
             </label>
             <button
               onClick={() => generateRandomForField("date")}
               className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
               title="Generate random date"
+              aria-label="Generate random date"
             >
               <Calendar size={14} className="sm:w-4 sm:h-4" />
             </button>
           </div>
           <input
+            id="date"
             type="date"
             value={reviewData.date.toISOString().split("T")[0]}
             onChange={(e) =>
@@ -665,10 +678,11 @@ export const ReviewForm = ({
               </label>
             </div>
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="steamPlaytimeTotal" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Playtime Total
               </label>
               <input
+                id="steamPlaytimeTotal"
                 type="text"
                 value={reviewData.steamPlaytimeTotal || ""}
                 onChange={(e) =>
@@ -679,10 +693,11 @@ export const ReviewForm = ({
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="steamPlaytimeAtReview" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Playtime at Review
               </label>
               <input
+                id="steamPlaytimeAtReview"
                 type="text"
                 value={reviewData.steamPlaytimeAtReview || ""}
                 onChange={(e) =>
@@ -693,10 +708,11 @@ export const ReviewForm = ({
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="steamHelpfulCount" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Helpful Count
               </label>
               <input
+                id="steamHelpfulCount"
                 type="number"
                 value={reviewData.steamHelpfulCount || 0}
                 onChange={(e) =>
@@ -709,10 +725,11 @@ export const ReviewForm = ({
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="steamFunnyCount" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Funny Count
               </label>
               <input
+                id="steamFunnyCount"
                 type="number"
                 value={reviewData.steamFunnyCount || 0}
                 onChange={(e) =>
@@ -725,10 +742,11 @@ export const ReviewForm = ({
               />
             </div>
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="steamAwardCount" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Awards Count
               </label>
               <input
+                id="steamAwardCount"
                 type="number"
                 value={reviewData.steamAwardCount || 0}
                 onChange={(e) =>
@@ -741,10 +759,11 @@ export const ReviewForm = ({
               />
             </div>
             <div className="space-y-2 sm:col-span-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="steamPcSpecs" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 PC Specs (Optional)
               </label>
               <textarea
+                id="steamPcSpecs"
                 value={reviewData.steamPcSpecs || ""}
                 onChange={(e) =>
                   handleInputChange("steamPcSpecs", e.target.value)
@@ -785,10 +804,11 @@ export const ReviewForm = ({
             </div>
             
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="clutchMinProjectSize" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Min. Project Size
               </label>
               <input
+                id="clutchMinProjectSize"
                 type="text"
                 value={reviewData.clutchMinProjectSize || ""}
                 onChange={(e) =>
@@ -800,10 +820,11 @@ export const ReviewForm = ({
             </div>
 
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="clutchAvgHourlyRate" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Avg. Hourly Rate
               </label>
               <input
+                id="clutchAvgHourlyRate"
                 type="text"
                 value={reviewData.clutchAvgHourlyRate || ""}
                 onChange={(e) =>
@@ -815,10 +836,11 @@ export const ReviewForm = ({
             </div>
 
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="clutchEmployees" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Employee Count
               </label>
               <input
+                id="clutchEmployees"
                 type="text"
                 value={reviewData.clutchEmployees || ""}
                 onChange={(e) =>
@@ -830,10 +852,11 @@ export const ReviewForm = ({
             </div>
 
             <div className="space-y-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="clutchReviewCount" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Reviews Count Link
               </label>
               <input
+                id="clutchReviewCount"
                 type="number"
                 value={reviewData.clutchReviewCount || 0}
                 onChange={(e) =>
@@ -845,10 +868,11 @@ export const ReviewForm = ({
             </div>
 
             <div className="space-y-2 sm:col-span-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              <label htmlFor="clutchServicesProvided" className="block text-xs sm:text-sm font-semibold text-gray-700">
                 Services Provided (Legend)
               </label>
               <input
+                id="clutchServicesProvided"
                 type="text"
                 value={reviewData.clutchServicesProvided || ""}
                 onChange={(e) =>
@@ -888,18 +912,20 @@ export const ReviewForm = ({
       {/* Title Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+          <label htmlFor="title" className="block text-xs sm:text-sm font-semibold text-gray-700">
             Title
           </label>
           <button
             onClick={() => generateRandomForField("title")}
             className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
             title="Generate random title"
+            aria-label="Generate random title"
           >
             <MessageSquare size={14} className="sm:w-4 sm:h-4" />
           </button>
         </div>
         <input
+          id="title"
           type="text"
           value={reviewData.title}
           onChange={(e) => handleInputChange("title", e.target.value)}
@@ -915,18 +941,20 @@ export const ReviewForm = ({
       {/* Content Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+          <label htmlFor="content" className="block text-xs sm:text-sm font-semibold text-gray-700">
             {contentLabel}
           </label>
           <button
             onClick={() => generateRandomForField("content")}
             className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
             title="Generate random content"
+            aria-label="Generate random content"
           >
             <MessageSquare size={14} className="sm:w-4 sm:h-4" />
           </button>
         </div>
         <textarea
+          id="content"
           value={reviewData.content}
           onChange={(e) => handleInputChange("content", e.target.value)}
           className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none text-sm sm:text-base"
@@ -953,7 +981,9 @@ export const ReviewForm = ({
         <div className="flex flex-col gap-2 sm:gap-3">
           {/* File Upload */}
           <div className="flex gap-2">
+            <label htmlFor="imageUpload" className="sr-only">Upload Images</label>
             <input
+              id="imageUpload"
               type="file"
               ref={fileInputRef}
               onChange={handleFileUpload}
@@ -973,7 +1003,9 @@ export const ReviewForm = ({
 
           {/* URL Input */}
           <div className="flex gap-2">
+            <label htmlFor="imageUrl" className="sr-only">Image URL</label>
             <input
+              id="imageUrl"
               type="text"
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
@@ -1008,6 +1040,7 @@ export const ReviewForm = ({
                   <button
                     type="button"
                     onClick={() => removeImage(index)}
+                    aria-label="Remove image"
                     className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
                   >
                     <X size={10} className="sm:w-3 sm:h-3" />
@@ -1023,10 +1056,11 @@ export const ReviewForm = ({
       {platformStyles[reviewData.platform].hasEngagement && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="likes" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Likes
             </label>
             <input
+              id="likes"
               type="number"
               value={reviewData.likes}
               onChange={(e) =>
@@ -1037,10 +1071,11 @@ export const ReviewForm = ({
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="replies" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Replies
             </label>
             <input
+              id="replies"
               type="number"
               value={reviewData.replies}
               onChange={(e) =>
@@ -1051,10 +1086,11 @@ export const ReviewForm = ({
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="shares" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Shares
             </label>
             <input
+              id="shares"
               type="number"
               value={reviewData.shares}
               onChange={(e) =>

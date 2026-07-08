@@ -97,8 +97,9 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {showPlatformSelector && (
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-700">Platform</label>
+            <label htmlFor="chat-platform" className="block text-sm font-semibold text-gray-700">Platform</label>
             <select 
+              id="chat-platform"
               value={chatData.platform}
               onChange={(e) => onUpdate({ platform: e.target.value as ChatPlatform })}
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
@@ -136,8 +137,9 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
       {/* Contact Info */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t pt-4">
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">Contact Name</label>
+          <label htmlFor="chat-contact-name" className="block text-sm font-semibold text-gray-700">Contact Name</label>
           <input 
+            id="chat-contact-name"
             type="text"
             value={chatData.contactName}
             onChange={(e) => onUpdate({ contactName: e.target.value })}
@@ -145,9 +147,10 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
           />
         </div>
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">Status (Online/Last seen)</label>
+          <label htmlFor="chat-status" className="block text-sm font-semibold text-gray-700">Status (Online/Last seen)</label>
           <div className="flex gap-2">
             <select 
+              id="chat-status"
               value={statusOptions.slice(0, -1).includes(chatData.contactStatus) ? chatData.contactStatus : "Custom"}
               onChange={(e) => {
                 if (e.target.value !== "Custom") {
@@ -162,10 +165,12 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
             </select>
             {!statusOptions.slice(0, -1).includes(chatData.contactStatus) ? (
               <input 
+                id="chat-custom-status"
                 type="text"
                 value={chatData.contactStatus}
                 onChange={(e) => onUpdate({ contactStatus: e.target.value })}
                 placeholder="Enter custom status..."
+                aria-label="Custom status"
                 className="flex-1 p-2 border border-gray-300 rounded-lg"
               />
             ) : null}
@@ -232,6 +237,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                   />
                   <button 
                     onClick={() => avatarInputRef.current?.click()}
+                    aria-label="Upload Image"
                     className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                   >
                     <Upload size={16} />
@@ -239,10 +245,12 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                   </button>
                   <div className="flex-1">
                     <input 
+                      id="chat-custom-avatar-url"
                       type="text"
                       value={chatData.contactAvatar.startsWith('data:') ? '' : chatData.contactAvatar}
                       onChange={(e) => onUpdate({ contactAvatar: e.target.value })}
                       placeholder="Or paste image URL"
+                      aria-label="Custom image URL"
                       className="w-full p-2 border border-gray-300 rounded-lg text-sm"
                     />
                   </div>
@@ -301,8 +309,10 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                   <div className="flex items-center gap-1">
                     <span className="font-semibold">Status:</span>
                     <select 
+                      id={`chat-msg-status-${msg.id}`}
                       value={msg.status}
                       onChange={(e) => updateMessage(msg.id, { status: e.target.value as any })}
+                      aria-label="Message status"
                       className="bg-transparent border border-gray-200 rounded px-1 py-0.5 focus:ring-1 focus:ring-blue-500 text-[10px] cursor-pointer"
                     >
                       <option value="sent">Sent</option>
@@ -313,6 +323,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                 )}
                 <button 
                   onClick={() => updateMessage(msg.id, { sender: msg.sender === "me" ? "them" : "me" })}
+                  aria-label="Switch side"
                   className="hover:text-blue-500 transition-colors border border-gray-200 rounded px-1.5 py-0.5 bg-white shadow-sm"
                 >
                   Switch Side
@@ -359,22 +370,27 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
           )}
           <div className="flex gap-2">
             <select 
+              id="chat-new-sender"
               value={newSender}
               onChange={(e) => setNewSender(e.target.value as "me" | "them")}
+              aria-label="Sender"
               className="p-2 border rounded-lg text-xs"
             >
               <option value="them">Them</option>
               <option value="me">Me</option>
             </select>
             <input 
+              id="chat-new-message"
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && addMessage()}
               placeholder="Type a message..."
+              aria-label="New message text"
               className="flex-1 p-2 border border-gray-300 rounded-lg text-sm"
             />
             <input 
+              id="chat-new-image"
               type="file"
               ref={messageImageInputRef}
               onChange={handleMessageImageUpload}

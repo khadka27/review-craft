@@ -143,10 +143,11 @@ export const ReviewForm = ({
         {/* Platform Selection */}
         {showPlatformSelector && (
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="platform" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Platform
             </label>
             <select
+              id="platform"
               value={reviewData.platform}
               onChange={(e) =>
                 handleInputChange("platform", e.target.value as Platform)
@@ -170,10 +171,11 @@ export const ReviewForm = ({
 
         {/* Gender Selection */}
         <div className="space-y-2">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+          <label htmlFor="gender" className="block text-xs sm:text-sm font-semibold text-gray-700">
             Gender
           </label>
           <select
+            id="gender"
             value={reviewData.gender}
             onChange={(e) => handleInputChange("gender", e.target.value)}
             className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
@@ -244,7 +246,9 @@ export const ReviewForm = ({
               <div className="space-y-2">
                 {/* File Upload */}
                 <div className="flex gap-2">
+                  <label htmlFor="avatarUpload" className="sr-only">Upload Avatar</label>
                   <input
+                    id="avatarUpload"
                     type="file"
                     ref={avatarInputRef}
                     onChange={handleCustomAvatarUpload}
@@ -263,7 +267,9 @@ export const ReviewForm = ({
 
                 {/* URL Input */}
                 <div className="flex gap-2">
+                  <label htmlFor="customAvatarUrl" className="sr-only">Custom Avatar URL</label>
                   <input
+                    id="customAvatarUrl"
                     type="text"
                     value={customAvatarUrl}
                     onChange={(e) => setCustomAvatarUrl(e.target.value)}
@@ -299,18 +305,20 @@ export const ReviewForm = ({
         {/* Name Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="name" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Name
             </label>
             <button
               onClick={() => generateRandomForField("name")}
               className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
               title="Generate random name"
+              aria-label="Generate random name"
             >
               <User size={14} className="sm:w-4 sm:h-4" />
             </button>
           </div>
           <input
+            id="name"
             type="text"
             value={reviewData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
@@ -321,10 +329,11 @@ export const ReviewForm = ({
 
         {/* Username Input */}
         <div className="space-y-2">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+          <label htmlFor="username" className="block text-xs sm:text-sm font-semibold text-gray-700">
             Username
           </label>
           <input
+            id="username"
             type="text"
             value={reviewData.username}
             onChange={(e) => handleInputChange("username", e.target.value)}
@@ -344,6 +353,7 @@ export const ReviewForm = ({
                 <button
                   key={star}
                   onClick={() => handleInputChange("rating", star)}
+                  aria-label={`Rate ${star} stars`}
                   className={`p-1 transition-colors ${
                     star <= reviewData.rating
                       ? "text-yellow-400 hover:text-yellow-500"
@@ -367,18 +377,20 @@ export const ReviewForm = ({
         {/* Date Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="date" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Date
             </label>
             <button
               onClick={() => generateRandomForField("date")}
               className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
               title="Generate random date"
+              aria-label="Generate random date"
             >
               <Calendar size={14} className="sm:w-4 sm:h-4" />
             </button>
           </div>
           <input
+            id="date"
             type="date"
             value={reviewData.date.toISOString().split("T")[0]}
             onChange={(e) =>
@@ -392,18 +404,20 @@ export const ReviewForm = ({
       {/* Title Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+          <label htmlFor="title" className="block text-xs sm:text-sm font-semibold text-gray-700">
             Title
           </label>
           <button
             onClick={() => generateRandomForField("title")}
             className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
             title="Generate random title"
+            aria-label="Generate random title"
           >
             <MessageSquare size={14} className="sm:w-4 sm:h-4" />
           </button>
         </div>
         <input
+          id="title"
           type="text"
           value={reviewData.title}
           onChange={(e) => handleInputChange("title", e.target.value)}
@@ -419,18 +433,20 @@ export const ReviewForm = ({
       {/* Content Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+          <label htmlFor="content" className="block text-xs sm:text-sm font-semibold text-gray-700">
             Review Content
           </label>
           <button
             onClick={() => generateRandomForField("content")}
             className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
             title="Generate random content"
+            aria-label="Generate random content"
           >
             <MessageSquare size={14} className="sm:w-4 sm:h-4" />
           </button>
         </div>
         <textarea
+          id="content"
           value={reviewData.content}
           onChange={(e) => handleInputChange("content", e.target.value)}
           className="w-full p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none text-sm sm:text-base"
@@ -457,7 +473,9 @@ export const ReviewForm = ({
         <div className="flex flex-col gap-2 sm:gap-3">
           {/* File Upload */}
           <div className="flex gap-2">
+            <label htmlFor="imageUpload" className="sr-only">Upload Images</label>
             <input
+              id="imageUpload"
               type="file"
               ref={fileInputRef}
               onChange={handleFileUpload}
@@ -477,7 +495,9 @@ export const ReviewForm = ({
 
           {/* URL Input */}
           <div className="flex gap-2">
+            <label htmlFor="imageUrl" className="sr-only">Image URL</label>
             <input
+              id="imageUrl"
               type="text"
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
@@ -512,6 +532,7 @@ export const ReviewForm = ({
                   <button
                     type="button"
                     onClick={() => removeImage(index)}
+                    aria-label="Remove image"
                     className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-4 h-4 sm:w-5 sm:h-5 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100"
                   >
                     <X size={10} className="sm:w-3 sm:h-3" />
@@ -527,10 +548,11 @@ export const ReviewForm = ({
       {platformStyles[reviewData.platform].hasEngagement && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="likes" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Likes
             </label>
             <input
+              id="likes"
               type="number"
               value={reviewData.likes}
               onChange={(e) =>
@@ -541,10 +563,11 @@ export const ReviewForm = ({
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="replies" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Replies
             </label>
             <input
+              id="replies"
               type="number"
               value={reviewData.replies}
               onChange={(e) =>
@@ -558,10 +581,11 @@ export const ReviewForm = ({
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+            <label htmlFor="shares" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Shares
             </label>
             <input
+              id="shares"
               type="number"
               value={reviewData.shares}
               onChange={(e) =>

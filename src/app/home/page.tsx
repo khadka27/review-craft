@@ -625,6 +625,9 @@ const HomePage = () => {
                 <button
                   type="button"
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  aria-expanded={openFaq === index}
+                  aria-controls={`faq-answer-${index}`}
+                  id={`faq-button-${index}`}
                   className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                 >
                   <span className="text-base sm:text-lg font-semibold text-gray-950">
@@ -635,7 +638,12 @@ const HomePage = () => {
                   />
                 </button>
                 {openFaq === index && (
-                  <div className="px-6 pb-5">
+                  <div 
+                    id={`faq-answer-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-button-${index}`}
+                    className="px-6 pb-5"
+                  >
                     <p className="text-gray-600 leading-7">{faq.answer}</p>
                   </div>
                 )}
