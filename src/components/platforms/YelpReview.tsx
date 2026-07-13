@@ -57,7 +57,7 @@ export const YelpReview = ({ data }: YelpReviewProps) => {
           </div>
         </div>
 
-        <button className="text-[#6b7280] p-1">
+        <button className="text-[#6b7280] p-1" aria-label="More options">
           <MoreHorizontal size={22} />
         </button>
       </div>

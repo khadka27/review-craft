@@ -39,11 +39,11 @@ export const YoutubeReview = ({ data }: YoutubeReviewProps) => {
             </div>
 
             <div className="mt-4 flex items-center gap-7 text-[#606060]">
-              <button className="flex items-center gap-2 text-[10px]">
+              <button className="flex items-center gap-2 text-[10px]" aria-label="Like">
                 <ThumbsUp size={22} />
                 <span>{Math.max(0, data.likes || 15)}</span>
               </button>
-              <button className="flex items-center gap-2 text-[10px]">
+              <button className="flex items-center gap-2 text-[10px]" aria-label="Dislike">
                 <ThumbsDown size={22} />
               </button>
               <button className="text-[10px] font-semibold text-[#303030]">

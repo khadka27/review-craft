@@ -100,6 +100,8 @@ export default function RootLayout({
         <ToastProvider>
           <Navbar />
           <main>{children}</main>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5286253567075688"
+     crossOrigin="anonymous"></script>
           <Footer />
           <GoogleAnalytics
             gaId={process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT"}

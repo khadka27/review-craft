@@ -80,7 +80,7 @@ export const TwitterReview = ({ data }: TwitterReviewProps) => {
               <span>{Math.max(1, data.replies || 1)}</span>
             </button>
 
-            <button className="flex items-center gap-1 text-[18px]">
+            <button className="flex items-center gap-1 text-[18px]" aria-label="Retweet">
               <Repeat2 size={20} />
             </button>
 
@@ -94,11 +94,11 @@ export const TwitterReview = ({ data }: TwitterReviewProps) => {
               <span>{viewCount}</span>
             </button>
 
-            <button className="text-[18px]">
+            <button className="text-[18px]" aria-label="Bookmark">
               <Bookmark size={20} />
             </button>
 
-            <button className="text-[18px]">
+            <button className="text-[18px]" aria-label="Share">
               <Share size={20} />
             </button>
           </div>

@@ -33,7 +33,7 @@ export const PlaystoreReview = ({ data }: PlaystoreReviewProps) => {
             </div>
           </div>
         </div>
-        <button type="button" className="text-[#5f6368] p-1">
+        <button type="button" className="text-[#5f6368] p-1" aria-label="More options">
           <MoreVertical size={20} />
         </button>
       </div>

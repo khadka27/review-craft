@@ -96,9 +96,9 @@ const Footer = () => {
               <Image
                 src="/logo/logo.png"
                 alt="ReviewCraft Logo"
-                width={200}
-                height={40}
-                className="h-8 sm:h-10 w-[160px] sm:w-[200px]"
+                width={300}
+                height={100}
+                className="h-8 sm:h-10 w-[96px] sm:w-[120px]"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">

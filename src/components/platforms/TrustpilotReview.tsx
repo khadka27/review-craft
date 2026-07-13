@@ -86,7 +86,7 @@ export const TrustpilotReview = ({ data }: TrustpilotReviewProps) => {
           <span className="text-[18px]">Share</span>
         </button>
 
-        <button className="flex items-center gap-2">
+        <button className="flex items-center gap-2" aria-label="Flag review">
           <Flag size={24} />
         </button>
       </div>

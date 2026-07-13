@@ -49,7 +49,7 @@ export const ImdbReview = ({ data }: ImdbReviewProps) => {
               <span>{unhelpfulCount}</span>
             </button>
           </div>
-          <button className="text-gray-500">
+          <button className="text-gray-500" aria-label="More options">
             <MoreVertical size={24} />
           </button>
         </div>

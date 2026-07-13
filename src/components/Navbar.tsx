@@ -372,9 +372,9 @@ const Navbar = () => {
               <Image
                 src="/logo/logo.png"
                 alt="ReviewCraft Logo"
-                width={200}
-                height={40}
-                className="h-8 sm:h-10 w-[160px] sm:w-[200px] brightness-0 invert filter transition-all duration-300 hover:opacity-90"
+                width={300}
+                height={100}
+                className="h-8 sm:h-10 w-[96px] sm:w-[120px] brightness-0 invert filter transition-all duration-300 hover:opacity-90"
               />
             </Link>
           </div>
@@ -677,6 +677,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               aria-expanded={isMenuOpen}
+              aria-label="Open main menu"
             >
               <span className="sr-only">Open main menu</span>
               {isMenuOpen ? (

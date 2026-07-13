@@ -115,7 +115,7 @@ export const GoogleReview = ({ data }: GoogleReviewProps) => {
           <Heart size={18} />
           <span className="text-[10px]">{Math.max(0, data.likes || 2)}</span>
         </button>
-        <button type="button" className="flex items-center gap-2">
+        <button type="button" className="flex items-center gap-2" aria-label="Share">
           <Share2 size={18} />
         </button>
       </div>
