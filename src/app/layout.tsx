@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/ui/Toast";
@@ -100,8 +101,12 @@ export default function RootLayout({
         <ToastProvider>
           <Navbar />
           <main>{children}</main>
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5286253567075688"
-     crossOrigin="anonymous"></script>
+          <Script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5286253567075688"
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
           <Footer />
           <GoogleAnalytics
             gaId={process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT"}
