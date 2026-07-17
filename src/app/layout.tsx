@@ -114,7 +114,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} bg-gray-50 text-gray-900`} suppressHydrationWarning={true}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <ToastProvider>
           <Navbar />
           <main>{children}</main>
