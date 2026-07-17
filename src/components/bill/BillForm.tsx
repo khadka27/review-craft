@@ -964,8 +964,9 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
               placeholder="0.00"
             />
             <div>
-              <label style={LABEL_STYLE}>Currency</label>
+              <label htmlFor="bill-currency-select" style={LABEL_STYLE}>Currency</label>
               <select
+                id="bill-currency-select"
                 value={`${billData.currencySymbol}:${billData.currencyCode}`}
                 onChange={(e) => {
                   const [symbol, code] = e.target.value.split(":");

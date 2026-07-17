@@ -99,8 +99,22 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
         {/* Google Analytics */}
+        <script
+          type="speculationrules"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prerender: [
+                {
+                  source: "document",
+                  where: { and: [{ href_matches: "/*" }] },
+                  eagerness: "moderate",
+                },
+              ],
+            }),
+          }}
+        />
       </head>
-      <body className={inter.className} suppressHydrationWarning={true}>
+      <body className={`${inter.className} bg-gray-50 text-gray-900`} suppressHydrationWarning={true}>
         <ToastProvider>
           <Navbar />
           <main>{children}</main>

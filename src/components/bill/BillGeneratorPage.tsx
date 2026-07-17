@@ -398,6 +398,7 @@ export function BillGeneratorPage({
                 {/* Export Options & Button */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                   <select
+                    aria-label="Export Format"
                     value={exportFormat}
                     onChange={(e) => setExportFormat(e.target.value as any)}
                     className="bg-[#0B0F14] border border-[#1E293B] hover:border-blue-500/50 text-[#F8FAFC] px-3.5 py-2.5 rounded-xl text-sm font-semibold focus:border-blue-500 outline-none cursor-pointer transition-all duration-200"

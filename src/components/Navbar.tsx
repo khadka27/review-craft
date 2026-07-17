@@ -372,8 +372,8 @@ const Navbar = () => {
               <Image
                 src="/logo/logo.png"
                 alt="ReviewCraft Logo"
-                width={300}
-                height={100}
+                width={120}
+                height={40}
                 priority
                 className="h-8 sm:h-10 w-[96px] sm:w-[120px] brightness-0 invert filter transition-all duration-300 hover:opacity-90"
               />

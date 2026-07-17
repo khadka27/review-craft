@@ -288,6 +288,8 @@ export function PaymentGeneratorPage({
                 {/* Export Options & Button */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                   <select
+                    id="export-format-select"
+                    aria-label="Export Format"
                     value={exportFormat}
                     onChange={(e) => setExportFormat(e.target.value as any)}
                     className="bg-[#0B0F14] border border-[#1E293B] hover:border-blue-500/50 text-[#F8FAFC] px-3.5 py-2.5 rounded-xl text-sm font-semibold focus:border-blue-500 outline-none cursor-pointer transition-all duration-200"
@@ -341,7 +343,7 @@ export function PaymentGeneratorPage({
 
               <div
                 className="mt-4 flex items-center justify-center gap-1.5 text-xs"
-                style={{ color: "#475569" }}
+                style={{ color: "#94A3B8" }}
               >
                 <ChevronRight size={11} />
                 <span>High-quality {exportFormat.toUpperCase()} • Mobile size • No watermark</span>

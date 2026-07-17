@@ -160,7 +160,7 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
   const inactiveStatusStyle: React.CSSProperties = {
     background: "#0B0F14",
     border: "1px solid #1E293B",
-    color: "#475569",
+    color: "#94A3B8",
   };
 
   return (
@@ -214,7 +214,7 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
           placeholder="500.00"
         />
         <div>
-          <div style={LABEL_STYLE}>Currency</div>
+          <label htmlFor="payment-currency" style={LABEL_STYLE}>Currency</label>
           <select
             id="payment-currency"
             value={paymentData.currency}

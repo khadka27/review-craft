@@ -157,6 +157,7 @@ export const PaytmIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="Paytm"
   />
 );
@@ -167,6 +168,7 @@ export const StripeIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="Stripe"
   />
 );
@@ -177,6 +179,7 @@ export const UPIIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="UPI"
   />
 );
@@ -187,6 +190,7 @@ export const PhonePeIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="PhonePe"
   />
 );
@@ -197,6 +201,7 @@ export const GoogleWalletIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="Google Wallet"
   />
 );
@@ -207,6 +212,7 @@ export const GooglePayIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="Google Pay"
   />
 );
@@ -217,6 +223,7 @@ export const AppleIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="Apple Pay"
   />
 );
@@ -227,6 +234,7 @@ export const CashAppIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="Cash App"
   />
 );
@@ -237,6 +245,7 @@ export const VenmoIcon = ({ size = 20, className = "" }: IconProps) => (
     width={size}
     height={size}
     className={className}
+    loading="lazy"
     alt="Venmo"
   />
 );

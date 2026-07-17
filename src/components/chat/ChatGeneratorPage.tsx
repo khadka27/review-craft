@@ -100,6 +100,7 @@ export function ChatGeneratorPage({
                 {/* Export Options & Button */}
                 <div className="flex flex-wrap items-center gap-2">
                   <select
+                    aria-label="Export Format"
                     value={exportFormat}
                     onChange={(e) => setExportFormat(e.target.value as any)}
                     className="bg-white border border-gray-300 hover:border-green-500/50 text-gray-700 px-3.5 py-2 rounded-lg text-sm font-semibold focus:border-green-500 outline-none cursor-pointer transition-all duration-200"

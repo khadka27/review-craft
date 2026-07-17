@@ -96,8 +96,8 @@ const Footer = () => {
               <Image
                 src="/logo/logo.png"
                 alt="ReviewCraft Logo"
-                width={300}
-                height={100}
+                width={120}
+                height={40}
                 className="h-8 sm:h-10 w-[96px] sm:w-[120px]"
               />
             </div>
@@ -122,7 +122,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white text-sm transition-colors"
+                    className="text-gray-400 hover:text-white text-sm transition-colors py-1 block"
                   >
                     {link.name}
                   </Link>
@@ -141,7 +141,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white text-sm transition-colors"
+                    className="text-gray-400 hover:text-white text-sm transition-colors py-1 block"
                   >
                     {link.name}
                   </Link>
@@ -160,7 +160,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white text-sm transition-colors"
+                    className="text-gray-400 hover:text-white text-sm transition-colors py-1 block"
                   >
                     {link.name}
                   </Link>
@@ -179,7 +179,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white text-sm transition-colors"
+                    className="text-gray-400 hover:text-white text-sm transition-colors py-1 block"
                   >
                     {link.name}
                   </Link>
