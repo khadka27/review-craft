@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import { TransactionData } from "@/types/payment";
-import { PaytmReceipt } from "./platforms/PaytmReceipt";
-import { StripeReceipt } from "./platforms/StripeReceipt";
-import { GooglePayReceipt } from "./platforms/GooglePayReceipt";
-import { UpiReceipt } from "./platforms/UpiReceipt";
-import { PhonePeReceipt } from "./platforms/PhonePeReceipt";
-import { GoogleWalletReceipt } from "./platforms/GoogleWalletReceipt";
-import { ApplePayReceipt } from "./platforms/ApplePayReceipt";
-import { VenmoReceipt } from "./platforms/VenmoReceipt";
-import { FonepayReceipt } from "./platforms/FonepayReceipt";
-import { CashAppReceipt } from "./platforms/CashAppReceipt";
-import { PhonePeNewReceipt } from "./platforms/PhonePeNewReceipt";
-import { GPayReceipt } from "./platforms/GPayReceipt";
-import { BhimReceipt } from "./platforms/BhimReceipt";
+import dynamic from "next/dynamic";
+
+const PaytmReceipt = dynamic(() => import("./platforms/PaytmReceipt").then(m => m.PaytmReceipt), { ssr: true });
+const StripeReceipt = dynamic(() => import("./platforms/StripeReceipt").then(m => m.StripeReceipt), { ssr: true });
+const GooglePayReceipt = dynamic(() => import("./platforms/GooglePayReceipt").then(m => m.GooglePayReceipt), { ssr: true });
+const UpiReceipt = dynamic(() => import("./platforms/UpiReceipt").then(m => m.UpiReceipt), { ssr: true });
+const PhonePeReceipt = dynamic(() => import("./platforms/PhonePeReceipt").then(m => m.PhonePeReceipt), { ssr: true });
+const GoogleWalletReceipt = dynamic(() => import("./platforms/GoogleWalletReceipt").then(m => m.GoogleWalletReceipt), { ssr: true });
+const ApplePayReceipt = dynamic(() => import("./platforms/ApplePayReceipt").then(m => m.ApplePayReceipt), { ssr: true });
+const VenmoReceipt = dynamic(() => import("./platforms/VenmoReceipt").then(m => m.VenmoReceipt), { ssr: true });
+const FonepayReceipt = dynamic(() => import("./platforms/FonepayReceipt").then(m => m.FonepayReceipt), { ssr: true });
+const CashAppReceipt = dynamic(() => import("./platforms/CashAppReceipt").then(m => m.CashAppReceipt), { ssr: true });
+const PhonePeNewReceipt = dynamic(() => import("./platforms/PhonePeNewReceipt").then(m => m.PhonePeNewReceipt), { ssr: true });
+const GPayReceipt = dynamic(() => import("./platforms/GPayReceipt").then(m => m.GPayReceipt), { ssr: true });
+const BhimReceipt = dynamic(() => import("./platforms/BhimReceipt").then(m => m.BhimReceipt), { ssr: true });
 import { Wifi, Signal } from "lucide-react";
 
 interface PaymentPreviewProps {
@@ -144,14 +146,14 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
   return (
     <div className="w-full flex justify-center p-4 md:p-8">
       {/* Mobile Preview Container with Realistic Frame */}
-      <div className="w-full max-w-[375px] relative group transition-all duration-500">
+      <div className="w-full max-w-[375px] relative group transition-all duration-500 min-h-[640px]">
         {/* Outer Frame Shadow */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-black/20 rounded-[48px] blur-2xl -z-10"></div>
 
         {/* Phone Bezel Container */}
-        <div className="relative rounded-[48px] bg-black/90 p-2.5 shadow-2xl border border-black/50">
+        <div className="relative rounded-[48px] bg-black/90 p-2.5 shadow-2xl border border-black/50 min-h-[620px]">
           {/* Screen with notch */}
-          <div className="relative bg-white rounded-[42px] overflow-hidden shadow-lg">
+          <div className="relative bg-white rounded-[42px] overflow-hidden shadow-lg min-h-[600px]">
             {/* Notch */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30 w-40 h-7 bg-black rounded-b-3xl"></div>
 

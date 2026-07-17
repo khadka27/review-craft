@@ -1,43 +1,45 @@
 import { ReviewData } from "@/types/review";
-import { RedditReview } from "./platforms/RedditReview";
-import { TwitterReview } from "./platforms/TwitterReview";
-import { InstagramReview } from "./platforms/InstagramReview";
-import { TrustpilotReview } from "./platforms/TrustpilotReview";
-import { FacebookReview } from "./platforms/FacebookReview";
-import { GoogleReview } from "./platforms/GoogleReview";
-import { YelpReview } from "./platforms/YelpReview";
-import { AmazonReview } from "./platforms/AmazonReview";
-import { YoutubeReview } from "./platforms/YoutubeReview";
-import { LinkedinReview } from "./platforms/LinkedinReview";
-import { TiktokReview } from "./platforms/TiktokReview";
-import { DiscordReview } from "./platforms/DiscordReview";
-import { SteamReview } from "./platforms/SteamReview";
-import { ImdbReview } from "./platforms/ImdbReview";
-import { GenericEcomReview } from "./platforms/GenericEcomReview";
-import { FlipkartReview } from "./platforms/FlipkartReview";
-import { PlaystoreReview } from "./platforms/PlaystoreReview";
-import { ClutchReview } from "./platforms/ClutchReview";
-import { BBBReview } from "./platforms/BBBReview";
-import { ConsumerReportsReview } from "./platforms/ConsumerReportsReview";
-import { G2Review } from "./platforms/G2Review";
-import { CapterraReview } from "./platforms/CapterraReview";
-import { AngiReview } from "./platforms/AngiReview";
-import { AppstoreReview } from "./platforms/AppstoreReview";
-import { AirbnbReview } from "./platforms/AirbnbReview";
-import { TripadvisorReview } from "./platforms/TripadvisorReview";
-import { ShopifyReview } from "./platforms/ShopifyReview";
-import { FiverrReview } from "./platforms/FiverrReview";
-import { BookingReview } from "./platforms/BookingReview";
-import { EbayReview } from "./platforms/EbayReview";
-import { WalmartReview } from "./platforms/WalmartReview";
-import { BestbuyReview } from "./platforms/BestbuyReview";
-import { EtsyReview } from "./platforms/EtsyReview";
-import { AliexpressReview } from "./platforms/AliexpressReview";
-import { AlibabaReview } from "./platforms/AlibabaReview";
-import { DarazReview } from "./platforms/DarazReview";
-import { TestimonialReview } from "./platforms/TestimonialReview";
-import { Generic5StarReview } from "./platforms/Generic5StarReview";
-import { Generic1StarReview } from "./platforms/Generic1StarReview";
+import dynamic from "next/dynamic";
+
+const RedditReview = dynamic(() => import("./platforms/RedditReview").then(m => m.RedditReview), { ssr: true });
+const TwitterReview = dynamic(() => import("./platforms/TwitterReview").then(m => m.TwitterReview), { ssr: true });
+const InstagramReview = dynamic(() => import("./platforms/InstagramReview").then(m => m.InstagramReview), { ssr: true });
+const TrustpilotReview = dynamic(() => import("./platforms/TrustpilotReview").then(m => m.TrustpilotReview), { ssr: true });
+const FacebookReview = dynamic(() => import("./platforms/FacebookReview").then(m => m.FacebookReview), { ssr: true });
+const GoogleReview = dynamic(() => import("./platforms/GoogleReview").then(m => m.GoogleReview), { ssr: true });
+const YelpReview = dynamic(() => import("./platforms/YelpReview").then(m => m.YelpReview), { ssr: true });
+const AmazonReview = dynamic(() => import("./platforms/AmazonReview").then(m => m.AmazonReview), { ssr: true });
+const YoutubeReview = dynamic(() => import("./platforms/YoutubeReview").then(m => m.YoutubeReview), { ssr: true });
+const LinkedinReview = dynamic(() => import("./platforms/LinkedinReview").then(m => m.LinkedinReview), { ssr: true });
+const TiktokReview = dynamic(() => import("./platforms/TiktokReview").then(m => m.TiktokReview), { ssr: true });
+const DiscordReview = dynamic(() => import("./platforms/DiscordReview").then(m => m.DiscordReview), { ssr: true });
+const SteamReview = dynamic(() => import("./platforms/SteamReview").then(m => m.SteamReview), { ssr: true });
+const ImdbReview = dynamic(() => import("./platforms/ImdbReview").then(m => m.ImdbReview), { ssr: true });
+const GenericEcomReview = dynamic(() => import("./platforms/GenericEcomReview").then(m => m.GenericEcomReview), { ssr: true });
+const FlipkartReview = dynamic(() => import("./platforms/FlipkartReview").then(m => m.FlipkartReview), { ssr: true });
+const PlaystoreReview = dynamic(() => import("./platforms/PlaystoreReview").then(m => m.PlaystoreReview), { ssr: true });
+const ClutchReview = dynamic(() => import("./platforms/ClutchReview").then(m => m.ClutchReview), { ssr: true });
+const BBBReview = dynamic(() => import("./platforms/BBBReview").then(m => m.BBBReview), { ssr: true });
+const ConsumerReportsReview = dynamic(() => import("./platforms/ConsumerReportsReview").then(m => m.ConsumerReportsReview), { ssr: true });
+const G2Review = dynamic(() => import("./platforms/G2Review").then(m => m.G2Review), { ssr: true });
+const CapterraReview = dynamic(() => import("./platforms/CapterraReview").then(m => m.CapterraReview), { ssr: true });
+const AngiReview = dynamic(() => import("./platforms/AngiReview").then(m => m.AngiReview), { ssr: true });
+const AppstoreReview = dynamic(() => import("./platforms/AppstoreReview").then(m => m.AppstoreReview), { ssr: true });
+const AirbnbReview = dynamic(() => import("./platforms/AirbnbReview").then(m => m.AirbnbReview), { ssr: true });
+const TripadvisorReview = dynamic(() => import("./platforms/TripadvisorReview").then(m => m.TripadvisorReview), { ssr: true });
+const ShopifyReview = dynamic(() => import("./platforms/ShopifyReview").then(m => m.ShopifyReview), { ssr: true });
+const FiverrReview = dynamic(() => import("./platforms/FiverrReview").then(m => m.FiverrReview), { ssr: true });
+const BookingReview = dynamic(() => import("./platforms/BookingReview").then(m => m.BookingReview), { ssr: true });
+const EbayReview = dynamic(() => import("./platforms/EbayReview").then(m => m.EbayReview), { ssr: true });
+const WalmartReview = dynamic(() => import("./platforms/WalmartReview").then(m => m.WalmartReview), { ssr: true });
+const BestbuyReview = dynamic(() => import("./platforms/BestbuyReview").then(m => m.BestbuyReview), { ssr: true });
+const EtsyReview = dynamic(() => import("./platforms/EtsyReview").then(m => m.EtsyReview), { ssr: true });
+const AliexpressReview = dynamic(() => import("./platforms/AliexpressReview").then(m => m.AliexpressReview), { ssr: true });
+const AlibabaReview = dynamic(() => import("./platforms/AlibabaReview").then(m => m.AlibabaReview), { ssr: true });
+const DarazReview = dynamic(() => import("./platforms/DarazReview").then(m => m.DarazReview), { ssr: true });
+const TestimonialReview = dynamic(() => import("./platforms/TestimonialReview").then(m => m.TestimonialReview), { ssr: true });
+const Generic5StarReview = dynamic(() => import("./platforms/Generic5StarReview").then(m => m.Generic5StarReview), { ssr: true });
+const Generic1StarReview = dynamic(() => import("./platforms/Generic1StarReview").then(m => m.Generic1StarReview), { ssr: true });
 import { Download, Copy, RefreshCw, Loader2 } from "lucide-react";
 import {
   downloadReviewAsImage,
@@ -312,10 +314,10 @@ export const ReviewPreview = ({
         </div>
       </div>
 
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-full min-h-[300px]">
         <div
           id="review-preview"
-          className={`w-full ${
+          className={`w-full min-h-[250px] ${
             ["clutch", "bbb", "consumerreports", "g2", "capterra", "angi"].includes(reviewData.platform)
               ? "max-w-full"
               : isMobileView

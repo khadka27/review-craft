@@ -359,8 +359,8 @@ const Navbar = () => {
   const isBillRoute = pathname.startsWith("/bill-generator");
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-900 bg-[#0B0F14]/90 backdrop-blur-md text-slate-100 shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={desktopMenuRef}>
+    <nav className="sticky top-2.5 z-50 mx-2.5 mt-2.5 rounded-xl border border-slate-800/80 bg-[#0B0F14]/90 backdrop-blur-md text-slate-100 shadow-lg">
+      <div className="w-full px-4 sm:px-6 lg:px-8" ref={desktopMenuRef}>
         <div className="flex justify-between items-center h-16">
           
           {/* Logo Section */}
@@ -374,6 +374,7 @@ const Navbar = () => {
                 alt="ReviewCraft Logo"
                 width={300}
                 height={100}
+                priority
                 className="h-8 sm:h-10 w-[96px] sm:w-[120px] brightness-0 invert filter transition-all duration-300 hover:opacity-90"
               />
             </Link>
@@ -691,7 +692,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-slate-900 bg-[#0B0F14] absolute left-0 right-0 top-16 shadow-2xl p-4 space-y-3 max-h-[calc(100vh-4rem)] overflow-y-auto z-50">
+          <div className="md:hidden border-t border-slate-800 bg-[#0B0F14] absolute left-0 right-0 top-16 rounded-b-xl shadow-2xl p-4 space-y-3 max-h-[calc(100vh-4rem)] overflow-y-auto z-50">
             <div className="space-y-1">
               {navigation.map((item) => (
                 <Link
