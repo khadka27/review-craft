@@ -140,8 +140,8 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
     <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
       {/* ── Status ── */}
       <div>
-        <div style={LABEL_STYLE}>
-          <CheckCircle2 size={12} style={{ color: "#2563EB" }} />
+        <div className={LABEL_CLASS}>
+          <CheckCircle2 size={12} className="text-blue-600" />
           Transaction Status
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px" }}>
@@ -275,8 +275,8 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
 
       {/* ── Note ── */}
       <div>
-        <div style={LABEL_STYLE}>
-          <FileText size={12} style={{ color: "#2563EB" }} />
+        <div className={LABEL_CLASS}>
+          <FileText size={12} className="text-blue-600" />
           Payment Note
         </div>
         <textarea
@@ -285,18 +285,10 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
           onChange={(e) => onUpdate({ note: e.target.value })}
           placeholder="What's this payment for?"
           rows={3}
+          className={INPUT_CLASS}
           style={{
-            ...INPUT_STYLE,
             resize: "none",
             lineHeight: "1.5",
-          }}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = "#2563EB";
-            e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.15)";
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.borderColor = "#1E293B";
-            e.currentTarget.style.boxShadow = "none";
           }}
         />
       </div>

@@ -308,7 +308,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                 {msg.sender === "me" && (
                   <div className="flex items-center gap-1">
                     <span className="font-semibold">Status:</span>
-                    <select aria-label="Select option" 
+                    <select 
                       id={`chat-msg-status-${msg.id}`}
                       value={msg.status}
                       onChange={(e) => updateMessage(msg.id, { status: e.target.value as any })}
@@ -369,7 +369,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
             </div>
           )}
           <div className="flex gap-2">
-            <select aria-label="Select option" 
+            <select 
               id="chat-new-sender"
               value={newSender}
               onChange={(e) => setNewSender(e.target.value as "me" | "them")}
