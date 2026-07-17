@@ -533,9 +533,10 @@ export default function AIReviewGeneratorPage() {
                   <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Review Tone / Style</label>
                   <div className="relative group">
                     <select
+                      aria-label="Review Tone"
                       value={reviewType}
                       onChange={(e) => setReviewType(e.target.value)}
-                      className="w-full appearance-none bg-slate-950/80 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 text-white rounded-xl py-2.5 pl-4 pr-10 text-sm placeholder-slate-700 transition-all outline-none cursor-pointer"
+                      className="w-full appearance-none bg-slate-950/80 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 text-white rounded-xl py-3 md:py-2.5 pl-4 pr-10 text-sm placeholder-slate-700 transition-all outline-none cursor-pointer min-h-[48px] md:min-h-0"
                     >
                       {getReviewTypeOptions().map((opt) => (
                         <option key={opt} value={opt} className="bg-slate-950 text-slate-200">{opt}</option>
@@ -588,9 +589,10 @@ export default function AIReviewGeneratorPage() {
                   <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Length</label>
                   <div className="relative group">
                     <select
+                      aria-label="Review Length"
                       value={reviewLength}
                       onChange={(e) => setReviewLength(e.target.value)}
-                      className="w-full appearance-none bg-slate-950/80 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 text-white rounded-xl py-2.5 pl-4 pr-10 text-sm placeholder-slate-700 transition-all outline-none cursor-pointer"
+                      className="w-full appearance-none bg-slate-950/80 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 text-white rounded-xl py-3 md:py-2.5 pl-4 pr-10 text-sm placeholder-slate-700 transition-all outline-none cursor-pointer min-h-[48px] md:min-h-0"
                     >
                       <option value="Short (50-100 words)" className="bg-slate-950 text-slate-200">Short</option>
                       <option value="Medium (100-200 words)" className="bg-slate-950 text-slate-200">Medium</option>
@@ -604,9 +606,10 @@ export default function AIReviewGeneratorPage() {
                   <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Language</label>
                   <div className="relative group">
                     <select
+                      aria-label="Language"
                       value={language}
                       onChange={(e) => setLanguage(e.target.value)}
-                      className="w-full appearance-none bg-slate-950/80 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 text-white rounded-xl py-2.5 pl-4 pr-10 text-sm placeholder-slate-700 transition-all outline-none cursor-pointer"
+                      className="w-full appearance-none bg-slate-950/80 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 text-white rounded-xl py-3 md:py-2.5 pl-4 pr-10 text-sm placeholder-slate-700 transition-all outline-none cursor-pointer min-h-[48px] md:min-h-0"
                     >
                       {ISO6391.getAllNames().sort().map((lang) => (
                         <option key={lang} value={lang} className="bg-slate-950 text-slate-200">

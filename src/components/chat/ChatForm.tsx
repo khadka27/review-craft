@@ -98,7 +98,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
         {showPlatformSelector && (
           <div className="space-y-2">
             <label htmlFor="chat-platform" className="block text-sm font-semibold text-gray-700">Platform</label>
-            <select 
+            <select aria-label="Select option" 
               id="chat-platform"
               value={chatData.platform}
               onChange={(e) => onUpdate({ platform: e.target.value as ChatPlatform })}
@@ -149,7 +149,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
         <div className="space-y-2">
           <label htmlFor="chat-status" className="block text-sm font-semibold text-gray-700">Status (Online/Last seen)</label>
           <div className="flex gap-2">
-            <select 
+            <select aria-label="Select option" 
               id="chat-status"
               value={statusOptions.slice(0, -1).includes(chatData.contactStatus) ? chatData.contactStatus : "Custom"}
               onChange={(e) => {
@@ -308,7 +308,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                 {msg.sender === "me" && (
                   <div className="flex items-center gap-1">
                     <span className="font-semibold">Status:</span>
-                    <select 
+                    <select aria-label="Select option" 
                       id={`chat-msg-status-${msg.id}`}
                       value={msg.status}
                       onChange={(e) => updateMessage(msg.id, { status: e.target.value as any })}
@@ -369,7 +369,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
             </div>
           )}
           <div className="flex gap-2">
-            <select 
+            <select aria-label="Select option" 
               id="chat-new-sender"
               value={newSender}
               onChange={(e) => setNewSender(e.target.value as "me" | "them")}

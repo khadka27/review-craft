@@ -164,7 +164,7 @@ export const ReviewForm = ({
                 ? `${platformCategory.charAt(0).toUpperCase() + platformCategory.slice(1)} Platform`
                 : "Platform"}
             </label>
-            <select
+            <select aria-label="Select option"
               id="platform"
               value={reviewData.platform}
               onChange={(e) =>
@@ -211,7 +211,7 @@ export const ReviewForm = ({
           <label htmlFor="gender" className="block text-xs sm:text-sm font-semibold text-gray-700">
             Gender
           </label>
-          <select
+          <select aria-label="Select option"
             id="gender"
             value={reviewData.gender}
             onChange={(e) => handleInputChange("gender", e.target.value)}
@@ -274,7 +274,7 @@ export const ReviewForm = ({
             <label htmlFor="phoneModel" className="block text-xs sm:text-sm font-semibold text-gray-700">
               Phone Model
             </label>
-            <select
+            <select aria-label="Select option"
               id="phoneModel"
               value={reviewData.phoneModel || "iPhone 15 Pro"}
               onChange={(e) => onUpdate({ phoneModel: e.target.value })}

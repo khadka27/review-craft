@@ -25,29 +25,9 @@ interface BillFormProps {
   showPlatformSelector?: boolean;
 }
 
-const INPUT_STYLE: React.CSSProperties = {
-  width: "100%",
-  padding: "10px 14px",
-  borderRadius: "10px",
-  background: "#0B0F14",
-  border: "1px solid #1E293B",
-  color: "#F8FAFC",
-  fontSize: "14px",
-  outline: "none",
-  transition: "border-color 0.15s, box-shadow 0.15s",
-};
+const INPUT_CLASS = "w-full min-h-[48px] md:min-h-0 px-3.5 py-3 md:py-2.5 rounded-[10px] bg-[#0B0F14] border border-slate-800 text-slate-50 text-sm outline-none transition-all duration-150 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15";
 
-const LABEL_STYLE: React.CSSProperties = {
-  display: "flex",
-  alignItems: "center",
-  gap: "6px",
-  fontSize: "11px",
-  fontWeight: 600,
-  textTransform: "uppercase",
-  letterSpacing: "0.07em",
-  color: "#94A3B8",
-  marginBottom: "8px",
-};
+const LABEL_CLASS = "flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.07em] text-slate-300 mb-2";
 
 const SECTION_HEADER_STYLE: React.CSSProperties = {
   fontSize: "13px",
@@ -83,7 +63,7 @@ function InputField({
 }) {
   return (
     <div>
-      <label htmlFor={id} style={LABEL_STYLE}>
+      <label htmlFor={id} className={LABEL_CLASS}>
         {Icon && <Icon size={12} className="text-blue-500" />}
         {label}
       </label>
@@ -93,7 +73,7 @@ function InputField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        style={INPUT_STYLE}
+        className={INPUT_CLASS}
         onFocus={(e) => {
           e.currentTarget.style.borderColor = "#2563EB";
           e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.15)";
@@ -417,7 +397,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
       {/* ── Platform Selector ── */}
       {showPlatformSelector && (
         <div>
-          <label style={LABEL_STYLE}>Select Invoice Platform</label>
+          <label className={LABEL_CLASS}>Select Invoice Platform</label>
           <div className="grid grid-cols-3 gap-2">
             {(["amazon", "walmart", "supplement"] as BillPlatform[]).map((p) => {
               const isActive = billData.platform === p;
@@ -477,12 +457,12 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
             />
             {billData.platform === "supplement" && (
               <div className="col-span-1 sm:col-span-2">
-                <label htmlFor="bill-template-style" style={LABEL_STYLE}>Template Style Preset</label>
-                <select
+                <label htmlFor="bill-template-style" className={LABEL_CLASS}>Template Style Preset</label>
+                <select aria-label="Select option"
                   id="bill-template-style"
                   value={billData.templateStyle || "classic"}
                   onChange={(e) => onUpdate({ templateStyle: e.target.value as any })}
-                  style={INPUT_STYLE}
+                  className={INPUT_CLASS}
                 >
                   <option value="classic" style={{ background: "#111827" }}>Classic Emerald Invoice Layout</option>
                   <option value="pos" style={{ background: "#111827" }}>POS Retail Thermal Receipt Layout</option>
@@ -493,7 +473,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
             
             {/* Custom Logo Image Dropzone & URL Link */}
             <div className="col-span-1 sm:col-span-2 mt-2 pt-2 border-t border-[#1E293B]">
-              <label style={LABEL_STYLE}>Custom Logo Image (Renders next to brand name)</label>
+              <label className={LABEL_CLASS}>Custom Logo Image (Renders next to brand name)</label>
               
               <div 
                 onDragOver={(e) => { e.preventDefault(); e.currentTarget.style.borderColor = "#3b82f6"; }}
@@ -649,7 +629,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
               placeholder="John Doe"
             />
             <div>
-              <label htmlFor="bill-shipping-addr" style={LABEL_STYLE}>
+              <label htmlFor="bill-shipping-addr" className={LABEL_CLASS}>
                 <MapPin size={12} className="text-blue-500 mr-1.5" />
                 Shipping Address
               </label>
@@ -665,7 +645,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                   }
                 }}
                 placeholder="123 Main St&#10;Apartment 4B&#10;New York, NY 10001"
-                style={{ ...INPUT_STYLE, resize: "none" }}
+                className={INPUT_CLASS} style={{ resize: "none" }}
               />
             </div>
             <InputField
@@ -714,7 +694,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
               placeholder="John Doe"
             />
             <div>
-              <label htmlFor="bill-billing-addr" style={LABEL_STYLE}>
+              <label htmlFor="bill-billing-addr" className={LABEL_CLASS}>
                 <MapPin size={12} className="text-blue-500 mr-1.5" />
                 Billing Address
               </label>
@@ -724,7 +704,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                 value={billData.billingAddress}
                 onChange={(e) => onUpdate({ billingAddress: e.target.value })}
                 placeholder="123 Main St&#10;Apartment 4B&#10;New York, NY 10001"
-                style={{ ...INPUT_STYLE, resize: "none" }}
+                className={INPUT_CLASS} style={{ resize: "none" }}
               />
             </div>
             <InputField
@@ -760,7 +740,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
               placeholder="Amazon.com Services LLC"
             />
             <div>
-              <label htmlFor="bill-seller-addr" style={LABEL_STYLE}>
+              <label htmlFor="bill-seller-addr" className={LABEL_CLASS}>
                 <MapPin size={12} className="text-blue-500 mr-1.5" />
                 Seller Address
               </label>
@@ -770,7 +750,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                 value={billData.sellerAddress}
                 onChange={(e) => onUpdate({ sellerAddress: e.target.value })}
                 placeholder="410 Terry Ave N, Seattle, WA"
-                style={{ ...INPUT_STYLE, resize: "none" }}
+                className={INPUT_CLASS} style={{ resize: "none" }}
               />
             </div>
             <InputField
@@ -834,12 +814,12 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                       placeholder="29.99"
                     />
                     <div>
-                      <label htmlFor={`item-qty-${item.id}`} style={LABEL_STYLE}>Quantity</label>
-                      <select
+                      <label htmlFor={`item-qty-${item.id}`} className={LABEL_CLASS}>Quantity</label>
+                      <select aria-label="Select option"
                         id={`item-qty-${item.id}`}
                         value={item.quantity}
                         onChange={(e) => handleUpdateItem(item.id, { quantity: parseInt(e.target.value) || 1 })}
-                        style={INPUT_STYLE}
+                        className={INPUT_CLASS}
                       >
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(qty => (
                           <option key={qty} value={qty} style={{ background: "#111827" }}>{qty}</option>
@@ -925,11 +905,11 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
               placeholder="8.25"
             />
             <div>
-              <label htmlFor="bill-tax-preset" style={LABEL_STYLE}>
+              <label htmlFor="bill-tax-preset" className={LABEL_CLASS}>
                 <Percent size={12} className="text-blue-500 mr-1.5" />
                 State Tax Preset
               </label>
-              <select
+              <select aria-label="Select option"
                 id="bill-tax-preset"
                 value={getSelectedStateCode(billData.shippingAddress)}
                 onChange={(e) => {
@@ -938,7 +918,7 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
                     onUpdate({ taxRate: STATE_TAX_RATES[stateCode].toFixed(3) });
                   }
                 }}
-                style={INPUT_STYLE}
+                className={INPUT_CLASS}
               >
                 <option value="" style={{ background: "#111827" }}>-- Select State Preset --</option>
                 {Object.entries(STATE_TAX_RATES).sort((a, b) => {
@@ -964,15 +944,15 @@ export const BillForm = ({ billData, onUpdate, showPlatformSelector = true }: Bi
               placeholder="0.00"
             />
             <div>
-              <label htmlFor="bill-currency-select" style={LABEL_STYLE}>Currency</label>
-              <select
+              <label htmlFor="bill-currency-select" className={LABEL_CLASS}>Currency</label>
+              <select aria-label="Select option"
                 id="bill-currency-select"
                 value={`${billData.currencySymbol}:${billData.currencyCode}`}
                 onChange={(e) => {
                   const [symbol, code] = e.target.value.split(":");
                   onUpdate({ currencySymbol: symbol, currencyCode: code });
                 }}
-                style={INPUT_STYLE}
+                className={INPUT_CLASS}
               >
                 <option value="$:USD" style={{ background: "#111827" }}>USD ($)</option>
                 <option value="€:EUR" style={{ background: "#111827" }}>EUR (€)</option>

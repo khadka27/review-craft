@@ -19,30 +19,11 @@ interface PaymentFormProps {
   showPlatformSelector?: boolean;
 }
 
-/* ── Shared style tokens ── */
-const INPUT_STYLE: React.CSSProperties = {
-  width: "100%",
-  padding: "10px 14px",
-  borderRadius: "10px",
-  background: "#0B0F14",
-  border: "1px solid #1E293B",
-  color: "#F8FAFC",
-  fontSize: "14px",
-  outline: "none",
-  transition: "border-color 0.15s, box-shadow 0.15s",
-};
+const INPUT_CLASS =
+  "w-full min-h-[48px] md:min-h-0 px-3.5 py-3 md:py-2.5 rounded-[10px] bg-[#0B0F14] border border-slate-800 text-slate-50 text-sm outline-none transition-all duration-150 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/15";
 
-const LABEL_STYLE: React.CSSProperties = {
-  display: "flex",
-  alignItems: "center",
-  gap: "6px",
-  fontSize: "11px",
-  fontWeight: 600,
-  textTransform: "uppercase" as const,
-  letterSpacing: "0.07em",
-  color: "#94A3B8",
-  marginBottom: "8px",
-};
+const LABEL_CLASS =
+  "flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.07em] text-slate-300 mb-2";
 
 const DIVIDER_STYLE: React.CSSProperties = {
   borderTop: "1px solid #1E293B",
@@ -70,26 +51,18 @@ function InputField({
 }) {
   return (
     <div>
-      <label htmlFor={id} style={LABEL_STYLE}>
-        {Icon && <Icon size={12} style={{ color: "#2563EB" }} />}
+      <label htmlFor={id} className={LABEL_CLASS}>
+        {Icon && <Icon size={12} className="text-blue-600" />}
         {label}
       </label>
-      <div style={{ position: "relative" }}>
+      <div className="relative">
         <input
           id={id}
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          style={{ ...INPUT_STYLE, paddingRight: rightSlot ? "42px" : "14px" }}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = "#2563EB";
-            e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.15)";
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.borderColor = "#1E293B";
-            e.currentTarget.style.boxShadow = "none";
-          }}
+          className={`${INPUT_CLASS} ${rightSlot ? "pr-[42px]" : ""}`}
         />
         {rightSlot && (
           <div
@@ -178,6 +151,7 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
               <button
                 key={s.id}
                 type="button"
+                className="min-h-[48px] md:min-h-0"
                 onClick={() => onUpdate({ status: s.id })}
                 style={{
                   display: "flex",
@@ -214,20 +188,13 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
           placeholder="500.00"
         />
         <div>
-          <label htmlFor="payment-currency" style={LABEL_STYLE}>Currency</label>
+          <label htmlFor="payment-currency" className={LABEL_CLASS}>Currency</label>
           <select
             id="payment-currency"
+            aria-label="Select Currency"
             value={paymentData.currency}
             onChange={(e) => onUpdate({ currency: e.target.value })}
-            style={{ ...INPUT_STYLE, cursor: "pointer" }}
-            onFocus={(e) => {
-              e.currentTarget.style.borderColor = "#2563EB";
-              e.currentTarget.style.boxShadow = "0 0 0 3px rgba(37,99,235,0.15)";
-            }}
-            onBlur={(e) => {
-              e.currentTarget.style.borderColor = "#1E293B";
-              e.currentTarget.style.boxShadow = "none";
-            }}
+            className={`${INPUT_CLASS} cursor-pointer`}
           >
             <option value="INR" style={{ background: "#111827" }}>INR (₹)</option>
             <option value="USD" style={{ background: "#111827" }}>USD ($)</option>
