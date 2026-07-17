@@ -92,13 +92,13 @@ export const VenmoReceipt = ({ data }: { data: TransactionData }) => {
 
         {/* Like / Comment / Share */}
         <div style={{ display: "flex", padding: "10px 0", borderBottom: "1px solid #f0f0f0", gap: 20 }}>
-          <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
+          <button aria-label="Like transaction" style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
             <HeartIcon size={22} color="#aaa" />
           </button>
-          <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
+          <button aria-label="Comment on transaction" style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
             <MessageIcon size={22} color="#aaa" />
           </button>
-          <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
+          <button aria-label="Share transaction" style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
             <ShareIcon size={22} color="#3D95CE" />
           </button>
         </div>

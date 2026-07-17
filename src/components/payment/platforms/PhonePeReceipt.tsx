@@ -99,7 +99,7 @@ export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
                 <div className="text-sm font-mono text-slate-800">
                   {data.transactionId}
                 </div>
-                <button className="text-[#6a38ff] text-sm font-semibold flex items-center gap-2">
+                <button aria-label="Copy Transaction ID" className="text-[#6a38ff] text-sm font-semibold flex items-center gap-2">
                   <Copy size={14} />{" "}
                 </button>
               </div>
