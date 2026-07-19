@@ -1,5 +1,6 @@
 import * as htmlToImage from "html-to-image";
 import { trackDownload } from "./analytics";
+import { getRandomDevice, generateExifBytes, injectExifToJpeg, injectExifToPng, injectExifToWebP } from "./exifUtils";
 
 // Wait for all images to be fully loaded
 const waitForAllImagesToLoad = async (
@@ -343,10 +344,23 @@ export const downloadReviewAsImage = async (
   elementId: string,
   filename: string = "review",
   format: "png" | "jpeg" | "webp" = "png",
+  includeExif: boolean = false,
+  isMobile: boolean = true,
 ): Promise<void> => {
+  const activeFormat = format;
   let hiddenContainer: HTMLDivElement | null = null;
   let renderTarget: HTMLElement | null = null;
   try {
+    let finalFilename = filename;
+    let exifBytes: Uint8Array | null = null;
+
+    if (includeExif) {
+      const device = getRandomDevice(isMobile);
+      exifBytes = generateExifBytes(device);
+      const deviceClean = device.model.toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+      const randomNum = Math.floor(10000 + Math.random() * 90000);
+      finalFilename = `${deviceClean}_screenshot_${randomNum}`;
+    }
     console.log(`Starting download for element: ${elementId}`);
 
     const element = document.getElementById(elementId);
@@ -532,13 +546,17 @@ export const downloadReviewAsImage = async (
 
     console.log("=== End Image Status ===");
 
+    // Measure the actual layout height of the clone in the DOM to avoid flex stretch from original container
+    const targetHeight = (renderTarget && renderTarget.offsetHeight) || element.offsetHeight;
+    console.log(`Measured targetHeight: ${targetHeight} (original element height: ${element.offsetHeight})`);
+
     // More robust options for html-to-image with better image handling
     const options = {
-      quality: format === "jpeg" ? 0.95 : 1,
+      quality: activeFormat === "jpeg" ? 0.95 : 1,
       pixelRatio: 1,
-      backgroundColor: "#ffffff",
+      backgroundColor: activeFormat === "jpeg" ? "#ffffff" : undefined,
       width: element.offsetWidth,
-      height: element.offsetHeight,
+      height: targetHeight,
       useCORS: true,
       allowTaint: true, // Allow tainted canvas to handle converted images
       cacheBust: true,
@@ -562,14 +580,14 @@ export const downloadReviewAsImage = async (
       },
     };
 
-    console.log(`Generating ${format.toUpperCase()} with options:`, options);
+    console.log(`Generating ${activeFormat.toUpperCase()} with options:`, options);
 
     let dataUrl: string;
 
     try {
-      if (format === "png") {
+      if (activeFormat === "png") {
         dataUrl = await htmlToImage.toPng(renderTarget, options);
-      } else if (format === "webp") {
+      } else if (activeFormat === "webp") {
         const canvas = await htmlToImage.toCanvas(renderTarget, options);
         dataUrl = canvas.toDataURL("image/webp", 0.95);
       } else {
@@ -597,19 +615,19 @@ export const downloadReviewAsImage = async (
 
       // Try with much simpler options
       const simpleOptions = {
-        backgroundColor: "#ffffff",
+        backgroundColor: activeFormat === "jpeg" ? "#ffffff" : undefined,
         pixelRatio: 1,
         width: element.offsetWidth,
-        height: element.offsetHeight,
+        height: targetHeight,
         skipFonts: true, // Skip custom fonts that might cause issues
       };
 
       console.log("Retrying with simpler options:", simpleOptions);
 
       try {
-        if (format === "png") {
+        if (activeFormat === "png") {
           dataUrl = await htmlToImage.toPng(renderTarget, simpleOptions);
-        } else if (format === "webp") {
+        } else if (activeFormat === "webp") {
           const canvas = await htmlToImage.toCanvas(renderTarget, simpleOptions);
           dataUrl = canvas.toDataURL("image/webp", 0.95);
         } else {
@@ -623,15 +641,15 @@ export const downloadReviewAsImage = async (
         try {
           console.log("Attempting canvas fallback...");
           const minimalOptions = {
-            backgroundColor: "#ffffff",
+            backgroundColor: activeFormat === "jpeg" ? "#ffffff" : undefined,
           };
           const canvas = await htmlToImage.toCanvas(
             renderTarget,
             minimalOptions,
           );
           let mimeType = "image/png";
-          if (format === "jpeg") mimeType = "image/jpeg";
-          if (format === "webp") mimeType = "image/webp";
+          if (activeFormat === "jpeg") mimeType = "image/jpeg";
+          if (activeFormat === "webp") mimeType = "image/webp";
           dataUrl = canvas.toDataURL(mimeType, 0.9);
           console.log("Canvas fallback succeeded");
         } catch (canvasError) {
@@ -667,8 +685,8 @@ export const downloadReviewAsImage = async (
               );
 
               let mimeType = "image/png";
-              if (format === "jpeg") mimeType = "image/jpeg";
-              if (format === "webp") mimeType = "image/webp";
+              if (activeFormat === "jpeg") mimeType = "image/jpeg";
+              if (activeFormat === "webp") mimeType = "image/webp";
               dataUrl = fallbackCanvas.toDataURL(mimeType);
               console.log("Manual canvas fallback created");
             } else {
@@ -680,8 +698,8 @@ export const downloadReviewAsImage = async (
               `Failed to generate image. This may be due to external image loading issues or browser security restrictions. ` +
                 `Original error: ${
                   imageError instanceof Error
-                    ? imageError.message
-                    : "Unknown error"
+                     ? imageError.message
+                     : "Unknown error"
                 }`,
             );
           }
@@ -693,11 +711,26 @@ export const downloadReviewAsImage = async (
       throw new Error("Failed to generate image data URL - empty result");
     }
 
+    // Inject EXIF metadata if requested
+    if (includeExif && exifBytes) {
+      if (activeFormat === "jpeg") {
+        console.log("EXIF: Injecting metadata into JPEG...");
+        dataUrl = injectExifToJpeg(dataUrl, exifBytes);
+      } else if (activeFormat === "png") {
+        console.log("EXIF: Injecting metadata into PNG...");
+        dataUrl = injectExifToPng(dataUrl, exifBytes);
+      } else if (activeFormat === "webp") {
+        console.log("EXIF: Injecting metadata into WebP...");
+        dataUrl = injectExifToWebP(dataUrl, exifBytes);
+      }
+    }
+
     console.log("Image generated successfully, starting download");
 
     // Create and trigger download with better handling
     const link = document.createElement("a");
-    link.download = `${filename}.${format}`;
+    const downloadExt = activeFormat === "jpeg" ? "jpg" : activeFormat;
+    link.download = `${finalFilename}.${downloadExt}`;
     link.href = dataUrl;
     link.style.display = "none";
 
@@ -711,10 +744,10 @@ export const downloadReviewAsImage = async (
       const platform = elementId.includes("-")
         ? elementId.split("-")[0]
         : "unknown";
-      trackDownload(platform, format);
+      trackDownload(platform, activeFormat);
 
-      // Also download webp if format is not webp
-      if (format !== "webp" as any) {
+      // Also download webp if format is not webp and EXIF is not requested
+      if (activeFormat !== "webp" && !includeExif) {
         try {
           const canvas = await htmlToImage.toCanvas(renderTarget!, options);
           const webpDataUrl = canvas.toDataURL("image/webp", 0.95);

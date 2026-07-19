@@ -61,6 +61,7 @@ export const ReviewPreview = ({
   const { success, error: toastError } = useToast();
   const [isDownloading, setIsDownloading] = useState(false);
   const [isCopying, setIsCopying] = useState(false);
+  const [includeExif, setIncludeExif] = useState(false);
   const isMobileView = (reviewData.deviceViewMode || "desktop") === "mobile";
 
   const renderPlatformReview = () => {
@@ -180,10 +181,13 @@ export const ReviewPreview = ({
         "review-preview",
         `${reviewData.platform}-review`,
         format,
+        includeExif,
+        isMobileView,
       );
 
       // Show success feedback
-      success(`${format.toUpperCase()} downloaded successfully!`);
+      const finalFormat = format.toUpperCase();
+      success(`${finalFormat} downloaded successfully!${includeExif ? " (with EXIF metadata)" : ""}`);
 
       // Small delay to show success state
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -251,6 +255,15 @@ export const ReviewPreview = ({
           Preview
         </h2>
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+          <label className="flex items-center gap-2 cursor-pointer bg-white border border-gray-300 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all duration-200 select-none text-sm text-gray-700">
+            <input
+              type="checkbox"
+              checked={includeExif}
+              onChange={(e) => setIncludeExif(e.target.checked)}
+              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+            />
+            <span className="font-semibold whitespace-nowrap text-gray-700">Add EXIF Metadata</span>
+          </label>
           <button
             onClick={onRefresh}
             className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-200 text-sm sm:text-base"
@@ -314,10 +327,10 @@ export const ReviewPreview = ({
         </div>
       </div>
 
-      <div className="flex justify-center w-full min-h-[300px]">
+      <div className="flex justify-center items-center w-full min-h-[300px]">
         <div
           id="review-preview"
-          className={`w-full min-h-[250px] ${
+          className={`w-full ${
             ["clutch", "bbb", "consumerreports", "g2", "capterra", "angi"].includes(reviewData.platform)
               ? "max-w-full"
               : isMobileView
@@ -325,7 +338,7 @@ export const ReviewPreview = ({
                 : "max-w-2xl"
           }`}
           style={{
-            backgroundColor: "white",
+            backgroundColor: "transparent",
             padding: "0",
             margin: "0",
           }}

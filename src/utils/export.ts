@@ -1,5 +1,6 @@
 import { toPng, toJpeg, toCanvas } from 'html-to-image';
 import { jsPDF } from 'jspdf';
+import { getRandomDevice, generateExifBytes, injectExifToJpeg, injectExifToPng, injectExifToWebP } from './exifUtils';
 
 // Helper to convert an image element's source to a Base64 data URL via local proxy
 const convertImageToBase64 = async (img: HTMLImageElement): Promise<string> => {
@@ -68,7 +69,7 @@ const convertImageToBase64 = async (img: HTMLImageElement): Promise<string> => {
 export const downloadComponentAsImage = async (
   elementId: string, 
   fileName: string = 'screenshot',
-  options: { format?: 'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'; quality?: number } = {}
+  options: { format?: 'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'; quality?: number; skipMobileResize?: boolean; includeExif?: boolean; isMobile?: boolean } = {}
 ) => {
   const node = document.getElementById(elementId);
   if (!node) {
@@ -79,8 +80,19 @@ export const downloadComponentAsImage = async (
   let hiddenContainer: HTMLDivElement | null = null;
 
   try {
-    const { format = 'png', quality = 0.95 } = options;
-    const activeFormat = format.toLowerCase();
+    const { format = 'png', quality = 0.95, includeExif = false, isMobile = false } = options;
+    let activeFormat = format.toLowerCase();
+
+    let finalFileName = fileName;
+    let exifBytes: Uint8Array | null = null;
+
+    if (includeExif) {
+      const device = getRandomDevice(isMobile);
+      exifBytes = generateExifBytes(device);
+      const deviceClean = device.model.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, "");
+      const randomNum = Math.floor(10000 + Math.random() * 90000);
+      finalFileName = `${deviceClean}_screenshot_${randomNum}`;
+    }
 
     // Clone node into off-screen container to perform image conversion safely
     hiddenContainer = document.createElement("div");
@@ -97,7 +109,7 @@ export const downloadComponentAsImage = async (
     const originalHeight = node.offsetHeight;
     
     // Set standard mobile screen dimensions for the export clone to ensure high-quality downloads on narrow/mobile viewports
-    const isMobileAspect = originalWidth / originalHeight < 0.6;
+    const isMobileAspect = !options.skipMobileResize && originalWidth / originalHeight < 0.6;
     let exportWidth = originalWidth;
     let exportHeight = originalHeight;
     
@@ -107,12 +119,19 @@ export const downloadComponentAsImage = async (
     }
     
     cloneNode.style.width = `${exportWidth}px`;
-    cloneNode.style.height = `${exportHeight}px`;
+    if (isMobileAspect) {
+      cloneNode.style.height = `${exportHeight}px`;
+    }
     cloneNode.style.display = "flex";
     cloneNode.style.flexDirection = "column";
 
     hiddenContainer.appendChild(cloneNode);
     document.body.appendChild(hiddenContainer);
+
+    // If not mobile aspect, measure the actual natural height of the clone in the DOM to avoid flex stretch from original container
+    if (!isMobileAspect) {
+      exportHeight = cloneNode.offsetHeight || originalHeight;
+    }
 
     // Sync scroll positions from original node to cloned node using CSS translate transform
     // This is because html-to-image internally clones the node again and loses the scrollTop property values of scrollable elements.
@@ -238,15 +257,29 @@ export const downloadComponentAsImage = async (
       fileExt = 'png';
     }
 
+    // Inject EXIF metadata if requested
+    if (includeExif && exifBytes) {
+      if (activeFormat === 'jpeg' || activeFormat === 'jpg') {
+        console.log('EXIF: Injecting metadata into JPEG...');
+        dataUrl = injectExifToJpeg(dataUrl, exifBytes);
+      } else if (activeFormat === 'png') {
+        console.log('EXIF: Injecting metadata into PNG...');
+        dataUrl = injectExifToPng(dataUrl, exifBytes);
+      } else if (activeFormat === 'webp') {
+        console.log('EXIF: Injecting metadata into WebP...');
+        dataUrl = injectExifToWebP(dataUrl, exifBytes);
+      }
+    }
+
     const link = document.createElement('a');
-    link.download = `${fileName}.${fileExt}`;
+    link.download = `${finalFileName}.${fileExt === 'jpeg' ? 'jpg' : fileExt}`;
     link.href = dataUrl;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
-    // Also download webp if the main format wasn't webp
-    if (activeFormat !== 'webp') {
+    // Also download webp if the main format wasn't webp and EXIF is not requested
+    if (activeFormat !== 'webp' && !includeExif) {
       await triggerWebpDownload();
     }
   } catch (error) {

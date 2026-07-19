@@ -53,15 +53,17 @@ export function ChatGeneratorPage({
   const { success } = useToast();
   const [exportFormat, setExportFormat] = useState<'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'>('png');
   const [isDownloading, setIsDownloading] = useState(false);
+  const [includeExif, setIncludeExif] = useState(false);
 
   const handleDownload = async () => {
     setIsDownloading(true);
     await downloadComponentAsImage(
       "chat-screen-capture",
       `chat-${chatData.platform}-${Date.now()}`,
-      { format: exportFormat }
+      { format: exportFormat, includeExif, isMobile: true }
     );
-    success(`${exportFormat.toUpperCase()} downloaded successfully!`);
+    const finalFormat = exportFormat.toUpperCase();
+    success(`${finalFormat} downloaded successfully!${includeExif ? " (with EXIF metadata)" : ""}`);
     setTimeout(() => setIsDownloading(false), 1500);
   };
 
@@ -113,6 +115,20 @@ export function ChatGeneratorPage({
                     <option value="jpg">JPG Image</option>
                     <option value="pdf">PDF Document</option>
                   </select>
+
+                  <label className="flex items-center gap-2 cursor-pointer bg-white border border-gray-300 hover:border-green-500/50 text-gray-700 px-3.5 py-2 rounded-lg text-sm font-semibold select-none transition-all duration-200"
+                    style={{
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={includeExif}
+                      onChange={(e) => setIncludeExif(e.target.checked)}
+                      className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 cursor-pointer"
+                    />
+                    <span className="font-semibold whitespace-nowrap text-gray-700">Add EXIF</span>
+                  </label>
                   
                   <button
                     onClick={handleDownload}

@@ -66,15 +66,17 @@ export function PaymentGeneratorPage({
   const { success } = useToast();
   const [isDownloading, setIsDownloading] = useState(false);
   const [exportFormat, setExportFormat] = useState<'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'>('png');
+  const [includeExif, setIncludeExif] = useState(false);
 
   const handleDownload = async () => {
     setIsDownloading(true);
     await downloadComponentAsImage(
       "payment-receipt-capture",
       `payment-${paymentData.platform}-${Date.now()}`,
-      { format: exportFormat }
+      { format: exportFormat, includeExif, isMobile: true }
     );
-    success(`${exportFormat.toUpperCase()} downloaded successfully!`);
+    const finalFormat = exportFormat.toUpperCase();
+    success(`${finalFormat} downloaded successfully!${includeExif ? " (with EXIF metadata)" : ""}`);
     setTimeout(() => setIsDownloading(false), 1500);
   };
 
@@ -302,6 +304,20 @@ export function PaymentGeneratorPage({
                     <option value="jpg">JPG Image</option>
                     <option value="pdf">PDF Document</option>
                   </select>
+
+                  <label className="flex items-center gap-2 cursor-pointer bg-[#0B0F14] border border-[#1E293B] hover:border-blue-500/50 text-[#94A3B8] px-3.5 py-2.5 rounded-xl text-sm font-semibold select-none transition-all duration-200"
+                    style={{
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={includeExif}
+                      onChange={(e) => setIncludeExif(e.target.checked)}
+                      className="w-4 h-4 text-blue-600 border-[#1E293B] bg-transparent rounded focus:ring-blue-500 cursor-pointer"
+                    />
+                    <span className="font-semibold whitespace-nowrap text-[#F8FAFC]">Add EXIF</span>
+                  </label>
                   
                   <button
                     id="download-receipt-btn"

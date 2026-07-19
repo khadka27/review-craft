@@ -141,12 +141,14 @@ export function ReviewGeneratorPage({
                   Review
                 </h2>
                 <button
-                  onClick={() =>
+                  onClick={() => {
+                    const isMobile = (reviewData.deviceViewMode || "desktop") === "mobile";
                     downloadComponentAsImage(
                       "review-preview",
                       `review-${reviewData.platform}-${Date.now()}`,
-                    )
-                  }
+                      { skipMobileResize: true, isMobile }
+                    );
+                  }}
                   className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm text-sm font-medium"
                 >
                   <Download size={16} />
