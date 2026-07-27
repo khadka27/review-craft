@@ -925,7 +925,11 @@ export const preloadImagesForDownload = async (
   }
 };
 
-export const copyToClipboard = async (elementId: string): Promise<void> => {
+export const copyToClipboard = async (
+  elementId: string,
+  includeExif: boolean = false,
+  isMobile: boolean = true
+): Promise<void> => {
   // Store original image sources
   const originalSources: { img: HTMLImageElement; src: string }[] = [];
 
@@ -962,10 +966,18 @@ export const copyToClipboard = async (elementId: string): Promise<void> => {
       height: element.offsetHeight,
     };
 
-    const dataUrl = await htmlToImage.toPng(element, options);
+    let dataUrl = await htmlToImage.toPng(element, options);
 
     if (!dataUrl) {
       throw new Error("Failed to generate image data URL");
+    }
+
+    // Inject EXIF metadata if requested
+    if (includeExif) {
+      const device = getRandomDevice(isMobile);
+      const exifBytes = generateExifBytes(device);
+      console.log("EXIF: Injecting metadata into PNG for clipboard copy...");
+      dataUrl = injectExifToPng(dataUrl, exifBytes);
     }
 
     // Check if clipboard API is available and supports writing images

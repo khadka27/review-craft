@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { TransactionData, PaymentPlatform } from "@/types/payment";
 import { PaymentForm } from "./PaymentForm";
 import { PaymentPreview } from "./PaymentPreview";
-import { Shield, Download, Sparkles, Zap, Lock, ChevronRight } from "lucide-react";
-import { downloadComponentAsImage } from "@/utils/export";
+import { Shield, Download, Copy, Loader2, Sparkles, Zap, Lock, ChevronRight } from "lucide-react";
+import { downloadComponentAsImage, copyComponentToClipboard } from "@/utils/export";
 import { useToast } from "@/components/ui/Toast";
 
 interface PaymentGeneratorPageProps {
@@ -18,6 +18,7 @@ interface PaymentGeneratorPageProps {
     heroGradient: string;
     heroDescriptionColor: string;
   };
+  extraContent?: React.ReactNode;
 }
 
 const getRealisticDefaultTimestamp = () => {
@@ -39,14 +40,15 @@ export function PaymentGeneratorPage({
   initialPlatform = "paytm",
   lockPlatform = false,
   heroTitle = "Payment Receipt Generator",
-  heroDescription = "Create realistic payment confirmation screenshots for Paytm, Stripe, Google Pay, and more. Perfect for mockups and UI demonstrations.",
+  heroDescription = "Create realistic payment receipts for Paytm, Stripe, Google Pay, PhonePe, and PayPal.",
   theme,
+  extraContent,
 }: PaymentGeneratorPageProps) {
   const [paymentData, setPaymentData] = useState<TransactionData>({
     id: "1",
     platform: initialPlatform,
     amount: "500.00",
-    currency: "INR",
+    currency: "₹",
     senderName: "Abish Khadka",
     receiverName: "ReviewCraft Store",
     timestamp: "3 Jun 2026, 03:15 PM",
@@ -63,8 +65,9 @@ export function PaymentGeneratorPage({
     }));
   }, []);
 
-  const { success } = useToast();
+  const { success, error: toastError } = useToast();
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isCopying, setIsCopying] = useState(false);
   const [exportFormat, setExportFormat] = useState<'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'>('png');
   const [includeExif, setIncludeExif] = useState(false);
 
@@ -78,6 +81,20 @@ export function PaymentGeneratorPage({
     const finalFormat = exportFormat.toUpperCase();
     success(`${finalFormat} downloaded successfully!${includeExif ? " (with EXIF metadata)" : ""}`);
     setTimeout(() => setIsDownloading(false), 1500);
+  };
+
+  const handleCopy = async () => {
+    if (isCopying) return;
+    setIsCopying(true);
+    try {
+      await copyComponentToClipboard("payment-receipt-capture", { includeExif, isMobile: true });
+      success(`Payment receipt copied to clipboard!${includeExif ? " (with EXIF metadata)" : ""}`);
+    } catch (err) {
+      console.error("Failed to copy receipt:", err);
+      toastError("Failed to copy receipt to clipboard.");
+    } finally {
+      setIsCopying(false);
+    }
   };
 
   const updatePaymentData = (updates: Partial<TransactionData>) => {
@@ -319,6 +336,18 @@ export function PaymentGeneratorPage({
                     <span className="font-semibold whitespace-nowrap text-[#F8FAFC]">Add EXIF</span>
                   </label>
                   
+                  <button
+                    onClick={handleCopy}
+                    disabled={isCopying}
+                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-60 text-white cursor-pointer bg-[#334155] hover:bg-[#475569]"
+                    style={{
+                      boxShadow: "0 2px 12px rgba(51,65,85,0.35)",
+                    }}
+                  >
+                    {isCopying ? <Loader2 size={14} className="animate-spin" /> : <Copy size={14} />}
+                    {isCopying ? "Copying..." : "Copy"}
+                  </button>
+
                   <button
                     id="download-receipt-btn"
                     onClick={handleDownload}

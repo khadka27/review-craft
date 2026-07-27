@@ -234,8 +234,8 @@ export const ReviewPreview = ({
       // Additional wait to ensure everything is rendered
       await new Promise((resolve) => setTimeout(resolve, 300));
 
-      await copyToClipboard("review-preview");
-      success("Review copied to clipboard!");
+      await copyToClipboard("review-preview", includeExif, isMobileView);
+      success(`Review copied to clipboard!${includeExif ? " (with EXIF metadata)" : ""}`);
       // Small delay to show success state
       await new Promise((resolve) => setTimeout(resolve, 500));
     } catch (error) {

@@ -291,3 +291,155 @@ export const downloadComponentAsImage = async (
     }
   }
 };
+
+export const copyComponentToClipboard = async (
+  elementId: string,
+  options: { includeExif?: boolean; isMobile?: boolean; skipMobileResize?: boolean } = {}
+) => {
+  const node = document.getElementById(elementId);
+  if (!node) {
+    console.error(`Element with id ${elementId} not found`);
+    return;
+  }
+
+  let hiddenContainer: HTMLDivElement | null = null;
+
+  try {
+    const { includeExif = false, isMobile = false } = options;
+
+    let exifBytes: Uint8Array | null = null;
+    if (includeExif) {
+      const device = getRandomDevice(isMobile);
+      exifBytes = generateExifBytes(device);
+    }
+
+    // Clone node into off-screen container to perform image conversion safely
+    hiddenContainer = document.createElement("div");
+    hiddenContainer.style.position = "fixed";
+    hiddenContainer.style.left = "-9999px";
+    hiddenContainer.style.top = "-9999px";
+    hiddenContainer.style.pointerEvents = "none";
+    hiddenContainer.style.opacity = "0";
+    hiddenContainer.style.zIndex = "-999";
+
+    const cloneNode = node.cloneNode(true) as HTMLElement;
+
+    const originalWidth = node.offsetWidth;
+    const originalHeight = node.offsetHeight;
+
+    const isMobileAspect = !options.skipMobileResize && originalWidth / originalHeight < 0.6;
+    let exportWidth = originalWidth;
+    let exportHeight = originalHeight;
+
+    if (isMobileAspect) {
+      exportWidth = originalWidth > 320 ? originalWidth : 375;
+      exportHeight = originalHeight > 600 ? originalHeight : 812;
+    }
+
+    cloneNode.style.width = `${exportWidth}px`;
+    if (isMobileAspect) {
+      cloneNode.style.height = `${exportHeight}px`;
+    }
+    cloneNode.style.display = "flex";
+    cloneNode.style.flexDirection = "column";
+
+    hiddenContainer.appendChild(cloneNode);
+    document.body.appendChild(hiddenContainer);
+
+    if (!isMobileAspect) {
+      exportHeight = cloneNode.offsetHeight || originalHeight;
+    }
+
+    // Sync scroll positions from original node to cloned node
+    const originalScrollables = Array.from(node.querySelectorAll('.overflow-y-auto, [style*="overflow-y: auto"], [style*="overflow: auto"]'));
+    const clonedScrollables = Array.from(cloneNode.querySelectorAll('.overflow-y-auto, [style*="overflow-y: auto"], [style*="overflow: auto"]'));
+
+    originalScrollables.forEach((orig, idx) => {
+      const cloned = clonedScrollables[idx] as HTMLElement;
+      if (cloned) {
+        const scrollTop = (orig as HTMLElement).scrollTop;
+        const scrollLeft = (orig as HTMLElement).scrollLeft;
+
+        if (scrollTop > 0 || scrollLeft > 0) {
+          const wrapperDiv = document.createElement('div');
+          wrapperDiv.style.transform = `translate(-${scrollLeft}px, -${scrollTop}px)`;
+          wrapperDiv.style.width = '100%';
+          wrapperDiv.style.display = 'flex';
+          wrapperDiv.style.flexDirection = 'column';
+          wrapperDiv.style.flex = '1';
+
+          Array.from(cloned.classList).forEach(cls => {
+            if (cls.startsWith('space-y-') || cls.startsWith('space-x-') || cls.startsWith('gap-') || cls.startsWith('flex-')) {
+              wrapperDiv.classList.add(cls);
+            }
+          });
+
+          while (cloned.firstChild) {
+            wrapperDiv.appendChild(cloned.firstChild);
+          }
+          cloned.appendChild(wrapperDiv);
+        }
+
+        cloned.style.scrollbarWidth = 'none';
+        cloned.style.setProperty('-ms-overflow-style', 'none');
+      }
+    });
+
+    const styleElement = document.createElement("style");
+    styleElement.textContent = `
+      ::-webkit-scrollbar {
+        display: none !important;
+      }
+      .overflow-y-auto {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+    `;
+    cloneNode.appendChild(styleElement);
+
+    const images = cloneNode.querySelectorAll("img");
+    const imagePromises = Array.from(images).map(async (img) => {
+      const base64 = await convertImageToBase64(img);
+      img.src = base64;
+
+      return new Promise<void>((r) => {
+        if (img.complete && img.naturalWidth > 0) {
+          r();
+          return;
+        }
+        img.onload = () => r();
+        img.onerror = () => r();
+        setTimeout(r, 2000);
+      });
+    });
+
+    await Promise.all(imagePromises);
+    await new Promise((r) => setTimeout(r, 250));
+
+    let dataUrl = await toPng(cloneNode, { pixelRatio: 2 });
+
+    if (includeExif && exifBytes) {
+      console.log('EXIF: Injecting metadata into PNG for clipboard copy...');
+      dataUrl = injectExifToPng(dataUrl, exifBytes);
+    }
+
+    if (navigator.clipboard && ClipboardItem) {
+      const response = await fetch(dataUrl);
+      const blob = await response.blob();
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "image/png": blob,
+        }),
+      ]);
+    } else if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(dataUrl);
+    }
+  } catch (error) {
+    console.error('Error copying component to clipboard:', error);
+    throw error;
+  } finally {
+    if (hiddenContainer && document.body.contains(hiddenContainer)) {
+      document.body.removeChild(hiddenContainer);
+    }
+  }
+};

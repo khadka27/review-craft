@@ -4,8 +4,8 @@ import { useState } from "react";
 import { ChatData, ChatPlatform } from "@/types/chat";
 import { ChatForm } from "./ChatForm";
 import { ChatPreview } from "./ChatPreview";
-import { Shield, Download } from "lucide-react";
-import { downloadComponentAsImage } from "@/utils/export";
+import { Shield, Download, Copy, Loader2 } from "lucide-react";
+import { downloadComponentAsImage, copyComponentToClipboard } from "@/utils/export";
 import { useToast } from "@/components/ui/Toast";
 
 interface ChatGeneratorPageProps {
@@ -24,35 +24,54 @@ interface ChatGeneratorPageProps {
 export function ChatGeneratorPage({
   initialPlatform = "whatsapp",
   lockPlatform = false,
-  heroTitle = "Fake Social Media Chat Generator",
-  heroDescription = "Create realistic chat screenshots for WhatsApp, Instagram, Messenger and more. Perfect for mockups, storytelling, and design presentations.",
+  heroTitle = "Chat Generator",
+  heroDescription = "Create realistic chat mockups for WhatsApp, iMessage, Messenger, Instagram, Telegram, and Discord.",
   theme,
   extraContent,
 }: ChatGeneratorPageProps) {
   const [chatData, setChatData] = useState<ChatData>({
     id: "1",
     platform: initialPlatform,
-    contactName: "John Doe",
-    contactAvatar: "https://i.pravatar.cc/150?u=johndoe",
-    contactStatus: "Online",
+    contactName: "Alex Morgan",
+    contactAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+    contactStatus: "online",
     messages: [
-      { id: "1", text: "Hey! How are you?", sender: "them", timestamp: "10:00 AM", status: "read" },
-      { id: "2", text: "I'm doing great, thanks for asking!", sender: "me", timestamp: "10:01 AM", status: "read" },
-      { id: "3", text: "Did you finish the project?", sender: "them", timestamp: "10:05 AM", status: "read" },
+      {
+        id: "1",
+        text: "Hey! Did you get a chance to check out the new design?",
+        timestamp: "10:42 AM",
+        sender: "them",
+        status: "read",
+      },
+      {
+        id: "2",
+        text: "Yes, it looks amazing! Really love the clean aesthetic.",
+        timestamp: "10:43 AM",
+        sender: "me",
+        status: "read",
+      },
+      {
+        id: "3",
+        text: "Great! Let's schedule a call tomorrow to discuss the final touches.",
+        timestamp: "10:45 AM",
+        sender: "them",
+        status: "delivered",
+      },
     ],
     deviceMode: "mobile",
     theme: "light",
   });
 
   const activeTheme = theme || {
-    pageGradient: "bg-gray-50",
-    heroGradient: "bg-gradient-to-r from-green-500 to-blue-600",
+    pageGradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50",
+    heroGradient: "bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600",
     heroDescriptionColor: "text-white opacity-90",
   };
 
-  const { success } = useToast();
+  const { success, error: toastError } = useToast();
   const [exportFormat, setExportFormat] = useState<'png' | 'jpeg' | 'jpg' | 'webp' | 'pdf'>('png');
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isCopying, setIsCopying] = useState(false);
   const [includeExif, setIncludeExif] = useState(false);
 
   const handleDownload = async () => {
@@ -65,6 +84,20 @@ export function ChatGeneratorPage({
     const finalFormat = exportFormat.toUpperCase();
     success(`${finalFormat} downloaded successfully!${includeExif ? " (with EXIF metadata)" : ""}`);
     setTimeout(() => setIsDownloading(false), 1500);
+  };
+
+  const handleCopy = async () => {
+    if (isCopying) return;
+    setIsCopying(true);
+    try {
+      await copyComponentToClipboard("chat-screen-capture", { includeExif, isMobile: true });
+      success(`Chat screenshot copied to clipboard!${includeExif ? " (with EXIF metadata)" : ""}`);
+    } catch (err) {
+      console.error("Failed to copy chat screenshot:", err);
+      toastError("Failed to copy image to clipboard.");
+    } finally {
+      setIsCopying(false);
+    }
   };
 
   const updateChatData = (updates: Partial<ChatData>) => {
@@ -130,6 +163,15 @@ export function ChatGeneratorPage({
                     <span className="font-semibold whitespace-nowrap text-gray-700">Add EXIF</span>
                   </label>
                   
+                  <button
+                    onClick={handleCopy}
+                    disabled={isCopying}
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-60 transition-colors shadow-sm text-sm font-medium cursor-pointer"
+                  >
+                    {isCopying ? <Loader2 size={16} className="animate-spin" /> : <Copy size={16} />}
+                    {isCopying ? "Copying..." : "Copy"}
+                  </button>
+
                   <button
                     onClick={handleDownload}
                     disabled={isDownloading}
