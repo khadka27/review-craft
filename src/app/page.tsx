@@ -20,7 +20,7 @@ const faqSchema = {
       name: "What is this fake review generator used for?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "This tool is for creating review mockups for UI design, prototypes, demos, and educational use only.",
+        text: "This tool is for creating review mockups for UI design, prototypes, demos",
       },
     },
     {

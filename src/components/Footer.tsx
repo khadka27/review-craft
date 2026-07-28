@@ -106,10 +106,7 @@ const Footer = () => {
               design mockups, and presentations. Create authentic-looking
               reviews for 26+ platforms.
             </p>
-            <div className="inline-flex items-center space-x-2 text-xs text-gray-400 bg-green-900/20 px-3 py-1 rounded-full">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span>Educational Use Only</span>
-            </div>
+            
           </div>
 
           {/* Product Links */}

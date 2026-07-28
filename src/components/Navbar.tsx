@@ -656,12 +656,7 @@ const Navbar = () => {
 
             <div className="ml-2 h-6 w-px bg-slate-800" aria-hidden="true" />
 
-            {/* Educational Use Only Badge */}
-            <div className="ml-2 flex items-center space-x-2 text-xs text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-              <span className="hidden lg:inline">Educational Use Only</span>
-              <span className="lg:hidden">Educational</span>
-            </div>
+           
 
             {/* Action CTA Button */}
             <Link
@@ -928,10 +923,7 @@ const Navbar = () => {
                   Try Generator
                 </Link>
 
-                <div className="px-4 py-2.5 bg-emerald-500/10 rounded-xl border border-emerald-500/20 flex items-center space-x-2 text-xs text-emerald-400">
-                  <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
-                  <span>Educational Use Only</span>
-                </div>
+               
               </div>
             </div>
           </div>

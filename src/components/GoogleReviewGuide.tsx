@@ -135,7 +135,6 @@ export function GoogleReviewGuide() {
             Create realistic Google review-style mockups in seconds. Customize star ratings, reviewer names, profile photos, review text, business details, review dates, uploaded images, and owner responses to generate polished Google-style screenshots for demos, landing pages, UI testing, client presentations, marketing creatives, and educational projects.
           </p>
           <div className="mt-6 flex flex-wrap gap-2 text-xs text-slate-400">
-            <span className="bg-slate-800/80 px-3 py-1 rounded-md border border-slate-700">Educational Use Only</span>
             <span className="bg-slate-800/80 px-3 py-1 rounded-md border border-slate-700">UI Testing</span>
             <span className="bg-slate-800/80 px-3 py-1 rounded-md border border-slate-700">Presentation Ready</span>
           </div>
