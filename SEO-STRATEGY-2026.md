@@ -2141,13 +2141,14 @@ To maintain a healthy search presence, it's critical to monitor the **Page Index
 | **Blocked by robots.txt** | Your robots.txt file explicitly prevents Googlebot from crawling that page. | Edit robots.txt to allow crawling if you want the page indexed. |
 | **Page with redirect** | The page redirects to another URL, so Google indexes the destination instead. | Ensure redirects are intentional and point to the correct canonical page. |
 | **Crawled – currently not indexed** | Google crawled the page but decided not to index it yet (often due to low quality or duplicate content). | Improve content quality, internal linking, and request indexing again. |
-| **Alternate page with proper canonical tag** | The page has a canonical tag pointing to another version, so Google indexes that canonical instead. | No action needed unless the canonical is incorrect. |
+| **Alternate page with proper canonical tag** | Google found an alternate/duplicate URL (HTTP, non-www, `/home`, parameters) with a `<link rel="canonical">` pointing to the main URL. Google respected the canonical tag and indexed the primary URL instead. | **No action needed.** This is intended behavior. **Do NOT click "Validate Fix" in GSC** for this item, as validation will fail if alternate URLs still exist with canonical tags. Ensure sitemaps contain ONLY primary canonical URLs. |
 
 ### How to Monitor & Fix:
 1. **Regular Audits:** Check the "Indexing" tab in GSC at least once a week.
 2. **Inspect URL:** Use the "URL Inspection" tool for specific pages that aren't showing up.
-3. **Request Indexing:** After fixing an issue (like a 5xx error or robots.txt block), always click "Request Indexing" to alert Google.
-4. **Validation:** Use the "Validate Fix" button in the specific issue report to track progress.
+3. **Request Indexing:** After fixing an actual error (like a 5xx error or robots.txt block), click "Request Indexing" to alert Google.
+4. **Validation Warning:** Use the "Validate Fix" button ONLY for actual errors (5xx, broken redirects, 404s). Never click "Validate Fix" on intentional exclusions like "Alternate page with proper canonical tag", or GSC will mark the validation as Failed.
+5. **Sitemap Hygiene:** Ensure `sitemap.xml` strictly lists primary, canonical URLs. Never include duplicate page aliases (e.g. `/home`).
 
 ---
 

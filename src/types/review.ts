@@ -17,6 +17,7 @@ export interface ReviewData {
   phoneModel?: string; // e.g. "iPhone 15", "Samsung Galaxy S24"
   facebookContentType?: "post" | "review";
   facebookViewMode?: "desktop" | "mobile";
+  instagramContentType?: "post" | "comment";
   appstoreTemplate?: "editorial" | "classic";
   images?: string[]; // Optional array of image URLs or file paths
   googleContentType?: "single" | "summary";

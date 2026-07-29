@@ -25,6 +25,15 @@
 import { ReviewData, Platform } from "@/types/review";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
 
+const sampleInstagramPostImages = [
+  "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&auto=format&fit=crop&q=80",
+];
+
 // API Response Interfaces
 interface RandomUserApiResponse {
   results: Array<{
@@ -2110,7 +2119,9 @@ export const generateRandomReviewData = async (
     deviceViewMode: "desktop",
     facebookContentType: platform === "facebook" ? "post" : undefined,
     facebookViewMode: platform === "facebook" ? "desktop" : undefined,
+    instagramContentType: platform === "instagram" ? "post" : undefined,
     googleContentType: platform === "google" ? "single" : undefined,
+    images: platform === "instagram" ? [getRandomItem(sampleInstagramPostImages)] : undefined,
     appstoreTemplate,
     productVariation,
     ...(platform === "steam"
@@ -2279,7 +2290,9 @@ export const generateRandomReviewDataSync = (
     deviceViewMode: "desktop",
     facebookContentType: platform === "facebook" ? "post" : undefined,
     facebookViewMode: platform === "facebook" ? "desktop" : undefined,
+    instagramContentType: platform === "instagram" ? "post" : undefined,
     googleContentType: platform === "google" ? "single" : undefined,
+    images: platform === "instagram" ? [getRandomItem(sampleInstagramPostImages)] : undefined,
     appstoreTemplate,
     productVariation,
     ...(platform === "steam"

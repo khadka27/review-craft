@@ -121,6 +121,17 @@ const nextConfig = {
     scrollRestoration: true,
   },
 
+  // Redirects
+  async redirects() {
+    return [
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
+
   // Analytics and tracking
   async rewrites() {
     return [

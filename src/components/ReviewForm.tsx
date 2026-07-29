@@ -131,6 +131,10 @@ export const ReviewForm = ({
   const isFacebookPostMode =
     reviewData.platform === "facebook" &&
     (reviewData.facebookContentType || "post") === "post";
+  const isInstagramPostMode =
+    reviewData.platform === "instagram" &&
+    (reviewData.instagramContentType || "post") === "post";
+
   let contentLabel = "Review Content";
   let contentPlaceholder = "Enter review content";
   if (reviewData.platform === "facebook") {
@@ -138,6 +142,11 @@ export const ReviewForm = ({
     contentPlaceholder = isFacebookPostMode
       ? "Enter post content"
       : "Enter comment";
+  } else if (reviewData.platform === "instagram") {
+    contentLabel = isInstagramPostMode ? "Post Caption" : "Comment Text";
+    contentPlaceholder = isInstagramPostMode
+      ? "Enter post caption..."
+      : "Enter comment text...";
   }
 
   return (
@@ -474,6 +483,41 @@ export const ReviewForm = ({
                 className={`px-3 py-2 rounded-lg text-xs sm:text-sm border transition-colors ${
                   (reviewData.facebookContentType || "post") === "review"
                     ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                Comment
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Instagram Content Type */}
+        {reviewData.platform === "instagram" && (
+          <div className="space-y-2 sm:col-span-2">
+            <label className="block text-xs sm:text-sm font-semibold text-gray-700">
+              Instagram Content Type
+            </label>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => handleInputChange("instagramContentType", "post")}
+                className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm border font-semibold transition-all ${
+                  (reviewData.instagramContentType || "post") === "post"
+                    ? "bg-gradient-to-r from-[#f9ce0f] via-[#e1306c] to-[#833ab4] text-white border-transparent shadow-sm"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                Post
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  handleInputChange("instagramContentType", "comment")
+                }
+                className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm border font-semibold transition-all ${
+                  (reviewData.instagramContentType || "post") === "comment"
+                    ? "bg-gradient-to-r from-[#f9ce0f] via-[#e1306c] to-[#833ab4] text-white border-transparent shadow-sm"
                     : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
                 }`}
               >
