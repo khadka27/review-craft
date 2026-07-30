@@ -1,5 +1,3 @@
-import { toPng, toJpeg, toCanvas } from 'html-to-image';
-import { jsPDF } from 'jspdf';
 import { getRandomDevice, generateExifBytes, injectExifToJpeg, injectExifToPng, injectExifToWebP } from './exifUtils';
 
 // Helper to convert an image element's source to a Base64 data URL via local proxy
@@ -206,6 +204,9 @@ export const downloadComponentAsImage = async (
     // Give a brief moment for layout/rendering to settle
     await new Promise((r) => setTimeout(r, 250));
 
+    // Dynamically import html-to-image
+    const { toPng, toJpeg, toCanvas } = await import('html-to-image');
+
     // Helper to trigger webp download in addition
     const triggerWebpDownload = async () => {
       try {
@@ -228,6 +229,7 @@ export const downloadComponentAsImage = async (
       const width = exportWidth;
       const height = exportHeight;
       
+      const { jsPDF } = await import('jspdf');
       const pdf = new jsPDF({
         orientation: width > height ? 'landscape' : 'portrait',
         unit: 'px',
@@ -416,6 +418,7 @@ export const copyComponentToClipboard = async (
     await Promise.all(imagePromises);
     await new Promise((r) => setTimeout(r, 250));
 
+    const { toPng } = await import('html-to-image');
     let dataUrl = await toPng(cloneNode, { pixelRatio: 2 });
 
     if (includeExif && exifBytes) {

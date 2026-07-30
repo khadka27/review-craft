@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/ui/Toast";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const viewport: Viewport = {
   width: "device-width",

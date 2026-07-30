@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import HomePage from "./home/page";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Fake Review Generator - Review Screenshot Mockup Tool",
   description:

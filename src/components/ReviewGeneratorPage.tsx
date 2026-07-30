@@ -49,20 +49,20 @@ export function ReviewGeneratorPage({
   extraContent,
 }: ReviewGeneratorPageProps) {
   const [reviewData, setReviewData] = useState<ReviewData>({
-    id: "",
-    name: "Loading...",
-    username: "loading...",
-    avatar: "/images/default-avatar.jpg",
+    id: "initial-review-1",
+    name: "Alex Vance",
+    username: "alexvance",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
     gender: "random",
     platform: initialPlatform,
-    title: "Loading review...",
-    content: "Please wait while we generate your review...",
+    title: "Outstanding design and build quality",
+    content: "The review mockup generator works seamlessly for prototyping product landing pages and client feedback presentations.",
     rating: 5,
     date: new Date(),
-    likes: 0,
-    replies: 0,
-    shares: 0,
-    verified: false,
+    likes: 42,
+    replies: 7,
+    shares: 3,
+    verified: true,
     deviceViewMode: "desktop",
     facebookContentType: "post",
     facebookViewMode: "desktop",
@@ -81,23 +81,14 @@ export function ReviewGeneratorPage({
   };
 
   useEffect(() => {
-    generateCompleteRandomReview();
     trackPageView(pageViewName);
   }, [pageViewName]);
 
   useEffect(() => {
-    const updateUsername = async () => {
-      const randomData = await generateRandomReviewData(reviewData.platform);
-      if (randomData.username) {
-        setReviewData((prev) => ({ ...prev, username: randomData.username }));
-      }
-    };
-
-    updateUsername();
-
     if (previousPlatformRef.current !== reviewData.platform) {
       trackPlatformSwitch(previousPlatformRef.current, reviewData.platform);
       previousPlatformRef.current = reviewData.platform;
+      generateCompleteRandomReview();
     }
   }, [reviewData.platform]);
 
@@ -155,7 +146,7 @@ export function ReviewGeneratorPage({
                   Download Image
                 </button>
               </div>
-              <div className="overflow-x-auto flex justify-center">
+              <div className="overflow-x-auto flex justify-center min-h-[360px] sm:min-h-[400px]">
                 <ReviewPreview
                   reviewData={reviewData}
                   onRefresh={generateCompleteRandomReview}
