@@ -120,10 +120,14 @@ export default function RootLayout({
           <main>{children}</main>
           <Script
             async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5286253567075688"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${
+              process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-5286253567075688"
+            }`}
             crossOrigin="anonymous"
-            strategy="lazyOnload"
+            strategy="afterInteractive"
+            id="adsense-init"
           />
+
           <Footer />
           <GoogleAnalytics
             gaId={process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT"}
