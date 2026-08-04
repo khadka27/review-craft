@@ -324,7 +324,10 @@ const Navbar = () => {
   
   const desktopMenuRef = useRef<HTMLDivElement>(null);
 
-  const navigation: { name: string; href: string }[] = [];
+  const navigation: { name: string; href: string }[] = [
+    { name: "Guides", href: "/blog" },
+    { name: "About", href: "/about" },
+  ];
 
   useEffect(() => {
     setDesktopDropdown(null);
@@ -380,21 +383,8 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Right Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1.5">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                  isActiveRoute(item.href)
-                    ? "bg-[#1E293B] text-white border border-slate-700/50 shadow-sm"
-                    : "text-slate-300 hover:bg-slate-800/50 hover:text-white"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
 
             {/* Reviews Dropdown Link (Mega Menu) */}
             <div className="relative">
@@ -653,6 +643,21 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+
+            {/* Guides & About Nav Links (Right Side) */}
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                  isActiveRoute(item.href)
+                    ? "bg-[#1E293B] text-white border border-slate-700/50 shadow-sm"
+                    : "text-slate-300 hover:bg-slate-800/50 hover:text-white"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
 
             <div className="ml-2 h-6 w-px bg-slate-800" aria-hidden="true" />
 

@@ -1,13 +1,15 @@
 import { Metadata } from "next";
+import Link from "next/link";
+import { ShieldCheck, Target, Sparkles, BookOpen, Layers } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About ReviewCraft - Educational Social Media Review Generator",
+  title: "About ReviewCraft - Review & Social Proof Screenshot Generator",
   description:
-    "Learn about ReviewCraft, an educational tool for generating realistic social media reviews for design mockups, presentations, and learning purposes.",
+    "Learn about ReviewCraft: a web application created to help UI/UX designers, developers, marketers, and educators build high-fidelity social media and ecommerce review mockups safely and efficiently.",
   openGraph: {
-    title: "About ReviewCraft - Educational Social Media Review Generator",
+    title: "About ReviewCraft - Review & Social Proof Screenshot Generator",
     description:
-      "Learn about ReviewCraft, an educational tool for generating realistic social media reviews for design mockups, presentations, and learning purposes.",
+      "Learn about ReviewCraft: a web application created to help UI/UX designers, developers, marketers, and educators build high-fidelity social media and ecommerce review mockups safely and efficiently.",
     url: "/about",
     type: "website",
   },
@@ -16,156 +18,139 @@ export const metadata: Metadata = {
   },
 };
 
-const AboutPage = () => {
+export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-12 sm:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 font-semibold text-xs uppercase tracking-wider mb-4">
+            <Sparkles size={14} /> Design & Prototype Tool
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-950 tracking-tight mb-4">
             About ReviewCraft
           </h1>
-          <p className="text-xl text-gray-600">
-            Educational tool for creating authentic social media content
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Empowering designers, developers, and educators with realistic, non-deceptive review and chat mockup tools.
           </p>
         </div>
 
-        {/* Main Content */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 mb-8">
-          <div className="prose prose-lg max-w-none">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+        {/* Main Card */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-10 mb-8 space-y-10">
+          {/* Mission Statement */}
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <Target className="text-indigo-600" size={24} />
               What is ReviewCraft?
             </h2>
-            <p className="text-gray-600 mb-6">
-              realistic-looking social media reviews for educational purposes,
-              design mockups, and presentations. Our platform supports over 26
-              popular social media and review platforms, creating pixel-perfect
-              replicas of their interfaces.
+            <p className="text-gray-700 leading-relaxed mb-4">
+              ReviewCraft is an online utility built for creating pixel-perfect, customizable social media reviews, chat conversations, and payment confirmation screenshots. Whether you are crafting a Figma design prototype, presenting a client pitch deck, training a team on customer feedback analysis, or designing an app interface demo, ReviewCraft accelerates your design workflow without requiring manual layout assembly.
             </p>
-
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Educational Purpose
-            </h2>
-            <p className="text-gray-600 mb-6">
-              This tool is specifically designed for educational and
-              demonstration purposes. It helps designers, educators, students,
-              and professionals create realistic mockups without using actual
-              user-generated content. All generated reviews are clearly marked
-              as simulated and should never be used to deceive or mislead users.
+            <p className="text-gray-700 leading-relaxed">
+              With support for over 30 popular platforms-including Amazon, Google, Yelp, Trustpilot, Reddit, Twitter/X, Instagram, WhatsApp, and Stripe-our generators mirror authentic platform typography, iconography, and spacing to deliver professional visuals in seconds.
             </p>
+          </section>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Key Features
+          {/* Why We Built This */}
+          <section className="border-t border-gray-100 pt-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <BookOpen className="text-indigo-600" size={24} />
+              Why We Built ReviewCraft
             </h2>
-            <ul className="text-gray-600 mb-6 space-y-2">
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                Support for 26+ major social media platforms
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                Authentic user profiles using real API data
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                Pixel-perfect platform interface replication
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                Download as PNG images or copy to clipboard
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                Responsive design for all devices
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                Free to use for educational purposes
-              </li>
-            </ul>
-
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Supported Platforms
-            </h2>
-            <p className="text-gray-600 mb-4">
-              ReviewCraft currently supports the following platforms:
+            <p className="text-gray-700 leading-relaxed mb-4">
+              During modern website and application development, empty review components or static placeholder text ("Lorem ipsum") make wireframes look incomplete and difficult for stakeholders to evaluate. Designers previously had to spend hours recreating complex UI components like star rating bars, verified buyer badges, upvote counters, and reviewer avatars in design software.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-6">
-              {[
-                "Reddit",
-                "Twitter/X",
-                "Instagram",
-                "Amazon",
-                "LinkedIn",
-                "YouTube",
-                "TikTok",
-                "Steam",
-                "Yelp",
-                "Trustpilot",
-                "IMDB",
-                "Google",
-                "Facebook",
-                "Discord",
-                "Airbnb",
-                "TripAdvisor",
-                "App Store",
-                "Shopify Product Reviews",
-                "Play Store Layouts",
-                "Fiverr-style Service Reviews",
-                "Booking-style Ratings",
-                "Ecommerce Review Formats",
-                "Custom Testimonial Layouts",
-                "Generic 5-star Review Templates",
-                "Generic 1-star Review Templates",
-              ].map((platform) => (
-                <div
-                  key={platform}
-                  className="bg-gray-100 rounded-lg px-3 py-2 text-sm text-gray-700"
-                >
-                  {platform}
-                </div>
-              ))}
+            <p className="text-gray-700 leading-relaxed">
+              ReviewCraft was built to solve this exact problem: providing instant, editable templates that allow product creators to preview how social proof elements look inside their layouts before launch.
+            </p>
+          </section>
+
+          {/* Core Features */}
+          <section className="border-t border-gray-100 pt-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Layers className="text-indigo-600" size={24} />
+              Key Platform Capabilities
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                <h3 className="font-semibold text-gray-900 mb-1">30+ Platform Presets</h3>
+                <p className="text-sm text-gray-600 leading-normal">
+                  Accurate UI templates for major ecommerce, social media, hospitality, and messaging applications.
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                <h3 className="font-semibold text-gray-900 mb-1">Full Customization</h3>
+                <p className="text-sm text-gray-600 leading-normal">
+                  Edit reviewer names, star ratings, dates, verified badges, reaction counts, and uploaded avatars.
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                <h3 className="font-semibold text-gray-900 mb-1">High-Resolution Export</h3>
+                <p className="text-sm text-gray-600 leading-normal">
+                  Export crisp PNG screenshots ready for inclusion in pitch decks, case studies, or portfolio pieces.
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                <h3 className="font-semibold text-gray-900 mb-1">Privacy Focused</h3>
+                <p className="text-sm text-gray-600 leading-normal">
+                  No personal review data is stored on remote servers. All screenshot generation runs directly in your browser.
+                </p>
+              </div>
             </div>
+          </section>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Use Cases</h2>
-            <ul className="text-gray-600 mb-6 space-y-2">
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>Design Mockups:</strong> Create realistic social media
-                content for design presentations
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>Educational Materials:</strong> Demonstrate social media
-                interfaces in educational settings
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>Portfolio Projects:</strong> Showcase design skills with
-                authentic-looking content
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>Presentations:</strong> Include realistic social media
-                examples in business presentations
-              </li>
-              <li className="flex items-start">
-                <span className="text-indigo-600 mr-2">•</span>
-                <strong>Research:</strong> Study user interface patterns and
-                social media behaviors
-              </li>
-            </ul>
-
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Ethical Guidelines
+          {/* Responsible Use Policy */}
+          <section className="border-t border-gray-100 pt-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <ShieldCheck className="text-emerald-600" size={24} />
+              Responsible Use & Ethical Guidelines
             </h2>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-              <p className="text-yellow-800">
-                <strong>Important:</strong> ReviewCraft is designed exclusively
-                for educational and demonstration purposes. Please use this tool
-                responsibly and never attempt to pass generated content as
-                authentic reviews. All generated content is simulated and should
-                be clearly identified as such in any usage.
+            <div className="bg-amber-50/80 border border-amber-200 rounded-xl p-5 text-amber-900 text-sm leading-relaxed">
+              <p className="font-bold mb-2 text-base text-amber-950">Important Notice for All Users:</p>
+              <p className="mb-3">
+                ReviewCraft is intended strictly for <strong>educational purposes, design wireframing, client presentations, UI/UX prototyping, and software demos</strong>.
+              </p>
+              <p>
+                Generated screenshots must <strong>never</strong> be used to fabricate public trust signals, post fake reviews on live business listings, deceive customers, or violate third-party trademark terms. For full details on acceptable usage, please review our{" "}
+                <Link href="/acceptable-use" className="underline font-semibold hover:text-amber-700">
+                  Acceptable Use Policy
+                </Link>{" "}
+                and{" "}
+                <Link href="/disclaimer" className="underline font-semibold hover:text-amber-700">
+                  Disclaimer
+                </Link>
+                .
+              </p>
+            </div>
+          </section>
+        </div>
+
+        {/* Frequently Asked Questions */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-10">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-bold text-gray-900 text-lg mb-1">Is ReviewCraft free to use?</h3>
+              <p className="text-gray-600 leading-relaxed text-sm">
+                Yes. ReviewCraft is 100% free for educational use, design mockups, and client demos. No registration or credit card is required.
+              </p>
+            </div>
+            <div className="border-t border-gray-100 pt-4">
+              <h3 className="font-bold text-gray-900 text-lg mb-1">Can I use generated reviews on live commercial websites?</h3>
+              <p className="text-gray-600 leading-relaxed text-sm">
+                No. Generated reviews are simulated mockups. Presenting fake customer feedback as genuine buyer testimonials on a live production website is deceptive and prohibited by consumer protection laws and our Acceptable Use Policy.
+              </p>
+            </div>
+            <div className="border-t border-gray-100 pt-4">
+              <h3 className="font-bold text-gray-900 text-lg mb-1">How can I contact the team?</h3>
+              <p className="text-gray-600 leading-relaxed text-sm">
+                For questions, feedback, or legal inquiries, please reach out via our{" "}
+                <Link href="/contact" className="text-indigo-600 font-semibold hover:underline">
+                  Contact Page
+                </Link>
+                .
               </p>
             </div>
           </div>
@@ -173,6 +158,4 @@ const AboutPage = () => {
       </div>
     </div>
   );
-};
-
-export default AboutPage;
+}

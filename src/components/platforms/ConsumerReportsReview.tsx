@@ -124,7 +124,7 @@ export const ConsumerReportsReview = ({ data }: ConsumerReportsReviewProps) => {
           <p className="text-[13px] text-[#444] leading-relaxed italic">
             "{data.content}"
           </p>
-          <div className="text-[12px] text-[#888] mt-2">— {data.name}</div>
+          <div className="text-[12px] text-[#888] mt-2">- {data.name}</div>
         </div>
 
         <div className="mt-4 pt-4 border-t border-[#eee] text-[11px] text-[#999]">

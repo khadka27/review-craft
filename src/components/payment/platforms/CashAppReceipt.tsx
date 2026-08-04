@@ -26,7 +26,7 @@ export const CashAppReceipt = ({ data }: { data: TransactionData }) => {
       {/* ── Header ── */}
       <div style={{ padding: "12px 20px 10px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          {/* Cash App logo — "$" in white box */}
+          {/* Cash App logo - "$" in white box */}
           <div style={{ width: 34, height: 34, background: "white", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M12 1v2M12 21v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M1 12h2M21 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="#00D64F" strokeWidth="2.5" strokeLinecap="round"/>
@@ -85,7 +85,7 @@ export const CashAppReceipt = ({ data }: { data: TransactionData }) => {
           Web Receipt
         </button>
 
-        {/* Help row — no emoji, use icon */}
+        {/* Help row - no emoji, use icon */}
         <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 5 }}>
           <HelpCircleIcon size={13} color="rgba(255,255,255,0.4)" />
           <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, fontWeight: 700, letterSpacing: 1 }}>HELP CENTER</span>

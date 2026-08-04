@@ -135,7 +135,7 @@ export const BBBReview = ({ data }: BBBReviewProps) => {
             <div className="text-[14px] font-bold text-[#1a1a1a] mb-1">"{data.title}"</div>
           )}
           <p className="text-[13px] text-[#444] leading-relaxed">{data.content}</p>
-          <div className="text-[12px] text-[#888] mt-2 font-medium">— {data.name}</div>
+          <div className="text-[12px] text-[#888] mt-2 font-medium">- {data.name}</div>
         </div>
 
         {/* Footer */}

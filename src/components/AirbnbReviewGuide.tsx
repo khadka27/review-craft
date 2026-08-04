@@ -360,7 +360,7 @@ export function AirbnbReviewGuide() {
         <div className="space-y-2">
           <h4 className="font-bold text-slate-900 text-base">Honest and Responsible Use</h4>
           <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-            This tool is made for design, development, and education—not for manipulating real platforms. You should not use it for posting rental fake reviews on Airbnb or any booking site, misleading guests, or pretending real people wrote the generated reviews.
+            This tool is made for design, development, and education-not for manipulating real platforms. You should not use it for posting rental fake reviews on Airbnb or any booking site, misleading guests, or pretending real people wrote the generated reviews.
           </p>
         </div>
       </div>

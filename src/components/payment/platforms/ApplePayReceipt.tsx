@@ -64,12 +64,12 @@ export const ApplePayReceipt = ({ data }: { data: TransactionData }) => {
             <p style={{ margin: 0, color: "rgba(255,255,255,0.5)", fontSize: 11, fontWeight: 500, letterSpacing: 0.5 }}>Apple Card</p>
             <p style={{ margin: "2px 0 0", color: "white", fontSize: 13, fontWeight: 600 }}>{data.senderName}</p>
           </div>
-          {/* Real Apple SVG logo — no emoji */}
+          {/* Real Apple SVG logo - no emoji */}
           <AppleLogo size={22} />
         </div>
         <p style={{ margin: "0 0 4px", color: "rgba(255,255,255,0.5)", fontSize: 10, letterSpacing: 1, fontWeight: 500 }}>•••• •••• •••• 4242</p>
         <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 8 }}>
-          {/* Mastercard circles — SVG not emoji */}
+          {/* Mastercard circles - SVG not emoji */}
           <svg width="46" height="28" viewBox="0 0 46 28">
             <circle cx="14" cy="14" r="14" fill="#EB001B" opacity="0.9" />
             <circle cx="32" cy="14" r="14" fill="#F79E1B" opacity="0.9" />
@@ -86,7 +86,7 @@ export const ApplePayReceipt = ({ data }: { data: TransactionData }) => {
         <p style={{ margin: 0, fontSize: 13, color: "#8e8e93" }}>{data.timestamp}</p>
       </div>
 
-      {/* Status pill — SVG icon, not emoji */}
+      {/* Status pill - SVG icon, not emoji */}
       <div style={{ display: "flex", justifyContent: "center", margin: "12px 0 0" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "5px 14px", borderRadius: 20, background: statusBg }}>
           <StatusIcon size={12} color={statusIconColor} />

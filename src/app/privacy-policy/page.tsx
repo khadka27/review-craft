@@ -452,7 +452,7 @@ export default function PrivacyPolicyPage() {
                 If you have any questions, concerns, or wish to exercise your
                 rights, please contact us:
               </p>
-              <ul className="space-y-1">
+              <ul className="space-y-2">
                 <li>
                   <strong>Email:</strong>{" "}
                   <a
@@ -469,6 +469,7 @@ export default function PrivacyPolicyPage() {
                     info@fakereviewgenerator.com
                   </a>
                 </li>
+                <li>
                   <strong>Contact Page:</strong>{" "}
                   <a
                     href="https://www.fakereviewgenerator.com/contact"
@@ -478,8 +479,6 @@ export default function PrivacyPolicyPage() {
                   >
                     https://www.fakereviewgenerator.com/contact
                   </a>
-                <li>
-                  <strong>Postal Address:</strong> 100 Market Street, Suite 300, San Francisco, CA 94111, USA
                 </li>
               </ul>
             </section>

@@ -329,29 +329,54 @@ const HomePage = () => {
     {
       question: "How does the auto-fill feature work?",
       answer:
-        "ReviewCraft automatically fills non-essential visual details, including reviewer images and supporting profile-style fields, so screenshots feel more complete without requiring manual entry for every element.",
+        "ReviewCraft automatically populates secondary visual details-such as reviewer avatars, timestamps, verified purchase badges, and reaction counters-so your mockups look realistic without requiring manual data entry for every field.",
     },
     {
       question:
         "Can ReviewCraft be used for both positive and negative review layouts?",
       answer:
-        "Yes. ReviewCraft supports multiple rating formats, including 5-star and 1-star layouts, so you can preview different review styles depending on the page or concept you are building.",
+        "Yes. ReviewCraft supports full customization across all rating tiers (from 5-star positive testimonials to 1-star critical complaints). This allows product designers and CS managers to test positive social proof alongside critical feedback states.",
     },
     {
       question:
         "Why use ReviewCraft instead of designing review screenshots manually?",
       answer:
-        "Manual design takes time and often creates inconsistent results. ReviewCraft speeds up the process by giving you ready-to-use layouts, editable fields, and automatic completion of secondary details.",
+        "Designing platform-accurate UI components in tools like Figma or Photoshop takes hours per screen. ReviewCraft provides 30+ ready-to-use, pixel-perfect platform templates that export high-resolution PNGs in seconds.",
     },
     {
-      question: "Does ReviewCraft support multiple platforms?",
+      question: "Which review platforms does ReviewCraft support?",
       answer:
-        "Yes. ReviewCraft supports 26 platform-style layouts, including review formats inspired by major ecommerce, service, app, and social platforms.",
+        "ReviewCraft supports 30+ major platforms including Amazon, Google, Yelp, Trustpilot, Reddit, Twitter/X, Instagram, Facebook, YouTube, TikTok, Steam, IMDb, Airbnb, TripAdvisor, App Store, Play Store, Shopify, Fiverr, Booking.com, and custom testimonial templates.",
     },
     {
-      question: "Is ReviewCraft only for product pages?",
+      question: "Is ReviewCraft suitable for client pitch decks?",
       answer:
-        "No. ReviewCraft is useful for landing pages, service pages, funnel previews, pitch decks, ecommerce mockups, sales materials, internal demos, and testing environments.",
+        "Absolutely. ReviewCraft screenshots are optimized for website mockups, SaaS landing pages, agency sales decks, app design portfolios, and educational presentations.",
+    },
+    {
+      question: "Are the generated review screenshots free to download?",
+      answer:
+        "Yes, ReviewCraft is completely free to use for design mockups, presentations, and educational purposes. You can generate and download unlimited PNG screenshots without creating an account.",
+    },
+    {
+      question: "Does ReviewCraft store my custom text or uploaded avatars?",
+      answer:
+        "No. All review customization and rendering happen locally in your web browser. We do not store or transmit your custom review text or uploaded images to external servers.",
+    },
+    {
+      question: "Can I use generated reviews on a live e-commerce store?",
+      answer:
+        "No. Generated screenshots are simulated design assets intended solely for prototyping, client demos, and wireframing. Falsifying real customer feedback on a live commercial storefront is deceptive and prohibited by consumer protection laws.",
+    },
+    {
+      question: "Can I export chat conversations and payment receipts too?",
+      answer:
+        "Yes! In addition to reviews, ReviewCraft features built-in Chat Generators (WhatsApp, iMessage, Messenger, Telegram) and Payment Receipt Mockup Generators (Stripe, Paytm, Google Pay, Apple Pay).",
+    },
+    {
+      question: "How do I ensure my review mockups look realistic?",
+      answer:
+        "To make mockups believable in your wireframes, use natural conversational tone, balance 5-star ratings with occasional 4-star feedback, include realistic engagement counts, and match the specific platform typography.",
     },
   ];
 
@@ -588,6 +613,69 @@ const HomePage = () => {
         </div>
       </section>
 
+      <section className="py-20 bg-indigo-950 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-800 text-indigo-200 text-xs font-semibold uppercase tracking-wider mb-4">
+              <FileText size={14} /> UI/UX & Design Insights
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              Learn About Review Mockups & Social Proof Design
+            </h2>
+            <p className="mt-4 text-lg text-indigo-200">
+              Read our technical guides on UI layout best practices, e-commerce conversion design, and ethical social proof implementation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-indigo-900/60 border border-indigo-800/80 rounded-2xl p-6 hover:border-indigo-700 transition-colors">
+              <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">UI/UX Design</span>
+              <h3 className="mt-3 text-xl font-bold text-white">
+                <Link href="/blog/how-to-create-review-mockups-for-landing-pages" className="hover:underline">
+                  How to Create Effective Review Mockups for Landing Pages
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm text-indigo-200 leading-relaxed">
+                Discover principles for integrating customer feedback visual cards into high-converting website landing page wireframes.
+              </p>
+            </div>
+
+            <div className="bg-indigo-900/60 border border-indigo-800/80 rounded-2xl p-6 hover:border-indigo-700 transition-colors">
+              <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">E-Commerce UI</span>
+              <h3 className="mt-3 text-xl font-bold text-white">
+                <Link href="/blog/anatomy-of-an-authentic-amazon-review" className="hover:underline">
+                  Anatomy of an Authentic Amazon Review: UI Guidelines
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm text-indigo-200 leading-relaxed">
+                Deconstruct the visual hierarchy, micro-components, and rating scales of Amazon's customer feedback system.
+              </p>
+            </div>
+
+            <div className="bg-indigo-900/60 border border-indigo-800/80 rounded-2xl p-6 hover:border-indigo-700 transition-colors">
+              <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">Ethics & Policy</span>
+              <h3 className="mt-3 text-xl font-bold text-white">
+                <Link href="/blog/ethical-standards-in-social-proof-design" className="hover:underline">
+                  Ethical Standards & Guidelines in Social Proof Design
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm text-indigo-200 leading-relaxed">
+                Understand legal standards, FTC compliance, and responsible usage parameters for simulated design mockups.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition-colors shadow-sm"
+            >
+              Explore All Guides & Articles
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
@@ -597,7 +685,7 @@ const HomePage = () => {
             ReviewCraft helps you move faster when your page, funnel, mockup, or
             presentation needs realistic review-style visuals. Instead of
             manually designing every card, you can generate polished screenshots
-            for 16 platforms, edit the details you care about, and rely on
+            for 30+ platforms, edit the details you care about, and rely on
             auto-filled reviewer elements to complete the layout.
           </p>
           <p className="mt-4 text-lg text-gray-600 leading-8">

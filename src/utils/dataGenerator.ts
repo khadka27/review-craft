@@ -1272,7 +1272,7 @@ const generateTitle = (platform: Platform): string => {
       "Best CRM we've used in years",
       "Streamlined our entire workflow",
       "Excellent support and onboarding experience",
-      "Worth every penny — ROI is incredible",
+      "Worth every penny - ROI is incredible",
     ],
     capterra: [
       "Transformed our business operations",
@@ -1282,7 +1282,7 @@ const generateTitle = (platform: Platform): string => {
       "Highly recommended for small businesses",
     ],
     angi: [
-      "Exceptional home service — would hire again",
+      "Exceptional home service - would hire again",
       "Professional, on-time, and affordable",
       "Cleaned up perfectly after the job",
       "Highly recommend for any home project",
@@ -1525,7 +1525,7 @@ const generateContent = (platform: Platform): string => {
     ],
     bbb: [
       "We had an issue with a recent order and contacted customer support. The team responded within 24 hours, acknowledged the problem, and offered a full replacement at no charge. This is what a trustworthy business looks like. Highly recommend.",
-      "This company has been accredited with the BBB for years and it shows in how they operate. Every interaction has been professional, timely, and honest. No hidden fees, no runarounds — just reliable service that does what it promises.",
+      "This company has been accredited with the BBB for years and it shows in how they operate. Every interaction has been professional, timely, and honest. No hidden fees, no runarounds - just reliable service that does what it promises.",
       "I filed a complaint with the BBB after a billing discrepancy and the business responded quickly to resolve the issue. They refunded the overcharge and followed up to ensure my satisfaction. That kind of accountability is rare and worth noting.",
     ],
     consumerreports: [

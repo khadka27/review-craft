@@ -49,7 +49,7 @@ export function TrustpilotReviewGuide() {
     { title: "Invite Promptly", desc: "Invite customers shortly after purchase or support resolution." },
     { title: "Friendly Reach-out", desc: "Send a direct review link with a short, friendly request." },
     { title: "Smart Prompts", desc: "Provide optional prompts (e.g., “What did you like most?”)." },
-    { title: "Active Response", desc: "Monitor incoming reviews and respond—thank positives, address negatives." },
+    { title: "Active Response", desc: "Monitor incoming reviews and respond-thank positives, address negatives." },
     { title: "Feedback Loop", desc: "Use feedback to improve your offering and keep the cycle going." },
   ];
 
@@ -104,7 +104,7 @@ export function TrustpilotReviewGuide() {
             Fake Trustpilot Review Generator
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            If you are designing a business app, testimonial section, or marketing mockup, empty layouts never tell the full story. What makes a screen feel “real” is the content inside it—names, ratings, and opinions. This generator is built exactly to give you fast, realistic reviews for mockups, demos, and educational projects.
+            If you are designing a business app, testimonial section, or marketing mockup, empty layouts never tell the full story. What makes a screen feel “real” is the content inside it-names, ratings, and opinions. This generator is built exactly to give you fast, realistic reviews for mockups, demos, and educational projects.
           </p>
         </div>
       </div>
@@ -329,7 +329,7 @@ export function TrustpilotReviewGuide() {
             How to Generate Reviews for Trustpilot
           </h3>
           <p className="text-slate-500 text-sm">
-            Building a trustworthy review profile doesn’t require shortcuts—it requires a simple, repeatable system. 
+            Building a trustworthy review profile doesn’t require shortcuts-it requires a simple, repeatable system. 
           </p>
         </div>
 
@@ -362,7 +362,7 @@ export function TrustpilotReviewGuide() {
           </div>
           <h3 className="text-xl sm:text-2xl font-bold">The Power of Trustpilot Fake Reviews Mockups</h3>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Trustpilot isn't just text; it's visual. When people see a profile with a bright, glowing 5-star badge and hundreds of reviews, it triggers a psychological response. That’s the power of mockups—they sell the idea of trust before the customer even reads a single word.
+            Trustpilot isn't just text; it's visual. When people see a profile with a bright, glowing 5-star badge and hundreds of reviews, it triggers a psychological response. That’s the power of mockups-they sell the idea of trust before the customer even reads a single word.
           </p>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
             A fake reviews mockup is essentially a screenshot of a perfect profile. It’s evidence that your business is legitimate. Even if someone doubts the specific reviews, seeing a screenshot of a high-ranking, verified business makes them subconsciously trust your brand more. It’s all about the "halo effect."
@@ -453,7 +453,7 @@ export function TrustpilotReviewGuide() {
       <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 sm:p-8 text-center space-y-4 max-w-3xl mx-auto">
         <h3 className="text-xl sm:text-2xl font-bold text-slate-900">Conclusion</h3>
         <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          Fake reviews are a cheap, high-reward marketing hack in a world where trust is everything. They allow you to manipulate perception, boost your SEO visibility, and dominate your competitors. While Trustpilot tries to fight them with AI detection, the game is still winnable. If you want to stand out, you have to control the narrative—and sometimes, that means controlling the reviews.
+          Fake reviews are a cheap, high-reward marketing hack in a world where trust is everything. They allow you to manipulate perception, boost your SEO visibility, and dominate your competitors. While Trustpilot tries to fight them with AI detection, the game is still winnable. If you want to stand out, you have to control the narrative-and sometimes, that means controlling the reviews.
         </p>
       </div>
 
