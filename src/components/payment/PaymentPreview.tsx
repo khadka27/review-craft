@@ -173,7 +173,10 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
               </div>
 
               {/* Permanent Simulation Watermark */}
-              <div className="w-full bg-slate-900 text-slate-200 text-[9px] font-mono font-bold tracking-wider py-1 px-2 text-center uppercase select-none pointer-events-none z-30">
+              <div 
+                className="w-full bg-slate-900 text-slate-200 text-[9px] font-mono font-bold tracking-wider py-1 px-2 text-center uppercase select-none pointer-events-none z-30 export-watermark-banner"
+                data-export-watermark="true"
+              >
                 SIMULATED / SAMPLE — NOT A REAL TRANSACTION
               </div>
 

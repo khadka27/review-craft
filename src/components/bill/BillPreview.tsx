@@ -150,7 +150,10 @@ export const BillPreview = ({ billData }: BillPreviewProps) => {
               }}
             >
               {renderPlatformInvoice()}
-              <div className="w-full bg-slate-900 text-slate-300 text-xs font-mono font-bold tracking-wider py-2 px-4 text-center border-t border-slate-700 uppercase select-none pointer-events-none mt-auto">
+              <div 
+                className="w-full bg-slate-900 text-slate-300 text-xs font-mono font-bold tracking-wider py-2 px-4 text-center border-t border-slate-700 uppercase select-none pointer-events-none mt-auto export-watermark-banner"
+                data-export-watermark="true"
+              >
                 SIMULATED / SAMPLE — NOT A REAL TRANSACTION
               </div>
             </div>

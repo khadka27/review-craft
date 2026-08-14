@@ -342,7 +342,10 @@ export const ReviewPreview = ({
           }}
         >
           <div className="w-full overflow-x-auto">{renderPlatformReview()}</div>
-          <div className="w-full bg-slate-900 text-slate-300 text-[10px] sm:text-xs font-mono font-bold tracking-wider py-1.5 px-3 text-center border-t border-slate-700 uppercase select-none pointer-events-none">
+          <div 
+            className="w-full bg-slate-900 text-slate-300 text-[10px] sm:text-xs font-mono font-bold tracking-wider py-1.5 px-3 text-center border-t border-slate-700 uppercase select-none pointer-events-none export-watermark-banner"
+            data-export-watermark="true"
+          >
             SIMULATED MOCKUP — NOT A REAL REVIEW
           </div>
         </div>

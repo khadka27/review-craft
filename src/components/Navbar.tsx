@@ -414,8 +414,8 @@ const Navbar = () => {
               </button>
 
               {desktopDropdown === "reviews" && (
-                <div className="absolute left-1/2 top-full mt-2 w-[58rem] -translate-x-1/2 rounded-2xl border border-slate-800 bg-[#111827] p-6 shadow-2xl z-50">
-                  <div className="grid grid-cols-4 gap-6">
+                <div className="absolute left-0 top-full mt-2 w-[52rem] max-w-[calc(100vw-14rem)] rounded-2xl border border-slate-800 bg-[#111827] p-5 shadow-2xl z-50">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                     {REVIEW_CATEGORIES.map((category) => (
                       <div key={category.title} className="flex flex-col">
                         <div className="flex items-center gap-2 mb-3">
@@ -474,7 +474,7 @@ const Navbar = () => {
               </button>
 
               {desktopDropdown === "chats" && (
-                <div className="absolute left-0 top-full mt-2 w-[32rem] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
+                <div className="absolute left-0 top-full mt-2 w-[30rem] max-w-[calc(100vw-14rem)] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
                   <div className="grid grid-cols-2 gap-2">
                     {CHAT_PLATFORMS.map((platform) => (
                       <Link
@@ -524,7 +524,7 @@ const Navbar = () => {
               </button>
 
               {desktopDropdown === "payments" && (
-                <div className="absolute left-0 top-full mt-2 w-[34rem] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
+                <div className="absolute left-0 top-full mt-2 w-[32rem] max-w-[calc(100vw-14rem)] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
                   <div className="grid grid-cols-2 gap-2">
                     {PAYMENT_PLATFORMS.map((platform) => (
                       <Link
@@ -574,7 +574,7 @@ const Navbar = () => {
               </button>
 
               {desktopDropdown === "bills" && (
-                <div className="absolute left-0 top-full mt-2 w-[34rem] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
+                <div className="absolute right-0 lg:left-0 top-full mt-2 w-[32rem] max-w-[calc(100vw-14rem)] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
                   <div className="grid grid-cols-2 gap-2">
                     {BILL_PLATFORMS.map((platform) => (
                       <Link
@@ -624,7 +624,7 @@ const Navbar = () => {
               </button>
 
               {desktopDropdown === "ai" && (
-                <div className="absolute left-0 top-full mt-2 w-[20rem] rounded-2xl border border-slate-800 bg-[#111827] p-2 shadow-2xl overflow-hidden z-50">
+                <div className="absolute right-0 top-full mt-2 w-[20rem] max-w-[calc(100vw-4rem)] rounded-2xl border border-slate-800 bg-[#111827] p-2 shadow-2xl overflow-hidden z-50">
                   <Link
                     href="/ai-generator"
                     onClick={() => setDesktopDropdown(null)}

@@ -50,7 +50,10 @@ export const ChatPreview = ({ chatData }: ChatPreviewProps) => {
           <div className="flex-1 overflow-hidden">
             {renderPlatform()}
           </div>
-          <div className="w-full bg-slate-900 text-slate-300 text-[9px] font-mono font-bold tracking-wider py-1 px-2 text-center border-t border-slate-700 uppercase select-none pointer-events-none z-30">
+          <div 
+            className="w-full bg-slate-900 text-slate-300 text-[9px] font-mono font-bold tracking-wider py-1 px-2 text-center border-t border-slate-700 uppercase select-none pointer-events-none z-30 export-watermark-banner"
+            data-export-watermark="true"
+          >
             SIMULATED CHAT MOCKUP — FOR DESIGN USE
           </div>
         </div>
