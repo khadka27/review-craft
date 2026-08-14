@@ -39,7 +39,7 @@ export function ContactForm() {
             id="contactName"
             type="text"
             required
-            placeholder="Jane Doe"
+            placeholder="Your name"
             className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
           />
         </div>
@@ -51,7 +51,7 @@ export function ContactForm() {
             id="contactEmail"
             type="email"
             required
-            placeholder="jane@example.com"
+            placeholder="your.email@example.com"
             className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm sm:text-base"
           />
         </div>
