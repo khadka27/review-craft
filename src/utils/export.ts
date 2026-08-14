@@ -103,6 +103,10 @@ export const downloadComponentAsImage = async (
 
     const cloneNode = node.cloneNode(true) as HTMLElement;
     
+    // Strip watermark banner from export clone so downloaded images don't include the watermark
+    const watermarkElements = cloneNode.querySelectorAll('.export-watermark-banner, [data-export-watermark="true"]');
+    watermarkElements.forEach((el) => el.remove());
+
     const originalWidth = node.offsetWidth;
     const originalHeight = node.offsetHeight;
     
@@ -207,22 +211,6 @@ export const downloadComponentAsImage = async (
     // Dynamically import html-to-image
     const { toPng, toJpeg, toCanvas } = await import('html-to-image');
 
-    // Helper to trigger webp download in addition
-    const triggerWebpDownload = async () => {
-      try {
-        const canvas = await toCanvas(cloneNode);
-        const webpDataUrl = canvas.toDataURL('image/webp', quality);
-        const webpLink = document.createElement('a');
-        webpLink.download = `${fileName}.webp`;
-        webpLink.href = webpDataUrl;
-        document.body.appendChild(webpLink);
-        webpLink.click();
-        document.body.removeChild(webpLink);
-      } catch (err) {
-        console.error('Error generating additional WebP download:', err);
-      }
-    };
-
     // PDF Export
     if (activeFormat === 'pdf') {
       const dataUrl = await toPng(cloneNode, { pixelRatio: 2 });
@@ -238,9 +226,6 @@ export const downloadComponentAsImage = async (
       
       pdf.addImage(dataUrl, 'PNG', 0, 0, width, height);
       pdf.save(`${fileName}.pdf`);
-      
-      // Also download webp
-      await triggerWebpDownload();
       return;
     }
 
@@ -279,11 +264,6 @@ export const downloadComponentAsImage = async (
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
-    // Also download webp if the main format wasn't webp and EXIF is not requested
-    if (activeFormat !== 'webp' && !includeExif) {
-      await triggerWebpDownload();
-    }
   } catch (error) {
     console.error('Error exporting file:', error);
   } finally {
@@ -325,6 +305,10 @@ export const copyComponentToClipboard = async (
     hiddenContainer.style.zIndex = "-999";
 
     const cloneNode = node.cloneNode(true) as HTMLElement;
+
+    // Strip watermark banner from copied image clone so copied images don't include the watermark
+    const watermarkElements = cloneNode.querySelectorAll('.export-watermark-banner, [data-export-watermark="true"]');
+    watermarkElements.forEach((el) => el.remove());
 
     const originalWidth = node.offsetWidth;
     const originalHeight = node.offsetHeight;

@@ -407,6 +407,10 @@ export const downloadReviewAsImage = async (
     // Ensure the clone uses the same layout width for consistent rendering
     renderTarget.style.width = `${element.offsetWidth}px`;
 
+    // Strip watermark banner elements from export clone so downloaded images don't contain the banner
+    const watermarkElements = renderTarget.querySelectorAll('.export-watermark-banner, [data-export-watermark="true"]');
+    watermarkElements.forEach((el) => el.remove());
+
     hiddenContainer.appendChild(renderTarget);
     document.body.appendChild(hiddenContainer);
 
@@ -746,23 +750,6 @@ export const downloadReviewAsImage = async (
         : "unknown";
       trackDownload(platform, activeFormat);
 
-      // Also download webp if format is not webp and EXIF is not requested
-      if (activeFormat !== "webp" && !includeExif) {
-        try {
-          const canvas = await htmlToImage.toCanvas(renderTarget!, options);
-          const webpDataUrl = canvas.toDataURL("image/webp", 0.95);
-          const webpLink = document.createElement("a");
-          webpLink.download = `${filename}.webp`;
-          webpLink.href = webpDataUrl;
-          webpLink.style.display = "none";
-          document.body.appendChild(webpLink);
-          webpLink.click();
-          document.body.removeChild(webpLink);
-        } catch (webpError) {
-          console.error("Failed to generate WebP download alongside:", webpError);
-        }
-      }
-
       // Clean up after successful download
       setTimeout(() => {
         if (document.body.contains(link)) {
@@ -964,6 +951,11 @@ export const copyToClipboard = async (
       backgroundColor: "#ffffff",
       width: element.offsetWidth,
       height: element.offsetHeight,
+      filter: (node: any) => {
+        if (node.classList && node.classList.contains("export-watermark-banner")) return false;
+        if (node.getAttribute && node.getAttribute("data-export-watermark") === "true") return false;
+        return true;
+      },
     };
 
     let dataUrl = await htmlToImage.toPng(element, options);
