@@ -46,366 +46,371 @@ const HomePage = () => {
   const supportedPlatforms: SupportedPlatformCard[] = [
     {
       name: "Amazon",
-      subtitle: "Amazon Fake Product Reviews Generator",
+      subtitle: "Amazon-Style Review Interface Mockup",
       slug: "amazon",
     },
     {
       name: "Airbnb",
-      subtitle: "Airbnb Review Layout Generator",
+      subtitle: "Airbnb-Style Rental Feedback Layout",
       slug: "airbnb",
     },
     {
       name: "Booking",
-      subtitle: "Booking-style Ratings",
+      subtitle: "Booking-Style Rating Component",
       slug: "booking",
     },
     {
       name: "Custom Testimonials",
-      subtitle: "Custom Testimonial Layouts",
+      subtitle: "Custom Testimonial Card Wireframe",
       slug: "testimonial",
     },
     {
       name: "Discord",
-      subtitle: "Discord Reviews",
+      subtitle: "Discord Community Chat Prototype",
       slug: "discord",
     },
     {
       name: "Ecommerce",
-      subtitle: "Ecommerce Review Formats",
+      subtitle: "Generic E-Commerce Review Layout",
       slug: "ecommerce",
     },
     {
       name: "Facebook",
-      subtitle: "Facebook Fake Review Screenshot Generator",
+      subtitle: "Social Review Interface Prototype",
       slug: "facebook",
     },
     {
       name: "Fiverr",
-      subtitle: "Fiverr-style Service Reviews",
+      subtitle: "Service Marketplace Feedback UI",
       slug: "fiverr",
     },
     {
       name: "Generic 1-Star",
-      subtitle: "Generic 1-star Review Templates",
+      subtitle: "Critical Feedback Component Mockup",
       slug: "generic-1-star",
     },
     {
       name: "Generic 5-Star",
-      subtitle: "Generic 5-star Review Templates",
+      subtitle: "Positive Testimonial Component Mockup",
       slug: "generic-5-star",
     },
     {
       name: "Google",
-      subtitle: "Google Fake Review Screenshot Generator",
+      subtitle: "Google-Style Review UI Mockup",
       slug: "google",
     },
     {
       name: "IMDb",
-      subtitle: "IMDb Reviews",
+      subtitle: "Movie & Show Rating Layout",
       slug: "imdb",
     },
     {
       name: "Instagram",
-      subtitle: "Instagram Fake Customer Reviews Generator",
+      subtitle: "Instagram Post Comment Mockup",
       slug: "instagram",
     },
     {
       name: "LinkedIn",
-      subtitle: "LinkedIn Fake Review Maker",
+      subtitle: "Professional Recommendation UI Prototype",
       slug: "linkedin",
     },
     {
       name: "Clutch",
-      subtitle: "Clutch B2B Review Generator",
+      subtitle: "B2B Agency Review UI Layout",
       slug: "clutch",
     },
     {
       name: "BBB",
-      subtitle: "Better Business Bureau Review",
+      subtitle: "Accredited Business Feedback Prototype",
       slug: "bbb",
     },
     {
       name: "Consumer Reports",
-      subtitle: "Product Score & Recommendation",
+      subtitle: "Product Scorecard Interface Mockup",
       slug: "consumerreports",
     },
     {
       name: "G2",
-      subtitle: "G2 Software Review Generator",
+      subtitle: "SaaS Software Review Card Prototype",
       slug: "g2",
     },
     {
       name: "Capterra",
-      subtitle: "Capterra Software Review",
+      subtitle: "Software Listing Feedback UI",
       slug: "capterra",
     },
     {
       name: "Angi",
-      subtitle: "Angi Home Services Review",
+      subtitle: "Home Services Review UI Mockup",
       slug: "angi",
     },
     {
       name: "Play Store",
-      subtitle: "Play Store Layouts",
+      subtitle: "Mobile App Rating Component UI",
       slug: "playstore",
     },
     {
       name: "App Store",
-      subtitle: "App Store Review Generator",
+      subtitle: "iOS App Review Card Wireframe",
       slug: "appstore",
     },
     {
       name: "Reddit",
-      subtitle: "Reddit Fake Feedback Generator",
+      subtitle: "Community Discussion Post Prototype",
       slug: "reddit",
     },
     {
       name: "Shopify",
-      subtitle: "Shopify Product Reviews",
+      subtitle: "Shopify Store Review UI Layout",
       slug: "shopify",
     },
     {
       name: "Steam",
-      subtitle: "Steam Reviews",
+      subtitle: "Game Review Interface Prototype",
       slug: "steam",
     },
     {
       name: "TikTok",
-      subtitle: "TikTok Fake Reviews Generator",
+      subtitle: "TikTok Social Comment UI Prototype",
       slug: "tiktok",
     },
     {
       name: "TripAdvisor",
-      subtitle: "TripAdvisor Rating Layouts",
+      subtitle: "Travel Hospitality Review Mockup",
       slug: "tripadvisor",
     },
     {
       name: "Trustpilot",
-      subtitle: "Trustpilot Reviews",
+      subtitle: "Trustpilot-Style Review Mockup",
       slug: "trustpilot",
     },
     {
       name: "Twitter",
-      subtitle: "Twitter/X Fake Feedback Generator",
+      subtitle: "Social Feedback Tweet Prototype",
       slug: "twitter",
     },
     {
       name: "Yelp",
-      subtitle: "Yelp Reviews",
+      subtitle: "Local Business Review Card Prototype",
       slug: "yelp",
     },
     {
       name: "YouTube",
-      subtitle: "YouTube Fake Review Maker",
+      subtitle: "Video Comment UI Prototype",
       slug: "youtube",
     },
     {
       name: "Paytm",
-      subtitle: "Paytm Success Receipt",
+      subtitle: "Payment Confirmation UI Prototype",
       slug: "paytm",
     },
     {
       name: "Stripe",
-      subtitle: "Stripe Payment Receipt",
+      subtitle: "Stripe Billing UI Mockup",
       slug: "stripe",
     },
     {
       name: "Google Pay",
-      subtitle: "GPay Transaction Mockup",
+      subtitle: "Digital Wallet Screen Prototype",
       slug: "googlepay",
     },
     {
       name: "Google Wallet",
-      subtitle: "Wallet Pass & Transaction",
+      subtitle: "Pass & Card UI Prototype",
       slug: "googlewallet",
     },
     {
       name: "Apple Pay",
-      subtitle: "Apple Wallet Screenshot",
+      subtitle: "Apple Wallet Screen Wireframe",
       slug: "applepay",
     },
     {
       name: "Venmo",
-      subtitle: "Venmo Social Payment",
+      subtitle: "Peer-to-Peer Payment Feed UI",
       slug: "venmo",
     },
     {
       name: "UPI",
-      subtitle: "BHIM UPI Receipt",
+      subtitle: "Mobile Payment UI Mockup",
       slug: "upi",
     },
     {
       name: "PhonePe",
-      subtitle: "PhonePe Payment Screenshot",
+      subtitle: "Transaction Status Screen Prototype",
       slug: "phonepay",
     },
     {
       name: "Fonepay",
-      subtitle: "Fonepay Nepal Receipt",
+      subtitle: "Merchant Payment Screen UI",
       slug: "fonepay",
     },
     {
       name: "Cash App",
-      subtitle: "Cash App Transaction",
+      subtitle: "Financial App UI Component",
       slug: "cashapp",
     },
     {
       name: "Amazon Invoice",
-      subtitle: "Amazon PDF Invoice Mockup",
+      subtitle: "E-Commerce Invoice PDF Layout",
       slug: "amazon-bill",
     },
     {
       name: "Walmart Invoice",
-      subtitle: "Walmart Order Invoice Mockup",
+      subtitle: "Retail Receipt UI Wireframe",
       slug: "walmart-bill",
     },
     {
       name: "Supplement Receipt",
-      subtitle: "Supplement Store Invoice Mockup",
+      subtitle: "Store Invoice Component Wireframe",
       slug: "supplement-bill",
     },
   ];
   const usefulness = [
-    "Create realistic review screenshots quickly for mockups and demos.",
-    "Keep the layout consistent across product, service, and marketing pages.",
-    "Fill in secondary details automatically so the design feels complete.",
-    "Export polished visuals that are ready to present or test immediately.",
+    "Design realistic review UI screenshots quickly for prototypes and presentations.",
+    "Maintain consistent visual hierarchy across landing page and app wireframes.",
+    "Auto-generate realistic secondary elements to test layout wrapping and spacing.",
+    "Export high-resolution design assets ready for pitch decks and usability tests.",
   ];
 
   const features = [
     {
-      title: "Platform-specific layouts",
+      title: "Platform-Inspired UI Layouts",
       description:
-        "Choose from review styles inspired by popular apps, marketplaces, and social platforms.",
+        "Select from review card components designed to reflect common marketplace, app store, and social media UI patterns.",
     },
     {
-      title: "Fast screenshot generation",
+      title: "Instant Mockup Generation",
       description:
-        "Build convincing review mockups in seconds instead of assembling each element by hand.",
+        "Build polished visual prototypes in seconds without designing UI components from scratch in design software.",
     },
     {
-      title: "Editable review content",
+      title: "Full Layout Customization",
       description:
-        "Adjust names, ratings, comments, and other visible details to fit your use case.",
+        "Customize text, avatar images, star ratings, and timestamps to evaluate different interface display states.",
     },
     {
-      title: "Built for previews and demos",
+      title: "Built for Designers & Presenters",
       description:
-        "Use the generated layouts in funnels, pitch decks, internal reviews, and design mockups.",
+        "Incorporate visual assets seamlessly into wireframes, client presentations, software QA decks, and design portfolios.",
     },
   ];
 
   const audience = [
-    "Marketers and growth teams",
-    "Ecommerce and marketplace brands",
-    "Designers and product teams",
-    "Agencies, founders, and testers",
+    "UI/UX Designers & Wireframers",
+    "Product Managers & QA Testers",
+    "Educators & Design Students",
+    "Digital Agencies & Growth Teams",
   ];
 
   const useCases = [
     {
-      title: "Landing page mockups",
+      title: "Landing Page Wireframing",
       description:
-        "Add believable review sections to landing pages and conversion-focused designs.",
+        "Test review section layouts and customer feedback visual hierarchy during initial page design.",
     },
     {
-      title: "Product and service demos",
+      title: "Product Demos & Presentations",
       description:
-        "Show what a page could look like before real content is available.",
+        "Illustrate user feedback interfaces in client pitch decks before real user content is aggregated.",
     },
     {
-      title: "Pitch decks and sales assets",
+      title: "Usability Testing & QA",
       description:
-        "Use polished review screenshots to support presentations and internal buy-in.",
+        "Evaluate how long-form and short-form user feedback text wraps across desktop and mobile screens.",
     },
     {
-      title: "Testing and iteration",
+      title: "Design System & UI Components",
       description:
-        "Compare different review layouts quickly while refining copy and placement.",
+        "Benchmark rating components, badge alignments, and comment card styles against industry standards.",
     },
   ];
 
   const faqs = [
     {
-      question: "How does the auto-fill feature work?",
+      question: "What is ReviewCraft used for?",
       answer:
-        "ReviewCraft automatically populates secondary visual details-such as reviewer avatars, timestamps, verified purchase badges, and reaction counters-so your mockups look realistic without requiring manual data entry for every field.",
+        "ReviewCraft is an independent browser-based visual prototyping tool that helps designers, product teams, marketers, and educators create simulated review layouts and UI mockups for presentations, wireframes, and design testing.",
     },
     {
-      question:
-        "Can ReviewCraft be used for both positive and negative review layouts?",
+      question: "Are generated mockups real reviews?",
       answer:
-        "Yes. ReviewCraft supports full customization across all rating tiers (from 5-star positive testimonials to 1-star critical complaints). This allows product designers and CS managers to test positive social proof alongside critical feedback states.",
+        "No. All generated outputs are fictional UI mockups intended solely for visual design, testing, demonstration, and educational purposes. Generated images feature permanent simulation disclaimers and must never be published to misrepresent genuine customer feedback or authentic platform records.",
     },
     {
-      question:
-        "Why use ReviewCraft instead of designing review screenshots manually?",
+      question: "Is ReviewCraft affiliated with Google, Amazon, or other platforms?",
       answer:
-        "Designing platform-accurate UI components in tools like Figma or Photoshop takes hours per screen. ReviewCraft provides 30+ ready-to-use, pixel-perfect platform templates that export high-resolution PNGs in seconds.",
+        "No. ReviewCraft is an independent design tool and is not affiliated with, sponsored by, or endorsed by Google, Amazon, Meta, Trustpilot, Yelp, Apple, or any third-party platform shown in its design templates.",
     },
     {
-      question: "Which review platforms does ReviewCraft support?",
+      question: "Can ReviewCraft be used for both positive and negative UI states?",
       answer:
-        "ReviewCraft supports 30+ major platforms including Amazon, Google, Yelp, Trustpilot, Reddit, Twitter/X, Instagram, Facebook, YouTube, TikTok, Steam, IMDb, Airbnb, TripAdvisor, App Store, Play Store, Shopify, Fiverr, Booking.com, and custom testimonial templates.",
+        "Yes. ReviewCraft supports full customization across all rating scales (from 5-star positive feedback cards to 1-star complaint components) so product designers and UX researchers can test various feedback UI states.",
     },
     {
-      question: "Is ReviewCraft suitable for client pitch decks?",
+      question: "Why use ReviewCraft instead of building components manually?",
       answer:
-        "Absolutely. ReviewCraft screenshots are optimized for website mockups, SaaS landing pages, agency sales decks, app design portfolios, and educational presentations.",
+        "Creating responsive review UI cards in design software can be time-consuming. ReviewCraft provides instant platform-inspired component templates that render clean, downloadable screenshots in seconds.",
     },
     {
-      question: "Are the generated review screenshots free to download?",
+      question: "Are the generated review UI mockups free to download?",
       answer:
-        "Yes, ReviewCraft is completely free to use for design mockups, presentations, and educational purposes. You can generate and download unlimited PNG screenshots without creating an account.",
+        "Yes, ReviewCraft is completely free to use for visual prototyping, presentations, and educational projects. You can export PNG, JPEG, and WEBP image files without creating an account.",
     },
     {
-      question: "Does ReviewCraft store my custom text or uploaded avatars?",
+      question: "Does ReviewCraft store custom text or uploaded images?",
       answer:
-        "No. All review customization and rendering happen locally in your web browser. We do not store or transmit your custom review text or uploaded images to external servers.",
+        "No. All mockup customization and canvas rendering take place locally inside your web browser. Custom text and uploaded images are never stored or transmitted to external servers.",
     },
     {
-      question: "Can I use generated reviews on a live e-commerce store?",
+      question: "Can I publish generated reviews on a live commercial storefront?",
       answer:
-        "No. Generated screenshots are simulated design assets intended solely for prototyping, client demos, and wireframing. Falsifying real customer feedback on a live commercial storefront is deceptive and prohibited by consumer protection laws.",
-    },
-    {
-      question: "Can I export chat conversations and payment receipts too?",
-      answer:
-        "Yes! In addition to reviews, ReviewCraft features built-in Chat Generators (WhatsApp, iMessage, Messenger, Telegram) and Payment Receipt Mockup Generators (Stripe, Paytm, Google Pay, Apple Pay).",
-    },
-    {
-      question: "How do I ensure my review mockups look realistic?",
-      answer:
-        "To make mockups believable in your wireframes, use natural conversational tone, balance 5-star ratings with occasional 4-star feedback, include realistic engagement counts, and match the specific platform typography.",
+        "No. Presenting simulated feedback as authentic customer reviews on a live commercial website is deceptive and prohibited by consumer protection laws and ReviewCraft's Acceptable Use Policy.",
     },
   ];
 
   return (
     <div className="bg-white text-gray-900">
+      {/* Responsible Use Notice Banner */}
+      <div className="bg-amber-50 border-b border-amber-200 py-3 px-4 text-center text-xs sm:text-sm text-amber-900 font-medium">
+        <p className="max-w-7xl mx-auto flex items-center justify-center gap-2">
+          <span className="inline-block w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
+          <span>
+            <strong>Responsible-Use Notice:</strong> All generated content is simulated and intended exclusively for visual design, UI/UX prototyping, software testing, and educational purposes.
+          </span>
+        </p>
+      </div>
+
       <ReviewGeneratorPage
-        heroTitle="ReviewCraft: Fake Review Generator for Mockups, Demos, and Customer Feedback"
-        heroDescription="ReviewCraft helps you create realistic review-style screenshots for 26 platforms in seconds, complete with editable text, ratings, and auto-filled reviewer details for mockups, demos, landing page previews, and testing workflows."
+        heroTitle="Create Review & Social Proof UI Mockups in Seconds"
+        heroDescription="Design realistic interface prototypes for presentations, product demos, landing pages, usability testing, and educational projects — without representing simulated content as genuine customer feedback."
       />
+
+      {/* Section 6: What Is ReviewCraft? */}
+      <section className="py-16 bg-slate-50 border-y border-slate-200/80">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+            About Our Platform
+          </span>
+          <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
+            What Is ReviewCraft?
+          </h2>
+          <p className="mt-6 text-base sm:text-lg text-gray-700 leading-relaxed">
+            ReviewCraft is an independent, browser-based visual prototyping application built for designers, marketers, developers, product managers, and educators. It enables teams to create simulated review layouts, social proof visual cards, chat interfaces, and financial UI components for wireframes, pitch decks, and usability research.
+          </p>
+          <p className="mt-4 text-base sm:text-lg text-gray-700 leading-relaxed">
+            All generated visual outputs are strictly fictional representations. ReviewCraft operates independently and is not affiliated with, certified by, or endorsed by Google, Amazon, Meta, Trustpilot, Yelp, Apple, or any other platform shown in its templates. ReviewCraft tools must never be used to fabricate customer reviews, simulate real commercial transactions, or misrepresent genuine customer feedback.
+          </p>
+        </div>
+      </section>
 
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
-              Why ReviewCraft Is Useful
+              Why ReviewCraft Is Essential for UI Prototyping
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              When you are building a landing page, product page, affiliate
-              funnel, or client presentation, empty review sections can make the
-              entire design feel unfinished. ReviewCraft helps you create
-              realistic review-style screenshots that make mockups, drafts, and
-              previews look more complete and easier to present.
-            </p>
-            <p className="mt-4 text-lg text-gray-600">
-              Instead of recreating review layouts manually in design tools,
-              ReviewCraft gives you a faster way to build polished visuals that
-              fit naturally into your workflow. You can choose a platform-style
-              layout, add the main details, let the generator fill in the
-              secondary elements, and create a finished screenshot in seconds.
+              When wireframing landing pages, product pages, or pitch presentations, placeholder text like "Lorem Ipsum" fails to demonstrate how user feedback cards interact with your overall visual hierarchy. ReviewCraft allows you to quickly generate realistic UI components that streamline design review workflows.
             </p>
           </div>
 
@@ -428,12 +433,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
-              Platforms Reviews Supported on ReviewCraft
+              Platform Interface Templates Supported on ReviewCraft
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              ReviewCraft supports 26 platform-inspired customer review layouts
-              so your screenshots feel closer to real-world interfaces and are
-              easier to present in a polished design context.
+              Explore platform-inspired review UI layouts designed to emulate industry-standard visual design patterns for prototyping and presentation use.
             </p>
           </div>
 
@@ -463,10 +466,8 @@ const HomePage = () => {
             ))}
           </div>
 
-          <p className="mt-8 text-center text-gray-600">
-            Each layout is built to resemble a format users already recognize,
-            which helps your mockups look more complete and easier to understand
-            at a glance.
+          <p className="mt-8 text-center text-xs sm:text-sm text-gray-500 max-w-3xl mx-auto">
+            Disclaimer: ReviewCraft is an independent design and prototyping tool and is not affiliated with or endorsed by any platform shown in its templates.
           </p>
         </div>
       </section>
@@ -475,35 +476,34 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
-              How to use ReviewCraft: Fake Review Generator
+              How to Create a Review UI Mockup
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              ReviewCraft is designed for speed. Most screenshots can be created
-              in under a minute.
+              ReviewCraft makes visual prototyping quick and intuitive. Create review card assets in four simple steps:
             </p>
           </div>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                title: "Choose a platform layout",
+                title: "Select a UI Template",
                 description:
-                  "Select the review style that best matches the page, product, funnel, or presentation you are building.",
+                  "Choose the review layout component style that matches your design system or presentation requirements.",
               },
               {
-                title: "Auto-fill the secondary elements",
+                title: "Configure Layout Parameters",
                 description:
-                  "ReviewCraft can populate non-essential details automatically so the screenshot does not look incomplete.",
+                  "Set rating scores, reviewer avatar types, dates, and component options to reflect your target interface.",
               },
               {
-                title: "Add the core details",
+                title: "Customize Feedback Content",
                 description:
-                  "Enter the key information and the content you want to show. You can generate text with AI and edit reviewer names as needed.",
+                  "Input custom feedback text or use example text options to evaluate typography wrapping and spacing.",
               },
               {
-                title: "Generate and download",
+                title: "Export Visual Prototype",
                 description:
-                  "Preview the output, make quick edits if needed, and export the screenshot for immediate use in your workflow.",
+                  "Export your mockup image directly into PNG or JPEG format with embedded simulation disclaimers.",
               },
             ].map((step, index) => (
               <div
@@ -529,12 +529,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
-              Features That Make ReviewCraft Faster to Use
+              Key Features for UI/UX Prototyping
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              The feature set is what turns ReviewCraft from a simple fake
-              review template into a practical production tool for marketers,
-              ecommerce teams, and designers.
+              Designed specifically to meet the speed and flexibility needs of modern design workflows.
             </p>
           </div>
 
@@ -560,11 +558,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
-              Who ReviewCraft Is For
+              Who Uses ReviewCraft?
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              ReviewCraft is most useful for people who need review-style
-              visuals quickly and repeatedly.
+              ReviewCraft supports digital creators who require rapid visual mockup generation.
             </p>
           </div>
 
@@ -587,11 +584,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
-              Use Cases Across Marketing, Ecommerce, and Design
+              Prototyping Use Cases Across Product & Design
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              ReviewCraft fits into multiple workflows because review-style
-              visuals appear in more places than most teams expect.
+              Visual review components play a pivotal role in modern web interfaces and product presentations.
             </p>
           </div>
 
@@ -617,13 +613,13 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-800 text-indigo-200 text-xs font-semibold uppercase tracking-wider mb-4">
-              <FileText size={14} /> UI/UX & Design Insights
+              <FileText size={14} /> UI/UX & Design Resource Center
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Learn About Review Mockups & Social Proof Design
+              Learn About Review UI Mockups & Social Proof Design
             </h2>
             <p className="mt-4 text-lg text-indigo-200">
-              Read our technical guides on UI layout best practices, e-commerce conversion design, and ethical social proof implementation.
+              Read our educational guides on UI component layout, accessibility standards, and responsible prototyping.
             </p>
           </div>
 
@@ -631,8 +627,8 @@ const HomePage = () => {
             <div className="bg-indigo-900/60 border border-indigo-800/80 rounded-2xl p-6 hover:border-indigo-700 transition-colors">
               <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">UI/UX Design</span>
               <h3 className="mt-3 text-xl font-bold text-white">
-                <Link href="/blog/how-to-create-review-mockups-for-landing-pages" className="hover:underline">
-                  How to Create Effective Review Mockups for Landing Pages
+                <Link href="/guides/review-mockups" className="hover:underline">
+                  The Complete Guide to Designing Review UI Mockups
                 </Link>
               </h3>
               <p className="mt-2 text-sm text-indigo-200 leading-relaxed">
@@ -641,58 +637,38 @@ const HomePage = () => {
             </div>
 
             <div className="bg-indigo-900/60 border border-indigo-800/80 rounded-2xl p-6 hover:border-indigo-700 transition-colors">
-              <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">E-Commerce UI</span>
+              <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">Design Systems</span>
               <h3 className="mt-3 text-xl font-bold text-white">
-                <Link href="/blog/anatomy-of-an-authentic-amazon-review" className="hover:underline">
-                  Anatomy of an Authentic Amazon Review: UI Guidelines
+                <Link href="/guides/designing-review-components" className="hover:underline">
+                  Component Anatomy: Rating Stars & Badges
                 </Link>
               </h3>
               <p className="mt-2 text-sm text-indigo-200 leading-relaxed">
-                Deconstruct the visual hierarchy, micro-components, and rating scales of Amazon's customer feedback system.
+                Deconstruct the visual hierarchy, micro-components, and rating scales of modern customer feedback systems.
               </p>
             </div>
 
             <div className="bg-indigo-900/60 border border-indigo-800/80 rounded-2xl p-6 hover:border-indigo-700 transition-colors">
               <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">Ethics & Policy</span>
               <h3 className="mt-3 text-xl font-bold text-white">
-                <Link href="/blog/ethical-standards-in-social-proof-design" className="hover:underline">
-                  Ethical Standards & Guidelines in Social Proof Design
+                <Link href="/guides/ethical-social-proof" className="hover:underline">
+                  Ethical Standards in Social Proof Design
                 </Link>
               </h3>
               <p className="mt-2 text-sm text-indigo-200 leading-relaxed">
-                Understand legal standards, FTC compliance, and responsible usage parameters for simulated design mockups.
+                Understand legal standards, consumer protection, and responsible usage parameters for simulated design mockups.
               </p>
             </div>
           </div>
 
           <div className="mt-10 text-center">
             <Link
-              href="/blog"
+              href="/guides"
               className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-sm transition-colors shadow-sm"
             >
-              Explore All Guides & Articles
+              Explore All 10 Design Guides
             </Link>
           </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
-            Final Thoughts
-          </h2>
-          <p className="mt-6 text-lg text-gray-600 leading-8">
-            ReviewCraft helps you move faster when your page, funnel, mockup, or
-            presentation needs realistic review-style visuals. Instead of
-            manually designing every card, you can generate polished screenshots
-            for 30+ platforms, edit the details you care about, and rely on
-            auto-filled reviewer elements to complete the layout.
-          </p>
-          <p className="mt-4 text-lg text-gray-600 leading-8">
-            For marketers, affiliate teams, ecommerce operators, designers, and
-            agencies, ReviewCraft makes review mockups easier to create, easier
-            to test, and easier to present.
-          </p>
         </div>
       </section>
 
@@ -700,7 +676,7 @@ const HomePage = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950">
-              FAQs
+              Frequently Asked Questions
             </h2>
           </div>
 

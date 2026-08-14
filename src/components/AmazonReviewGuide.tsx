@@ -25,7 +25,7 @@ export function AmazonReviewGuide() {
 
   const faqs = [
     {
-      q: "What Is This Fake Amazon Review Generator Actually Used For?",
+      q: "What Is This Amazon Review Mockup Builder Used For?",
       a: "This tool is used to create Amazon review-style mockups for demos, product pages, presentations, prototypes, and design previews. It is most useful when you need realistic-looking buyer feedback to show how a screen or layout may look before real customer reviews exist.",
     },
     {
@@ -41,8 +41,8 @@ export function AmazonReviewGuide() {
       a: "Yes, and that can be useful when you want to show more realistic customer sentiment in a product page concept, case study, or presentation. The best results come from specific, believable criticism that sounds like normal buyer feedback rather than exaggerated negative wording.",
     },
     {
-      q: "What Makes This Better Than a Fake Amazon Review Template?",
-      a: "A fake Amazon review template is usually static, while this tool gives you more control over the details that shape realism, such as the review content, rating, date, badges, votes, and images. That makes it more practical when you need different versions for presentations, case studies, landing pages, or interface testing.",
+      q: "What Makes This Better Than a Static Review Template?",
+      a: "A static review template is usually fixed, while this tool gives you more control over the details that shape realism, such as the review content, rating, date, badges, votes, and images. That makes it more practical when you need different versions for presentations, case studies, landing pages, or interface testing.",
     },
     {
       q: "Is This for Posting Real Reviews on Amazon?",
@@ -104,7 +104,7 @@ export function AmazonReviewGuide() {
             <ShoppingBag size={13} className="text-[#FF9900]" /> High-Fidelity Amazon Reviews
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-4">
-            Fake Amazon Review Generator
+            Amazon-Style Review Mockup Builder
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
             Create realistic Amazon review-style mockups in seconds. Customize star ratings, buyer feedback, reviewer names, verified purchase badges, helpful votes, review dates, and product images to generate polished Amazon-style screenshots for product pages, landing pages, demos, client presentations, UI testing, marketing creatives, and educational projects.

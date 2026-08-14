@@ -77,7 +77,7 @@ export function TrustpilotReviewGuide() {
       a: "No. This is for visuals only, not for publishing on real review platforms.",
     },
     {
-      q: "What Is a Fake Trustpilot Review Generator Actually Used For?",
+      q: "What Is a Trustpilot Review Mockup Builder Used For?",
       a: "This tool is used to create Trustpilot review-style mockups for demos, landing pages, presentations, prototypes, and design previews. It is most useful when you need realistic-looking review content to show how a screen or layout may look before real customer feedback exists.",
     },
     {
@@ -101,7 +101,7 @@ export function TrustpilotReviewGuide() {
             <Award size={13} className="text-[#00B67A] animate-pulse" /> Verified Trustpilot Visuals
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-4">
-            Fake Trustpilot Review Generator
+            Trustpilot-Style Review Mockup Builder
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
             If you are designing a business app, testimonial section, or marketing mockup, empty layouts never tell the full story. What makes a screen feel “real” is the content inside it-names, ratings, and opinions. This generator is built exactly to give you fast, realistic reviews for mockups, demos, and educational projects.
@@ -109,17 +109,17 @@ export function TrustpilotReviewGuide() {
         </div>
       </div>
 
-      {/* Grid: What is a Fake Trustpilot Review Generator? & Why Use a Trustpilot Review Mockup? */}
+      {/* Grid: What is a Trustpilot Review Mockup Builder? & Why Use a Trustpilot Review Mockup? */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
         
-        {/* What is a Fake Trustpilot Review Generator? */}
+        {/* What is a Trustpilot Review Mockup Builder? */}
         <div className="lg:col-span-6 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex flex-col justify-between">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="p-2.5 bg-emerald-50 rounded-xl text-[#00B67A]">
                 <Info size={20} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900">What Is a Fake Trustpilot Review Generator?</h3>
+              <h3 className="text-xl font-bold text-slate-900">What Is a Trustpilot Review Mockup Builder?</h3>
             </div>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
               This tool creates fictional reviews styled like real Trustpilot feedback. Instead of designing review cards by hand, you can generate a complete Trustpilot-style mockup and drop it directly into your design file or prototype.
@@ -269,15 +269,15 @@ export function TrustpilotReviewGuide() {
 
       {/* --- Second Phase Content: Deep Dive & Builder Mechanisms --- */}
       
-      {/* 2. Pros vs Cons of Fake Trustpilot Reviews Maker */}
+      {/* 2. Benefits of Trustpilot Review Mockups for UI Design */}
       <div className="space-y-8 border-t border-slate-150 pt-16">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold text-[#00B67A] uppercase tracking-widest block">Deep Dive</span>
           <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Why Use a Fake Trustpilot Reviews Maker?
+            Why Use Trustpilot-Style Review Components in Prototypes?
           </h3>
           <p className="text-slate-500 text-sm">
-            Using a fake Trustpilot review maker allows businesses to rapidly build perceived trust and authority by instantly inflating online reputation metrics. Compare the factors.
+            Using Trustpilot-style review components allows product teams to rapidly wireframe customer feedback sections and evaluate visual layout density before site launch.
           </p>
         </div>
 
@@ -424,7 +424,7 @@ export function TrustpilotReviewGuide() {
             Frequently Asked Questions
           </h3>
           <p className="text-slate-500 text-sm">
-            Everything you need to know about our fake Trustpilot review generator tool.
+            Everything you need to know about our Trustpilot-style review mockup tool.
           </p>
         </div>
 

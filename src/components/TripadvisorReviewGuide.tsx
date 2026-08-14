@@ -34,7 +34,7 @@ export function TripadvisorReviewGuide() {
     {
       step: "02",
       title: "Auto-fill traveler details",
-      desc: "The tool populates realistic traveler types (e.g., 'Family,' 'Couple') and dates so the fake TripAdvisor reviews maker output feels complete and organic.",
+      desc: "The tool populates realistic traveler types (e.g., 'Family,' 'Couple') and dates so the TripAdvisor review mockup output feels complete and organic.",
     },
     {
       step: "03",
@@ -96,20 +96,20 @@ export function TripadvisorReviewGuide() {
 
   const faqs = [
     {
-      q: "Is this fake TripAdvisor review generator free?",
-      a: "Yes, our fake TripAdvisor reviews maker offers free basic usage, allowing you to create unlimited mockups for design and presentation purposes without cost.",
+      q: "Is this TripAdvisor review mockup generator free?",
+      a: "Yes, our TripAdvisor review mockup builder offers free basic usage, allowing you to create unlimited mockups for design and presentation purposes without cost.",
     },
     {
       q: "Can I customize the traveler type and date?",
       a: "Absolutely. You can select specific traveler types (like 'Business' or 'Solo') and adjust dates to ensure your TripAdvisor review mockup fits the specific context of your project.",
     },
     {
-      q: "Is it ethical to create fake TripAdvisor reviews?",
+      q: "Is it ethical to create TripAdvisor review mockups?",
       a: "This tool is intended strictly for design mockups, internal training, and marketing presentations. It should never be used to post fraudulent reviews on live platforms to deceive consumers or manipulate rankings.",
     },
     {
       q: "Does the tool support multiple languages?",
-      a: "While the interface is primarily in English, you can manually input text in other languages to create fake TripAdvisor review screenshots that match international markets for global brand presentations.",
+      a: "While the interface is primarily in English, you can manually input text in other languages to create TripAdvisor review mockup screenshots that match international markets for global brand presentations.",
     },
   ];
 
@@ -128,10 +128,10 @@ export function TripadvisorReviewGuide() {
             <Compass size={13} className="text-[#00AF87] animate-spin-slow" /> Hospitality Mockups
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-4">
-            Fake TripAdvisor Review Generator
+            TripAdvisor-Style Review Mockup Builder
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            When designing hotel sites or travel apps, empty testimonial sections make layouts feel unfinished. This fake TripAdvisor review generator helps you create realistic, platform-specific screenshots that make mockups and presentations look polished instantly.
+            When designing hotel sites or travel apps, empty testimonial sections make layouts feel unfinished. This TripAdvisor-style review mockup builder helps you create realistic, platform-specific screenshots that make mockups and presentations look polished instantly.
           </p>
         </div>
       </div>
@@ -239,7 +239,7 @@ export function TripadvisorReviewGuide() {
               <div className="p-2.5 bg-slate-200 rounded-xl text-slate-700">
                 <Users size={20} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900">Who This Fake TripAdvisor Reviews Maker Is For</h3>
+              <h3 className="text-xl font-bold text-slate-900">Who This TripAdvisor Review Mockup Tool Is For</h3>
             </div>
             
             <div className="space-y-4 pt-1">
@@ -340,7 +340,7 @@ export function TripadvisorReviewGuide() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,175,135,0.1),transparent_70%)]" />
         <span className="text-xs uppercase font-extrabold tracking-widest text-[#00AF87] block relative z-10">Final Thought</span>
         <p className="text-slate-200 text-sm sm:text-base leading-relaxed relative z-10">
-          This fake TripAdvisor review generator streamlines the creation of travel-specific social proof visuals. Instead of manually recreating complex TripAdvisor UI elements, you can generate polished, realistic screenshots that highlight the power of guest feedback.
+          This TripAdvisor-style review mockup builder streamlines the creation of travel-specific social proof visuals. Instead of manually recreating complex TripAdvisor UI elements, you can generate polished, realistic screenshots that highlight the power of guest feedback.
         </p>
         <p className="text-[#34A853] text-xs sm:text-sm font-semibold relative z-10">
           Use responsibly to mock up your visual creations and travel directory designs without using real customer data.

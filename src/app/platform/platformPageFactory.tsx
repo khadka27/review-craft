@@ -349,7 +349,7 @@ export const platformMeta: Record<
     ],
   },
   google: {
-    name: "Google Fake Review Generator - Create Fake Google Reviews",
+    name: "Google Review Mockup Generator - Create Google-Style UI Screenshots",
     description:
       "Create realistic Google review screenshots instantly with editable ratings, usernames, dates, and business feedback for demos and mockups.",
     theme: {
@@ -391,7 +391,7 @@ export const platformMeta: Record<
     ],
   },
   facebook: {
-    name: "Facebook Fake Review Generator - Create Fake Facebook Reviews",
+    name: "Facebook Review Mockup Generator - Create Facebook Social Proof Screenshots",
     description:
       "Generate realistic Facebook review screenshots with editable recommendations, ratings, comments, and profile details instantly.",
     theme: {
@@ -409,7 +409,7 @@ export const platformMeta: Record<
     },
   },
   yelp: {
-    name: "Yelp Fake Review Generator - Create Fake Yelp Reviews",
+    name: "Yelp Review Mockup Generator - Create Yelp-Style Business Screenshots",
     description:
       "Generate realistic Yelp review screenshots with editable ratings, customer feedback, business details, and reviewer names instantly.",
     theme: {
@@ -450,7 +450,7 @@ export const platformMeta: Record<
     ],
   },
   amazon: {
-    name: "Amazon Fake Review Generator - Create Fake Amazon Reviews",
+    name: "Amazon Review Mockup Generator - Create Amazon-Style Product Screenshots",
     description:
       "Generate realistic Amazon review screenshots instantly with editable ratings, buyer feedback, verified badges, and product reviews.",
     theme: {
@@ -824,7 +824,7 @@ export const platformMeta: Record<
     ],
   },
   shopify: {
-    name: "Shopify Fake Review Generator - Create Fake Product Reviews",
+    name: "Shopify Product Review Mockup Generator - Create Storefront Review Screenshots",
     description:
       "Generate realistic Shopify product reviews with editable customer feedback, ratings, names, and ecommerce testimonials.",
     theme: {

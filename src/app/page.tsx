@@ -5,9 +5,9 @@ import HomePage from "./home/page";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Fake Review Generator - Review Screenshot Mockup Tool",
+  title: "Create Review & Social Proof UI Mockups | ReviewCraft",
   description:
-    "Generate realistic review screenshots for UI design, product demos, and educational projects. Supports Amazon, Google, Instagram, TikTok, and more.",
+    "Design realistic review interface mockups and social proof prototypes for UI/UX presentations, landing pages, product demos, and educational projects.",
   alternates: {
     canonical: "/",
   },
@@ -19,26 +19,26 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What is this fake review generator used for?",
+      name: "What is ReviewCraft used for?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "This tool is for creating review mockups for UI design, prototypes, demos",
+        text: "ReviewCraft is a visual prototyping tool for designers, marketers, and educators to create simulated review layouts, social proof mockups, and interface wireframes.",
       },
     },
     {
       "@type": "Question",
-      name: "Can I use generated content as real customer reviews?",
+      name: "Can generated mockups be published as authentic customer reviews?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No. Generated content must not be used for deception, public misrepresentation, or posting as real reviews.",
+        text: "No. All generated content is fictional and simulated. It must never be published to misrepresent genuine customer feedback or real commercial activity.",
       },
     },
     {
       "@type": "Question",
-      name: "Which platforms are supported?",
+      name: "Which review interface layouts are supported?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The tool supports many layouts including Amazon, Google, Instagram, TikTok, Trustpilot, and other social and ecommerce styles.",
+        text: "ReviewCraft supports interface designs inspired by Amazon, Google, Trustpilot, Yelp, Instagram, TikTok, and other common social proof layouts.",
       },
     },
   ],
@@ -47,7 +47,7 @@ const faqSchema = {
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "ReviewCraft Fake Review Generator",
+  name: "ReviewCraft UI Mockup Generator",
   applicationCategory: "DesignApplication",
   operatingSystem: "Web",
   offers: {
@@ -57,7 +57,7 @@ const softwareSchema = {
   },
   url: "https://www.fakereviewgenerator.com",
   description:
-    "A web tool that generates review and comment mockups for product demos, UI design, and education.",
+    "A browser-based visual prototyping application for creating simulated review UI cards, social proof mockups, and interface design assets.",
 };
 
 export default function Page() {

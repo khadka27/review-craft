@@ -843,7 +843,7 @@ export const ReviewForm = ({
                 htmlFor="clutchVerified"
                 className="text-xs sm:text-sm font-semibold text-gray-700"
               >
-                Premier Verified Badge
+                Simulated Verified Badge (Prototype)
               </label>
             </div>
             

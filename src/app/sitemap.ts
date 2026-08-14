@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { platformMeta } from "./platform/platformPageFactory";
 import { BLOG_POSTS } from "@/lib/blog-data";
+import { GUIDES } from "@/lib/guides-data";
 
 const baseUrl = "https://www.fakereviewgenerator.com";
 
@@ -19,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/guides`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/blog`,
@@ -88,6 +95,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const guideRoutes: MetadataRoute.Sitemap = GUIDES.map((guide) => ({
+    url: `${baseUrl}/guides/${guide.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
   const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: now,
@@ -104,5 +118,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticRoutes, ...blogRoutes, ...platformRoutes];
+  return [...staticRoutes, ...guideRoutes, ...blogRoutes, ...platformRoutes];
 }

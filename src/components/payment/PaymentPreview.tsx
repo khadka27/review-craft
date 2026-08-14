@@ -172,6 +172,11 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
                 {renderPlatformReceipt()}
               </div>
 
+              {/* Permanent Simulation Watermark */}
+              <div className="w-full bg-slate-900 text-slate-200 text-[9px] font-mono font-bold tracking-wider py-1 px-2 text-center uppercase select-none pointer-events-none z-30">
+                SIMULATED / SAMPLE — NOT A REAL TRANSACTION
+              </div>
+
               {/* Home Indicator Area */}
               <div className="h-10 flex justify-center items-center w-full bg-white relative z-20 mt-auto">
                 <div

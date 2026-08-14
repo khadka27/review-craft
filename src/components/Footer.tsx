@@ -11,8 +11,8 @@ const Footer = () => {
   const footerLinks = {
     product: [
       { name: "Home", href: "/" },
+      { name: "UI Guides", href: "/guides" },
       { name: "About", href: "/about" },
-      { name: "Features", href: "/home#features" },
       { name: "Contact", href: "/contact" },
     ],
     legal: [
@@ -102,11 +102,11 @@ const Footer = () => {
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              AI-powered social media review generator for educational purposes,
-              design mockups, and presentations. Create authentic-looking
-              reviews for 26+ platforms.
+              Independent visual prototyping tool for UI/UX designers, developers, and educators to create simulated review layouts, social proof prototypes, and feedback interface mockups.
             </p>
-            
+            <p className="text-xs text-gray-500 leading-relaxed">
+              ReviewCraft is an independent design and prototyping tool and is not affiliated with or endorsed by any platform shown in its templates.
+            </p>
           </div>
 
           {/* Product Links */}

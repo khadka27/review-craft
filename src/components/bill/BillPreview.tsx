@@ -144,12 +144,15 @@ export const BillPreview = ({ billData }: BillPreviewProps) => {
             <div 
               ref={invoiceRef}
               id="bill-invoice-capture" 
-              className="w-[800px] bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-300"
+              className="w-[800px] bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-300 flex flex-col"
               style={{ 
                 boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0,0,0,0.05)"
               }}
             >
               {renderPlatformInvoice()}
+              <div className="w-full bg-slate-900 text-slate-300 text-xs font-mono font-bold tracking-wider py-2 px-4 text-center border-t border-slate-700 uppercase select-none pointer-events-none mt-auto">
+                SIMULATED / SAMPLE — NOT A REAL TRANSACTION
+              </div>
             </div>
           </div>
         </div>

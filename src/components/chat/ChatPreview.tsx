@@ -44,10 +44,15 @@ export const ChatPreview = ({ chatData }: ChatPreviewProps) => {
         {/* Flat Capture Area (for download) */}
         <div 
           id="chat-screen-capture" 
-          className="h-full w-full bg-white rounded-none border-none"
+          className="h-full w-full bg-white rounded-none border-none flex flex-col justify-between"
           style={{ borderRadius: '0px' }} // Force no rounding for capture
         >
-          {renderPlatform()}
+          <div className="flex-1 overflow-hidden">
+            {renderPlatform()}
+          </div>
+          <div className="w-full bg-slate-900 text-slate-300 text-[9px] font-mono font-bold tracking-wider py-1 px-2 text-center border-t border-slate-700 uppercase select-none pointer-events-none z-30">
+            SIMULATED CHAT MOCKUP — FOR DESIGN USE
+          </div>
         </div>
       </div>
     </div>

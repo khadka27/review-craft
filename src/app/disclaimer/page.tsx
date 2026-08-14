@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Disclaimer - Fake Review Generator",
+  title: "Disclaimer - ReviewCraft",
   description:
-    "Disclaimer for Fake Review Generator regarding fictitious content, permitted use only, no endorsement of fraud, and limitation of liability.",
+    "Disclaimer for ReviewCraft regarding simulated content, visual prototyping use, platform non-affiliation, and limitation of liability.",
   openGraph: {
-    title: "Disclaimer - Fake Review Generator",
+    title: "Disclaimer - ReviewCraft",
     description:
-      "Important legal disclaimer about educational use, fictional content, and non-affiliation.",
+      "Important legal disclaimer about visual prototyping use, simulated content, and third-party platform non-affiliation.",
     url: "/disclaimer",
     type: "website",
   },

@@ -3,13 +3,13 @@ import Link from "next/link";
 import { ShieldCheck, Target, Sparkles, BookOpen, Layers } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About ReviewCraft - Review & Social Proof Screenshot Generator",
+  title: "About ReviewCraft - Review Mockup & UI Prototyping Tool",
   description:
-    "Learn about ReviewCraft: a web application created to help UI/UX designers, developers, marketers, and educators build high-fidelity social media and ecommerce review mockups safely and efficiently.",
+    "Learn about ReviewCraft: an independent browser-based visual prototyping tool created for UI/UX designers, product teams, QA engineers, and educators.",
   openGraph: {
-    title: "About ReviewCraft - Review & Social Proof Screenshot Generator",
+    title: "About ReviewCraft - Review Mockup & UI Prototyping Tool",
     description:
-      "Learn about ReviewCraft: a web application created to help UI/UX designers, developers, marketers, and educators build high-fidelity social media and ecommerce review mockups safely and efficiently.",
+      "Learn about ReviewCraft: an independent browser-based visual prototyping tool created for UI/UX designers, product teams, QA engineers, and educators.",
     url: "/about",
     type: "website",
   },
@@ -31,7 +31,7 @@ export default function AboutPage() {
             About ReviewCraft
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Empowering designers, developers, and educators with realistic, non-deceptive review and chat mockup tools.
+            Empowering designers, developers, and educators with realistic, non-deceptive review interface mockups and social proof prototypes.
           </p>
         </div>
 
@@ -41,14 +41,17 @@ export default function AboutPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Target className="text-indigo-600" size={24} />
-              What is ReviewCraft?
+              What Is ReviewCraft?
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              ReviewCraft is an online utility built for creating pixel-perfect, customizable social media reviews, chat conversations, and payment confirmation screenshots. Whether you are crafting a Figma design prototype, presenting a client pitch deck, training a team on customer feedback analysis, or designing an app interface demo, ReviewCraft accelerates your design workflow without requiring manual layout assembly.
+              ReviewCraft is an independent, browser-based visual prototyping tool created by product designers for UI/UX creators, developers, growth marketers, and educators. It provides customizable review card components, social proof wireframes, and interface screen mockups that accelerate design workflows.
             </p>
-            <p className="text-gray-700 leading-relaxed">
-              With support for over 30 popular platforms-including Amazon, Google, Yelp, Trustpilot, Reddit, Twitter/X, Instagram, WhatsApp, and Stripe-our generators mirror authentic platform typography, iconography, and spacing to deliver professional visuals in seconds.
+            <p className="text-gray-700 leading-relaxed mb-4">
+              With support for over 30 platform-inspired templates—including Amazon-style layouts, Google-style cards, Trustpilot-style components, and social feedback feeds—ReviewCraft enables teams to preview how user feedback cards interact with website landing pages and mobile interfaces before live customer content is aggregated.
             </p>
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-600 leading-relaxed">
+              <strong>Third-Party Platform Independence:</strong> ReviewCraft is an independent design tool. It is not affiliated with, sponsored by, certified by, or endorsed by Google, Amazon, Meta, Trustpilot, Yelp, Apple, or any other platform shown in its design templates. All trademarks belong to their respective owners and are used purely for descriptive identification.
+            </div>
           </section>
 
           {/* Why We Built This */}

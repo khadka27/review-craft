@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Fake Review Generator",
+  title: "Privacy Policy - ReviewCraft",
   description:
-    "Privacy Policy for Fake Review Generator explaining how we collect, use, and protect your information.",
+    "Privacy Policy for ReviewCraft explaining how we collect, use, and protect your information, including AdSense cookie disclosures and local browser rendering.",
   openGraph: {
-    title: "Privacy Policy - Fake Review Generator",
+    title: "Privacy Policy - ReviewCraft",
     description:
-      "Privacy Policy for Fake Review Generator explaining how we collect, use, and protect your information.",
+      "Privacy Policy for ReviewCraft explaining how we collect, use, and protect your information.",
     url: "/privacy-policy",
     type: "website",
   },
@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
             Privacy Policy
           </h1>
-          <p className="text-lg text-gray-600">Last updated: 06/14/2026</p>
+          <p className="text-lg text-gray-600">Last updated: {new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, '0')}-{String(new Date().getDate()).padStart(2, '0')}</p>
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8">
@@ -34,12 +34,12 @@ export default function PrivacyPolicyPage() {
                 Who We Are
               </h2>
               <p>
-                Fake Review Generator (“we”, “us”, “our”) operates the website
+                ReviewCraft (“we”, “us”, “our”) operates the website
                 fakereviewgenerator.com (the “Site”). We are committed to
                 protecting your privacy and handling your data transparently. This
                 Privacy Policy explains how we collect, use, disclose, and
                 safeguard your personal information when you visit our Site or use
-                our fake review generation tool.
+                our browser-based visual prototyping tools.
               </p>
             </section>
 

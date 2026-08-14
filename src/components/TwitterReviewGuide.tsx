@@ -44,12 +44,12 @@ export function TwitterReviewGuide() {
   ];
 
   const features = [
-    "Instant fake Twitter testimonial generation",
-    "Realistic fake tweet review mockup layouts",
-    "Natural-looking Twitter feedback text",
-    "Mobile-friendly tweet review designs",
-    "Refresh button for unlimited review variations",
-    "Simple interface for quick screenshot creation",
+    "Instant Twitter-style testimonial mockup generation",
+    "Realistic X/Twitter post UI mockup layouts",
+    "Natural-looking Twitter feedback text formatting",
+    "Mobile-friendly tweet post mockup designs",
+    "Refresh button for unlimited layout variations",
+    "Simple interface for quick component creation",
     "Perfect for Figma, Sketch, Adobe XD, and presentations",
   ];
 

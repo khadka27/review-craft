@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Fake Review Generator",
+  title: "Terms of Service - ReviewCraft",
   description:
-    "Terms of Service for using Fake Review Generator. Please read our usage guidelines and legal terms.",
+    "Terms of Service for using ReviewCraft. Please read our UI/UX mockup usage guidelines and legal terms.",
   openGraph: {
-    title: "Terms of Service - Fake Review Generator",
+    title: "Terms of Service - ReviewCraft",
     description:
-      "Terms of Service for using Fake Review Generator. Educational usage guidelines and legal terms.",
+      "Terms of Service for using ReviewCraft visual prototyping tools. Prototyping usage guidelines and legal terms.",
     url: "/terms",
     type: "website",
   },

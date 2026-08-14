@@ -325,8 +325,9 @@ const Navbar = () => {
   const desktopMenuRef = useRef<HTMLDivElement>(null);
 
   const navigation: { name: string; href: string }[] = [
-    { name: "Guides", href: "/blog" },
+    { name: "UI Guides", href: "/guides" },
     { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ];
 
   useEffect(() => {
@@ -403,7 +404,7 @@ const Navbar = () => {
                 aria-expanded={desktopDropdown === "reviews"}
                 aria-haspopup="menu"
               >
-                Review Platforms
+                Review Mockups
                 <ChevronDownIcon
                   className={`h-4 w-4 transition-transform duration-200 ${
                     desktopDropdown === "reviews" ? "rotate-180" : ""
@@ -513,7 +514,7 @@ const Navbar = () => {
                 aria-expanded={desktopDropdown === "payments"}
                 aria-haspopup="menu"
               >
-                Payment Receipts
+                Payment Mockups
                 <ChevronDownIcon
                   className={`h-4 w-4 transition-transform duration-200 ${
                     desktopDropdown === "payments" ? "rotate-180" : ""
@@ -563,7 +564,7 @@ const Navbar = () => {
                 aria-expanded={desktopDropdown === "bills"}
                 aria-haspopup="menu"
               >
-                Bill Generator
+                Invoice Mockups
                 <ChevronDownIcon
                   className={`h-4 w-4 transition-transform duration-200 ${
                     desktopDropdown === "bills" ? "rotate-180" : ""

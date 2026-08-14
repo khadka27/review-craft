@@ -330,7 +330,7 @@ export const ReviewPreview = ({
       <div className="flex justify-center items-center w-full min-h-[300px]">
         <div
           id="review-preview"
-          className={`w-full ${
+          className={`w-full overflow-hidden rounded-xl border border-slate-200/80 bg-white ${
             ["clutch", "bbb", "consumerreports", "g2", "capterra", "angi"].includes(reviewData.platform)
               ? "max-w-full"
               : isMobileView
@@ -338,12 +338,13 @@ export const ReviewPreview = ({
                 : "max-w-2xl"
           }`}
           style={{
-            backgroundColor: "transparent",
-            padding: "0",
             margin: "0",
           }}
         >
           <div className="w-full overflow-x-auto">{renderPlatformReview()}</div>
+          <div className="w-full bg-slate-900 text-slate-300 text-[10px] sm:text-xs font-mono font-bold tracking-wider py-1.5 px-3 text-center border-t border-slate-700 uppercase select-none pointer-events-none">
+            SIMULATED MOCKUP — NOT A REAL REVIEW
+          </div>
         </div>
       </div>
     </div>

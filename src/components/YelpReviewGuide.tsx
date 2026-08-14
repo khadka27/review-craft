@@ -24,7 +24,7 @@ export function YelpReviewGuide() {
 
   const faqs = [
     {
-      q: "What Is This Fake Yelp Review Generator Actually Used For?",
+      q: "What Is This Yelp Review Mockup Builder Used For?",
       a: "This tool is used to create Yelp review-style mockups for demos, landing pages, presentations, prototypes, and design previews. It is most useful when you need realistic-looking review content to show how a screen or layout may look before real customer feedback exists.",
     },
     {
@@ -36,7 +36,7 @@ export function YelpReviewGuide() {
       a: "The most believable mockups use natural wording, a rating that matches the tone of the review, and dates or photo counts that feel reasonable for the situation. It also helps to use extra visual elements only when they improve the layout instead of making it feel crowded.",
     },
     {
-      q: "Can I Create a Fake Yelp Review Funny Enough for a Presentation or Concept?",
+      q: "Can I Create a Humorous Yelp Review Mockup for a Presentation?",
       a: "Yes, but it usually works best when the humor feels subtle and still matches the tone of a real review. If the wording becomes too exaggerated or meme-like, the mockup may stop feeling believable and become less useful in design or client-facing contexts.",
     },
     {
@@ -103,7 +103,7 @@ export function YelpReviewGuide() {
             <Utensils size={13} className="text-[#D32323]" /> Visual Yelp Review Builder
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-4">
-            Fake Yelp Review Generator
+            Yelp-Style Review Mockup Builder
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
             Create realistic Yelp-style review mockups in seconds. Customize every detail including star ratings, reviewer names, customer feedback, business information, review dates, profile photos, uploaded images, and owner responses to generate professional-looking Yelp previews that feel authentic and presentation-ready.
@@ -241,7 +241,7 @@ export function YelpReviewGuide() {
           </div>
           <h3 className="text-xl sm:text-2xl font-bold">Funny Yelp Review Mockups That Still Look Realistic</h3>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            A fake Yelp review funny enough to add personality can still work in a mockup, as long as the humor feels subtle and believable. The best approach is to use a small, specific detail or a lightly playful line rather than turning the review into a joke that breaks the realism of the screenshot.
+            A Yelp review mockup with subtle humor can add personality to a design comp while maintaining visual realism. The best approach is to use a small, specific detail or a lightly playful line rather than turning the review into an exaggerated joke that breaks layout realism.
           </p>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
             This works best for concept work, creative presentations, and playful brand previews where a little personality helps the design feel more memorable without making the content feel exaggerated.

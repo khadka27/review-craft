@@ -2,34 +2,28 @@
 
 import {
   Facebook,
-  Star,
-  CheckCircle,
-  TrendingUp,
-  Sliders,
-  Sparkles,
-  Eye,
   Info,
   ShieldCheck,
   ChevronRight,
-  MessageSquare,
-  BookOpen,
   Zap,
+  Layout,
+  Code2,
 } from "lucide-react";
 
 export function FacebookReviewGuide() {
   const steps = [
-    { title: "Choose a Generator", desc: "Select a reliable facebook review generator that offers templates or AI-driven content creation." },
-    { title: "Input Details", desc: "Enter your business name, page URL, and any specific keywords you want to include in the reviews." },
-    { title: "Customize", desc: "Customize the tone, star rating, and content to match your desired outcome." },
-    { title: "Generate & Copy", desc: "Click “Create” to produce the review and copy the text directly." },
-    { title: "Publish", desc: "Paste the generated review into your Facebook page’s reviews section to publish it." },
+    { title: "Select Layout Component", desc: "Choose the Facebook-inspired post or comment component style in the mockup generator." },
+    { title: "Input Prototype Details", desc: "Enter your test profile name, avatar image, and simulated timestamp parameters." },
+    { title: "Customize Feedback Content", desc: "Set star ratings, recommendation text, and reaction counts for design testing." },
+    { title: "Preview Layout Ergonomics", desc: "Verify line wrapping, font sizes, and container padding across desktop and mobile screens." },
+    { title: "Export Visual Prototype", desc: "Download high-resolution image assets with embedded simulation disclaimers for pitch decks." },
   ];
 
   const tips = [
-    { title: "Keep Content Realistic", desc: "Even though the reviews are fake, use realistic language and avoid repetitive phrases." },
-    { title: "Mix with Authentic Reviews", desc: "Combine fake reviews with real feedback to create a more credible overall profile." },
-    { title: "Simulate Diverse Ratings", desc: "Test different scenarios with varying star ratings to see how they affect your page's performance." },
-    { title: "Cohesive Mockups Integration", desc: "Use mockups for design to align your branding and ensure a cohesive look across your social media." },
+    { title: "Maintain Realistic Line Lengths", desc: "Format test copy with natural paragraph lengths (2-4 sentences) to reflect authentic user comment density." },
+    { title: "Test Edge Case Text Sizes", desc: "Evaluate how long names and multi-line feedback wrap inside Facebook card containers." },
+    { title: "Simulate Diverse Rating States", desc: "Test 5-star positive feedback alongside critical 3-star feedback to evaluate layout resilience." },
+    { title: "Incorporate Watermarked Exports", desc: "Always use watermarked visual assets in client presentations to distinguish prototypes from live data." },
   ];
 
   return (
@@ -44,65 +38,65 @@ export function FacebookReviewGuide() {
 
         <div className="relative z-10 max-w-3xl">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/20 mb-6 uppercase tracking-wider">
-            <Facebook size={13} className="text-[#1877F2] animate-pulse" /> Social Proof Visualizer
+            <Facebook size={13} className="text-[#1877F2]" /> UI/UX Design & Prototyping
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-4">
-            How to Use a Fake Facebook Review Generator
+            Facebook-Style Social Review Interface Prototype Guide
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            Facebook has evolved into a critical platform for local businesses and brands to connect with customers. However, building a strong reputation through genuine reviews can be a slow process. A fake facebook review generator offers a quick shortcut to boost your online presence and attract more clients instantly.
+            Learn how to structure, customize, and integrate Facebook-inspired review cards and social post mockups into website wireframes, mobile app prototypes, and client pitch decks.
           </p>
         </div>
       </div>
 
-      {/* Grid: Overview & Why Use a Facebook Review Maker */}
+      {/* Grid: Overview & Prototyping Use Cases */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
         
-        {/* What is a Facebook Review Generator */}
+        {/* What is a Facebook Review Prototype */}
         <div className="lg:col-span-6 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-100 flex flex-col justify-between">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="p-2.5 bg-blue-50 rounded-xl text-[#1877F2]">
                 <Info size={20} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900">What is a Facebook Review Generator?</h3>
+              <h3 className="text-xl font-bold text-slate-900">What Is a Facebook-Style Review Prototype?</h3>
             </div>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              It is software or a tool designed to produce realistic-looking reviews specifically for Facebook. These reviews mimic genuine customer feedback, complete with star ratings, user profiles, and text comments.
+              A Facebook-style review prototype is a visual UI component designed to simulate social feedback cards, recommendations, and comment threads. It mirrors standard platform typography, avatar frames, and engagement counters for design testing.
             </p>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Users often rely on a fake review facebook maker to create these mockups for competitive analysis or profile enhancement.
+              UX researchers and web designers use these simulated components in wireframes and client presentations to demonstrate social proof placement before live user data is aggregated.
             </p>
           </div>
         </div>
 
-        {/* Why Use a Fake Facebook Reviews Maker */}
+        {/* Why Use Review Mockups */}
         <div className="lg:col-span-6 bg-slate-50 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200/80 flex flex-col justify-between">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="p-2.5 bg-blue-50 rounded-xl text-[#1877F2]">
                 <Zap size={20} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900">Why Use a Fake Facebook Reviews Maker?</h3>
+              <h3 className="text-xl font-bold text-slate-900">Benefits for UI Designers & Product Teams</h3>
             </div>
             
             <div className="space-y-3 pt-2">
               <div className="flex gap-2.5 items-start">
                 <ChevronRight size={16} className="text-[#1877F2] mt-0.5 shrink-0" />
                 <p className="text-slate-700 text-xs sm:text-sm leading-normal">
-                  <strong>Time-saver:</strong> Generate reviews instantly rather than waiting for organic engagement.
+                  <strong>Rapid Wireframing:</strong> Generate realistic visual cards in seconds without building complex component libraries from scratch.
                 </p>
               </div>
               <div className="flex gap-2.5 items-start">
                 <ChevronRight size={16} className="text-[#1877F2] mt-0.5 shrink-0" />
                 <p className="text-slate-700 text-xs sm:text-sm leading-normal">
-                  <strong>Testing Scenarios:</strong> Test how your business page looks under different scenarios, such as a surge in positive feedback.
+                  <strong>Responsive Testing:</strong> Evaluate how text wraps and scales across desktop web and mobile viewport breakpoints.
                 </p>
               </div>
               <div className="flex gap-2.5 items-start">
                 <ChevronRight size={16} className="text-[#1877F2] mt-0.5 shrink-0" />
                 <p className="text-slate-700 text-xs sm:text-sm leading-normal">
-                  <strong>Refining Strategy:</strong> Helps visualize how your reviews might appear on your profile, helping you refine your content strategy.
+                  <strong>Clear Stakeholder Demos:</strong> Provide clients with realistic visual comps during early design reviews.
                 </p>
               </div>
             </div>
@@ -110,14 +104,14 @@ export function FacebookReviewGuide() {
         </div>
       </div>
 
-      {/* Steps: How to Generate Fake Reviews for Facebook */}
+      {/* Steps Section */}
       <div className="space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            How to Generate Fake Reviews for Facebook
+            How to Build a Facebook Review Mockup
           </h3>
           <p className="text-slate-500 text-sm">
-            A simple, repeatable step-by-step layout for generating Facebook reviews.
+            Follow these five steps to create clean, watermarked review UI components for your prototypes.
           </p>
         </div>
 
@@ -134,29 +128,14 @@ export function FacebookReviewGuide() {
         </div>
       </div>
 
-      {/* The Power of Facebook Fake Reviews Mockups */}
-      <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 space-y-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="max-w-3xl space-y-4 relative z-10">
-          <div className="flex items-center gap-2 text-[#1877F2]">
-            <TrendingUp size={20} />
-            <span className="font-extrabold text-xs uppercase tracking-wider">Strategic Previews</span>
-          </div>
-          <h3 className="text-xl sm:text-2xl font-bold">The Power of Facebook Fake Reviews Mockups</h3>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Mockups are essential for visual planning and previewing reviews before they go live. They allow you to tweak formatting and adjust the review structure to ensure consistency with your branding. Businesses can understand how their ratings might influence potential customers through these visual previews.
-          </p>
-        </div>
-      </div>
-
-      {/* Tips for Using Fake Reviews Effectively */}
+      {/* Tips Section */}
       <div className="space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Tips for Using Reviews Effectively
+            Design Best Practices
           </h3>
           <p className="text-slate-500 text-sm">
-            Keep review copy realistic, integrate placeholder details carefully, and maintain cohesive layouts.
+            Guidelines for ensuring your mockups remain readable, clear, and ethical.
           </p>
         </div>
 
@@ -175,11 +154,13 @@ export function FacebookReviewGuide() {
         </div>
       </div>
 
-      {/* Conclusion */}
+      {/* Responsible Prototyping Notice */}
       <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 sm:p-8 text-center space-y-4 max-w-3xl mx-auto">
-        <h3 className="text-xl sm:text-2xl font-bold text-slate-900">Conclusion</h3>
+        <div className="inline-flex items-center gap-2 text-emerald-600 font-bold text-sm">
+          <ShieldCheck size={18} /> Responsible Prototyping Notice
+        </div>
         <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-          In conclusion, a facebook review generator is an essential asset for any business aiming to dominate the social media landscape. By creating convincing reviews quickly, you can bypass the long grind of organic growth and establish an immediate presence. To maximize results, always combine these generated insights with authentic customer interactions to maintain a trustworthy profile.
+          ReviewCraft is an independent design tool and is not affiliated with or endorsed by Meta or Facebook. All generated visual assets are simulated mockups intended exclusively for UI/UX wireframing, client presentations, and educational projects. Do not present simulated content as authentic customer feedback.
         </p>
       </div>
 

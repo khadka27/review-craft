@@ -25,7 +25,7 @@ export function GoogleReviewGuide() {
 
   const faqs = [
     {
-      q: "What Is This Fake Google Review Generator Actually Used For?",
+      q: "What Is This Google-Style Review Mockup Generator Used For?",
       a: "This tool is used to create Google review-style mockups for demos, landing pages, presentations, prototypes, and design previews. It is most useful when you need realistic-looking review content to show how a screen or layout may look before real customer feedback exists.",
     },
     {
@@ -129,7 +129,7 @@ export function GoogleReviewGuide() {
             <Search size={13} className="text-[#4285F4]" /> Professional Google Review Mockups
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-4">
-            Fake Google Review Generator
+            Google-Style Review Mockup Generator
           </h2>
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
             Create realistic Google review-style mockups in seconds. Customize star ratings, reviewer names, profile photos, review text, business details, review dates, uploaded images, and owner responses to generate polished Google-style screenshots for demos, landing pages, UI testing, client presentations, marketing creatives, and educational projects.
