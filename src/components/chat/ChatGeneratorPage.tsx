@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChatData, ChatPlatform } from "@/types/chat";
 import { ChatForm } from "./ChatForm";
 import { ChatPreview } from "./ChatPreview";
@@ -69,6 +69,13 @@ export function ChatGeneratorPage({
     deviceMode: "mobile",
     theme: "light",
   });
+
+  useEffect(() => {
+    setChatData((prev) => ({
+      ...prev,
+      platform: initialPlatform,
+    }));
+  }, [initialPlatform]);
 
   const activeTheme = theme || {
     pageGradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50",

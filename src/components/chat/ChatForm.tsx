@@ -148,7 +148,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
         </div>
         <div className="space-y-2">
           <label htmlFor="chat-status" className="block text-sm font-semibold text-gray-700">Status (Online/Last seen)</label>
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-2">
             <select aria-label="Select option" 
               id="chat-status"
               value={statusOptions.slice(0, -1).includes(chatData.contactStatus) ? chatData.contactStatus : "Custom"}
@@ -159,7 +159,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                   onUpdate({ contactStatus: "" }); // Clear to show placeholder
                 }
               }}
-              className="flex-1 p-2 border border-gray-300 rounded-lg"
+              className="w-full p-2 border border-gray-300 rounded-lg"
             >
               {statusOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
             </select>
@@ -171,7 +171,7 @@ export const ChatForm = ({ chatData, onUpdate, showPlatformSelector = true }: Ch
                 onChange={(e) => onUpdate({ contactStatus: e.target.value })}
                 placeholder="Enter custom status..."
                 aria-label="Custom status"
-                className="flex-1 p-2 border border-gray-300 rounded-lg"
+                className="w-full p-2 border border-gray-300 rounded-lg"
               />
             ) : null}
           </div>

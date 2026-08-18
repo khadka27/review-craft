@@ -59,7 +59,7 @@ export const WhatsAppChat = ({ data }: { data: ChatData }) => {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <div className={`font-semibold text-[20px] truncate ${isDark ? "text-[#e9edef]" : "text-[#111b21]"}`}>
+          <div className={`font-semibold text-[15px] truncate ${isDark ? "text-[#e9edef]" : "text-[#111b21]"}`}>
             {data.contactName}
           </div>
           <div className={`text-[13px] truncate ${isDark ? "text-[#8696a0]" : "text-[#667781]"}`}>
