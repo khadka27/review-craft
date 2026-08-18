@@ -33,6 +33,31 @@ button {
   font-family: inherit;
 }
 
+/* Mobile Core Web Vitals (INP & LCP) Performance Optimizations */
+button,
+a,
+input,
+select,
+textarea,
+label {
+  touch-action: manipulation; /* Eliminates 300ms mobile browser tap delay (INP fix) */
+}
+
+@media (max-width: 768px) {
+  /* Defer off-screen section rendering to improve mobile LCP & initial parse */
+  .guide-container,
+  footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 600px;
+  }
+
+  /* Force GPU composite layer for sticky mobile previews */
+  .sticky {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}
+
 /* Simple, plugin-free line clamp utilities */
 .rc-line-clamp-2 {
   display: -webkit-box;
@@ -54,8 +79,6 @@ button {
   -webkit-line-clamp: 5;
   overflow: hidden;
 }
-
-
 
 /* Custom scrollbar for footer lists */
 .scrollbar-thin::-webkit-scrollbar {

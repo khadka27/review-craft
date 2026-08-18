@@ -7,11 +7,17 @@ import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/ui/Toast";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: true,
+  preload: true,
+});
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
   themeColor: "#6366f1",
   colorScheme: "light",
 };
@@ -98,7 +104,13 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-        {/* Google Analytics */}
+        {/* Resource Preconnect Hints for Mobile LCP Optimization */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+
+        {/* Speculation Rules */}
         <script
           type="speculationrules"
           dangerouslySetInnerHTML={{
@@ -118,13 +130,14 @@ export default function RootLayout({
         <ToastProvider>
           <Navbar />
           <main>{children}</main>
+          {/* Deferred AdSense script loading strategy (lazyOnload) prevents blocking mobile main thread (INP/LCP fix) */}
           <Script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${
               process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-5286253567075688"
             }`}
             crossOrigin="anonymous"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             id="adsense-init"
           />
 
