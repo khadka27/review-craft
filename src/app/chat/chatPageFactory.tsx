@@ -3,6 +3,10 @@ import { ChatPlatform } from "@/types/chat";
 import { TwitterChatGuide } from "@/components/TwitterChatGuide";
 import { DiscordChatGuide } from "@/components/DiscordChatGuide";
 import { ImessageChatGuide } from "@/components/ImessageChatGuide";
+import { WhatsappChatGuide } from "@/components/WhatsappChatGuide";
+import { MessengerChatGuide } from "@/components/MessengerChatGuide";
+import { InstagramChatGuide } from "@/components/InstagramChatGuide";
+import { TelegramChatGuide } from "@/components/TelegramChatGuide";
 
 type ChatTheme = {
   pageGradient: string;
@@ -82,6 +86,16 @@ const chatPlatformMeta: Record<
 export function renderChatPlatformPage(platform: ChatPlatform) {
   const selectedPlatform = chatPlatformMeta[platform];
 
+  const guideMap: Record<ChatPlatform, React.ReactNode> = {
+    whatsapp: <WhatsappChatGuide />,
+    messenger: <MessengerChatGuide />,
+    instagram: <InstagramChatGuide />,
+    telegram: <TelegramChatGuide />,
+    twitter: <TwitterChatGuide />,
+    discord: <DiscordChatGuide />,
+    imessage: <ImessageChatGuide />,
+  };
+
   return (
     <ChatGeneratorPage
       initialPlatform={platform}
@@ -89,15 +103,7 @@ export function renderChatPlatformPage(platform: ChatPlatform) {
       heroTitle={`${selectedPlatform.name} Chat Generator`}
       heroDescription={selectedPlatform.description}
       theme={selectedPlatform.theme}
-      extraContent={
-        platform === "twitter" ? (
-          <TwitterChatGuide />
-        ) : platform === "discord" ? (
-          <DiscordChatGuide />
-        ) : platform === "imessage" ? (
-          <ImessageChatGuide />
-        ) : undefined
-      }
+      extraContent={guideMap[platform]}
     />
   );
 }

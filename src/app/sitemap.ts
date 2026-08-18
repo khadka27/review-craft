@@ -5,6 +5,34 @@ import { GUIDES } from "@/lib/guides-data";
 
 const baseUrl = "https://www.fakereviewgenerator.com";
 
+const chatPlatforms = [
+  "whatsapp",
+  "messenger",
+  "instagram",
+  "telegram",
+  "twitter",
+  "discord",
+  "imessage",
+];
+
+const paymentPlatforms = [
+  "paytm",
+  "stripe",
+  "googlepay",
+  "upi",
+  "phonepay",
+  "phonepe",
+  "gpay",
+  "bhim",
+  "googlewallet",
+  "applepay",
+  "venmo",
+  "fonepay",
+  "cashapp",
+];
+
+const billPlatforms = ["amazon", "walmart", "supplement"];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -95,6 +123,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const chatRoutes: MetadataRoute.Sitemap = chatPlatforms.map((platform) => ({
+    url: `${baseUrl}/chat/${platform}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  const paymentRoutes: MetadataRoute.Sitemap = paymentPlatforms.map(
+    (platform) => ({
+      url: `${baseUrl}/payment/${platform}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }),
+  );
+
+  const billRoutes: MetadataRoute.Sitemap = billPlatforms.map((platform) => ({
+    url: `${baseUrl}/bill-generator/${platform}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
   const guideRoutes: MetadataRoute.Sitemap = GUIDES.map((guide) => ({
     url: `${baseUrl}/guides/${guide.slug}`,
     lastModified: now,
@@ -118,5 +169,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  return [...staticRoutes, ...guideRoutes, ...blogRoutes, ...platformRoutes];
+  return [
+    ...staticRoutes,
+    ...chatRoutes,
+    ...paymentRoutes,
+    ...billRoutes,
+    ...guideRoutes,
+    ...blogRoutes,
+    ...platformRoutes,
+  ];
 }
+

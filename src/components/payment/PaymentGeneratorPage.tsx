@@ -6,6 +6,14 @@ import { PaymentForm } from "./PaymentForm";
 import { PaymentPreview } from "./PaymentPreview";
 import { Shield, Download, Copy, Loader2, Sparkles, Zap, Lock, ChevronRight } from "lucide-react";
 import { downloadComponentAsImage, copyComponentToClipboard } from "@/utils/export";
+import { CustomDropdown, DropdownOption } from "@/components/ui/CustomDropdown";
+
+const exportFormatOptions: DropdownOption[] = [
+  { value: "png", label: "PNG Image", badge: "HD" },
+  { value: "webp", label: "WEBP Image", badge: "Web" },
+  { value: "jpg", label: "JPG Image", badge: "Fast" },
+  { value: "pdf", label: "PDF Document", badge: "Doc" },
+];
 import { useToast } from "@/components/ui/Toast";
 
 interface PaymentGeneratorPageProps {
@@ -280,11 +288,11 @@ export function PaymentGeneratorPage({
           >
             {/* Card header */}
             <div
-              className="px-6 pt-6 pb-5"
+              className="px-5 py-4"
               style={{ borderBottom: "1px solid #1E293B" }}
             >
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex items-center gap-3 flex-shrink-0">
                   <div
                     className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{
@@ -305,24 +313,15 @@ export function PaymentGeneratorPage({
                 </div>
 
                 {/* Export Options & Button */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                  <select
-                    id="export-format-select"
-                    aria-label="Export Format"
+                <div className="flex flex-wrap items-center gap-2 max-w-full">
+                  <CustomDropdown
                     value={exportFormat}
-                    onChange={(e) => setExportFormat(e.target.value as any)}
-                    className="bg-[#0B0F14] border border-[#1E293B] hover:border-blue-500/50 text-[#F8FAFC] px-3.5 py-2.5 rounded-xl text-sm font-semibold focus:border-blue-500 outline-none cursor-pointer transition-all duration-200"
-                    style={{
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-                    }}
-                  >
-                    <option value="png">PNG Image</option>
-                    <option value="webp">WEBP Image</option>
-                    <option value="jpg">JPG Image</option>
-                    <option value="pdf">PDF Document</option>
-                  </select>
+                    onChange={(val) => setExportFormat(val as any)}
+                    options={exportFormatOptions}
+                    ariaLabel="Export Format"
+                  />
 
-                  <label className="flex items-center gap-2 cursor-pointer bg-[#0B0F14] border border-[#1E293B] hover:border-blue-500/50 text-[#94A3B8] px-3.5 py-2.5 rounded-xl text-sm font-semibold select-none transition-all duration-200"
+                  <label className="flex items-center gap-1.5 cursor-pointer bg-[#0B0F14] border border-[#1E293B] hover:border-blue-500/50 text-[#94A3B8] px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold select-none transition-all duration-200"
                     style={{
                       boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
                     }}
@@ -339,7 +338,7 @@ export function PaymentGeneratorPage({
                   <button
                     onClick={handleCopy}
                     disabled={isCopying}
-                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-60 text-white cursor-pointer bg-[#334155] hover:bg-[#475569]"
+                    className="flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 disabled:opacity-60 text-white cursor-pointer bg-[#334155] hover:bg-[#475569]"
                     style={{
                       boxShadow: "0 2px 12px rgba(51,65,85,0.35)",
                     }}
@@ -352,16 +351,10 @@ export function PaymentGeneratorPage({
                     id="download-receipt-btn"
                     onClick={handleDownload}
                     disabled={isDownloading}
-                    className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-60 text-white cursor-pointer"
+                    className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 disabled:opacity-60 text-white cursor-pointer whitespace-nowrap"
                     style={{
-                      background: isDownloading ? "#1D4ED8" : "#2563EB",
+                      background: isDownloading ? "#1D4ED8" : "linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)",
                       boxShadow: "0 2px 12px rgba(37,99,235,0.35)",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isDownloading) (e.currentTarget.style.background = "#1D4ED8");
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isDownloading) (e.currentTarget.style.background = "#2563EB");
                     }}
                   >
                     <Download size={14} className={isDownloading ? "animate-bounce" : ""} />
@@ -430,6 +423,13 @@ export function PaymentGeneratorPage({
             </div>
           </div>
         </div>
+
+        {/* ──────────── Extra Guide Content ──────────── */}
+        {extraContent && (
+          <div className="mt-16 border-t border-[#1E293B] pt-12">
+            {extraContent}
+          </div>
+        )}
       </main>
     </div>
   );

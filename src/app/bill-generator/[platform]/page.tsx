@@ -1,5 +1,6 @@
 import { BillPlatform } from "@/types/bill";
 import { BillGeneratorPage } from "@/components/bill/BillGeneratorPage";
+import { InvoiceGuide } from "@/components/InvoiceGuide";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -88,6 +89,7 @@ export default async function BillPlatformPage({ params }: PageProps) {
       initialPlatform={platform as BillPlatform}
       lockPlatform
       heroDescription={descriptions[platform as BillPlatform]}
+      extraContent={<InvoiceGuide />}
     />
   );
 }

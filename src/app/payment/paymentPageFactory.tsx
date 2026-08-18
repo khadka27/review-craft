@@ -1,5 +1,14 @@
 import { PaymentGeneratorPage } from "@/components/payment/PaymentGeneratorPage";
 import { PaymentPlatform, PaymentPageTheme } from "@/types/payment";
+import { PhonePeGuide } from "@/components/PhonePeGuide";
+import { PaytmGuide } from "@/components/PaytmGuide";
+import { StripeGuide } from "@/components/StripeGuide";
+import { GooglePayGuide } from "@/components/GooglePayGuide";
+import { UpiGuide } from "@/components/UpiGuide";
+import { ApplePayGuide } from "@/components/ApplePayGuide";
+import { VenmoGuide } from "@/components/VenmoGuide";
+import { FonepayGuide } from "@/components/FonepayGuide";
+import { CashAppGuide } from "@/components/CashAppGuide";
 
 const paymentPlatformMeta: Record<
   PaymentPlatform,
@@ -127,6 +136,22 @@ const paymentPlatformMeta: Record<
 export function renderPaymentPlatformPage(platform: PaymentPlatform) {
   const selectedPlatform = paymentPlatformMeta[platform];
 
+  const guideMap: Record<PaymentPlatform, React.ReactNode> = {
+    paytm: <PaytmGuide />,
+    stripe: <StripeGuide />,
+    googlepay: <GooglePayGuide />,
+    gpay: <GooglePayGuide />,
+    upi: <UpiGuide />,
+    bhim: <UpiGuide />,
+    phonepay: <PhonePeGuide />,
+    phonepe: <PhonePeGuide />,
+    applepay: <ApplePayGuide />,
+    googlewallet: <ApplePayGuide />,
+    venmo: <VenmoGuide />,
+    fonepay: <FonepayGuide />,
+    cashapp: <CashAppGuide />,
+  };
+
   return (
     <PaymentGeneratorPage
       initialPlatform={platform}
@@ -134,6 +159,7 @@ export function renderPaymentPlatformPage(platform: PaymentPlatform) {
       heroTitle={`${selectedPlatform.name} Receipt Generator`}
       heroDescription={selectedPlatform.description}
       theme={selectedPlatform.theme}
+      extraContent={guideMap[platform]}
     />
   );
 }

@@ -6,7 +6,15 @@ import { ChatForm } from "./ChatForm";
 import { ChatPreview } from "./ChatPreview";
 import { Shield, Download, Copy, Loader2 } from "lucide-react";
 import { downloadComponentAsImage, copyComponentToClipboard } from "@/utils/export";
+import { CustomDropdown, DropdownOption } from "@/components/ui/CustomDropdown";
 import { useToast } from "@/components/ui/Toast";
+
+const exportFormatOptions: DropdownOption[] = [
+  { value: "png", label: "PNG Image", badge: "HD" },
+  { value: "webp", label: "WEBP Image", badge: "Web" },
+  { value: "jpg", label: "JPG Image", badge: "Fast" },
+  { value: "pdf", label: "PDF Document", badge: "Doc" },
+];
 
 interface ChatGeneratorPageProps {
   initialPlatform?: ChatPlatform;
@@ -134,20 +142,12 @@ export function ChatGeneratorPage({
                 
                 {/* Export Options & Button */}
                 <div className="flex flex-wrap items-center gap-2">
-                  <select
-                    aria-label="Export Format"
+                  <CustomDropdown
                     value={exportFormat}
-                    onChange={(e) => setExportFormat(e.target.value as any)}
-                    className="bg-white border border-gray-300 hover:border-green-500/50 text-gray-700 px-3.5 py-2 rounded-lg text-sm font-semibold focus:border-green-500 outline-none cursor-pointer transition-all duration-200"
-                    style={{
-                      boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-                    }}
-                  >
-                    <option value="png">PNG Image</option>
-                    <option value="webp">WEBP Image</option>
-                    <option value="jpg">JPG Image</option>
-                    <option value="pdf">PDF Document</option>
-                  </select>
+                    onChange={(val) => setExportFormat(val as any)}
+                    options={exportFormatOptions}
+                    ariaLabel="Export Format"
+                  />
 
                   <label className="flex items-center gap-2 cursor-pointer bg-white border border-gray-300 hover:border-green-500/50 text-gray-700 px-3.5 py-2 rounded-lg text-sm font-semibold select-none transition-all duration-200"
                     style={{
