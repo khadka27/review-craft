@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/guides/", "/about", "/contact", "/acceptable-use", "/privacy-policy", "/terms", "/cookie-policy", "/disclaimer", "/ads.txt"],
-        disallow: ["/api/", "/admin/", "/*?*"],
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
       },
     ],
     sitemap: "https://www.fakereviewgenerator.com/sitemap.xml",
