@@ -129,6 +129,17 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'fakereviewgenerator.com',
+          },
+        ],
+        destination: 'https://www.fakereviewgenerator.com/:path*',
+        permanent: true,
+      },
     ];
   },
 
