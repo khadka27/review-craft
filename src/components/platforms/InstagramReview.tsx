@@ -17,9 +17,10 @@ interface InstagramReviewProps {
 }
 
 export const InstagramReview = ({ data }: InstagramReviewProps) => {
-  const isCommentMode = (data.instagramContentType || "post") === "comment";
   const postImages = data.images || [];
   const postImage = postImages.length > 0 ? postImages[0] : null;
+  // If explicitly set to comment mode OR if no image is attached, render authentic comment mode!
+  const isCommentMode = (data.instagramContentType || "post") === "comment" || !postImage;
 
   if (isCommentMode) {
     return (

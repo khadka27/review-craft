@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import puppeteer, { Browser } from 'puppeteer-core';
 import JSZip from 'jszip';
 
 function corsHeaders() {
@@ -10,126 +11,206 @@ function corsHeaders() {
 }
 
 export async function OPTIONS() {
-  return new NextResponse(null, {
-    status: 204,
-    headers: corsHeaders(),
-  });
+  return new NextResponse(null, { status: 204, headers: corsHeaders() });
 }
 
-function base64ToUint8Array(base64Str: string): Uint8Array {
-  const pureBase64 = base64Str.includes(',') ? base64Str.split(',')[1] : base64Str;
-  const binaryString = atob(pureBase64);
-  const len = binaryString.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
+const maleNames = ["David Miller","James Wilson","Alex Johnson","Michael Brown","Chris Taylor","Daniel Smith","Ethan Harris","Lucas Martin","Matthew Anderson","Robert Thomas","William Davis"];
+const femaleNames = ["Emily Davis","Sarah Jenkins","Jessica Taylor","Amanda Martinez","Laura White","Sophia Clark","Olivia Lewis","Emma Walker","Hannah Hall","Chloe Allen"];
+const neutralNames = ["Sam Taylor","Jordan Lee","Taylor Morgan","Alex Avery","Morgan Reed","Riley Jordan","Dakota Smith"];
+
+const sampleReviews = [
+  { title: "Game changer for our daily workflow!", content: "We integrated this into our product team's process last month and saw an immediate 35% boost in productivity. The interface is slick, intuitive, and lightning fast." },
+  { title: "Exceptional platform & outstanding customer support", content: "I ran into a minor setup issue on day one and their support team responded in under 4 minutes with a personalized solution. Unbelievable service!" },
+  { title: "Replaced 3 separate subscriptions with this single tool", content: "Clean UX, great API stability, and constant updates. Saves us over $400/month compared to our previous software stack." },
+  { title: "Exceptional build quality and super fast shipping!", content: "Ordered on Tuesday and received it by Thursday morning. Packaging was eco-friendly and premium. The item looks even better in person than in product photos." },
+  { title: "Best purchase I've made all year", content: "The attention to detail and material texture are top notch. Fits perfectly and feels durable enough to last for years." },
+  { title: "First-class service from start to finish", content: "The specialists were punctual, professional, and went above and beyond to make sure everything was set up cleanly. Will definitely hire again." }
+];
+
+function getRandomItem<T>(arr: T[]): T { return arr[Math.floor(Math.random() * arr.length)]; }
+function getRandomInt(min: number, max: number): number { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+function getUserAvatarUrl(gender: string, index: number): string {
+  const imgId = (index % 90) + 1;
+  if (gender === "male") return `https://randomuser.me/api/portraits/men/${imgId}.jpg`;
+  if (gender === "female") return `https://randomuser.me/api/portraits/women/${imgId}.jpg`;
+  return `https://i.pravatar.cc/150?img=${imgId}`;
+}
+
+function generateReviewData(platform: string, category: string, sentiment: string, index: number, customFields?: any) {
+  const gender = customFields?.gender || getRandomItem(["male", "female", "neutral"]);
+  let nameList = neutralNames;
+  if (gender === "male") nameList = maleNames;
+  if (gender === "female") nameList = femaleNames;
+
+  const defaultName = getRandomItem(nameList);
+  const name = customFields?.name?.trim() || defaultName;
+  const cleanName = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const username = customFields?.username?.trim() || `${cleanName}_${getRandomInt(10, 99)}`;
+
+  let rating = customFields?.rating !== undefined ? Number(customFields.rating) : getRandomInt(4, 5);
+  if (sentiment === "5star") rating = 5;
+  else if (sentiment === "critical") rating = getRandomInt(1, 3);
+
+  const tmpl = getRandomItem(sampleReviews);
+  const avatarUrl = customFields?.avatar || getUserAvatarUrl(gender, index + getRandomInt(1, 20));
+
+  return {
+    id: `rev_${Math.random().toString(36).substring(2, 10)}`,
+    platform,
+    name,
+    username: username.startsWith('@') ? username.slice(1) : username,
+    avatar: avatarUrl,
+    gender,
+    rating,
+    date: customFields?.date ? new Date(customFields.date).toISOString() : new Date(Date.now() - getRandomInt(1, 30) * 86400000).toISOString(),
+    title: customFields?.title?.trim() || tmpl.title,
+    content: customFields?.content?.trim() || tmpl.content,
+    likes: customFields?.likes !== undefined ? Number(customFields.likes) : getRandomInt(25, 650),
+    replies: customFields?.replies !== undefined ? Number(customFields.replies) : getRandomInt(3, 45),
+    shares: customFields?.shares !== undefined ? Number(customFields.shares) : getRandomInt(1, 30),
+    verified: customFields?.verified !== undefined ? Boolean(customFields.verified) : true,
+    images: customFields?.images && Array.isArray(customFields.images) ? customFields.images : (customFields?.attachedImage ? [customFields.attachedImage] : []),
+    deviceViewMode: "desktop",
+    facebookContentType: "post",
+    facebookViewMode: "desktop",
+    instagramContentType: "post",
+    appstoreTemplate: "editorial",
+  };
+}
+
+async function captureRealScreenshot(reviewData: any, browser: Browser): Promise<ArrayBuffer> {
+  const page = await browser.newPage();
+
+  try {
+    await page.setViewport({ width: 1200, height: 1000, deviceScaleFactor: 2 });
+
+    // Open render-card
+    await page.goto('http://localhost:3000/render-card', {
+      waitUntil: 'domcontentloaded',
+      timeout: 10000,
+    });
+
+    // Inject data and trigger re-render
+    await page.evaluate((data) => {
+      (window as any).__REVIEW_DATA__ = data;
+      window.postMessage({ type: 'SET_REVIEW_DATA', data }, '*');
+    }, reviewData);
+
+    // Wait until #screenshot-target has rendered content with non-zero height
+    await page.waitForFunction(() => {
+      const el = document.querySelector('#screenshot-target');
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      return rect.height > 40 && rect.width > 100;
+    }, { timeout: 8000 });
+
+    // Small delay to allow fonts and layout to settle
+    await new Promise((r) => setTimeout(r, 200));
+
+    // Get the rendered card element
+    const cardHandle = (await page.$('#screenshot-target > *')) || (await page.$('#screenshot-target'));
+
+    if (!cardHandle) {
+      throw new Error('Screenshot card element not found');
+    }
+
+    const rawScreenshot = await cardHandle.screenshot({
+      type: 'png',
+      omitBackground: true,
+    });
+
+    if (rawScreenshot instanceof Uint8Array) {
+      return rawScreenshot.buffer.slice(
+        rawScreenshot.byteOffset,
+        rawScreenshot.byteOffset + rawScreenshot.byteLength
+      ) as ArrayBuffer;
+    }
+
+    const b = Buffer.from(rawScreenshot as string, 'base64');
+    return b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer;
+  } finally {
+    await page.close().catch(() => {});
   }
-  return bytes;
-}
-
-function generateFallbackSvgPng(r: any): Uint8Array {
-  const platform = (r.platform || 'review').toUpperCase();
-  const name = r.name || 'User';
-  const stars = '★'.repeat(r.rating || 5) + '☆'.repeat(5 - (r.rating || 5));
-  const title = (r.title || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  const content = (r.content || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="320" viewBox="0 0 600 320">
-    <rect width="600" height="320" rx="16" fill="#1e293b" stroke="#334155" stroke-width="2"/>
-    <circle cx="45" cy="45" r="20" fill="#38bdf8"/>
-    <text x="45" y="51" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">${name.charAt(0)}</text>
-    <text x="80" y="42" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f8fafc">${name}</text>
-    <text x="80" y="60" font-family="sans-serif" font-size="12" fill="#94a3b8">${platform} • ${r.date || 'Today'}</text>
-    <text x="45" y="100" font-family="sans-serif" font-size="20" fill="#fbbc04">${stars}</text>
-    <text x="45" y="135" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">${title.substring(0, 50)}</text>
-    <foreignObject x="45" y="150" width="510" height="120">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:sans-serif; font-size:13px; color:#cbd5e1; line-height:1.5;">
-        ${content}
-      </div>
-    </foreignObject>
-    <text x="45" y="295" font-family="sans-serif" font-size="11" fill="#64748b">👍 ${r.likes || 0} Likes  •  💬 ${r.replies || 0} Comments  •  ReviewCraft Screenshot</text>
-  </svg>`;
-
-  const encoder = new TextEncoder();
-  return encoder.encode(svg);
 }
 
 export async function POST(req: Request) {
+  let browser: Browser | null = null;
+
   try {
     const body = await req.json().catch(() => ({}));
-    const reviews = Array.isArray(body.reviews) ? body.reviews : [];
-    const screenshots: string[] = Array.isArray(body.screenshots) ? body.screenshots : [];
+    const platforms: string[] = Array.isArray(body.platforms) && body.platforms.length > 0
+      ? body.platforms
+      : ['google', 'amazon', 'trustpilot'];
 
-    if (reviews.length === 0) {
-      return NextResponse.json(
-        { error: "No review objects provided for ZIP export." },
-        { status: 400, headers: corsHeaders() }
-      );
-    }
+    const category = body.category || 'saas';
+    const sentiment = body.sentiment || 'mixed';
+    const customReview = body.customReview || body.reviewData || null;
 
-    const zip = new JSZip();
+    const reviewsToRender = Array.isArray(body.reviews) && body.reviews.length > 0
+      ? body.reviews
+      : platforms.map((p, idx) => generateReviewData(p, category, sentiment, idx, customReview));
 
-    // 1. Add PNG Screenshot Images to screenshots/ folder
-    reviews.forEach((r: any, idx: number) => {
-      const platformName = r.platform || 'review';
-      const fileNum = String(idx + 1).padStart(2, '0');
-      const screenshotDataUrl = screenshots[idx] || r.screenshot;
-
-      if (screenshotDataUrl && typeof screenshotDataUrl === 'string' && screenshotDataUrl.startsWith('data:image/')) {
-        const imageBytes = base64ToUint8Array(screenshotDataUrl);
-        const ext = screenshotDataUrl.includes('image/jpeg') ? 'jpg' : 'png';
-        zip.file(`screenshots/review_${fileNum}_${platformName}_${r.rating || 5}star.${ext}`, imageBytes);
-      } else {
-        // Fallback SVG image screenshot
-        const svgBytes = generateFallbackSvgPng(r);
-        zip.file(`screenshots/review_${fileNum}_${platformName}_${r.rating || 5}star.svg`, svgBytes);
-      }
+    browser = await puppeteer.launch({
+      executablePath: '/usr/bin/google-chrome',
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--window-size=1200,1000',
+        '--font-render-hinting=medium',
+      ],
     });
 
-    // 2. Add CSV file
-    const csvHeaders = ["ID", "Platform", "Name", "Username", "Rating", "Date", "Title", "Review Content", "Likes", "Replies", "Shares"];
-    const csvRows = reviews.map((r: any) => [
-      r.id || '',
-      r.platform || 'review',
-      `"${(r.name || '').replace(/"/g, '""')}"`,
-      `"${(r.username || '').replace(/"/g, '""')}"`,
-      r.rating || 5,
-      r.date || '',
-      `"${(r.title || '').replace(/"/g, '""')}"`,
-      `"${(r.content || '').replace(/"/g, '""')}"`,
-      r.likes || 0,
-      r.replies || 0,
-      r.shares || 0
-    ]);
-    const csvContent = [csvHeaders.join(','), ...csvRows.map((row: string[]) => row.join(','))].join('\n');
-    zip.file('metadata/reviews.csv', csvContent);
+    // SINGLE PLATFORM: Return direct PNG screenshot file
+    if (reviewsToRender.length === 1) {
+      const review = reviewsToRender[0];
+      const pngBuffer = await captureRealScreenshot(review, browser);
+      const platformName = (review.platform || 'review').toLowerCase();
 
-    // 3. Add JSON file
-    zip.file('metadata/reviews.json', JSON.stringify(reviews, null, 2));
+      return new NextResponse(pngBuffer, {
+        status: 200,
+        headers: {
+          ...corsHeaders(),
+          'Content-Type': 'image/png',
+          'Content-Disposition': `attachment; filename="review_${platformName}_${review.rating || 5}star.png"`,
+        },
+      });
+    }
 
-    // 4. Add EXIF Metadata summary
-    const exifSummary = `ReviewCraft Extension API Screenshot ZIP Export\nGenerated At: ${new Date().toISOString()}\nTotal Screenshots: ${reviews.length}\nEXIF Profiles: Active\n`;
-    zip.file('metadata/exif_summary.txt', exifSummary);
+    // MULTIPLE PLATFORMS: Package all screenshots into root-level ZIP
+    const zip = new JSZip();
 
-    zip.file('README.txt', `ReviewCraft Bulk Screenshot Download Package\nContains ${reviews.length} PNG screenshot images with embedded EXIF device metadata exported via ReviewCraft API.\n`);
+    for (let i = 0; i < reviewsToRender.length; i++) {
+      const review = reviewsToRender[i];
+      const platformName = (review.platform || 'review').toLowerCase();
+      const num = String(i + 1).padStart(2, '0');
+      const filename = `review_${num}_${platformName}_${review.rating || 5}star.png`;
 
-    // Generate binary zip as ArrayBuffer
+      const pngBuffer = await captureRealScreenshot(review, browser);
+      zip.file(filename, pngBuffer);
+    }
+
     const zipArrayBuffer = await zip.generateAsync({ type: 'arraybuffer' });
-    const zipBlob = new Blob([zipArrayBuffer], { type: 'application/zip' });
 
-    return new NextResponse(zipBlob, {
+    return new NextResponse(zipArrayBuffer, {
       status: 200,
       headers: {
         ...corsHeaders(),
         'Content-Type': 'application/zip',
-        'Content-Disposition': `attachment; filename="reviewcraft_screenshots_${Date.now()}.zip"`,
+        'Content-Disposition': `attachment; filename="reviewcraft_${reviewsToRender.length}_platforms_screenshots_${Date.now()}.zip"`,
       },
     });
-  } catch (error) {
-    console.error("Error generating ZIP export:", error);
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('Screenshot download error:', msg);
     return NextResponse.json(
-      { error: "Failed to generate ZIP screenshot archive" },
+      { error: 'Screenshot generation failed: ' + msg },
       { status: 500, headers: corsHeaders() }
     );
+  } finally {
+    if (browser) await browser.close().catch(() => {});
   }
 }

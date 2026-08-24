@@ -15,6 +15,16 @@ export async function OPTIONS() {
   });
 }
 
+// Complete list of platforms registered in platformPageFactory.tsx
+export const ALL_PLATFORMS = [
+  "reddit", "twitter", "instagram", "trustpilot", "google", "facebook", "yelp",
+  "amazon", "youtube", "linkedin", "tiktok", "discord", "steam", "imdb",
+  "genericEcom", "flipkart", "playstore", "clutch", "bbb", "consumerreports",
+  "g2", "capterra", "angi", "appstore", "airbnb", "tripadvisor", "shopify",
+  "fiverr", "booking", "ebay", "walmart", "bestbuy", "etsy", "aliexpress",
+  "alibaba", "daraz", "testimonial", "generic5star", "generic1star"
+];
+
 const maleNames = ["David Miller", "James Wilson", "Alex Johnson", "Michael Brown", "Chris Taylor", "Daniel Smith", "Ethan Harris", "Lucas Martin", "Matthew Anderson", "Robert Thomas", "William Davis", "Joseph White"];
 const femaleNames = ["Emily Davis", "Sarah Jenkins", "Jessica Taylor", "Amanda Martinez", "Laura White", "Sophia Clark", "Olivia Lewis", "Emma Walker", "Hannah Hall", "Chloe Allen", "Mia Hernandez", "Harper Scott"];
 const neutralNames = ["Sam Taylor", "Jordan Lee", "Taylor Morgan", "Alex Avery", "Morgan Reed", "Riley Jordan", "Dakota Smith", "Casey Wright"];
@@ -36,13 +46,24 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// User Profile Avatar Image API Helper
+function getUserAvatarUrl(gender: string, index: number): string {
+  const imgId = (index % 95) + 1;
+  if (gender === "male") {
+    return `https://randomuser.me/api/portraits/men/${imgId}.jpg`;
+  } else if (gender === "female") {
+    return `https://randomuser.me/api/portraits/women/${imgId}.jpg`;
+  }
+  return `https://i.pravatar.cc/150?img=${imgId}`;
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
     const count = Math.min(Math.max(parseInt(body.count) || 10, 1), 100);
     const selectedPlatforms: string[] = Array.isArray(body.platforms) && body.platforms.length > 0
       ? body.platforms
-      : ["google", "amazon", "trustpilot", "reddit", "twitter", "instagram", "facebook", "yelp", "g2", "youtube", "linkedin", "tiktok", "playstore", "appstore", "airbnb", "shopify", "ebay", "etsy"];
+      : ALL_PLATFORMS;
 
     const category = body.category || "saas";
     const sentiment = body.sentiment || "mixed";
@@ -68,8 +89,9 @@ export async function POST(req: Request) {
       else if (sentiment === "mixed") rating = getRandomInt(2, 5);
 
       const template = getRandomItem(sampleReviews);
-      const avatarSeed = getRandomInt(1, 70);
-      const avatarUrl = `https://i.pravatar.cc/150?img=${avatarSeed}`;
+      
+      // Generate realistic User Image API Avatar URL
+      const avatarUrl = getUserAvatarUrl(gender, i + getRandomInt(1, 20));
 
       const now = new Date();
       const daysAgo = getRandomInt(0, 30);
@@ -120,8 +142,9 @@ export async function GET() {
   return NextResponse.json(
     {
       status: "active",
-      message: "ReviewCraft Extension Multi-Platform API is running",
-      supportedPlatforms: ["google", "amazon", "trustpilot", "reddit", "twitter", "instagram", "facebook", "yelp", "g2", "youtube", "linkedin", "tiktok", "playstore", "appstore", "airbnb", "shopify", "ebay", "etsy"]
+      message: "ReviewCraft Extension API with RandomUser Avatar API integration",
+      avatarApi: "https://randomuser.me/api/portraits/",
+      supportedPlatforms: ALL_PLATFORMS
     },
     { headers: corsHeaders() }
   );

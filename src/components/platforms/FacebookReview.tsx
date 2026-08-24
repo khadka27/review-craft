@@ -14,6 +14,13 @@ interface FacebookReviewProps {
   data: ReviewData;
 }
 
+const formatMetric = (num: number) => {
+  if (!num && num !== 0) return "0";
+  if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+  if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+  return num.toLocaleString();
+};
+
 export const FacebookReview = ({ data }: FacebookReviewProps) => {
   const isReviewMode = (data.facebookContentType || "post") === "review";
   const isMobile =
@@ -55,7 +62,7 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
                   <span className="text-white text-xs">❤️</span>
                 </div>
               </div>
-              <span className="text-xs text-gray-600 ml-1">{data.likes}</span>
+              <span className="text-xs text-gray-600 ml-1">{formatMetric(data.likes)}</span>
             </div>
 
             <div className="flex items-center gap-4 mt-2 text-xs text-gray-600 font-semibold">
@@ -130,38 +137,41 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
               {data.content}
             </p>
 
-            <div className="mt-3 rounded-lg overflow-hidden bg-gray-100">
-              {postImages.length > 0 ? (
+            {postImages.length > 0 && (
+              <div className="mt-3 rounded-lg overflow-hidden bg-gray-100">
                 <img
                   src={postImages[0]}
                   alt="Post media"
                   className="w-full h-44 object-cover"
                 />
-              ) : (
-                <div className="h-40 flex items-center justify-center text-gray-400">
-                  <div className="text-center text-xs">Image Placeholder</div>
-                </div>
-              )}
-            </div>
-
-            <div className="mt-3 flex items-center justify-between text-xs text-gray-600">
-              <div className="flex items-center gap-1">
-                <span>👍 ❤️</span>
-                <span>{data.likes}</span>
               </div>
-              <div>{data.replies} comments</div>
-            </div>
+            )}
 
-            <div className="mt-2 pt-2 border-t border-gray-100 grid grid-cols-3 text-xs text-gray-600">
-              <button className="flex items-center justify-center gap-1 py-1.5 hover:bg-gray-50 rounded-md">
-                <ThumbsUp size={14} /> Like
-              </button>
-              <button className="flex items-center justify-center gap-1 py-1.5 hover:bg-gray-50 rounded-md">
-                <MessageCircle size={14} /> Comment
-              </button>
-              <button className="flex items-center justify-center gap-1 py-1.5 hover:bg-gray-50 rounded-md">
-                <Share2 size={14} /> Share
-              </button>
+            {/* Bottom Engagement Bar */}
+            <div className="mt-3 pt-2.5 border-t border-gray-100 flex items-center justify-between">
+              <div className="flex items-center gap-4 text-xs font-semibold text-gray-700">
+                <div className="flex items-center gap-1.5">
+                  <ThumbsUp size={15} className="text-gray-600 stroke-[2]" />
+                  <span>{formatMetric(data.likes || 3400)}</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <MessageCircle size={15} className="text-gray-600 stroke-[2]" />
+                  <span>{data.replies || 29}</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Share2 size={15} className="text-gray-600 stroke-[2]" />
+                  <span>{data.shares || 47}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center -space-x-1.5">
+                <div className="w-4 h-4 bg-[#1877F2] rounded-full flex items-center justify-center border border-white shadow-sm z-10">
+                  <span className="text-white text-[9px] leading-none">👍</span>
+                </div>
+                <div className="w-4 h-4 bg-[#F02849] rounded-full flex items-center justify-center border border-white shadow-sm">
+                  <span className="text-white text-[9px] leading-none">❤️</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -170,7 +180,7 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
   }
 
   return (
-    <div className="bg-white w-full max-w-[520px] mx-auto border border-gray-200 rounded-xl overflow-hidden">
+    <div className="bg-white w-full max-w-[540px] mx-auto border border-gray-200 rounded-xl overflow-hidden shadow-sm">
       {/* Header */}
       <div className="px-4 pt-4">
         <div className="flex items-start gap-3">
@@ -188,13 +198,13 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
 
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1">
-              <div className="font-semibold text-[11px] text-gray-900 truncate">
+              <div className="font-semibold text-sm text-gray-900 truncate">
                 {data.name}
               </div>
-              <CheckCircle2 size={14} className="text-[#1877F2]" />
+              <CheckCircle2 size={15} className="text-[#1877F2]" />
             </div>
 
-            <div className="mt-0.5 flex items-center gap-1 text-[12px] text-gray-500">
+            <div className="mt-0.5 flex items-center gap-1 text-xs text-gray-500">
               <span>
                 {formatDistanceToNow(data.date, { addSuffix: false }).replace(
                   "about ",
@@ -202,7 +212,7 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
                 )}
               </span>
               <span>·</span>
-              <Globe size={12} className="text-gray-500" />
+              <Globe size={13} className="text-gray-500" />
             </div>
           </div>
 
@@ -222,67 +232,50 @@ export const FacebookReview = ({ data }: FacebookReviewProps) => {
           </div>
         </div>
 
-        <div className="mt-3 text-[11px] text-gray-900 leading-relaxed">
-          <span className="rc-line-clamp-2">{data.content}</span>{" "}
-          <button type="button" className="text-gray-500 font-semibold">
-            See more
-          </button>
+        <div className="mt-3 text-[13px] text-gray-900 leading-relaxed">
+          <span>{data.content}</span>
         </div>
       </div>
 
-      {/* Media */}
-      <div className="mt-3 bg-gray-100">
-        {postImages.length > 0 ? (
+      {/* Media - only shown if an image is uploaded */}
+      {postImages.length > 0 && (
+        <div className="mt-3 bg-gray-100">
           <img
             src={postImages[0]}
             alt="Post media"
             className="w-full object-cover"
           />
-        ) : (
-          <div className="h-72 flex items-center justify-center text-gray-400">
-            <div className="text-center text-sm">Image Placeholder</div>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Footer counts and Actions Combined */}
-      <div className="px-4 border-t border-gray-200">
-        {/* Counts Row */}
-        <div className="py-2 flex items-center justify-between text-[10px] text-gray-600 border-b border-gray-100">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center -space-x-1">
-              <div className="w-4 h-4 bg-[#1877F2] rounded-full flex items-center justify-center border border-white">
-                <span className="text-white text-[9px] leading-none">👍</span>
-              </div>
-              <div className="w-4 h-4 bg-[#F02849] rounded-full flex items-center justify-center border border-white">
-                <span className="text-white text-[9px] leading-none">❤️</span>
-              </div>
-            </div>
-            <span className="font-medium">{data.likes}</span>
+      {/* Modern Facebook Bottom Engagement Bar */}
+      <div className="mt-3 px-4 py-2.5 bg-[#f0f2f5] border-t border-gray-200 flex items-center justify-between">
+        {/* Left Engagement Metrics (ThumbsUp count, Comment count, Share count) */}
+        <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-gray-700">
+          <div className="flex items-center gap-1.5 cursor-pointer hover:text-gray-900 transition-colors">
+            <ThumbsUp size={16} className="text-gray-600 stroke-[2]" />
+            <span>{formatMetric(data.likes || 3400)}</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span>{data.replies}</span>
-            <span>{data.shares}</span>
-            <div className="flex items-center gap-1">
-              <span>😊</span>
-              <span>😂</span>
-              <span>😍</span>
-            </div>
+          <div className="flex items-center gap-1.5 cursor-pointer hover:text-gray-900 transition-colors">
+            <MessageCircle size={16} className="text-gray-600 stroke-[2]" />
+            <span>{data.replies || 29}</span>
+          </div>
+
+          <div className="flex items-center gap-1.5 cursor-pointer hover:text-gray-900 transition-colors">
+            <Share2 size={16} className="text-gray-600 stroke-[2]" />
+            <span>{data.shares || 47}</span>
           </div>
         </div>
 
-        {/* Actions Row */}
-        <div className="grid grid-cols-3 text-[10px] text-gray-600">
-          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 font-medium">
-            <ThumbsUp size={16} /> Like
-          </button>
-          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 font-medium">
-            <MessageCircle size={16} /> Comment
-          </button>
-          <button className="flex items-center justify-center gap-2 py-2 hover:bg-gray-50 font-medium">
-            <Share2 size={16} /> Share
-          </button>
+        {/* Right Reaction Badges (Blue Thumb + Red Heart) */}
+        <div className="flex items-center -space-x-1.5">
+          <div className="w-5 h-5 bg-[#1877F2] rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10">
+            <span className="text-white text-[10px] leading-none">👍</span>
+          </div>
+          <div className="w-5 h-5 bg-[#F02849] rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+            <span className="text-white text-[10px] leading-none">❤️</span>
+          </div>
         </div>
       </div>
     </div>
