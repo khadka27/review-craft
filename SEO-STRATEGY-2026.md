@@ -4,84 +4,126 @@
 
 ---
 
-## 1. KEYWORD RESEARCH
+## 1. EMPIRICAL KEYWORD RESEARCH (GOOGLE KEYWORD PLANNER 2026 DATASET)
 
-### Primary Keywords (20 High-Volume, High-Intent)
-
-1. **fake review generator**
-2. fake reviews for testing
-3. review screenshot generator
-4. testimonial generator
-5. social proof generator
-6. review mockup generator
-7. fake google review
-8. fake amazon review
-9. fake Instagram comment
-10. review screenshot maker
-11. testimonial mockup
-12. comment generator social media
-13. fake review tool
-14. social media mockup generator
-15. ecommerce review generator
-16. user testimonial generator
-17. product review mockup
-18. fake rating generator
-19. review template generator
-20. social proof mockup tool
-
-**Search Intent:** Tools/solutions for creating review mockups (design, demo, testing)
-**Monthly Volume:** 5K–50K searches
-**Commercial Intent:** High (tool/SaaS searches)
+> [!NOTE]
+> Based on live Google Keyword Planner data exported on **August 24, 2026**. Includes search volumes, competition indices (0-100 scale), YoY & 3-month growth percentages, and advertiser top-of-page CPC bid ranges.
 
 ---
 
-### Long-Tail Keywords (30 Low-Competition, Specific Intent)
+### Top Volume & High-Intent Keyword Opportunities
 
-1. how to create fake review screenshots
-2. best fake review generator tool
-3. free review screenshot generator
-4. amazon review mockup generator
-5. google review screenshot maker
-6. instagram comment generator tool
-7. fake reviews for ui design
-8. review mockup software
-9. create fake testimonials for website
-10. social proof generator for ecommerce
-11. how to make fake reviews for mockups
-12. testimonial screenshot generator
-13. fake 5-star review generator
-14. product review mockup tool
-15. fake rating screenshot maker
-16. review image generator
-17. testimonial mockup maker
-18. fake customer review template
-19. social media review generator
-20. mockup reviews for presentations
-21. how designers create fake reviews
-22. review generator for prototypes
-23. fake reviews for demo purposes
-24. testimonial generator for websites
-25. comment generator for mockups
-26. rating mockup generator
-27. review mockup for figma
-28. fake reviews for ui ux design
-29. testimonial image generator
-30. social proof generator free
+| Keyword | Avg. Monthly Searches | YoY Change | 3-Mo Change | Competition Index | Top of Page Bid (Low - High) | Primary Target Page |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **google review** | 50,000 | 0% | 0% | Low (0) | ₹37.59 – ₹209.92 | `/platform/google` |
+| **product reviews** | 50,000 | 0% | 0% | Low (0) | ₹1.82 – ₹14.49 | `/platform/amazon` & `/platform/shopify` |
+| **review maker** | 5,000 | **+900%** | 0% | Low (0) | - | `/` (Homepage) & `/ai-generator` |
+| **fake google reviews** | 5,000 | **+900%** | 0% | Low (0) | ₹32.92 – ₹120.45 | `/platform/google` |
+| **google reviews fake** | 5,000 | **+900%** | 0% | Low (0) | ₹32.92 – ₹120.45 | `/platform/google` |
+| **shop reviews** | 5,000 | **+9,900%** | +900% | Low (0) | - | `/platform/shopify` |
+| **customer review** | 5,000 | 0% | 0% | Low (0) | ₹14.36 – ₹150.99 | `/` (Homepage) |
+| **amazon reviews** | 5,000 | 0% | 0% | Low (1) | ₹1.96 – ₹115.87 | `/platform/amazon` |
+| **amazon product review** | 5,000 | 0% | 0% | Low (2) | ₹0.75 – ₹70.16 | `/platform/amazon` |
+| **trustpilot reviews** | 5,000 | 0% | 0% | Low (0) | - | `/platform/trustpilot` |
+| **website reviews** | 5,000 | 0% | 0% | Low (1) | ₹26.04 – ₹95.73 | `/` (Homepage) |
+| **google reviews buy** | 5,000 | 0% | 0% | Low (1) | ₹25.47 – ₹232.74 | `/platform/google` |
+| **write a google review** | 5,000 | 0% | 0% | Low (0) | - | `/guides/write-google-review` |
+| **write a review** | 5,000 | 0% | 0% | Low (0) | ₹20.38 – ₹70.72 | `/` (Homepage) |
+| **google rating** | 5,000 | 0% | 0% | Low (0) | - | `/platform/google` |
+| **ratings and reviews** | 5,000 | 0% | 0% | Low (0) | ₹22.30 – ₹76.57 | `/` (Homepage) |
+| **automatic reviews** | 5,000 | 0% | 0% | Low (2) | ₹0.40 – ₹23.99 | `/ai-generator` |
+| **reviews site** | 5,000 | 0% | 0% | Low (1) | ₹26.04 – ₹95.73 | `/platform` |
 
 ---
 
-### Low-Competition Keywords (10 Underserved)
+### High-Growth & Breakout Keywords (+900% to +9,900% Growth)
 
-1. review screenshot generator for mockups
-2. fake testimonial generator for design
-3. review mockup generator figma
-4. social proof generator for startups
-5. comment screenshot generator tool
-6. review template generator free
-7. ecommerce review mockup builder
-8. rating image generator
-9. testimonial mockup generator
-10. fake review builder for prototypes
+These keywords demonstrate massive surging demand over the 3-month and YoY periods, representing key strategic growth opportunities for content and landing pages:
+
+| Surging Keyword | Monthly Volume | Growth Metric | Competition | Strategic Content Action |
+| :--- | :--- | :--- | :--- | :--- |
+| **shop reviews** | 5,000 | **+9,900% YoY** | Low (0) | Create dedicated e-commerce review generator silo landing page |
+| **review maker** | 5,000 | **+900% YoY** | Low (0) | Optimize main H1 & meta tags to target `Review Maker` |
+| **fake google reviews** | 5,000 | **+900% YoY** | Low (0) | Enhance `/platform/google` mockup & disclaimer section |
+| **google review card** | 500 | **+900% 3-Mo** | High (84) | Create dedicated Google Review Card template in `/bill-generator` |
+| **shopify reviews app** | 500 | **+900% YoY** | Low (6) | Launch `/platform/shopify` landing page & guide |
+| **reviews on shopify** | 500 | **+900% YoY** | Low (4) | Target in Shopify guide article (`/blog/shopify-reviews-guide`) |
+| **google review service provider** | 500 | **+900% YoY** | Low (13) | Target in Google review platform page & comparisons |
+| **customer reviews website** | 500 | **+900% YoY** | Low (2) | Target in `/about` and `/platform` hub pages |
+| **review screenshot** | 50 | **+900% 3-Mo / YoY** | Low (0) | Optimize PNG/JPEG screenshot download tool titles & meta |
+| **website review service** | 50 | **+900% 3-Mo / YoY** | Low (0) | Create service mockup overview landing page |
+| **google review comments** | 50 | **+900% 3-Mo / YoY** | Low (0) | Build custom comment prompt preset feature in Google tool |
+
+---
+
+### High Commercial Intent & Advertiser Competition (Highest CPC Bids)
+
+High CPC bids indicate terms where advertisers pay top dollar for conversions. Targeting these organically yields high commercial intent traffic:
+
+| High-CPC Keyword | Monthly Volume | Top of Page High Bid | Competition Index | Target Route / Feature |
+| :--- | :--- | :--- | :--- | :--- |
+| **get more reviews google** | 50 | **₹888.19** | Low (16) | `/guides/how-to-get-google-reviews` |
+| **reviews on shopify** | 500 | **₹678.43** | Low (4) | `/platform/shopify` |
+| **review platforms** | 500 | **₹383.80** | Low (2) | `/platform` (Platforms Hub) |
+| **reviews service** | 500 | **₹314.51** | Low (1) | `/` (Homepage Features) |
+| **buy app review** | 50 | **₹301.49** | Medium (43) | `/guides/app-store-reviews-guide` |
+| **buy trustpilot reviews** | 500 | **₹287.13** | Low (6) | `/platform/trustpilot` |
+| **amazon product rating** | 50 | **₹286.17** | Low (9) | `/platform/amazon` |
+| **google reviews buy** | 5,000 | **₹232.74** | Low (1) | `/platform/google` |
+| **shopify product reviews app** | 500 | **₹191.42** | Low (6) | `/platform/shopify` |
+| **web ratings** | 500 | **₹189.49** | Low (4) | `/platform` |
+| **google review service** | 500 | **₹175.12** | Low (5) | `/platform/google` |
+
+### Global Search Volume & USD Advertiser Bids (Wordstream Dataset)
+
+> [!TIP]
+> Global search volume metrics and USD advertiser CPC bids derived from **Wordstream Keyword Intelligence**. High-CPC terms like `review tool` ($27.70 high bid) and `trustpilot reviews` ($17.69 high bid) highlight major commercial intent.
+
+| Global Keyword | Global Monthly Volume | Top of Page Bid (USD Range) | Competition Level | Primary Target Page / Route |
+| :--- | :--- | :--- | :--- | :--- |
+| **google review** | **301,000** | $1.98 – $11.90 | Low | `/platform/google` |
+| **product reviews** | **90,500** | $0.70 – $2.67 | Low | `/platform/amazon` & `/platform/shopify` |
+| **review on yelp** | **90,500** | $0.37 – $4.51 | Low | `/platform/yelp` |
+| **automatic reviews** | **33,100** | $0.20 – $1.22 | Low | `/ai-generator` |
+| **amazon reviews** / **amz review** | **18,100** | $0.40 – $3.87 | Low | `/platform/amazon` |
+| **trustpilot reviews** | **12,100** | $2.51 – $17.69 | Low | `/platform/trustpilot` |
+| **write a google review** | **9,900** | $1.21 – $5.72 | Low | `/guides/write-google-review` |
+| **customer review** | **8,100** | $2.70 – $14.98 | Low | `/` (Homepage) |
+| **google reviews buy** | **5,400** | $3.12 – $13.93 | Low | `/platform/google` |
+| **best review** | **5,400** | $0.14 – $2.91 | Low | `/` (Homepage) |
+| **review maker** | **4,400** | $2.54 – $24.38 | Low | `/` & `/ai-generator` |
+| **reviews on shopify** | **4,400** | $2.12 – $10.00 | Low | `/platform/shopify` |
+| **website reviews** / **review site** | **3,600** | $2.34 – $8.57 | Low | `/` & `/platform` |
+| **amazon review checker** | **3,600** | - | Low | `/platform/amazon` |
+| **good reviews** | **3,600** | $2.35 – $7.76 | Low | `/` (Homepage) |
+| **write a review** | **3,600** | $0.51 – $6.07 | Low | `/` (Homepage) |
+| **review tool** | **3,600** | **$0.45 – $27.70** | Low | `/` & `/ai-generator` |
+| **walmart reviews** | **3,600** | $0.28 – $3.39 | Low | `/platform/walmart` |
+
+---
+
+### Key Thematic Clusters & Long-Tail Targets
+
+#### 1. Core Generator & Tool Cluster
+- **Primary Target Keywords:** `review generator` (500), `ai review generator` (500), `review maker` (5,000, +900%), `automatic review generator` (50), `free customer review generator` (50), `positive review generator` (50), `review generator ai` (50)
+- **Search Intent:** Users seeking free web tools to generate review mockups, text, or screenshots.
+- **Route Mapping:** `/` (Main Tool), `/ai-generator`
+
+#### 2. Google Reviews Cluster
+- **Primary Target Keywords:** `google review` (50,000), `generate google reviews` (500), `fake google reviews` (5,000, +900%), `google 5 star review` (500), `google review card` (500, +900%), `google review template` (500), `free google review` (500)
+- **Search Intent:** Creating or downloading authentic-looking Google Business / Google Maps review mockups.
+- **Route Mapping:** `/platform/google`, `/bill-generator` (Google Review Card)
+
+#### 3. E-Commerce & Product Reviews Cluster (Amazon, Shopify, Walmart)
+- **Primary Target Keywords:** `product reviews` (50,000), `amazon reviews` (5,000), `amazon product review` (5,000), `shopify reviews app` (500, +900%), `walmart reviews` (500), `amazon review card` (500), `amazon review service` (500)
+- **Search Intent:** Generating product review mockups for Amazon items, Shopify stores, and retail invoices.
+- **Route Mapping:** `/platform/amazon`, `/platform/shopify`, `/platform/walmart`, `/bill-generator`
+
+#### 4. Trustpilot & Social Proof Platforms Cluster
+- **Primary Target Keywords:** `trustpilot reviews` (5,000), `buy trustpilot reviews` (500), `facebook reviews` (500), `feedback sites` (500), `customer review platforms` (50)
+- **Search Intent:** Designing social proof review badges, Trustpilot star ratings, and Facebook recommendation cards.
+- **Route Mapping:** `/platform/trustpilot`, `/platform/facebook`
+
 
 ---
 

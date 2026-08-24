@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { ChatGeneratorPage } from "@/components/chat/ChatGeneratorPage";
 
 export const metadata: Metadata = {
-  title: "Fake Chat Generator - ReviewCraft",
-  description: "Create realistic social media chat screenshots for WhatsApp, Messenger, Instagram and more.",
+  title: "Social Media Chat Screenshot Generator - WhatsApp, IG & Messenger Mockups | ReviewCraft",
+  description:
+    "Create realistic chat conversation screenshots for WhatsApp, Instagram, Messenger, and Telegram. Customize messages, timestamps, and status.",
   alternates: {
     canonical: "/chat",
   },

@@ -5,8 +5,9 @@ import { getPlatformIcon } from "@/components/SocialMediaIcons";
 import { Sparkles, CreditCard, ChevronRight, Check } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Fake Payment Receipt Generator - ReviewCraft",
-  description: "Create realistic payment receipt screenshots for GPay, Apple Pay, Stripe, Paytm, and more.",
+  title: "Payment Receipt & Confirmation Screenshot Generator - Stripe, GPay & Paytm | ReviewCraft",
+  description:
+    "Generate realistic payment confirmation screenshots for Paytm, Stripe, Google Pay, PhonePe, and Apple Pay.",
   alternates: {
     canonical: "/payment",
   },

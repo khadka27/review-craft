@@ -5,9 +5,9 @@ import HomePage from "./home/page";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Create Review & Social Proof UI Mockups | ReviewCraft",
+  title: "Free Review Generator & Review Maker - AI Review & Mockup Tool | ReviewCraft",
   description:
-    "Design realistic review interface mockups and social proof prototypes for UI/UX presentations, landing pages, product demos, and educational projects.",
+    "Free Review Generator & Review Maker tool. Generate realistic Google reviews, product reviews, Amazon ratings, and customer feedback mockups instantly.",
   alternates: {
     canonical: "/",
   },

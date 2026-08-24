@@ -4,8 +4,9 @@ import Link from "next/link";
 import { Sparkles, FileText, ChevronRight, Check } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Fake Invoice & Bill Generator - ReviewCraft",
-  description: "Create realistic billing confirmation and receipt screenshots for Amazon, Walmart, and custom products.",
+  title: "Google & Amazon Review Card & Invoice Generator | ReviewCraft",
+  description:
+    "Create Google review cards, Amazon review cards, retail receipts, and invoice screenshots for mockups and UI design.",
   alternates: {
     canonical: "/bill-generator",
   },

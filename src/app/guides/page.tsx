@@ -4,9 +4,9 @@ import { GUIDES } from "@/lib/guides-data";
 import { BookOpen, Clock, ArrowRight, ShieldCheck, Sparkles, Layout, Code2, Users, Eye } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "UI Design & Prototyping Guides | ReviewCraft Resource Center",
+  title: "Review & Social Proof Design Guides - How to Write & Format Reviews | ReviewCraft",
   description:
-    "Explore educational guides on UI/UX prototyping, customer review component design, social proof visual hierarchy, WCAG accessibility, and ethical design standards.",
+    "Explore guides on creating review mockups, writing customer reviews, social proof design strategies, and UI prototyping best practices.",
   alternates: {
     canonical: "/guides",
   },

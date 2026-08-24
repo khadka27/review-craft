@@ -4,13 +4,13 @@ import BlogClientList from "./BlogClientList";
 import { BookOpen, Sparkles, Layers } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Blog & Guides - Social Proof UI Design & CRO Insights | ReviewCraft",
+  title: "ReviewCraft Blog - E-Commerce Reviews, UI Design & Social Proof Insights | ReviewCraft",
   description:
-    "Explore authoritative articles, UI design guidelines, e-commerce conversion optimization strategies, and ethical social proof practices from the ReviewCraft team.",
+    "Articles and tips on review generator tools, e-commerce feedback design, social proof optimization, and UI prototyping.",
   openGraph: {
-    title: "Blog & Guides - Social Proof UI Design & CRO Insights | ReviewCraft",
+    title: "ReviewCraft Blog - E-Commerce Reviews, UI Design & Social Proof Insights | ReviewCraft",
     description:
-      "Explore authoritative articles, UI design guidelines, e-commerce conversion optimization strategies, and ethical social proof practices from the ReviewCraft team.",
+      "Articles and tips on review generator tools, e-commerce feedback design, social proof optimization, and UI prototyping.",
     url: "/blog",
     type: "website",
   },

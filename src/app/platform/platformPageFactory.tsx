@@ -39,7 +39,7 @@ export const platformMeta: Record<
   }
 > = {
   reddit: {
-    name: "Reddit Comment Generator - Create Fake Reddit Threads",
+    name: "Reddit Comment Generator - Create Reddit Discussion & Thread Mockups",
     description:
       "Generate realistic Reddit thread screenshots with editable usernames, replies, upvotes, comments, and discussions.",
     theme: {
@@ -57,7 +57,7 @@ export const platformMeta: Record<
     },
   },
   twitter: {
-    name: "Twitter Comment Generator - Create Fake X Comments",
+    name: "Twitter / X Comment Generator - Create X Post & Comment Mockups",
     description:
       "Create realistic Twitter and X comment screenshots with editable usernames, replies, likes, and engagement metrics.",
     theme: {
@@ -98,7 +98,7 @@ export const platformMeta: Record<
     ],
   },
   instagram: {
-    name: "Instagram Comment Generator - Create Fake IG Comments",
+    name: "Instagram Comment Generator - Create IG Comment & Post Screenshots",
     description:
       "Generate realistic Instagram comment screenshots with editable usernames, likes, emojis, replies, and engagement details.",
     theme: {
@@ -140,9 +140,9 @@ export const platformMeta: Record<
     ],
   },
   trustpilot: {
-    name: "Trustpilot Fake Review Generator - Brand Reviews",
+    name: "Trustpilot Reviews Generator - Create Trustpilot Review Mockups",
     description:
-      "Create realistic Trustpilot review screenshots with editable ratings, customer feedback, reviewer names, and business comments.",
+      "Free Trustpilot Review Generator. Build realistic Trustpilot star rating screenshots, verified customer feedback, and brand review mockups instantly.",
     theme: {
       pageGradient: "bg-gradient-to-br from-emerald-50 via-white to-green-50",
       heroGradient: "bg-gradient-to-r from-[#00B67A] to-[#0E9F6E]",
@@ -158,7 +158,7 @@ export const platformMeta: Record<
     },
   },
   clutch: {
-    name: "Clutch Fake Review Generator - B2B Business Listings",
+    name: "Clutch Review Generator - B2B Agency Listing & Review Mockups",
     description:
       "Generate realistic Clutch B2B company listing reviews and profiles with customizable ratings, hourly rates, project sizes, and services metrics.",
     theme: {
@@ -199,7 +199,7 @@ export const platformMeta: Record<
     ],
   },
   bbb: {
-    name: "Better Business Bureau (BBB) Review Generator",
+    name: "BBB Review Generator - Better Business Bureau Rating Mockups",
     description: "Generate realistic BBB business profile review screenshots with customizable letter grades, accreditation status, complaints count, and verified customer reviews.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-white to-slate-50",
@@ -229,7 +229,7 @@ export const platformMeta: Record<
     ],
   },
   consumerreports: {
-    name: "Consumer Reports Review Generator - Product Rating Mockup",
+    name: "Consumer Reports Review Generator - Product Rating Mockups",
     description: "Generate realistic Consumer Reports product review screenshots with overall score, sub-category ratings, Recommended badge, and independent testing summaries.",
     theme: {
       pageGradient: "bg-gradient-to-br from-red-50 via-white to-slate-50",
@@ -259,7 +259,7 @@ export const platformMeta: Record<
     ],
   },
   g2: {
-    name: "G2 Software Review Generator - Fake G2 Review Screenshot",
+    name: "G2 Software Review Generator - B2B Software Review Screenshots",
     description: "Generate realistic G2 business software review screenshots with star ratings, Leader/High Performer badges, pros & cons, verified buyer labels, and company details.",
     theme: {
       pageGradient: "bg-gradient-to-br from-orange-50 via-white to-slate-50",
@@ -289,7 +289,7 @@ export const platformMeta: Record<
     ],
   },
   capterra: {
-    name: "Capterra Review Generator - Fake Capterra Software Review",
+    name: "Capterra Review Generator - Software Rating & Review Mockups",
     description: "Generate realistic Capterra software review screenshots with star ratings, sub-scores for value/features/support, verified reviewer badge, and pros & cons sections.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-white to-indigo-50",
@@ -319,7 +319,7 @@ export const platformMeta: Record<
     ],
   },
   angi: {
-    name: "Angi (Angie's List) Review Generator - Home Services Review",
+    name: "Angi Review Generator - Home Services Rating & Review Screenshots",
     description: "Generate realistic Angi home services review screenshots with letter grades, service category, cost paid, date of service, and verified contractor reviews.",
     theme: {
       pageGradient: "bg-gradient-to-br from-orange-50 via-white to-red-50",
@@ -349,9 +349,9 @@ export const platformMeta: Record<
     ],
   },
   google: {
-    name: "Google Review Mockup Generator - Create Google-Style UI Screenshots",
+    name: "Google Review Generator - Free Google Reviews Maker & Mockup Tool",
     description:
-      "Create realistic Google review screenshots instantly with editable ratings, usernames, dates, and business feedback for demos and mockups.",
+      "Free Google Review Generator & Review Maker. Create realistic 5-star Google review screenshots, rating mockups, and customer feedback for UI design and presentations.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-white to-yellow-50",
       heroGradient:
@@ -391,9 +391,9 @@ export const platformMeta: Record<
     ],
   },
   facebook: {
-    name: "Facebook Review Mockup Generator - Create Facebook Social Proof Screenshots",
+    name: "Facebook Review Generator - Create Facebook Page Review Mockups",
     description:
-      "Generate realistic Facebook review screenshots with editable recommendations, ratings, comments, and profile details instantly.",
+      "Generate realistic Facebook recommendation screenshots and page review mockups for social media marketing presentations and prototypes.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-sky-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#1877F2] to-[#0F5CC9]",
@@ -409,9 +409,9 @@ export const platformMeta: Record<
     },
   },
   yelp: {
-    name: "Yelp Review Mockup Generator - Create Yelp-Style Business Screenshots",
+    name: "Yelp Review Generator & Review on Yelp Mockup Maker",
     description:
-      "Generate realistic Yelp review screenshots with editable ratings, customer feedback, business details, and reviewer names instantly.",
+      "Generate realistic Yelp reviews & review on Yelp screenshots instantly with editable ratings, customer feedback, and business details.",
     theme: {
       pageGradient: "bg-gradient-to-br from-red-50 via-rose-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#D32323] to-[#B91C1C]",
@@ -450,9 +450,9 @@ export const platformMeta: Record<
     ],
   },
   amazon: {
-    name: "Amazon Review Mockup Generator - Create Amazon-Style Product Screenshots",
+    name: "Amazon Review Generator - Product Reviews & Rating Screenshot Maker",
     description:
-      "Generate realistic Amazon review screenshots instantly with editable ratings, buyer feedback, verified badges, and product reviews.",
+      "Generate authentic-looking Amazon product review screenshots and rating mockups. Customize verified purchase badges, seller feedback, and star ratings.",
     theme: {
       pageGradient: "bg-gradient-to-br from-amber-50 via-yellow-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#FF9900] to-[#F59E0B]",
@@ -491,7 +491,7 @@ export const platformMeta: Record<
     ],
   },
   youtube: {
-    name: "YouTube Comment Generator - Create Fake YT Comments",
+    name: "YouTube Comment Generator - Video Comment & Thread Screenshots",
     description:
       "Generate realistic YouTube comment screenshots with editable usernames, likes, replies, and audience engagement details.",
     theme: {
@@ -532,7 +532,7 @@ export const platformMeta: Record<
     ],
   },
   linkedin: {
-    name: "LinkedIn Recommendation Generator - Career Reviews",
+    name: "LinkedIn Recommendation Generator - Career & Service Recommendation Cards",
     description:
       "Generate realistic LinkedIn recommendation screenshots with editable job titles, endorsements, and professional feedback.",
     theme: {
@@ -573,7 +573,7 @@ export const platformMeta: Record<
     ],
   },
   tiktok: {
-    name: "TikTok Comment Generator - Create Fake TikTok Comments",
+    name: "TikTok Comment Generator - Create TikTok Video Comment Screenshots",
     description:
       "Create realistic TikTok comment screenshots with editable usernames, likes, reactions, replies, and engagement details.",
     theme: {
@@ -614,7 +614,7 @@ export const platformMeta: Record<
     ],
   },
   discord: {
-    name: "Discord Message Generator - Create Fake Discord Chats",
+    name: "Discord Message Generator - Create Discord Chat & Discussion Screenshots",
     description:
       "Create realistic Discord message screenshots with editable usernames, timestamps, channels, and chat conversations.",
     theme: {
@@ -655,7 +655,7 @@ export const platformMeta: Record<
     ],
   },
   steam: {
-    name: "Steam Fake Review Generator - Create Fake Steam Reviews",
+    name: "Steam Review Generator - Create PC Gaming Review Screenshots",
     description:
       "Create realistic Steam review screenshots with editable gamer feedback, playtime stats, recommendations, and ratings.",
     theme: {
@@ -701,7 +701,7 @@ export const platformMeta: Record<
     ],
   },
   imdb: {
-    name: "IMDb Fake Review Generator - Create Fake Movie Reviews",
+    name: "IMDb Movie Review Generator - Create Film Rating & Review Screenshots",
     description:
       "Generate realistic IMDb review screenshots with editable movie ratings, usernames, audience feedback, and comments.",
     theme: {
@@ -742,7 +742,7 @@ export const platformMeta: Record<
     ],
   },
   airbnb: {
-    name: "Airbnb Fake Review Generator - Create Fake Guest Reviews",
+    name: "Airbnb Review Generator - Vacation Rental & Guest Review Mockups",
     description:
       "Create realistic Airbnb review screenshots with editable guest feedback, ratings, stay summaries, and traveler comments.",
     theme: {
@@ -783,7 +783,7 @@ export const platformMeta: Record<
     ],
   },
   tripadvisor: {
-    name: "Tripadvisor Review Generator - Travel Review Mockups",
+    name: "Tripadvisor Review Generator - Travel & Hotel Review Mockups",
     description:
       "Create realistic Tripadvisor review screenshots with editable traveler feedback, hotel ratings, usernames, and comments.",
     theme: {
@@ -824,9 +824,9 @@ export const platformMeta: Record<
     ],
   },
   shopify: {
-    name: "Shopify Product Review Mockup Generator - Create Storefront Review Screenshots",
+    name: "Shopify Reviews App & Shop Review Generator - E-Commerce Mockups",
     description:
-      "Generate realistic Shopify product reviews with editable customer feedback, ratings, names, and ecommerce testimonials.",
+      "Create shop reviews and Shopify product review mockups. Generate authentic customer review screenshots for e-commerce storefronts and UI prototypes.",
     theme: {
       pageGradient: "bg-gradient-to-br from-lime-50 via-green-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#95BF47] to-[#5E8E3E]",
@@ -865,9 +865,9 @@ export const platformMeta: Record<
     ],
   },
   playstore: {
-    name: "Play Store Review Generator - Fake App Reviews",
+    name: "Play Store Review Generator - Create App Store Review Screenshots",
     description:
-      "Generate realistic Play Store review screenshots with editable ratings, app feedback, usernames, and review comments.",
+      "Generate realistic Play Store app review screenshots with editable ratings, app feedback, usernames, and review comments.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#34A853] to-[#4285F4]",
@@ -906,9 +906,9 @@ export const platformMeta: Record<
     ],
   },
   testimonial: {
-    name: "Fake Testimonial Generator - Create Testimonial Mockups",
+    name: "AI Testimonial Generator & Review Maker - Create Customer Feedback Mockups",
     description:
-      "Generate realistic testimonial screenshots instantly with editable customer feedback, ratings, names, and profile details for demos and mockups.",
+      "Free AI Testimonial Generator & Review Maker. Create clean customer feedback cards, star ratings, and social proof mockups.",
     theme: {
       pageGradient: "bg-gradient-to-br from-sky-50 via-white to-indigo-50",
       heroGradient: "bg-gradient-to-r from-[#2563EB] to-[#4F46E5]",
@@ -947,7 +947,7 @@ export const platformMeta: Record<
     ],
   },
   fiverr: {
-    name: "Fiverr Fake Review Generator - Create Fake Fiverr Reviews",
+    name: "Fiverr Review Generator - Freelance Service Review Mockups",
     description:
       "Create realistic Fiverr review screenshots with editable seller ratings, buyer feedback, delivery reviews, and comments.",
     theme: {
@@ -988,7 +988,7 @@ export const platformMeta: Record<
     ],
   },
   booking: {
-    name: "Booking Review Generator - Create Hotel Reviews",
+    name: "Booking.com Review Generator - Hotel & Accommodation Review Mockups",
     description:
       "Create realistic Booking.com review screenshots with editable guest feedback, hotel ratings, and traveler comments.",
     theme: {
@@ -1070,7 +1070,7 @@ export const platformMeta: Record<
     ],
   },
   daraz: {
-    name: "Daraz Fake Review Generator - Create Daraz Product Reviews",
+    name: "Daraz Review Generator - Product Review & Rating Screenshots",
     description: "Generate realistic Daraz online shopping product review screenshots for ecommerce mockups, design prototypes, and presentations.",
     theme: {
       pageGradient: "bg-gradient-to-br from-orange-50 via-white to-red-50",
@@ -1110,9 +1110,9 @@ export const platformMeta: Record<
     ],
   },
   flipkart: {
-    name: "Flipkart Fake Review Generator - Create Flipkart Review Screenshots",
+    name: "Flipkart Review Generator - E-Commerce Review & Rating Screenshots",
     description:
-      "Generate Flipkart-style product reviews and ratings with our easy fake review generator. Perfect for ecommerce demos and UI design.",
+      "Generate Flipkart-style product reviews and ratings with our easy review generator. Perfect for ecommerce demos and UI design.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-white to-yellow-50",
       heroGradient: "bg-gradient-to-r from-[#2874f0] to-[#ffd814]",
@@ -1151,7 +1151,7 @@ export const platformMeta: Record<
     ],
   },
   ebay: {
-    name: "eBay Review Generator - Create Fake eBay Feedback",
+    name: "eBay Review Generator - Create Buyer & Seller Feedback Mockups",
     description: "Create realistic eBay buyer feedback and star rating screenshots for design mockups, presentations, and educational projects.",
     theme: {
       pageGradient: "bg-gradient-to-br from-zinc-50 via-white to-slate-50",
@@ -1192,7 +1192,7 @@ export const platformMeta: Record<
     ],
   },
   walmart: {
-    name: "Walmart Review Generator - Create Fake Walmart Product Reviews",
+    name: "Walmart Review Generator - Retail Product Review & Rating Screenshots",
     description: "Create realistic Walmart online order review screenshots in seconds for product mockups and marketing presentations.",
     theme: {
       pageGradient: "bg-gradient-to-br from-sky-50 via-white to-amber-50",
@@ -1232,7 +1232,7 @@ export const platformMeta: Record<
     ],
   },
   bestbuy: {
-    name: "Best Buy Review Generator - Create Fake Tech Product Reviews",
+    name: "Best Buy Review Generator - Tech Product Review Screenshots",
     description: "Create realistic Best Buy tech product review screenshots for electronics mockups, pitch decks, and educational projects.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-white to-yellow-50",
@@ -1272,7 +1272,7 @@ export const platformMeta: Record<
     ],
   },
   etsy: {
-    name: "Etsy Review Generator - Create Fake Handmade Store Reviews",
+    name: "Etsy Review Generator - Handmade Shop Review Screenshots",
     description: "Create realistic Etsy handmade and craft product review screenshots for shop mockups and seller portfolio showcases.",
     theme: {
       pageGradient: "bg-gradient-to-br from-orange-50 via-white to-amber-50",
@@ -1312,7 +1312,7 @@ export const platformMeta: Record<
     ],
   },
   aliexpress: {
-    name: "AliExpress Review Generator - Create Fake Order Reviews",
+    name: "AliExpress Review Generator - Order & Product Review Screenshots",
     description: "Create realistic AliExpress review screenshots with buyer feedback, shipping details, and star ratings for product mockups.",
     theme: {
       pageGradient: "bg-gradient-to-br from-red-50 via-white to-orange-50",
@@ -1352,7 +1352,7 @@ export const platformMeta: Record<
     ],
   },
   alibaba: {
-    name: "Alibaba Review Generator - Create Fake Wholesale Reviews",
+    name: "Alibaba Review Generator - Wholesale Supplier Review Mockups",
     description: "Create realistic Alibaba B2B supplier review screenshots with trade assurance tags, rating sub-scores, and buyer feedback.",
     theme: {
       pageGradient: "bg-gradient-to-br from-orange-50 via-white to-amber-50",
@@ -1392,9 +1392,9 @@ export const platformMeta: Record<
     ],
   },
   generic5star: {
-    name: "5 Star Fake Review Generator - Create Fake Positive Reviews",
+    name: "5 Star Review Generator - Positive Customer Review & Rating Maker",
     description:
-      "Create realistic 5 star review screenshots instantly with editable customer ratings, feedback, names, and testimonials.",
+      "Create realistic 5 star positive review screenshots instantly with editable customer ratings, feedback, names, and testimonials.",
     theme: {
       pageGradient: "bg-gradient-to-br from-emerald-50 via-green-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#10B981] to-[#059669]",
@@ -1433,9 +1433,9 @@ export const platformMeta: Record<
     ],
   },
   generic1star: {
-    name: "1 Star Fake Review Generator - Create Fake Negative Reviews",
+    name: "1 Star Review Generator - Negative Review & Rating Mockup Tool",
     description:
-      "Generate realistic 1 star review screenshots with editable complaints, ratings, customer feedback, and reviewer details.",
+      "Generate realistic 1 star negative review screenshots with editable complaints, ratings, customer feedback, and reviewer details.",
     theme: {
       pageGradient: "bg-gradient-to-br from-red-50 via-rose-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#EF4444] to-[#DC2626]",
@@ -1474,7 +1474,7 @@ export const platformMeta: Record<
     ],
   },
   appstore: {
-    name: "App Store Review Generator - Fake Apple App Store Reviews",
+    name: "App Store Review Generator - iOS & Apple App Review Mockups",
     description:
       "Generate realistic Apple App Store review screenshots instantly with editable ratings, app feedback, usernames, and review comments.",
     theme: {
