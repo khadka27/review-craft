@@ -259,125 +259,143 @@ export const FonepayIcon = ({ size = 20, className = "" }: IconProps) => (
   </svg>
 );
 
-// ── New Global Payment Icons ───────────────────────────────────────────
+// ── Global Payment Platform Authentic Brand Icons ────────────────────────
 export const PayPalIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#003087" />
-    <path d="M7.5 7h4.2c2.1 0 3.3 1.1 3 3-.4 2.2-2.1 3-4 3H9.4L8.7 17H6.5l1-10zm2.1 4.5h1.6c.8 0 1.4-.4 1.5-1.2.1-.7-.3-1.1-1.1-1.1H10l-.4 2.3z" fill="#009CDE" />
-    <path d="M14 8.5h4c1.8 0 2.8.9 2.5 2.7-.4 2-2 2.8-3.8 2.8h-1.4L15 17h-2.2l1.2-8.5zm1.8 4h1.4c.7 0 1.2-.3 1.3-1 .1-.6-.2-.9-.9-.9h-1.4l-.4 1.9z" fill="white" />
+    <path d="M7.076 21.337H2.47a.64.64 0 0 1-.633-.74L4.858 2.37A.96.96 0 0 1 5.807 1.6h7.034c2.81 0 4.79.62 5.885 1.844 1.05 1.173 1.253 2.87.603 5.044-.022.072-.047.143-.073.214-.827 3.51-3.23 5.378-7.14 5.378H9.682a.853.853 0 0 0-.843.722l-.994 6.29a.427.427 0 0 1-.422.368z" fill="#003087"/>
+    <path d="M18.256 8.702c-.827 3.51-3.23 5.378-7.14 5.378H8.682a.853.853 0 0 0-.843.722L6.5 22.42a.533.533 0 0 0 .527.616h3.914a.8.8 0 0 0 .79-.676l.817-5.176a.853.853 0 0 1 .843-.722h1.564c3.486 0 6.22-1.417 7.022-5.497.336-1.71.077-3.136-.72-4.14a4.13 4.13 0 0 0-2.001-1.127 6.42 6.42 0 0 1-.998 2.004z" fill="#0079C1"/>
+    <path d="M17.258 6.698a6.38 6.38 0 0 0-.998-1.045C15.165 4.43 13.185 3.81 10.375 3.81H5.807a.96.96 0 0 0-.949.77L2.47 20.597a.64.64 0 0 0 .633.74h4.606l1.347-8.536a.853.853 0 0 1 .843-.722h2.434c3.91 0 6.313-1.868 7.14-5.378.026-.07.051-.142.073-.214.24-.805.28-1.554.12-2.193a3.57 3.57 0 0 0-.668 1.404z" fill="#00457C"/>
   </svg>
 );
 
 export const ZelleIcon = ({ size = 20, className = "" }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#6D1ED4" />
-    <path d="M5 8h14v2H10l9 6H5v-2h9L5 8z" fill="white" />
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="#7414CA">
+    <path d="M13.559 24h-2.841a.483.483 0 0 1-.483-.483v-2.765H5.638a.667.667 0 0 1-.666-.666v-2.234a.67.67 0 0 1 .142-.412l8.139-10.382h-7.25a.667.667 0 0 1-.667-.667V3.914c0-.367.299-.666.666-.666h4.23V.483c0-.266.217-.483.483-.483h2.841c.266 0 .483.217.483.483v2.765h4.323c.367 0 .666.299.666.666v2.137a.67.67 0 0 1-.141.41l-8.19 10.481h7.665c.367 0 .666.299.666.666v2.477a.667.667 0 0 1-.666.667h-4.32v2.765a.483.483 0 0 1-.483.483Z" fill="currentColor"/>
   </svg>
 );
 
 export const InteracIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#F5A623" />
-    <text x="3" y="16" fontFamily="Arial" fontWeight="900" fontSize="9" fill="white">Interac</text>
+    <circle cx="12" cy="12" r="11" fill="#FFB81C"/>
+    <path d="M15.5 8.2h-3.8c-.4 0-.8.3-.8.7v6.2c0 .4.4.7.8.7h3.8c.4 0 .8-.3.8-.7V8.9c0-.4-.4-.7-.8-.7z" fill="#000"/>
+    <path d="M7 10.5h2.2v4.2H7z" fill="#000"/>
+    <path d="M10.2 12.6l2.1-2.1v4.2z" fill="#FFB81C"/>
+    <path d="M12.3 8.2L9.5 12l2.8 3.8h2.2L11.7 12l2.8-3.8z" fill="#000"/>
   </svg>
 );
 
 export const WeroIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="12" fill="#00B2A9" />
-    <text x="4" y="16" fontFamily="Arial" fontWeight="900" fontSize="12" fill="white">W</text>
+    <rect width="24" height="24" rx="6" fill="#001B3A"/>
+    <path d="M4.5 7.5L7.8 17h2.2l2-6.5 2 6.5h2.2l3.3-9.5h-2.4l-2 6.8-2-6.8h-2.2l-2 6.8-2-6.8H4.5z" fill="url(#weroGrad)"/>
+    <defs>
+      <linearGradient id="weroGrad" x1="4.5" y1="7.5" x2="19.5" y2="17" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#00E599"/>
+        <stop offset="1" stopColor="#00B4D8"/>
+      </linearGradient>
+    </defs>
   </svg>
 );
 
 export const IDEALIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#0033A0" />
-    <text x="1" y="16" fontFamily="Arial" fontWeight="900" fontSize="8" fill="white">iDEAL</text>
+    <rect width="24" height="24" rx="5" fill="#002D62"/>
+    <path d="M13.8 6.5c-2.4 0-4.3 1.8-4.3 4.2v2.6c0 2.4 1.9 4.2 4.3 4.2 2.4 0 4.3-1.8 4.3-4.2v-2.6c0-2.4-1.9-4.2-4.3-4.2zm2.1 6.8c0 1.2-1 2.1-2.1 2.1s-2.1-.9-2.1-2.1v-2.6c0-1.2 1-2.1 2.1-2.1s2.1.9 2.1 2.1v2.6z" fill="#CC0066"/>
+    <path d="M6.5 7.5h2.2v9H6.5z" fill="#FFFFFF"/>
+    <circle cx="7.6" cy="5.5" r="1.1" fill="#FFFFFF"/>
   </svg>
 );
 
 export const BancontactIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#005499" />
-    <text x="4" y="16" fontFamily="Arial" fontWeight="900" fontSize="9" fill="white">BC</text>
+    <rect width="24" height="24" rx="5" fill="#F8FAFC"/>
+    <path d="M4 6.5h7.5a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H4z" fill="#005499"/>
+    <path d="M20 17.5h-7.5a4 4 0 0 1-4-4v0a4 4 0 0 1 4-4H20z" fill="#FFCC00"/>
   </svg>
 );
 
 export const BizumIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#0066CC" />
-    <text x="2" y="16" fontFamily="Arial" fontWeight="900" fontSize="9" fill="white">bizum</text>
+    <circle cx="12" cy="12" r="11" fill="#00BAC6"/>
+    <circle cx="12" cy="12" r="7" stroke="#FFFFFF" strokeWidth="2.4" strokeDasharray="30 8"/>
+    <circle cx="12" cy="12" r="2.8" fill="#FFFFFF"/>
   </svg>
 );
 
 export const SatispayIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="12" fill="#FF4D00" />
-    <text x="7" y="17" fontFamily="Arial" fontWeight="900" fontSize="14" fill="white">S</text>
+    <rect width="24" height="24" rx="6" fill="#FD3B31"/>
+    <path d="M7 16.5l4.8-9h1.4l4.8 9h-2.5l-3-6-3 6H7z" fill="#FFFFFF"/>
+    <circle cx="12" cy="10.5" r="1.8" fill="#FFFFFF"/>
   </svg>
 );
 
 export const BLIKIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#E91E63" />
-    <text x="2" y="16" fontFamily="Arial" fontWeight="900" fontSize="10" letterSpacing="1" fill="white">BLIK</text>
+    <rect width="24" height="24" rx="6" fill="#1C1C1E"/>
+    <path d="M5.5 8h2.2v8H5.5zm4 0h2.2v8H9.5zm4 0h2.2v8h-2.2z" fill="#FFFFFF"/>
+    <circle cx="18.5" cy="14.5" r="1.5" fill="#EB0029"/>
   </svg>
 );
 
 export const MBWayIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#ED1C24" />
-    <text x="1" y="15" fontFamily="Arial" fontWeight="900" fontSize="8" fill="white">MB WAY</text>
+    <rect width="24" height="24" rx="6" fill="#E20613"/>
+    <path d="M6 16V8l3 4.5L12 8v8" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M14 8h2.5a2 2 0 0 1 0 4H14v4h2.5a2 2 0 0 0 0-4" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round"/>
   </svg>
 );
 
 export const TWINTIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#111" />
-    <text x="1" y="15" fontFamily="Arial" fontWeight="900" fontSize="8" letterSpacing="0.5" fill="white">TWINT</text>
+    <rect width="24" height="24" rx="6" fill="#000000"/>
+    <path d="M12 4v16M4 12h16" stroke="#00D26A" strokeWidth="2.5" strokeLinecap="round"/>
+    <circle cx="12" cy="12" r="3" fill="#FFFFFF"/>
   </svg>
 );
 
 export const SwishIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="12" fill="#E11D48" />
-    <path d="M7 12c2-3 4-4 6-2s4 2 6-1" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+    <rect width="24" height="24" rx="6" fill="#FFFFFF"/>
+    <path d="M7.5 14c-1.5-2.2-.8-4.8 1.4-6 2.2-1.2 5-.4 6.2 1.8" stroke="#EC1C4B" strokeWidth="2.4" strokeLinecap="round"/>
+    <path d="M16.5 10c1.5 2.2.8 4.8-1.4 6-2.2 1.2-5 .4-6.2-1.8" stroke="#00B4D8" strokeWidth="2.4" strokeLinecap="round"/>
   </svg>
 );
 
 export const VippsIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#FF5B24" />
-    <text x="4" y="16" fontFamily="Arial" fontWeight="900" fontSize="9" fill="white">Vipps</text>
+    <rect width="24" height="24" rx="6" fill="#FF5B24"/>
+    <path d="M7 9.5c.8 4.5 3 6.5 5 6.5s4.2-2 5-6.5" stroke="#FFFFFF" strokeWidth="2.6" strokeLinecap="round"/>
   </svg>
 );
 
 export const MobilePayIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#5A4FCF" />
-    <text x="2" y="15" fontFamily="Arial" fontWeight="900" fontSize="7.5" fill="white">Mobile</text>
-    <text x="4" y="22" fontFamily="Arial" fontWeight="900" fontSize="7.5" fill="white">Pay</text>
+    <rect width="24" height="24" rx="6" fill="#4472C4"/>
+    <path d="M6.5 12.5l3.5 3.5 7.5-8" stroke="#5BF2FF" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
 export const STCPayIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#6B2D8B" />
-    <text x="1" y="15" fontFamily="Arial" fontWeight="900" fontSize="8" fill="white">STCPay</text>
+    <rect width="24" height="24" rx="6" fill="#4F008C"/>
+    <path d="M7 14.5c.8 1.5 2.2 2 4 2 2.2 0 4-1 4-2.8 0-3.5-7.5-1.5-7.5-5C7.5 6.8 9.5 5.5 12 5.5c1.8 0 3.2.6 4 1.8" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="17.5" cy="7.5" r="1.5" fill="#FF375E"/>
   </svg>
 );
 
 export const KNETIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#007A3D" />
-    <text x="2" y="16" fontFamily="Arial" fontWeight="900" fontSize="10" fill="white">KNET</text>
+    <rect width="24" height="24" rx="6" fill="#007A3D"/>
+    <path d="M6 7v10M10 7v10M14 7l4 10M18 7v10" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
 export const PayShapIcon = ({ size = 20, className = "" }: IconProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
-    <rect width="24" height="24" rx="4" fill="#00843D" />
-    <text x="1" y="15" fontFamily="Arial" fontWeight="900" fontSize="8" fill="white">PayShap</text>
+    <rect width="24" height="24" rx="6" fill="#00843D"/>
+    <path d="M6 12l4-5h4l-4 5 4 5h-4l-4-5z" fill="#FFB81C"/>
+    <path d="M12 12l4-5h4l-4 5 4 5h-4l-4-5z" fill="#FFFFFF"/>
   </svg>
 );
 

@@ -598,11 +598,8 @@ const Navbar = () => {
                                     className="group/p flex items-center gap-2.5 rounded-lg px-2 py-1.5 hover:bg-slate-700/50 transition-all duration-150"
                                     onClick={() => setDesktopDropdown(null)}
                                   >
-                                    <div
-                                      className="shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-[9px] font-black text-white shadow-sm"
-                                      style={{ background: platform.color }}
-                                    >
-                                      {platform.emoji}
+                                    <div className="shrink-0 w-7 h-7 rounded-lg bg-slate-800/80 border border-slate-700/50 flex items-center justify-center overflow-hidden shadow-sm group-hover/p:border-slate-500 transition-colors">
+                                      {getBrandIcon(platform.slug, 18)}
                                     </div>
                                     <span className="text-[13px] font-semibold text-slate-300 group-hover/p:text-white transition-colors whitespace-nowrap">
                                       {platform.name}

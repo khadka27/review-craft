@@ -1,73 +1,175 @@
 import { TransactionData } from "@/types/payment";
+import { getCurrencySymbol } from "@/utils/payment";
+import { ZelleIcon } from "@/components/SocialMediaIcons";
 
 export const ZelleReceipt = ({ data }: { data: TransactionData }) => {
   const isSuccess = data.status === "success";
   const isFailed = data.status === "failed";
-  const sym = data.currency === "USD" ? "$" : data.currency === "EUR" ? "€" : data.currency === "GBP" ? "£" : "$";
+  const sym = getCurrencySymbol(data.currency);
+  const formattedAmount = parseFloat(data.amount || "0").toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
   return (
-    <div style={{ width: "100%", minHeight: "100%", backgroundColor: "#f5f0ff", fontFamily: "'Helvetica Neue', Arial, sans-serif", display: "flex", flexDirection: "column" }}>
-      {/* Header */}
-      <div style={{ background: "linear-gradient(135deg, #6D1ED4 0%, #9b51e0 100%)", padding: "14px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ background: "white", borderRadius: 8, padding: "4px 8px" }}>
-            <span style={{ color: "#6D1ED4", fontWeight: 900, fontSize: 16, letterSpacing: -0.5 }}>Zelle</span>
-            <span style={{ color: "#a855f7", fontWeight: 900, fontSize: 16 }}>®</span>
+    <div
+      style={{
+        width: "100%",
+        minHeight: "100%",
+        backgroundColor: "#FFFFFF",
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        display: "flex",
+        flexDirection: "column",
+        color: "#1E1E24",
+      }}
+    >
+      {/* ── Top Bar ── */}
+      <div
+        style={{
+          background: "#7414CA",
+          padding: "14px 18px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          color: "white",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              background: "white",
+              borderRadius: 8,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#7414CA",
+            }}
+          >
+            <ZelleIcon size={20} />
           </div>
+          <span style={{ fontSize: 20, fontWeight: 900, letterSpacing: -0.5, color: "white" }}>
+            zelle
+          </span>
         </div>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="2.5" strokeLinecap="round">
+          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
       </div>
 
-      {/* Success Card */}
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", padding: "24px 16px 16px" }}>
-        {/* Status icon */}
-        <div style={{ width: 72, height: 72, borderRadius: "50%", background: isSuccess ? "#f0fdf4" : isFailed ? "#fef2f2" : "#fffbeb", border: `3px solid ${isSuccess ? "#22c55e" : isFailed ? "#ef4444" : "#f59e0b"}`, marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      {/* ── Success Animation Area ── */}
+      <div style={{ flex: 1, padding: "28px 20px 20px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        {/* Animated Checkmark Circle */}
+        <div
+          style={{
+            width: 76,
+            height: 76,
+            borderRadius: "50%",
+            background: isSuccess ? "#F3E8FF" : isFailed ? "#FEE2E2" : "#FEF3C7",
+            border: `3.5px solid ${isSuccess ? "#7414CA" : isFailed ? "#EF4444" : "#F59E0B"}`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 18,
+            boxShadow: "0 8px 24px rgba(116, 20, 202, 0.15)",
+          }}
+        >
           {isSuccess ? (
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#7414CA" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
           ) : isFailed ? (
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="3" strokeLinecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
           ) : (
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth="3">
+              <circle cx="12" cy="12" r="10" />
+            </svg>
           )}
         </div>
 
-        <h2 style={{ margin: "0 0 4px", fontSize: 22, fontWeight: 800, color: "#1a1a1a", textAlign: "center" }}>
-          {isSuccess ? "Money Sent!" : isFailed ? "Payment Failed" : "Payment Pending"}
+        <h2 style={{ margin: "0 0 6px", fontSize: 24, fontWeight: 900, color: "#111827", letterSpacing: -0.5 }}>
+          {isSuccess ? "Payment Sent!" : isFailed ? "Payment Failed" : "Payment Pending"}
         </h2>
-        <p style={{ margin: "0 0 20px", fontSize: 13, color: "#777", textAlign: "center" }}>
-          {isSuccess ? `To ${data.receiverName}` : `To ${data.receiverName}`}
+        <p style={{ margin: "0 0 20px", fontSize: 14, color: "#6B7280", fontWeight: 500 }}>
+          {isSuccess ? "Money sent with Zelle®" : isFailed ? "Transfer was not completed" : "Processing payment"}
         </p>
 
-        {/* Amount */}
-        <div style={{ fontSize: 42, fontWeight: 900, color: "#6D1ED4", marginBottom: 20, letterSpacing: -2 }}>
-          {sym}{parseFloat(data.amount || "0").toLocaleString("en-US", { minimumFractionDigits: 2 })}
+        <div style={{ fontSize: 46, fontWeight: 900, color: "#7414CA", letterSpacing: -2, lineHeight: 1, marginBottom: 24 }}>
+          {sym}{formattedAmount}
         </div>
 
-        {/* White card details */}
-        <div style={{ background: "white", borderRadius: 16, padding: "16px", width: "100%", boxShadow: "0 4px 16px rgba(109,30,212,0.1)", marginBottom: 16 }}>
+        {/* Details Card */}
+        <div
+          style={{
+            width: "100%",
+            background: "#FAF5FF",
+            borderRadius: 18,
+            padding: "18px",
+            border: "1px solid #E9D5FF",
+            marginBottom: 20,
+          }}
+        >
           {[
-            { label: "Sent to", value: data.receiverName },
-            { label: "From", value: data.senderName },
-            { label: "Date & Time", value: data.timestamp },
-            { label: "Confirmation #", value: data.transactionId.slice(0, 10), mono: true },
+            { label: "Sent To", value: data.receiverName },
+            { label: "Sent From", value: `${data.senderName} (Checking)` },
+            { label: "Date Sent", value: data.timestamp },
+            { label: "Delivery", value: "Typically in minutes", highlight: true },
+            { label: "Confirmation #", value: `ZEL-${data.transactionId.slice(0, 10).toUpperCase()}`, mono: true },
             ...(data.note ? [{ label: "Memo", value: data.note }] : []),
-          ].map(({ label, value, mono }: any, i, arr) => (
-            <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", paddingTop: i > 0 ? 12 : 0, paddingBottom: i < arr.length - 1 ? 12 : 0, borderBottom: i < arr.length - 1 ? "1px solid #f5f0ff" : "none" }}>
-              <span style={{ fontSize: 12, color: "#9ca3af", fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.5 }}>{label}</span>
-              <span style={{ fontSize: 13, color: "#1a1a1a", fontWeight: 700, fontFamily: mono ? "monospace" : "inherit", textAlign: "right", maxWidth: "55%" }}>{value}</span>
+          ].map(({ label, value, mono, highlight }: any, i, arr) => (
+            <div
+              key={label}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                paddingTop: i > 0 ? 12 : 0,
+                paddingBottom: i < arr.length - 1 ? 12 : 0,
+                borderBottom: i < arr.length - 1 ? "1px solid #E9D5FF" : "none",
+              }}
+            >
+              <span style={{ fontSize: 13, color: "#6B7280", fontWeight: 600 }}>{label}</span>
+              <span
+                style={{
+                  fontSize: 13,
+                  color: highlight ? "#7414CA" : "#111827",
+                  fontWeight: 700,
+                  fontFamily: mono ? "SF Mono, Monaco, Consolas, monospace" : "inherit",
+                  textAlign: "right",
+                  maxWidth: "58%",
+                }}
+              >
+                {value}
+              </span>
             </div>
           ))}
         </div>
 
-        <p style={{ fontSize: 11, color: "#aaa", textAlign: "center", margin: 0 }}>
-          Powered by your bank's mobile banking app
+        <p style={{ fontSize: 11, color: "#9CA3AF", textAlign: "center", margin: 0, lineHeight: 1.4 }}>
+          Zelle and the Zelle related marks are wholly owned by Early Warning Services, LLC.
         </p>
       </div>
 
-      {/* Bottom CTA */}
-      <div style={{ padding: "12px 16px", background: "white", borderTop: "1px solid #f0e8ff" }}>
-        <button style={{ width: "100%", padding: "13px", background: "linear-gradient(135deg, #6D1ED4, #9b51e0)", color: "white", border: "none", borderRadius: 25, fontSize: 15, fontWeight: 700, cursor: "pointer" }}>
-          Send Another Payment
+      {/* ── Footer ── */}
+      <div style={{ padding: "14px 20px 24px", borderTop: "1px solid #F3F4F6" }}>
+        <button
+          style={{
+            width: "100%",
+            padding: "15px",
+            background: "#7414CA",
+            color: "white",
+            border: "none",
+            borderRadius: 30,
+            fontSize: 16,
+            fontWeight: 800,
+            cursor: "pointer",
+            boxShadow: "0 6px 20px rgba(116, 20, 202, 0.3)",
+          }}
+        >
+          All Done
         </button>
       </div>
     </div>
