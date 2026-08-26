@@ -61,7 +61,7 @@ export const GooglePayReceipt = ({ data }: { data: TransactionData }) => {
       </div>
 
       {/* App bar */}
-      <div style={{ padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ padding: "30px 16px 10px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           {/* Google G SVG */}
           <svg width="24" height="24" viewBox="0 0 24 24">

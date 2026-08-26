@@ -25,7 +25,7 @@ export const KNETReceipt = ({ data }: { data: TransactionData }) => {
       <div
         style={{
           background: "#007A3D",
-          padding: "14px 18px",
+          padding: "32px 18px 14px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

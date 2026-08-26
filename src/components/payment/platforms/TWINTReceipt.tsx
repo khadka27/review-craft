@@ -24,7 +24,7 @@ export const TWINTReceipt = ({ data }: { data: TransactionData }) => {
       {/* ── TWINT Swiss Header ── */}
       <div
         style={{
-          padding: "16px 18px",
+          padding: "32px 18px 14px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

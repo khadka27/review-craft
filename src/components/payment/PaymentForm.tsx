@@ -178,7 +178,7 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
       <div style={DIVIDER_STYLE} />
 
       {/* ── Amount & Currency ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <InputField
           id="payment-amount"
           label="Amount"
@@ -218,7 +218,7 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
       <div style={DIVIDER_STYLE} />
 
       {/* ── Sender & Receiver ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <InputField
           id="payment-sender"
           label="Sender Name"
@@ -240,7 +240,7 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
       <div style={DIVIDER_STYLE} />
 
       {/* ── Transaction ID & Date ── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <InputField
           id="payment-txn-id"
           label="Transaction ID"

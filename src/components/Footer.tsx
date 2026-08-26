@@ -104,7 +104,7 @@ const Footer = () => {
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               Independent visual prototyping tool for UI/UX designers, developers, and educators to create simulated review layouts, social proof prototypes, and feedback interface mockups.
             </p>
-            <p className="text-xs text-gray-500 leading-relaxed">
+            <p className="text-xs text-slate-400 leading-relaxed">
               ReviewCraft is an independent design and prototyping tool and is not affiliated with or endorsed by any platform shown in its templates.
             </p>
           </div>

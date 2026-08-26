@@ -24,7 +24,7 @@ export const CashAppReceipt = ({ data }: { data: TransactionData }) => {
     <div style={{ width: "100%", minHeight: "100%", backgroundColor: "#00D64F", fontFamily: "'Cash Sans','SF Pro Display','Helvetica Neue',sans-serif", display: "flex", flexDirection: "column" }}>
 
       {/* ── Header ── */}
-      <div style={{ padding: "12px 20px 10px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ padding: "32px 20px 10px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           {/* Cash App logo - "$" in white box */}
           <div style={{ width: 34, height: 34, background: "white", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>

@@ -25,7 +25,7 @@ export const BLIKReceipt = ({ data }: { data: TransactionData }) => {
       <div
         style={{
           background: "#1C1C1E",
-          padding: "14px 18px",
+          padding: "32px 18px 14px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

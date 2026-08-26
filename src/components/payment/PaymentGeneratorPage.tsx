@@ -165,7 +165,7 @@ export function PaymentGeneratorPage({
         }}
       />
 
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main className="relative z-10 max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-6 sm:py-10">
         {/* ──────────── Hero ──────────── */}
         <div className="mb-12 text-center">
           {/* Badge */}
@@ -365,7 +365,7 @@ export function PaymentGeneratorPage({
             </div>
 
             {/* Preview area */}
-            <div className="p-6">
+            <div className="p-1 sm:p-4 md:p-6">
               <div
                 className="rounded-xl overflow-hidden"
                 style={{
@@ -374,7 +374,7 @@ export function PaymentGeneratorPage({
                   border: "1px solid #1E293B",
                 }}
               >
-                <div className="flex justify-center p-6 md:p-10 max-h-[640px] overflow-auto">
+                <div className="flex justify-center p-1 sm:p-4 md:p-8 overflow-visible">
                   <PaymentPreview paymentData={paymentData} />
                 </div>
               </div>

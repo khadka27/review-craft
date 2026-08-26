@@ -27,7 +27,7 @@ export const ZelleReceipt = ({ data }: { data: TransactionData }) => {
       <div
         style={{
           background: "#7414CA",
-          padding: "14px 18px",
+          padding: "32px 18px 14px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

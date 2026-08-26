@@ -11,7 +11,7 @@ export const StripeReceipt = ({ data }: { data: TransactionData }) => {
     <div style={{ width: "100%", minHeight: "100%", backgroundColor: "white", fontFamily: "'Helvetica Neue', Arial, sans-serif", display: "flex", flexDirection: "column", color: "#1a1a2e" }}>
 
       {/* ── Stripe purple gradient top ── */}
-      <div style={{ background: "linear-gradient(135deg, #635bff 0%, #0a2540 100%)", padding: "28px 24px 28px" }}>
+      <div style={{ background: "linear-gradient(135deg, #635bff 0%, #0a2540 100%)", padding: "34px 24px 20px" }}>
         {/* Stripe "S" logo */}
         <div style={{ marginBottom: 16 }}>
           <svg width="44" height="44" viewBox="0 0 44 44">

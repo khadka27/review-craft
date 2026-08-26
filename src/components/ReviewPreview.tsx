@@ -265,6 +265,8 @@ export const ReviewPreview = ({
             <span className="font-semibold whitespace-nowrap text-gray-700">Add EXIF Metadata</span>
           </label>
           <button
+            type="button"
+            aria-label="Generate random review content"
             onClick={onRefresh}
             className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-200 text-sm sm:text-base"
           >
@@ -272,6 +274,8 @@ export const ReviewPreview = ({
             <span className="whitespace-nowrap">Refresh</span>
           </button>
           <button
+            type="button"
+            aria-label="Copy review mockup to clipboard"
             onClick={handleCopy}
             disabled={isCopying}
             className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 text-sm sm:text-base"
@@ -287,6 +291,8 @@ export const ReviewPreview = ({
           </button>
           <div className="relative group">
             <button
+              type="button"
+              aria-label="Download review mockup image"
               onClick={() => handleDownload("png")}
               disabled={isDownloading}
               className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 text-sm sm:text-base w-full sm:w-auto"
@@ -302,6 +308,8 @@ export const ReviewPreview = ({
             </button>
             <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 min-w-full">
               <button
+                type="button"
+                aria-label="Download PNG image"
                 onClick={() => handleDownload("png")}
                 disabled={isDownloading}
                 className="block w-full px-3 sm:px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
@@ -309,6 +317,8 @@ export const ReviewPreview = ({
                 PNG
               </button>
               <button
+                type="button"
+                aria-label="Download JPEG image"
                 onClick={() => handleDownload("jpeg")}
                 disabled={isDownloading}
                 className="block w-full px-3 sm:px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
@@ -316,6 +326,8 @@ export const ReviewPreview = ({
                 JPEG
               </button>
               <button
+                type="button"
+                aria-label="Download WEBP image"
                 onClick={() => handleDownload("webp")}
                 disabled={isDownloading}
                 className="block w-full px-3 sm:px-4 py-2 text-left text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"

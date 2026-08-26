@@ -47,7 +47,7 @@ export const ApplePayReceipt = ({ data }: { data: TransactionData }) => {
     <div style={{ width: "100%", minHeight: "100%", backgroundColor: "#f2f2f7", fontFamily: "-apple-system,'SF Pro Display','Helvetica Neue',sans-serif", display: "flex", flexDirection: "column" }}>
 
       {/* ── iOS nav bar ── */}
-      <div style={{ background: "rgba(242,242,247,0.95)", padding: "10px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "0.5px solid rgba(0,0,0,0.12)" }}>
+      <div style={{ background: "rgba(242,242,247,0.95)", padding: "32px 16px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "0.5px solid rgba(0,0,0,0.12)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
           <ChevronLeftIcon size={18} color="#007AFF" />
           <span style={{ color: "#007AFF", fontSize: 15, fontWeight: 400 }}>Wallet</span>

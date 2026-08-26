@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -99,6 +98,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT";
+
   return (
     <html lang="en">
       <head>
@@ -107,12 +108,6 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="ReviewCraft" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-
-        {/* Resource Preconnect Hints for Mobile LCP Optimization */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
 
         {/* Speculation Rules */}
         <script
@@ -146,8 +141,26 @@ export default function RootLayout({
           />
 
           <Footer />
-          <GoogleAnalytics
-            gaId={process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT"}
+
+          {/* Lazy-loaded Google Analytics to ensure 0 main-thread blocking during initial paint */}
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            strategy="lazyOnload"
+            id="ga-script"
+          />
+          <Script
+            id="ga-init"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+            }}
           />
         </ToastProvider>
       </body>

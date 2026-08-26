@@ -44,7 +44,7 @@ export const PhonePeNewReceipt = ({ data }: { data: TransactionData }) => {
     <div style={{ width: "100%", minHeight: "100%", backgroundColor: "#f4f1fb", fontFamily: "'Roboto', sans-serif", display: "flex", flexDirection: "column" }}>
 
       {/* ── Header ── */}
-      <div style={{ background: "linear-gradient(135deg,#5f259f 0%,#7b2cbf 100%)", padding: "14px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ background: "linear-gradient(135deg,#5f259f 0%,#7b2cbf 100%)", padding: "32px 16px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 34, height: 34, background: "white", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ fontSize: 16, fontWeight: 900, color: "#5f259f", fontFamily: "serif" }}>Pe</span>

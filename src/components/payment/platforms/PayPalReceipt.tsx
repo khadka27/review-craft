@@ -27,7 +27,7 @@ export const PayPalReceipt = ({ data }: { data: TransactionData }) => {
       <div
         style={{
           background: "#003087",
-          padding: "12px 16px",
+          padding: "32px 16px 12px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

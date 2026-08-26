@@ -28,7 +28,7 @@ export const PhonePeReceipt = ({ data }: { data: TransactionData }) => {
   const utrNumber = data.utr ?? "423189271602";
 
   return (
-    <div className="w-full min-h-[580px] bg-[#f4f0fa] font-sans text-slate-800 flex flex-col justify-between p-4 select-none">
+    <div className="w-full min-h-[580px] bg-[#f4f0fa] font-sans text-slate-800 flex flex-col justify-between p-4 pt-9 select-none">
       <div>
         {/* Top Header Card / Banner */}
         <div className="flex items-center gap-3 bg-white p-3.5 rounded-2xl shadow-sm border border-purple-100/80 mb-3">

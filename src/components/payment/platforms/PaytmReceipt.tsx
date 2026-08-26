@@ -45,7 +45,7 @@ export const PaytmReceipt = ({ data }: { data: TransactionData }) => {
     <div style={{ width: "100%", minHeight: "100%", backgroundColor: "#f5f7fa", fontFamily: "'Roboto', sans-serif", display: "flex", flexDirection: "column" }}>
 
       {/* ── Paytm Top Nav ── */}
-      <div style={{ backgroundColor: "#002970", padding: "14px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ backgroundColor: "#002970", padding: "32px 16px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ fontSize: 22, fontWeight: 900, fontFamily: "Arial, sans-serif", letterSpacing: "-0.5px", display: "flex", alignItems: "center" }}>
           <span style={{ color: "#00baf2" }}>Pay</span>
           <span style={{ color: "white" }}>tm</span>

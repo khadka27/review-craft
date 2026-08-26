@@ -52,7 +52,7 @@ export function ReviewGeneratorPage({
     id: "initial-review-1",
     name: "Alex Vance",
     username: "alexvance",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    avatar: "/images/default-avatar.jpg",
     gender: "random",
     platform: initialPlatform,
     title: "Outstanding design and build quality",
@@ -132,6 +132,8 @@ export function ReviewGeneratorPage({
                   Review
                 </h2>
                 <button
+                  type="button"
+                  aria-label="Download mockup as image"
                   onClick={() => {
                     const isMobile = (reviewData.deviceViewMode || "desktop") === "mobile";
                     downloadComponentAsImage(

@@ -33,7 +33,7 @@ button {
   font-family: inherit;
 }
 
-/* Mobile Core Web Vitals (INP & LCP) Performance Optimizations */
+/* Universal Core Web Vitals (INP, LCP & CLS) Performance Optimizations */
 button,
 a,
 input,
@@ -43,14 +43,16 @@ label {
   touch-action: manipulation; /* Eliminates 300ms mobile browser tap delay (INP fix) */
 }
 
-@media (max-width: 768px) {
-  /* Defer off-screen section rendering to improve mobile LCP & initial parse */
-  .guide-container,
-  footer {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 600px;
-  }
+/* Universal footer & heavy off-screen section containment to prevent Cumulative Layout Shift (CLS) */
+footer {
+  contain: layout style;
+}
 
+.guide-container {
+  contain: layout style;
+}
+
+@media (max-width: 768px) {
   /* Force GPU composite layer for sticky mobile previews */
   .sticky {
     will-change: transform;

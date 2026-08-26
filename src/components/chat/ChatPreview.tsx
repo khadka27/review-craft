@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ChatData } from "@/types/chat";
 import { WhatsAppChat } from "./platforms/WhatsAppChat";
 import { MessengerChat } from "./platforms/MessengerChat";
@@ -6,12 +7,15 @@ import { TelegramChat } from "./platforms/TelegramChat";
 import { TwitterChat } from "./platforms/TwitterChat";
 import { DiscordChat } from "./platforms/DiscordChat";
 import { IMessageChat } from "./platforms/IMessageChat";
+import { Wifi, Signal } from "lucide-react";
 
 interface ChatPreviewProps {
   chatData: ChatData;
 }
 
 export const ChatPreview = ({ chatData }: ChatPreviewProps) => {
+  const isDark = chatData.theme === "dark" || chatData.platform === "discord";
+
   const renderPlatform = () => {
     switch (chatData.platform) {
       case "whatsapp":
@@ -38,23 +42,30 @@ export const ChatPreview = ({ chatData }: ChatPreviewProps) => {
   };
 
   return (
-    <div className="w-full flex justify-center p-4">
-      {/* Visual Phone Frame (Preview only) */}
-      <div className="w-full max-w-[375px] shadow-2xl rounded-[3rem] border-[8px] border-gray-900 overflow-hidden bg-white aspect-[9/19.5]">
-        {/* Flat Capture Area (for download) */}
-        <div 
-          id="chat-screen-capture" 
-          className="h-full w-full bg-white rounded-none border-none flex flex-col justify-between"
-          style={{ borderRadius: '0px' }} // Force no rounding for capture
-        >
-          <div className="flex-1 overflow-hidden">
-            {renderPlatform()}
+    <div className="w-full flex justify-center p-1 sm:p-4">
+      {/* Visual Flagship Phone Frame */}
+      <div className="w-full max-w-[360px] sm:max-w-[375px] shadow-2xl rounded-[46px] bg-[#161a22] p-2 sm:p-2.5 border border-slate-700/60 transition-all duration-300">
+        {/* Screen Area */}
+        <div className={`relative rounded-[38px] overflow-hidden ${isDark ? "bg-[#111]" : "bg-white"} shadow-inner flex flex-col min-h-[580px]`}>
+          {/* Dynamic Island Pill */}
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-30 w-24 h-4.5 bg-black rounded-full shadow-sm flex items-center justify-between px-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#050505] ml-auto"></div>
           </div>
+
+          {/* Flat Capture Area (for download) */}
           <div 
-            className="w-full bg-slate-900 text-slate-300 text-[9px] font-mono font-bold tracking-wider py-1 px-2 text-center border-t border-slate-700 uppercase select-none pointer-events-none z-30 export-watermark-banner"
-            data-export-watermark="true"
+            id="chat-screen-capture" 
+            className={`h-full w-full ${isDark ? "bg-[#111]" : "bg-white"} rounded-none border-none flex flex-col justify-between flex-1`}
           >
-            SIMULATED CHAT MOCKUP — FOR DESIGN USE
+            <div className="pt-7 flex-1 flex flex-col overflow-hidden">
+              {renderPlatform()}
+            </div>
+            <div 
+              className="w-full bg-slate-900 text-slate-300 text-[9px] font-mono font-bold tracking-wider py-1.5 px-2 text-center border-t border-slate-700 uppercase select-none pointer-events-none z-30 export-watermark-banner"
+              data-export-watermark="true"
+            >
+              SIMULATED CHAT MOCKUP — FOR DESIGN USE
+            </div>
           </div>
         </div>
       </div>

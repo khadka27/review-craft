@@ -25,7 +25,7 @@ export const SatispayReceipt = ({ data }: { data: TransactionData }) => {
       <div
         style={{
           background: "#FD3B31",
-          padding: "14px 18px",
+          padding: "32px 18px 14px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
