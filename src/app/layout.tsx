@@ -128,7 +128,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning={true}>
         <ToastProvider>
           <Navbar />
-          <main>{children}</main>
+          <div className="flex-1">{children}</div>
           {/* Deferred AdSense script loading strategy (lazyOnload) prevents blocking mobile main thread (INP/LCP fix) */}
           <Script
             async
