@@ -25,7 +25,7 @@ export const InteracReceipt = ({ data }: { data: TransactionData }) => {
       <div
         style={{
           background: "#000000",
-          padding: "12px 18px",
+          padding: "32px 18px 12px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

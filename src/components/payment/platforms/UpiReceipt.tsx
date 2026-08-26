@@ -17,7 +17,7 @@ export const UpiReceipt = ({ data }: { data: TransactionData }) => {
   return (
     <div className="w-full bg-gradient-to-b from-blue-50 to-white font-sans text-slate-800 min-h-full flex flex-col overflow-hidden">
       {/* UPI Header */}
-      <div className="bg-gradient-to-r from-indigo-600 to-blue-700 p-4 pt-8 pb-6 flex justify-between items-center shadow-lg">
+      <div className="bg-gradient-to-r from-indigo-600 to-blue-700 p-4 pt-9 pb-5 flex justify-between items-center shadow-lg">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
             <span className="text-lg font-black text-white">₹</span>

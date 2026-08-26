@@ -48,7 +48,7 @@ export const FonepayReceipt = ({ data }: { data: TransactionData }) => {
     <div style={{ width: "100%", minHeight: "100%", backgroundColor: "white", fontFamily: "'Roboto',sans-serif", display: "flex", flexDirection: "column" }}>
 
       {/* ── Fonepay Red Header ── */}
-      <div style={{ background: "#ed1c24", padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ background: "#ed1c24", padding: "32px 16px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 34, height: 34, background: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ color: "#ed1c24", fontWeight: 900, fontSize: 16, fontStyle: "italic" }}>f</span>

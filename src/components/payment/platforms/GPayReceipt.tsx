@@ -10,7 +10,7 @@ export const GPayReceipt = ({ data }: { data: TransactionData }) => {
   return (
     <div className="w-full min-h-full bg-white font-sans text-gray-800 flex flex-col">
       {/* Google Pay Header */}
-      <div className="bg-gradient-to-r from-[#4285f4] to-[#34a853] p-4 pt-8 pb-6 flex justify-between items-center shadow-lg">
+      <div className="bg-gradient-to-r from-[#4285f4] to-[#34a853] p-4 pt-9 pb-5 flex justify-between items-center shadow-lg">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
             <span className="text-lg font-black text-[#4285f4]">G</span>

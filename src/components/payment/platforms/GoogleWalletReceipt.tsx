@@ -16,7 +16,7 @@ export const GoogleWalletReceipt = ({ data }: { data: TransactionData }) => {
   return (
     <div className="w-full bg-[#f8f9fa] font-sans text-gray-900 min-h-full flex flex-col overflow-hidden">
       {/* App Bar */}
-      <div className="p-6 pt-12 flex justify-between items-center bg-white">
+      <div className="p-4 pt-9 pb-3 flex justify-between items-center bg-white">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 shadow-sm">
             <img

@@ -10,7 +10,7 @@ export const BhimReceipt = ({ data }: { data: TransactionData }) => {
   return (
     <div className="w-full bg-gradient-to-b from-orange-50 to-white font-sans text-slate-800 min-h-full flex flex-col overflow-hidden">
       {/* BHIM Header */}
-      <div className="bg-gradient-to-r from-orange-500 to-red-500 p-4 pt-8 pb-6 flex justify-between items-center shadow-lg">
+      <div className="bg-gradient-to-r from-orange-500 to-red-500 p-4 pt-9 pb-5 flex justify-between items-center shadow-lg">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
             <span className="text-lg font-black text-orange-600">भ</span>
