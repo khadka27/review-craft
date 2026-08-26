@@ -15,6 +15,24 @@ const CashAppReceipt = dynamic(() => import("./platforms/CashAppReceipt").then(m
 const PhonePeNewReceipt = dynamic(() => import("./platforms/PhonePeNewReceipt").then(m => m.PhonePeNewReceipt), { ssr: true });
 const GPayReceipt = dynamic(() => import("./platforms/GPayReceipt").then(m => m.GPayReceipt), { ssr: true });
 const BhimReceipt = dynamic(() => import("./platforms/BhimReceipt").then(m => m.BhimReceipt), { ssr: true });
+// New global platforms
+const PayPalReceipt = dynamic(() => import("./platforms/PayPalReceipt").then(m => m.PayPalReceipt), { ssr: true });
+const ZelleReceipt = dynamic(() => import("./platforms/ZelleReceipt").then(m => m.ZelleReceipt), { ssr: true });
+const InteracReceipt = dynamic(() => import("./platforms/InteracReceipt").then(m => m.InteracReceipt), { ssr: true });
+const WeroReceipt = dynamic(() => import("./platforms/WeroReceipt").then(m => m.WeroReceipt), { ssr: true });
+const IDEALReceipt = dynamic(() => import("./platforms/IDEALReceipt").then(m => m.IDEALReceipt), { ssr: true });
+const BancontactReceipt = dynamic(() => import("./platforms/BancontactReceipt").then(m => m.BancontactReceipt), { ssr: true });
+const BizumReceipt = dynamic(() => import("./platforms/BizumReceipt").then(m => m.BizumReceipt), { ssr: true });
+const SatispayReceipt = dynamic(() => import("./platforms/SatispayReceipt").then(m => m.SatispayReceipt), { ssr: true });
+const BLIKReceipt = dynamic(() => import("./platforms/BLIKReceipt").then(m => m.BLIKReceipt), { ssr: true });
+const MBWayReceipt = dynamic(() => import("./platforms/MBWayReceipt").then(m => m.MBWayReceipt), { ssr: true });
+const TWINTReceipt = dynamic(() => import("./platforms/TWINTReceipt").then(m => m.TWINTReceipt), { ssr: true });
+const SwishReceipt = dynamic(() => import("./platforms/SwishReceipt").then(m => m.SwishReceipt), { ssr: true });
+const VippsReceipt = dynamic(() => import("./platforms/VippsReceipt").then(m => m.VippsReceipt), { ssr: true });
+const MobilePayReceipt = dynamic(() => import("./platforms/MobilePayReceipt").then(m => m.MobilePayReceipt), { ssr: true });
+const STCPayReceipt = dynamic(() => import("./platforms/STCPayReceipt").then(m => m.STCPayReceipt), { ssr: true });
+const KNETReceipt = dynamic(() => import("./platforms/KNETReceipt").then(m => m.KNETReceipt), { ssr: true });
+const PayShapReceipt = dynamic(() => import("./platforms/PayShapReceipt").then(m => m.PayShapReceipt), { ssr: true });
 import { Wifi, Signal } from "lucide-react";
 
 interface PaymentPreviewProps {
@@ -107,6 +125,12 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
     "venmo",
     "fonepay",
     "cashapp",
+    "zelle",
+    "swish",
+    "vipps",
+    "mobilepay",
+    "stcpay",
+    "twint",
   ];
   const isDark = darkHeaderPlatforms.includes(paymentData.platform);
 
@@ -138,6 +162,41 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
         return <FonepayReceipt data={paymentData} />;
       case "cashapp":
         return <CashAppReceipt data={paymentData} />;
+      // New global platforms
+      case "paypal":
+        return <PayPalReceipt data={paymentData} />;
+      case "zelle":
+        return <ZelleReceipt data={paymentData} />;
+      case "interac":
+        return <InteracReceipt data={paymentData} />;
+      case "wero":
+        return <WeroReceipt data={paymentData} />;
+      case "ideal":
+        return <IDEALReceipt data={paymentData} />;
+      case "bancontact":
+        return <BancontactReceipt data={paymentData} />;
+      case "bizum":
+        return <BizumReceipt data={paymentData} />;
+      case "satispay":
+        return <SatispayReceipt data={paymentData} />;
+      case "blik":
+        return <BLIKReceipt data={paymentData} />;
+      case "mbway":
+        return <MBWayReceipt data={paymentData} />;
+      case "twint":
+        return <TWINTReceipt data={paymentData} />;
+      case "swish":
+        return <SwishReceipt data={paymentData} />;
+      case "vipps":
+        return <VippsReceipt data={paymentData} />;
+      case "mobilepay":
+        return <MobilePayReceipt data={paymentData} />;
+      case "stcpay":
+        return <STCPayReceipt data={paymentData} />;
+      case "knet":
+        return <KNETReceipt data={paymentData} />;
+      case "payshap":
+        return <PayShapReceipt data={paymentData} />;
       default:
         return <PaytmReceipt data={paymentData} />;
     }

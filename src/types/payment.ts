@@ -11,7 +11,25 @@ export type PaymentPlatform =
   | "cashapp"
   | "bhim"
   | "phonepe"
-  | "gpay";
+  | "gpay"
+  // New global platforms
+  | "paypal"
+  | "zelle"
+  | "interac"
+  | "wero"
+  | "ideal"
+  | "bancontact"
+  | "bizum"
+  | "satispay"
+  | "blik"
+  | "mbway"
+  | "twint"
+  | "swish"
+  | "vipps"
+  | "mobilepay"
+  | "stcpay"
+  | "knet"
+  | "payshap";
 
 export interface TransactionData {
   id: string;

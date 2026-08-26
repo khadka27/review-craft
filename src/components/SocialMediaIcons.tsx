@@ -259,6 +259,128 @@ export const FonepayIcon = ({ size = 20, className = "" }: IconProps) => (
   </svg>
 );
 
+// ── New Global Payment Icons ───────────────────────────────────────────
+export const PayPalIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#003087" />
+    <path d="M7.5 7h4.2c2.1 0 3.3 1.1 3 3-.4 2.2-2.1 3-4 3H9.4L8.7 17H6.5l1-10zm2.1 4.5h1.6c.8 0 1.4-.4 1.5-1.2.1-.7-.3-1.1-1.1-1.1H10l-.4 2.3z" fill="#009CDE" />
+    <path d="M14 8.5h4c1.8 0 2.8.9 2.5 2.7-.4 2-2 2.8-3.8 2.8h-1.4L15 17h-2.2l1.2-8.5zm1.8 4h1.4c.7 0 1.2-.3 1.3-1 .1-.6-.2-.9-.9-.9h-1.4l-.4 1.9z" fill="white" />
+  </svg>
+);
+
+export const ZelleIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#6D1ED4" />
+    <path d="M5 8h14v2H10l9 6H5v-2h9L5 8z" fill="white" />
+  </svg>
+);
+
+export const InteracIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#F5A623" />
+    <text x="3" y="16" fontFamily="Arial" fontWeight="900" fontSize="9" fill="white">Interac</text>
+  </svg>
+);
+
+export const WeroIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="12" fill="#00B2A9" />
+    <text x="4" y="16" fontFamily="Arial" fontWeight="900" fontSize="12" fill="white">W</text>
+  </svg>
+);
+
+export const IDEALIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#0033A0" />
+    <text x="1" y="16" fontFamily="Arial" fontWeight="900" fontSize="8" fill="white">iDEAL</text>
+  </svg>
+);
+
+export const BancontactIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#005499" />
+    <text x="4" y="16" fontFamily="Arial" fontWeight="900" fontSize="9" fill="white">BC</text>
+  </svg>
+);
+
+export const BizumIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#0066CC" />
+    <text x="2" y="16" fontFamily="Arial" fontWeight="900" fontSize="9" fill="white">bizum</text>
+  </svg>
+);
+
+export const SatispayIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="12" fill="#FF4D00" />
+    <text x="7" y="17" fontFamily="Arial" fontWeight="900" fontSize="14" fill="white">S</text>
+  </svg>
+);
+
+export const BLIKIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#E91E63" />
+    <text x="2" y="16" fontFamily="Arial" fontWeight="900" fontSize="10" letterSpacing="1" fill="white">BLIK</text>
+  </svg>
+);
+
+export const MBWayIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#ED1C24" />
+    <text x="1" y="15" fontFamily="Arial" fontWeight="900" fontSize="8" fill="white">MB WAY</text>
+  </svg>
+);
+
+export const TWINTIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#111" />
+    <text x="1" y="15" fontFamily="Arial" fontWeight="900" fontSize="8" letterSpacing="0.5" fill="white">TWINT</text>
+  </svg>
+);
+
+export const SwishIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="12" fill="#E11D48" />
+    <path d="M7 12c2-3 4-4 6-2s4 2 6-1" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+  </svg>
+);
+
+export const VippsIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#FF5B24" />
+    <text x="4" y="16" fontFamily="Arial" fontWeight="900" fontSize="9" fill="white">Vipps</text>
+  </svg>
+);
+
+export const MobilePayIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#5A4FCF" />
+    <text x="2" y="15" fontFamily="Arial" fontWeight="900" fontSize="7.5" fill="white">Mobile</text>
+    <text x="4" y="22" fontFamily="Arial" fontWeight="900" fontSize="7.5" fill="white">Pay</text>
+  </svg>
+);
+
+export const STCPayIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#6B2D8B" />
+    <text x="1" y="15" fontFamily="Arial" fontWeight="900" fontSize="8" fill="white">STCPay</text>
+  </svg>
+);
+
+export const KNETIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#007A3D" />
+    <text x="2" y="16" fontFamily="Arial" fontWeight="900" fontSize="10" fill="white">KNET</text>
+  </svg>
+);
+
+export const PayShapIcon = ({ size = 20, className = "" }: IconProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none">
+    <rect width="24" height="24" rx="4" fill="#00843D" />
+    <text x="1" y="15" fontFamily="Arial" fontWeight="900" fontSize="8" fill="white">PayShap</text>
+  </svg>
+);
+
 const STATIC_ICON_FACTORIES: Record<
   string,
   (props: IconProps) => React.ReactElement
@@ -274,6 +396,24 @@ const STATIC_ICON_FACTORIES: Record<
   venmo: (props) => <VenmoIcon {...props} />,
   fonepay: (props) => <FonepayIcon {...props} />,
   cashapp: (props) => <CashAppIcon {...props} />,
+  // New global platforms
+  paypal: (props) => <PayPalIcon {...props} />,
+  zelle: (props) => <ZelleIcon {...props} />,
+  interac: (props) => <InteracIcon {...props} />,
+  wero: (props) => <WeroIcon {...props} />,
+  ideal: (props) => <IDEALIcon {...props} />,
+  bancontact: (props) => <BancontactIcon {...props} />,
+  bizum: (props) => <BizumIcon {...props} />,
+  satispay: (props) => <SatispayIcon {...props} />,
+  blik: (props) => <BLIKIcon {...props} />,
+  mbway: (props) => <MBWayIcon {...props} />,
+  twint: (props) => <TWINTIcon {...props} />,
+  swish: (props) => <SwishIcon {...props} />,
+  vipps: (props) => <VippsIcon {...props} />,
+  mobilepay: (props) => <MobilePayIcon {...props} />,
+  stcpay: (props) => <STCPayIcon {...props} />,
+  knet: (props) => <KNETIcon {...props} />,
+  payshap: (props) => <PayShapIcon {...props} />,
 };
 
 export const getPlatformIcon = (platform: string, size = 20) => {

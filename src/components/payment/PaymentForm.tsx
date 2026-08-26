@@ -196,11 +196,21 @@ export const PaymentForm = ({ paymentData, onUpdate }: PaymentFormProps) => {
             onChange={(e) => onUpdate({ currency: e.target.value })}
             className={`${INPUT_CLASS} cursor-pointer`}
           >
-            <option value="INR" style={{ background: "#111827" }}>INR (₹)</option>
-            <option value="USD" style={{ background: "#111827" }}>USD ($)</option>
-            <option value="EUR" style={{ background: "#111827" }}>EUR (€)</option>
-            <option value="GBP" style={{ background: "#111827" }}>GBP (£)</option>
-            <option value="NPR" style={{ background: "#111827" }}>NPR (Rs.)</option>
+            <option value="INR" style={{ background: "#111827" }}>INR (₹) — Indian Rupee</option>
+            <option value="USD" style={{ background: "#111827" }}>USD ($) — US Dollar</option>
+            <option value="EUR" style={{ background: "#111827" }}>EUR (€) — Euro</option>
+            <option value="GBP" style={{ background: "#111827" }}>GBP (£) — British Pound</option>
+            <option value="CAD" style={{ background: "#111827" }}>CAD (C$) — Canadian Dollar</option>
+            <option value="AUD" style={{ background: "#111827" }}>AUD (A$) — Australian Dollar</option>
+            <option value="CHF" style={{ background: "#111827" }}>CHF (Fr) — Swiss Franc</option>
+            <option value="SEK" style={{ background: "#111827" }}>SEK (kr) — Swedish Krona</option>
+            <option value="NOK" style={{ background: "#111827" }}>NOK (kr) — Norwegian Krone</option>
+            <option value="DKK" style={{ background: "#111827" }}>DKK (kr.) — Danish Krone</option>
+            <option value="PLN" style={{ background: "#111827" }}>PLN (zł) — Polish Złoty</option>
+            <option value="SAR" style={{ background: "#111827" }}>SAR (﷼) — Saudi Riyal</option>
+            <option value="KWD" style={{ background: "#111827" }}>KWD (KD) — Kuwaiti Dinar</option>
+            <option value="ZAR" style={{ background: "#111827" }}>ZAR (R) — South African Rand</option>
+            <option value="NPR" style={{ background: "#111827" }}>NPR (Rs.) — Nepalese Rupee</option>
           </select>
         </div>
       </div>

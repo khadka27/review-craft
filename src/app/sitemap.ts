@@ -16,19 +16,13 @@ const chatPlatforms = [
 ];
 
 const paymentPlatforms = [
-  "paytm",
-  "stripe",
-  "googlepay",
-  "upi",
-  "phonepay",
-  "phonepe",
-  "gpay",
-  "bhim",
-  "googlewallet",
-  "applepay",
-  "venmo",
-  "fonepay",
-  "cashapp",
+  // Original platforms
+  "paytm", "stripe", "googlepay", "upi", "phonepay", "phonepe",
+  "gpay", "bhim", "googlewallet", "applepay", "venmo", "fonepay", "cashapp",
+  // New global platforms
+  "paypal", "zelle", "interac", "wero", "ideal", "bancontact",
+  "bizum", "satispay", "blik", "mbway", "twint", "swish",
+  "vipps", "mobilepay", "stcpay", "knet", "payshap",
 ];
 
 const billPlatforms = ["amazon", "walmart", "supplement"];

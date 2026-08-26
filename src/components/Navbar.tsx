@@ -289,18 +289,52 @@ const CHAT_PLATFORMS = [
   { name: "iMessage", href: "/chat/imessage", slug: "imessage", description: "iOS standard text message bubble mockup" },
 ];
 
+
 const PAYMENT_PLATFORMS = [
-  { name: "Paytm Success", href: "/payment/paytm", slug: "paytm", description: "Indian digital wallet receipt layout" },
-  { name: "Stripe Receipt", href: "/payment/stripe", slug: "stripe", description: "Standard Stripe checkout invoice screenshot" },
-  { name: "Google Pay", href: "/payment/googlepay", slug: "googlepay", description: "GPay payment confirmation screenshot" },
-  { name: "Google Wallet", href: "/payment/googlewallet", slug: "googlewallet", description: "Mobile wallet pass mockup template" },
-  { name: "Apple Pay", href: "/payment/applepay", slug: "applepay", description: "Apple Wallet transaction screen mockup" },
-  { name: "Venmo", href: "/payment/venmo", slug: "venmo", description: "Venmo social payment feed screen layout" },
-  { name: "BHIM UPI", href: "/payment/upi", slug: "upi", description: "Indian standard UPI confirmation screen" },
-  { name: "PhonePe", href: "/payment/phonepay", slug: "phonepay", description: "PhonePe payment confirmation layout" },
-  { name: "Fonepay", href: "/payment/fonepay", slug: "fonepay", description: "Fonepay Nepal receipt screen mockup" },
-  { name: "Cash App", href: "/payment/cashapp", slug: "cashapp", description: "Cash App successful transfer receipt" },
+  // Americas
+  { name: "PayPal", href: "/payment/paypal", slug: "paypal", emoji: "🌐", color: "#003087", region: "Americas" },
+  { name: "Venmo", href: "/payment/venmo", slug: "venmo", emoji: "V", color: "#008CFF", region: "Americas" },
+  { name: "Cash App", href: "/payment/cashapp", slug: "cashapp", emoji: "$", color: "#00D64F", region: "Americas" },
+  { name: "Zelle", href: "/payment/zelle", slug: "zelle", emoji: "Z", color: "#6D1ED4", region: "Americas" },
+  { name: "Interac", href: "/payment/interac", slug: "interac", emoji: "🍁", color: "#F5A623", region: "Americas" },
+  // Global
+  { name: "Apple Pay", href: "/payment/applepay", slug: "applepay", emoji: "", color: "#111", region: "Global" },
+  { name: "Google Pay", href: "/payment/googlepay", slug: "googlepay", emoji: "G", color: "#4285F4", region: "Global" },
+  { name: "Google Wallet", href: "/payment/googlewallet", slug: "googlewallet", emoji: "GW", color: "#1a73e8", region: "Global" },
+  { name: "Stripe", href: "/payment/stripe", slug: "stripe", emoji: "S", color: "#635bff", region: "Global" },
+  // Europe
+  { name: "Wero", href: "/payment/wero", slug: "wero", emoji: "W", color: "#00B2A9", region: "Europe" },
+  { name: "iDEAL", href: "/payment/ideal", slug: "ideal", emoji: "iD", color: "#0033A0", region: "Europe" },
+  { name: "Bancontact", href: "/payment/bancontact", slug: "bancontact", emoji: "BC", color: "#005499", region: "Europe" },
+  { name: "Bizum", href: "/payment/bizum", slug: "bizum", emoji: "bz", color: "#0066CC", region: "Europe" },
+  { name: "Satispay", href: "/payment/satispay", slug: "satispay", emoji: "S", color: "#FF4D00", region: "Europe" },
+  { name: "BLIK", href: "/payment/blik", slug: "blik", emoji: "BL", color: "#E91E63", region: "Europe" },
+  { name: "MB WAY", href: "/payment/mbway", slug: "mbway", emoji: "MB", color: "#ED1C24", region: "Europe" },
+  { name: "TWINT", href: "/payment/twint", slug: "twint", emoji: "TW", color: "#111", region: "Europe" },
+  // Scandinavia
+  { name: "Swish", href: "/payment/swish", slug: "swish", emoji: "~", color: "#E11D48", region: "Scandinavia" },
+  { name: "Vipps", href: "/payment/vipps", slug: "vipps", emoji: "V", color: "#FF5B24", region: "Scandinavia" },
+  { name: "MobilePay", href: "/payment/mobilepay", slug: "mobilepay", emoji: "MP", color: "#5A4FCF", region: "Scandinavia" },
+  // India & Asia
+  { name: "Paytm", href: "/payment/paytm", slug: "paytm", emoji: "₹", color: "#00baf2", region: "India" },
+  { name: "PhonePe", href: "/payment/phonepay", slug: "phonepay", emoji: "Ph", color: "#5f259f", region: "India" },
+  { name: "BHIM UPI", href: "/payment/upi", slug: "upi", emoji: "UPI", color: "#ff9933", region: "India" },
+  { name: "Fonepay", href: "/payment/fonepay", slug: "fonepay", emoji: "FP", color: "#ed1c24", region: "Asia" },
+  // Middle East & Africa
+  { name: "STC Pay", href: "/payment/stcpay", slug: "stcpay", emoji: "STC", color: "#6B2D8B", region: "Middle East" },
+  { name: "KNET", href: "/payment/knet", slug: "knet", emoji: "KN", color: "#007A3D", region: "Middle East" },
+  { name: "PayShap", href: "/payment/payshap", slug: "payshap", emoji: "PS", color: "#00843D", region: "Africa" },
 ];
+
+const PAYMENT_REGIONS = [
+  { label: "🌎 Americas", key: "Americas" },
+  { label: "🌍 Global", key: "Global" },
+  { label: "🇪🇺 Europe", key: "Europe" },
+  { label: "🏔️ Scandinavia", key: "Scandinavia" },
+  { label: "🇮🇳 India & Asia", keys: ["India", "Asia"] },
+  { label: "🌐 Mid East & Africa", keys: ["Middle East", "Africa"] },
+];
+
 
 const BILL_PLATFORMS = [
   { name: "Amazon Invoice", href: "/bill-generator/amazon", slug: "amazon", description: "Official Amazon order invoice PDF mockup" },
@@ -524,24 +558,71 @@ const Navbar = () => {
               </button>
 
               {desktopDropdown === "payments" && (
-                <div className="absolute left-0 top-full mt-2 w-[32rem] max-w-[calc(100vw-14rem)] rounded-2xl border border-slate-800 bg-[#111827] p-4 shadow-2xl overflow-hidden z-50">
-                  <div className="grid grid-cols-2 gap-2">
-                    {PAYMENT_PLATFORMS.map((platform) => (
-                      <Link
-                        key={platform.slug}
-                        href={platform.href}
-                        className="group/item flex gap-3 rounded-xl p-2.5 hover:bg-slate-800/60 transition-all duration-200"
-                        onClick={() => setDesktopDropdown(null)}
-                      >
-                        <div className="flex items-center justify-center shrink-0 w-8 h-8 rounded-xl bg-slate-800/80 border border-slate-700/30 group-hover/item:bg-slate-700/80 group-hover/item:border-slate-600 transition-colors">
-                          {getBrandIcon(platform.slug, 16)}
+                <div className="fixed left-0 right-0 top-[60px] z-[100] px-4" style={{ pointerEvents: "auto" }}>
+                  <div className="mx-auto max-w-7xl">
+                    <div
+                      className="rounded-2xl border border-slate-700/60 shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden"
+                      style={{ background: "linear-gradient(135deg, #0d1117 0%, #111827 50%, #0f172a 100%)", backdropFilter: "blur(20px)" }}
+                    >
+                      {/* Header */}
+                      <div className="flex items-center justify-between px-5 py-3 border-b border-slate-700/50">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
+                          <span className="text-xs font-bold text-slate-300 uppercase tracking-widest">Payment Receipt Generators</span>
+                          <span className="ml-1 text-[10px] bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full font-bold">27 Platforms</span>
                         </div>
-                        <div className="min-w-0 text-left">
-                          <div className="text-sm font-semibold text-slate-200 group-hover/item:text-white transition-colors">{platform.name}</div>
-                          <div className="text-[11px] text-slate-400 truncate mt-0.5 group-hover/item:text-slate-300 transition-colors">{platform.description}</div>
-                        </div>
-                      </Link>
-                    ))}
+                        <Link
+                          href="/payment"
+                          className="flex items-center gap-1 text-xs font-bold text-indigo-400 hover:text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 px-3 py-1.5 rounded-lg transition-all"
+                          onClick={() => setDesktopDropdown(null)}
+                        >
+                          Browse all →
+                        </Link>
+                      </div>
+
+                      {/* Region columns */}
+                      <div className="p-4 grid grid-cols-6 gap-4">
+                        {PAYMENT_REGIONS.map((region) => {
+                          const regionKeys = (region as any).keys ?? [(region as any).key];
+                          const platforms = PAYMENT_PLATFORMS.filter((p) => regionKeys.includes(p.region));
+                          return (
+                            <div key={region.label}>
+                              <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 px-1">
+                                {region.label}
+                              </div>
+                              <div className="flex flex-col gap-0.5">
+                                {platforms.map((platform) => (
+                                  <Link
+                                    key={platform.slug}
+                                    href={platform.href}
+                                    className="group/p flex items-center gap-2.5 rounded-lg px-2 py-1.5 hover:bg-slate-700/50 transition-all duration-150"
+                                    onClick={() => setDesktopDropdown(null)}
+                                  >
+                                    <div
+                                      className="shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-[9px] font-black text-white shadow-sm"
+                                      style={{ background: platform.color }}
+                                    >
+                                      {platform.emoji}
+                                    </div>
+                                    <span className="text-[13px] font-semibold text-slate-300 group-hover/p:text-white transition-colors whitespace-nowrap">
+                                      {platform.name}
+                                    </span>
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {/* Footer */}
+                      <div className="px-5 py-2.5 border-t border-slate-700/40 flex items-center justify-between">
+                        <p className="text-[11px] text-slate-500">Generate payment receipt mockups for design purposes only</p>
+                        <Link href="/payment" className="text-[11px] font-bold text-indigo-400 hover:text-indigo-300 transition-colors" onClick={() => setDesktopDropdown(null)}>
+                          View country guide →
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
