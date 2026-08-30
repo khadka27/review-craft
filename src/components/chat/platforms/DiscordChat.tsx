@@ -1,24 +1,30 @@
 import { ChatData } from "@/types/chat";
 import { Hash, Bell, Pin, Users, Inbox, HelpCircle, PlusCircle, Gift, Sticker, Smile } from "lucide-react";
+import MobileStatusBar from "@/components/ui/MobileStatusBar";
 
 export const DiscordChat = ({ data }: { data: ChatData }) => {
-  const isDark = data.theme === "dark";
+  const isDark = data.theme === "dark" || true; // Discord mobile app is typically dark
 
   return (
-    <div className={`h-full flex flex-col font-sans ${isDark ? "bg-[#313338] text-[#dbdee1]" : "bg-white text-[#060607]"}`}>
+    <div className={`w-full h-full flex-1 flex flex-col min-h-0 font-sans ${isDark ? "bg-[#313338] text-[#dbdee1]" : "bg-white text-[#060607]"}`}>
+      {/* Status Bar */}
+      <div className={`px-0 pt-2 pb-1 shrink-0 ${isDark ? "bg-[#2b2d31]" : "bg-gray-100"}`}>
+        <MobileStatusBar isDark={isDark} batteryLevel={87} />
+      </div>
+
       {/* Header */}
-      <div className={`p-3 flex items-center gap-2 border-b shadow-sm ${isDark ? "border-[#2b2d31]" : "border-gray-200"}`}>
-        <Hash size={20} className="text-[#80848e]" />
+      <div className={`p-2.5 px-3 flex items-center gap-2 border-b shadow-sm shrink-0 ${isDark ? "border-[#2b2d31] bg-[#2b2d31]" : "border-gray-200 bg-white"}`}>
+        <Hash size={18} className="text-[#80848e]" />
         <div className="flex-1 font-bold text-sm truncate">{data.contactName}</div>
-        <div className="flex gap-4 px-2 text-[#b5bac1]">
-          <Bell size={20} />
-          <Pin size={20} />
-          <Users size={20} />
+        <div className="flex gap-3 px-1 text-[#b5bac1]">
+          <Bell size={18} />
+          <Pin size={18} />
+          <Users size={18} />
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
         {data.messages.map((msg, index) => {
           // In Discord, messages from the same user are often grouped
           const isFirstInGroup = index === 0 || data.messages[index-1].sender !== msg.sender;
@@ -64,17 +70,18 @@ export const DiscordChat = ({ data }: { data: ChatData }) => {
       </div>
 
       {/* Footer */}
-      <div className="p-4 pt-0">
-        <div className={`flex items-center gap-3 p-2.5 px-4 rounded-lg ${isDark ? "bg-[#383a40]" : "bg-[#ebedef]"}`}>
-          <PlusCircle size={20} className="text-[#b5bac1]" />
-          <div className="flex-1 text-sm text-[#949ba4]">Message @{data.contactName}</div>
-          <div className="flex gap-3 text-[#b5bac1]">
-            <Gift size={20} />
-            <Sticker size={20} />
-            <Smile size={20} />
+      <div className="p-3 pt-0 shrink-0">
+        <div className={`flex items-center gap-3 p-2 px-3 rounded-lg ${isDark ? "bg-[#383a40]" : "bg-[#ebedef]"}`}>
+          <PlusCircle size={18} className="text-[#b5bac1]" />
+          <div className="flex-1 text-xs text-[#949ba4]">Message @{data.contactName}</div>
+          <div className="flex gap-2.5 text-[#b5bac1]">
+            <Gift size={18} />
+            <Sticker size={18} />
+            <Smile size={18} />
           </div>
         </div>
       </div>
+      <div className={`w-28 h-1 rounded-full mx-auto my-1.5 shrink-0 ${isDark ? "bg-white/90" : "bg-black/30"}`} />
     </div>
   );
 };

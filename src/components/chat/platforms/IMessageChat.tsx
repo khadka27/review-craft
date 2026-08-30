@@ -11,18 +11,18 @@ export const IMessageChat = ({ data }: { data: ChatData }) => {
 
   return (
     <div
-      className={`h-full w-full flex flex-col font-sans select-none ${
+      className={`w-full h-full flex-1 flex flex-col min-h-0 font-sans select-none ${
         isDark ? "bg-black text-white" : "bg-white text-slate-900"
       }`}
     >
       {/* iOS Top Status Bar */}
-      <div className="pt-2 pb-1 px-4 z-20">
-        <MobileStatusBar />
+      <div className={`pt-2 pb-1 px-0 z-20 shrink-0 ${isDark ? "bg-black" : "bg-white"}`}>
+        <MobileStatusBar isDark={isDark} batteryLevel={87} />
       </div>
 
       {/* iOS iMessage Navigation Header */}
       <div
-        className={`px-3 py-2 border-b flex items-center justify-between z-10 ${
+        className={`px-3 py-2 border-b flex items-center justify-between z-10 shrink-0 ${
           isDark ? "border-neutral-800 bg-black/90" : "border-slate-200/80 bg-white/90"
         } backdrop-blur-md`}
       >
@@ -58,7 +58,7 @@ export const IMessageChat = ({ data }: { data: ChatData }) => {
 
       {/* Chat Messages Body */}
       <div
-        className={`flex-1 overflow-y-auto p-4 space-y-3 ${
+        className={`flex-1 overflow-y-auto p-4 space-y-3 min-h-0 ${
           isDark ? "bg-black" : "bg-white"
         }`}
       >

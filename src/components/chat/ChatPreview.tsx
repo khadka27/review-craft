@@ -46,22 +46,22 @@ export const ChatPreview = ({ chatData }: ChatPreviewProps) => {
       {/* Visual Flagship Phone Frame */}
       <div className="w-full max-w-[360px] sm:max-w-[375px] shadow-2xl rounded-[46px] bg-[#161a22] p-2 sm:p-2.5 border border-slate-700/60 transition-all duration-300">
         {/* Screen Area */}
-        <div className={`relative rounded-[38px] overflow-hidden ${isDark ? "bg-[#111]" : "bg-white"} shadow-inner flex flex-col min-h-[580px]`}>
+        <div className={`relative rounded-[38px] overflow-hidden ${isDark ? "bg-[#111]" : "bg-white"} shadow-inner flex flex-col h-[620px] sm:h-[650px]`}>
           {/* Dynamic Island Pill */}
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 z-30 w-24 h-4.5 bg-black rounded-full shadow-sm flex items-center justify-between px-2">
+          <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-30 w-24 h-4.5 bg-black rounded-full shadow-sm flex items-center justify-between px-2 pointer-events-none">
             <div className="w-1.5 h-1.5 rounded-full bg-[#050505] ml-auto"></div>
           </div>
 
           {/* Flat Capture Area (for download) */}
           <div 
             id="chat-screen-capture" 
-            className={`h-full w-full ${isDark ? "bg-[#111]" : "bg-white"} rounded-none border-none flex flex-col justify-between flex-1`}
+            className={`w-full h-full ${isDark ? "bg-[#111]" : "bg-white"} flex flex-col flex-1 overflow-hidden relative`}
           >
-            <div className="pt-7 flex-1 flex flex-col overflow-hidden">
+            <div className="w-full h-full flex-1 flex flex-col overflow-hidden min-h-0">
               {renderPlatform()}
             </div>
             <div 
-              className="w-full bg-slate-900 text-slate-300 text-[9px] font-mono font-bold tracking-wider py-1.5 px-2 text-center border-t border-slate-700 uppercase select-none pointer-events-none z-30 export-watermark-banner"
+              className="w-full bg-slate-900 text-slate-300 text-[9px] font-mono font-bold tracking-wider py-1.5 px-2 text-center border-t border-slate-700 uppercase select-none pointer-events-none z-30 export-watermark-banner shrink-0"
               data-export-watermark="true"
             >
               SIMULATED CHAT MOCKUP — FOR DESIGN USE

@@ -1,23 +1,29 @@
 import { ChatData } from "@/types/chat";
 import { Info, ChevronLeft, Settings, Image as ImageIcon, Gift, AlignLeft, Smile, Send } from "lucide-react";
+import MobileStatusBar from "@/components/ui/MobileStatusBar";
 
 export const TwitterChat = ({ data }: { data: ChatData }) => {
   const isDark = data.theme === "dark";
 
   return (
-    <div className={`h-full flex flex-col font-sans ${isDark ? "bg-black text-white" : "bg-white text-black"}`}>
+    <div className={`w-full h-full flex-1 flex flex-col min-h-0 font-sans ${isDark ? "bg-black text-white" : "bg-white text-black"}`}>
+      {/* Status Bar */}
+      <div className={`px-0 pt-2 pb-1 shrink-0 ${isDark ? "bg-black" : "bg-white"}`}>
+        <MobileStatusBar isDark={isDark} batteryLevel={87} />
+      </div>
+
       {/* Header */}
-      <div className={`p-3 flex items-center gap-6 border-b ${isDark ? "border-gray-800" : "border-gray-100"}`}>
-        <ChevronLeft size={20} />
+      <div className={`p-2.5 px-3 flex items-center gap-4 border-b shrink-0 ${isDark ? "border-gray-800" : "border-gray-100"}`}>
+        <ChevronLeft size={22} />
         <div className="flex-1 flex flex-col items-center">
-          <div className="font-bold text-base">{data.contactName}</div>
+          <div className="font-bold text-sm">{data.contactName}</div>
           <div className="text-[11px] text-gray-500">@{data.contactName.toLowerCase().replace(/\s/g, '')}</div>
         </div>
         <Info size={20} />
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
         {data.messages.map((msg) => {
           const isMe = msg.sender === "me";
           return (
@@ -43,16 +49,17 @@ export const TwitterChat = ({ data }: { data: ChatData }) => {
       </div>
 
       {/* Footer */}
-      <div className={`p-2 px-4 border-t ${isDark ? "border-gray-800" : "border-gray-100"}`}>
+      <div className={`p-2 px-3 border-t shrink-0 ${isDark ? "border-gray-800" : "border-gray-100"}`}>
         <div className={`flex items-center gap-3 p-1.5 px-3 rounded-2xl border ${isDark ? "bg-black border-gray-800" : "bg-[#eff3f4] border-transparent"}`}>
-          <ImageIcon size={20} className="text-[#1d9bf0]" />
-          <Gift size={20} className="text-[#1d9bf0]" />
-          <AlignLeft size={20} className="text-[#1d9bf0]" />
-          <div className="flex-1 text-gray-500 text-sm">Start a message</div>
-          <Smile size={20} className="text-[#1d9bf0]" />
-          <Send size={20} className="text-[#1d9bf0]" />
+          <ImageIcon size={18} className="text-[#1d9bf0]" />
+          <Gift size={18} className="text-[#1d9bf0]" />
+          <AlignLeft size={18} className="text-[#1d9bf0]" />
+          <div className="flex-1 text-gray-500 text-xs">Start a message</div>
+          <Smile size={18} className="text-[#1d9bf0]" />
+          <Send size={18} className="text-[#1d9bf0]" />
         </div>
       </div>
+      <div className={`w-28 h-1 rounded-full mx-auto my-1.5 shrink-0 ${isDark ? "bg-white/90" : "bg-black/30"}`} />
     </div>
   );
 };

@@ -33,69 +33,11 @@ const MobilePayReceipt = dynamic(() => import("./platforms/MobilePayReceipt").th
 const STCPayReceipt = dynamic(() => import("./platforms/STCPayReceipt").then(m => m.STCPayReceipt), { ssr: true });
 const KNETReceipt = dynamic(() => import("./platforms/KNETReceipt").then(m => m.KNETReceipt), { ssr: true });
 const PayShapReceipt = dynamic(() => import("./platforms/PayShapReceipt").then(m => m.PayShapReceipt), { ssr: true });
-import { Wifi, Signal } from "lucide-react";
+import MobileStatusBar from "@/components/ui/MobileStatusBar";
 
 interface PaymentPreviewProps {
   paymentData: TransactionData;
 }
-
-const MobileStatusBar = ({
-  isDark,
-  batteryLevel = 88,
-}: {
-  isDark: boolean;
-  batteryLevel?: number;
-}) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const time = mounted 
-    ? new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      })
-    : "09:41";
-
-  const textColor = isDark ? "text-white" : "text-slate-900";
-  const iconColor = isDark ? "#ffffff" : "#0f172a";
-
-  return (
-    <div
-      className={`flex justify-between items-center px-6 pt-2 pb-1 w-full ${textColor} absolute top-0 left-0 right-0 z-20 select-none pointer-events-none`}
-    >
-      <span className="text-[12px] font-bold tracking-tight leading-none drop-shadow-sm">{time}</span>
-
-      <div className="flex items-center gap-1.5 leading-none">
-        <Signal size={12} strokeWidth={2.5} style={{ color: iconColor }} />
-        <Wifi size={12} strokeWidth={2.5} style={{ color: iconColor }} />
-
-        {/* Battery Icon */}
-        <div className="flex items-center gap-0.5 ml-0.5">
-          <div
-            className="w-4.5 h-2.5 rounded-[3px] p-[1px] flex items-center"
-            style={{ border: `1.5px solid ${iconColor}` }}
-          >
-            <div
-              className="h-full rounded-[1px]"
-              style={{
-                width: `${batteryLevel}%`,
-                backgroundColor: iconColor,
-              }}
-            />
-          </div>
-          <div
-            className="w-0.5 h-1 rounded-r-[1px]"
-            style={{ backgroundColor: iconColor }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
 
 export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
   // Determine if the platform has a dark header to adjust status bar text color
@@ -218,7 +160,7 @@ export const PaymentPreview = ({ paymentData }: PaymentPreviewProps) => {
               className="w-full bg-white relative flex flex-col overflow-hidden"
             >
               {/* Floating Status Bar */}
-              <MobileStatusBar isDark={isDark} />
+              <MobileStatusBar isDark={isDark} batteryLevel={87} className="absolute top-0 left-0 right-0 z-20" />
 
               {/* Platform Receipt */}
               <div className="w-full">

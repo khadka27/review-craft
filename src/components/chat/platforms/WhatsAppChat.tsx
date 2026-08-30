@@ -42,14 +42,14 @@ export const WhatsAppChat = ({ data }: { data: ChatData }) => {
   };
 
   return (
-    <div className={`h-full flex flex-col font-sans ${isDark ? "bg-[#0b141a] text-[#e9edef]" : "bg-[#efeae2] text-[#111b21]"}`}>
+    <div className={`w-full h-full flex-1 flex flex-col min-h-0 font-sans ${isDark ? "bg-[#0b141a] text-[#e9edef]" : "bg-[#efeae2] text-[#111b21]"}`}>
       {/* Status bar */}
-      <div className={`px-0 pt-4 pb-1 ${isDark ? "bg-[#111b21]" : "bg-[#f0f2f5]"}`}>
+      <div className={`px-0 pt-2 pb-1 shrink-0 ${isDark ? "bg-[#111b21]" : "bg-[#f0f2f5]"}`}>
         <MobileStatusBar isDark={isDark} batteryLevel={87} />
       </div>
 
       {/* Header */}
-      <div className={`px-4 py-2 flex items-center gap-3 border-b ${isDark ? "bg-[#111b21] border-[#202c33]" : "bg-[#f0f2f5] border-[#e9edef]"}`}>
+      <div className={`px-4 py-2 flex items-center gap-3 border-b shrink-0 ${isDark ? "bg-[#111b21] border-[#202c33]" : "bg-[#f0f2f5] border-[#e9edef]"}`}>
         <ChevronLeft size={24} className={isDark ? "text-[#d1d7db]" : "text-[#54656f]"} />
         <div className={`w-9 h-9 rounded-full ${isDark ? "bg-[#1f2c34]" : "bg-gray-300"} overflow-hidden`}>
           <img
@@ -75,7 +75,7 @@ export const WhatsAppChat = ({ data }: { data: ChatData }) => {
 
       {/* Chat area */}
       <div
-        className="flex-1 overflow-y-auto px-3 py-3 space-y-2"
+        className="flex-1 overflow-y-auto px-3 py-3 space-y-2 min-h-0"
         style={{
           backgroundImage:
             "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
