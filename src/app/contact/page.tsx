@@ -3,12 +3,13 @@ import { Mail, MessageSquare, Clock } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us - ReviewCraft Support & Inquiries",
+  title: "Contact Support & Inquiries — Help Desk & Feedback",
   description:
-    "Contact ReviewCraft for technical support, feedback, privacy requests, or general inquiries.",
+    "Get in touch with the ReviewCraft team for tool assistance, feature suggestions, bug reports, legal questions, and partnership opportunities.",
   openGraph: {
-    title: "Contact Us - ReviewCraft Support & Inquiries",
-    description: "Get in touch with the ReviewCraft team.",
+    title: "Contact Support & Inquiries — Help Desk & Feedback | ReviewCraft",
+    description:
+      "Get in touch with the ReviewCraft team for tool assistance, feature suggestions, bug reports, legal questions, and partnership opportunities.",
     url: "/contact",
     type: "website",
   },

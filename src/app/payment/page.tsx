@@ -5,13 +5,15 @@ import { getPlatformIcon } from "@/components/SocialMediaIcons";
 import { Sparkles, CreditCard, ChevronRight, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Payment Receipt Generator — PayPal, Venmo, Zelle, Swish, BLIK, iDEAL & 25+ Global Apps | ReviewCraft",
+  title: "Payment Receipt Generator — PayPal, Venmo, Zelle, Swish, BLIK & 25+ Apps",
   description:
-    "Generate realistic payment receipt screenshots for PayPal, Venmo, Cash App, Zelle, Swish, Vipps, MobilePay, iDEAL, Bizum, BLIK, TWINT, Satispay, MB WAY, Interac, STC Pay, KNET, PayShap & more.",
+    "Generate realistic payment receipt screenshots for PayPal, Venmo, Cash App, Zelle, Swish, Vipps, MobilePay, iDEAL, Bizum, BLIK, TWINT, Satispay, and 20+ global apps.",
   alternates: { canonical: "/payment" },
   openGraph: {
-    title: "Payment Receipt Screenshot Generator — 30+ Global Apps",
-    description: "Create realistic payment confirmation screenshots for 30+ payment platforms across USA, Europe, Scandinavia, Middle East, and more.",
+    title: "Payment Receipt Generator — 30+ Global Apps | ReviewCraft",
+    description:
+      "Create realistic payment confirmation screenshots for 30+ payment platforms across USA, Europe, Scandinavia, Middle East, and Asia.",
+    url: "/payment",
     type: "website",
   },
 };

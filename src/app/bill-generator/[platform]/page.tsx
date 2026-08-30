@@ -16,19 +16,19 @@ const billMetadata: Record<
   { title: string; description: string }
 > = {
   amazon: {
-    title: "Amazon Invoice Generator - Create Realistic Amazon Receipts",
+    title: "Amazon Invoice Generator — Order Summary & Receipt PDF Mockup",
     description:
-      "Generate realistic Amazon invoices and order receipts with editable details, product items, pricing, billing addresses, and totals.",
+      "Build realistic Amazon order invoices with editable ASIN numbers, shipping addresses, prime badges, sales tax, and itemized product totals.",
   },
   walmart: {
-    title: "Walmart Receipt Generator - Order Details Invoice Maker",
+    title: "Walmart Receipt Generator — Online Order Confirmation & Barcode Mockup",
     description:
-      "Generate realistic Walmart invoice details and order summary receipts. Customize items, prices, shipping addresses, and tax values.",
+      "Create realistic Walmart e-commerce order receipts with customizable barcodes, delivery statuses, retail SKU listings, and billing breakdown.",
   },
   supplement: {
-    title: "Supplement Invoice Generator - Premium Health Shop Receipts",
+    title: "Supplement Store Receipt Generator — Health & Wellness Invoice Mockup",
     description:
-      "Create clean invoices for supplement brands and health stores (like GNC or iHerb). Customize protein powders, vitamin specs, and regulatory terms.",
+      "Design clean vitamin and health supplement store receipts. Customize nutritional SKU specs, batch tracking numbers, seller info, and pricing.",
   },
 };
 

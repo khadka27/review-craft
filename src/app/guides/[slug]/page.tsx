@@ -15,20 +15,25 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
   const { slug } = await params;
   const guide = GUIDES.find((g) => g.slug === slug);
-  if (!guide) return {};
+  if (!guide) return { title: "Guide Not Found" };
 
   return {
-    title: `${guide.title} | ReviewCraft Guides`,
+    title: guide.title,
     description: guide.description,
     alternates: {
       canonical: `/guides/${guide.slug}`,
     },
     openGraph: {
-      title: guide.title,
+      title: `${guide.title} | ReviewCraft`,
       description: guide.description,
       type: "article",
       publishedTime: guide.date,
       authors: [guide.author.name],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: guide.title,
+      description: guide.description,
     },
   };
 }

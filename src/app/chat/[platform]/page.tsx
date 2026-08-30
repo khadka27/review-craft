@@ -24,39 +24,39 @@ const chatMetadata: Record<
   { title: string; description: string }
 > = {
   whatsapp: {
-    title: "WhatsApp Fake Chat Generator - Create Fake WhatsApp Chats",
+    title: "WhatsApp Chat Generator — Custom Message & Status Mockup Tool",
     description:
-      "Create realistic WhatsApp chat screenshots instantly with editable messages, timestamps, contact names, and profile photos.",
+      "Generate authentic WhatsApp chat screenshots with editable green bubbles, blue read ticks, contact headers, online statuses, and media previews.",
   },
   messenger: {
-    title: "Messenger Fake Chat Generator - Create Fake Messenger Chats",
+    title: "Facebook Messenger Chat Generator — DM & Conversation Mockups",
     description:
-      "Generate realistic Messenger chat screenshots instantly with editable conversations, timestamps, usernames, and profile details.",
+      "Create realistic Facebook Messenger chat screenshots with customized gradient chat bubbles, active now indicators, and profile avatars.",
   },
   instagram: {
-    title: "Instagram Fake Chat Generator - Create Fake Instagram DMs",
+    title: "Instagram DM Generator — Direct Message & Story Reply Mockups",
     description:
-      "Create realistic Instagram DM screenshots with editable messages, usernames, timestamps, reactions, and replies.",
+      "Design realistic Instagram direct message screenshots with heart reactions, verified checkmarks, audio wave bubbles, and dark/light themes.",
   },
   telegram: {
-    title: "Telegram Fake Chat Generator - Create Fake Telegram Chats",
+    title: "Telegram Chat Generator — Channel & Encrypted Message Mockups",
     description:
-      "Generate realistic Telegram chat screenshots with editable usernames, timestamps, messages, and conversation layouts.",
+      "Build realistic Telegram messenger screenshots featuring custom usernames, reply previews, channel admin badges, and timestamp headers.",
   },
   twitter: {
-    title: "Twitter Fake Chat Generator - Create Fake X Messages",
+    title: "Twitter / X DM Generator — Direct Message Screenshot Maker",
     description:
-      "Create realistic Twitter and X chat screenshots with editable usernames, direct messages, and timestamps instantly.",
+      "Generate realistic Twitter and X direct message screenshots with verified badges, profile handles, message timestamps, and sleek dark UI.",
   },
   discord: {
-    title: "Discord Fake Chat Generator - Create Fake Discord Messages",
+    title: "Discord Chat Generator — Server Channel & Bot Message Mockups",
     description:
-      "Generate realistic Discord chat screenshots with editable usernames, messages, channels, and timestamps instantly.",
+      "Create realistic Discord chat screenshots with custom server roles, channel tags, BOT labels, reaction emojis, and dark theme formatting.",
   },
   imessage: {
-    title: "iMessage Fake Chat Generator - Create Fake iPhone Chats",
+    title: "iMessage Generator — iPhone Blue Bubble & iOS Text Mockups",
     description:
-      "Create realistic iMessage screenshots instantly with editable texts, timestamps, contact names, and iPhone chat layouts.",
+      "Generate pixel-perfect Apple iMessage screenshots on iOS with blue/green message bubbles, Delivered receipts, and status bar controls.",
   },
 };
 

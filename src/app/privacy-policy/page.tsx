@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - ReviewCraft",
+  title: "Privacy Policy — Data Protection, GDPR & Cookie Disclosures",
   description:
-    "Privacy Policy for ReviewCraft explaining how we collect, use, and protect your information, including AdSense cookie disclosures and local browser rendering.",
+    "ReviewCraft Privacy Policy explaining local in-browser mockup generation, client-side data safety, GDPR/CCPA compliance, and advertising cookie disclosures.",
   openGraph: {
-    title: "Privacy Policy - ReviewCraft",
+    title: "Privacy Policy — Data Protection, GDPR & Cookie Disclosures | ReviewCraft",
     description:
-      "Privacy Policy for ReviewCraft explaining how we collect, use, and protect your information.",
+      "ReviewCraft Privacy Policy explaining local in-browser mockup generation, client-side data safety, GDPR/CCPA compliance, and advertising cookie disclosures.",
     url: "/privacy-policy",
     type: "website",
   },

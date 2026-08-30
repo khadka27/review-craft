@@ -10,6 +10,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: "https://www.fakereviewgenerator.com/sitemap.xml",
-    host: "https://www.fakereviewgenerator.com",
   };
 }

@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - ReviewCraft",
+  title: "Terms of Service — User Agreement & Usage Conditions",
   description:
-    "Terms of Service for using ReviewCraft. Please read our UI/UX mockup usage guidelines and legal terms.",
+    "ReviewCraft Terms of Service governing access to browser-based mockup tools, software licences, user responsibilities, and intellectual property terms.",
   openGraph: {
-    title: "Terms of Service - ReviewCraft",
+    title: "Terms of Service — User Agreement & Usage Conditions | ReviewCraft",
     description:
-      "Terms of Service for using ReviewCraft visual prototyping tools. Prototyping usage guidelines and legal terms.",
+      "ReviewCraft Terms of Service governing access to browser-based mockup tools, software licences, user responsibilities, and intellectual property terms.",
     url: "/terms",
     type: "website",
   },

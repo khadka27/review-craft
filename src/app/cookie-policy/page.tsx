@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy - Fake Review Generator",
+  title: "Cookie Policy — Tracking Technologies & Ad Choices",
   description:
-    "Cookie Policy for Fake Review Generator explaining how cookies and similar tracking technologies are used.",
+    "ReviewCraft Cookie Policy outlining essential session storage, Google AdSense DoubleClick cookies, web analytics, and your opt-out preferences.",
   openGraph: {
-    title: "Cookie Policy - Fake Review Generator",
-    description: "Read how Fake Review Generator uses cookies and similar technologies.",
+    title: "Cookie Policy — Tracking Technologies & Ad Choices | ReviewCraft",
+    description:
+      "ReviewCraft Cookie Policy outlining essential session storage, Google AdSense DoubleClick cookies, web analytics, and your opt-out preferences.",
     url: "/cookie-policy",
     type: "website",
   },

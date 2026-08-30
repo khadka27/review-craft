@@ -3,13 +3,13 @@ import Link from "next/link";
 import { ShieldCheck, Target, Sparkles, BookOpen, Layers } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About ReviewCraft - Review Generator & Social Proof Mockup Platform | ReviewCraft",
+  title: "About ReviewCraft — Prototyping Mission & Visual Tool Standards",
   description:
-    "Learn about ReviewCraft: a browser-based review generator and social proof mockup tool for UI/UX designers, product teams, and educators.",
+    "Discover the story and principles behind ReviewCraft. We build browser-based visual prototyping tools for UX designers, product managers, and educators.",
   openGraph: {
-    title: "About ReviewCraft - Review Generator & Social Proof Mockup Platform | ReviewCraft",
+    title: "About ReviewCraft — Prototyping Mission & Visual Tool Standards",
     description:
-      "Learn about ReviewCraft: a browser-based review generator and social proof mockup tool for UI/UX designers, product teams, and educators.",
+      "Discover the story and principles behind ReviewCraft. We build browser-based visual prototyping tools for UX designers, product managers, and educators.",
     url: "/about",
     type: "website",
   },

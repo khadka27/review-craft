@@ -4,11 +4,18 @@ import Link from "next/link";
 import { Sparkles, FileText, ChevronRight, Check } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Google & Amazon Review Card & Invoice Generator | ReviewCraft",
+  title: "E-Commerce Invoice & Bill Generator — Amazon, Walmart & Store Receipts",
   description:
-    "Create Google review cards, Amazon review cards, retail receipts, and invoice screenshots for mockups and UI design.",
+    "Generate realistic e-commerce order invoices and receipts for UI mockups and design presentations. Customize order items, taxes, shipping, and billing details.",
   alternates: {
     canonical: "/bill-generator",
+  },
+  openGraph: {
+    title: "E-Commerce Invoice & Bill Generator — Amazon, Walmart & Store Receipts | ReviewCraft",
+    description:
+      "Generate realistic e-commerce order invoices and receipts for UI mockups and design presentations. Customize order items, taxes, shipping, and billing details.",
+    url: "/bill-generator",
+    type: "website",
   },
 };
 

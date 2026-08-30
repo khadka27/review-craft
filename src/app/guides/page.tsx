@@ -4,11 +4,18 @@ import { GUIDES } from "@/lib/guides-data";
 import { BookOpen, Clock, ArrowRight, ShieldCheck, Sparkles, Layout, Code2, Users, Eye } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Review & Social Proof Design Guides - How to Write & Format Reviews | ReviewCraft",
+  title: "UI Design Guides — Review Mockups & Social Proof Frameworks",
   description:
-    "Explore guides on creating review mockups, writing customer reviews, social proof design strategies, and UI prototyping best practices.",
+    "Comprehensive design guides on review card visual hierarchy, star rating component anatomy, WCAG accessibility, and ethical social proof prototyping.",
   alternates: {
     canonical: "/guides",
+  },
+  openGraph: {
+    title: "UI Design Guides — Review Mockups & Social Proof Frameworks | ReviewCraft",
+    description:
+      "Comprehensive design guides on review card visual hierarchy, star rating component anatomy, WCAG accessibility, and ethical social proof prototyping.",
+    url: "/guides",
+    type: "website",
   },
 };
 

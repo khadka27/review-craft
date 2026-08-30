@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Acceptable Use Policy - ReviewCraft",
+  title: "Acceptable Use Policy — Prohibited Uses & Ethics Standards",
   description:
-    "Acceptable Use Policy for ReviewCraft describing prohibited activities and responsible usage requirements.",
+    "ReviewCraft Acceptable Use Policy detailing permitted design prototyping scenarios, anti-fraud standards, FTC compliance, and strict prohibitions on deceptive publishing.",
   openGraph: {
-    title: "Acceptable Use Policy - ReviewCraft",
+    title: "Acceptable Use Policy — Prohibited Uses & Ethics Standards | ReviewCraft",
     description:
-      "Understand what is and is not allowed when using ReviewCraft.",
+      "ReviewCraft Acceptable Use Policy detailing permitted design prototyping scenarios, anti-fraud standards, FTC compliance, and strict prohibitions on deceptive publishing.",
     url: "/acceptable-use",
     type: "website",
   },

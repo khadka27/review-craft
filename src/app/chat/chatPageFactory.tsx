@@ -20,7 +20,7 @@ const chatPlatformMeta: Record<
 > = {
   whatsapp: {
     name: "WhatsApp",
-    description: "Create realistic WhatsApp chat screenshots in seconds.",
+    description: "Design pixel-perfect WhatsApp chat screens with custom message bubbles, read ticks, and contact avatars.",
     theme: {
       pageGradient: "bg-gradient-to-br from-green-50 via-white to-emerald-50",
       heroGradient: "bg-gradient-to-r from-[#25D366] to-[#128C7E]",
@@ -29,7 +29,7 @@ const chatPlatformMeta: Record<
   },
   messenger: {
     name: "Messenger",
-    description: "Create realistic Facebook Messenger chat screenshots in seconds.",
+    description: "Build realistic Facebook Messenger conversations with editable message timestamps, active status, and replies.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-white to-sky-50",
       heroGradient: "bg-gradient-to-r from-[#0084FF] to-[#00A2FF]",
@@ -38,7 +38,7 @@ const chatPlatformMeta: Record<
   },
   instagram: {
     name: "Instagram",
-    description: "Create realistic Instagram DM screenshots in seconds.",
+    description: "Create sleek Instagram direct message mockups with heart reactions, verified badges, and dark mode styling.",
     theme: {
       pageGradient: "bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50",
       heroGradient: "bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45]",
@@ -47,7 +47,7 @@ const chatPlatformMeta: Record<
   },
   telegram: {
     name: "Telegram",
-    description: "Create realistic Telegram chat screenshots in seconds.",
+    description: "Generate authentic Telegram messenger screenshots featuring channels, username tags, and status headers.",
     theme: {
       pageGradient: "bg-gradient-to-br from-blue-50 via-sky-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#0088cc] to-[#24A1DE]",
@@ -56,7 +56,7 @@ const chatPlatformMeta: Record<
   },
   twitter: {
     name: "Twitter/X",
-    description: "Create realistic Twitter/X DM screenshots in seconds.",
+    description: "Create realistic Twitter and X direct message screenshots with verified checks, avatars, and timestamps.",
     theme: {
       pageGradient: "bg-gradient-to-br from-slate-100 via-white to-zinc-100",
       heroGradient: "bg-gradient-to-r from-black to-slate-700",
@@ -65,7 +65,7 @@ const chatPlatformMeta: Record<
   },
   discord: {
     name: "Discord",
-    description: "Create realistic Discord chat screenshots in seconds.",
+    description: "Build realistic Discord community chat mockups with bot tags, role colors, emojis, and channel titles.",
     theme: {
       pageGradient: "bg-gradient-to-br from-indigo-50 via-violet-50 to-white",
       heroGradient: "bg-gradient-to-r from-[#5865F2] to-[#434ECF]",
@@ -74,7 +74,7 @@ const chatPlatformMeta: Record<
   },
   imessage: {
     name: "iMessage",
-    description: "Create realistic iMessage screenshots in seconds.",
+    description: "Generate Apple iOS iMessage mockups with blue text bubbles, delivery receipts, and iPhone status bars.",
     theme: {
       pageGradient: "bg-gradient-to-br from-slate-50 via-white to-blue-50",
       heroGradient: "bg-gradient-to-r from-[#007aff] to-[#0051a8]",

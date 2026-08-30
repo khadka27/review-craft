@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Disclaimer - ReviewCraft",
+  title: "Legal Disclaimer — Simulated Content & Platform Non-Affiliation",
   description:
-    "Disclaimer for ReviewCraft regarding simulated content, visual prototyping use, platform non-affiliation, and limitation of liability.",
+    "Official legal disclaimer regarding simulated review mockups, independent educational use, trademark non-endorsement, and prohibited deceptive practices.",
   openGraph: {
-    title: "Disclaimer - ReviewCraft",
+    title: "Legal Disclaimer — Simulated Content & Platform Non-Affiliation | ReviewCraft",
     description:
-      "Important legal disclaimer about visual prototyping use, simulated content, and third-party platform non-affiliation.",
+      "Official legal disclaimer regarding simulated review mockups, independent educational use, trademark non-endorsement, and prohibited deceptive practices.",
     url: "/disclaimer",
     type: "website",
   },

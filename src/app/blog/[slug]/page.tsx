@@ -27,18 +27,24 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
-  if (!post) return { title: "Post Not Found | ReviewCraft" };
+  if (!post) return { title: "Post Not Found" };
   return {
-    title: `${post.title} | ReviewCraft Blog`,
+    title: post.title,
     description: post.description,
     keywords: post.tags.join(", "),
     openGraph: {
-      title: post.title,
+      title: `${post.title} | ReviewCraft`,
       description: post.description,
       type: "article",
       publishedTime: post.publishedAt,
       authors: [post.author.name],
       images: post.coverImage ? [{ url: post.coverImage }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: post.coverImage ? [post.coverImage] : [],
     },
     alternates: { canonical: `/blog/${post.slug}` },
   };

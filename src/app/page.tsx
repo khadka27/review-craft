@@ -5,11 +5,20 @@ import HomePage from "./home/page";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Free Review Generator & Review Maker - AI Review & Mockup Tool | ReviewCraft",
+  title: {
+    absolute: "ReviewCraft — Free Review Generator, Social Proof & UI Mockup Tool",
+  },
   description:
-    "Free Review Generator & Review Maker tool. Generate realistic Google reviews, product reviews, Amazon ratings, and customer feedback mockups instantly.",
+    "Free online review generator & UI mockup maker. Design realistic Google reviews, Amazon ratings, Trustpilot cards, and social proof components in seconds.",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    title: "ReviewCraft — Free Review Generator & UI Prototype Tool",
+    description:
+      "Design realistic review interface mockups, rating cards, and social proof components for UI/UX testing, client presentations, and design demos.",
+    url: "https://www.fakereviewgenerator.com",
+    type: "website",
   },
 };
 
