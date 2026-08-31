@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useAuth } from "./auth/AuthProvider";
 
 declare global {
   interface Window {
@@ -26,6 +27,7 @@ export default function AdUnit({
   client,
 }: AdUnitProps) {
   const initializedRef = useRef(false);
+  const { isAuthenticated } = useAuth();
 
   const publisherId =
     client ||
@@ -33,6 +35,9 @@ export default function AdUnit({
     "ca-pub-5286253567075688";
 
   useEffect(() => {
+    // If user is authenticated in personal mode, do not execute AdSense
+    if (isAuthenticated) return;
+
     // Guard against duplicate execution in React strict mode
     if (initializedRef.current) return;
 
@@ -45,7 +50,12 @@ export default function AdUnit({
     } catch (err) {
       console.error("AdSense execution error:", err);
     }
-  }, []);
+  }, [isAuthenticated]);
+
+  // If user is authenticated in personal mode, do not render ad container or ins tag
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className={`ad-unit-wrapper my-4 overflow-hidden text-center ${className}`}>
@@ -60,3 +70,4 @@ export default function AdUnit({
     </div>
   );
 }
+

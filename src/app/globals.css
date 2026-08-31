@@ -122,3 +122,29 @@ footer {
 .animate-slide-in {
   animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Ad-Free Personal Mode Suppression (Prevents any stray ad scripts, auto-ads, or accidental clicks) */
+[data-ad-free="true"] .adsbygoogle,
+[data-ad-free="true"] .ad-unit-wrapper,
+[data-ad-free="true"] ins.adsbygoogle,
+[data-ad-free="true"] iframe[id*="google_ads"],
+[data-ad-free="true"] iframe[id*="aswift"],
+[data-ad-free="true"] .google-auto-placed,
+.ad-free-mode .adsbygoogle,
+.ad-free-mode .ad-unit-wrapper,
+.ad-free-mode ins.adsbygoogle,
+.ad-free-mode iframe[id*="google_ads"],
+.ad-free-mode iframe[id*="aswift"],
+.ad-free-mode .google-auto-placed {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}

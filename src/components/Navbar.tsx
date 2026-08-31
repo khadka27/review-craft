@@ -9,7 +9,8 @@ import {
   ChevronDownIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { MessageSquare, Sparkles } from "lucide-react";
+import { MessageSquare, Sparkles, ShieldCheck, LogOut, User } from "lucide-react";
+import { useAuth } from "@/components/auth/AuthProvider";
 import { getPlatformIcon } from "@/components/SocialMediaIcons";
 
 const getBrandIcon = (slug: string, size = 18) => {
@@ -344,7 +345,9 @@ const BILL_PLATFORMS = [
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { isAuthenticated, username, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [desktopDropdown, setDesktopDropdown] = useState<
     "reviews" | "chats" | "payments" | "bills" | "ai" | null
   >(null);
@@ -366,6 +369,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setDesktopDropdown(null);
+    setProfileDropdownOpen(false);
     setIsMenuOpen(false);
     setMobileReviewsOpen(false);
     setMobileChatsOpen(false);
@@ -379,6 +383,7 @@ const Navbar = () => {
       if (!desktopMenuRef.current) return;
       if (!desktopMenuRef.current.contains(event.target as Node)) {
         setDesktopDropdown(null);
+        setProfileDropdownOpen(false);
       }
     };
 
@@ -740,7 +745,51 @@ const Navbar = () => {
 
             <div className="ml-2 h-6 w-px bg-slate-800" aria-hidden="true" />
 
-           
+            {/* Ad-Free Personal Mode Badge / Profile */}
+            {isAuthenticated ? (
+              <div className="relative ml-2">
+                <button
+                  type="button"
+                  onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                  className="flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/50 px-3 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-900/50 hover:border-emerald-500/60 transition-all shadow-sm shadow-emerald-950/40"
+                  aria-expanded={profileDropdownOpen}
+                  aria-label="Personal Ad-Free Mode Status"
+                >
+                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Ad-Free</span>
+                  <ChevronDownIcon
+                    className={`w-3 h-3 text-emerald-400 transition-transform duration-200 ${
+                      profileDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {profileDropdownOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-slate-800 bg-[#111827] p-3 shadow-2xl z-50 animate-slide-in">
+                    <div className="px-2 py-2 border-b border-slate-800/80 mb-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-medium text-slate-400">Personal Admin</span>
+                        <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase">Active</span>
+                      </div>
+                      <p className="text-xs font-bold text-white truncate mt-1">{username || "Admin"}</p>
+                      <p className="text-[10px] text-emerald-400/90 mt-1">✓ Zero ads & scripts</p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        setProfileDropdownOpen(false);
+                        await logout();
+                      }}
+                      className="w-full flex items-center gap-2 rounded-xl px-2.5 py-2 text-xs font-medium text-red-400 hover:bg-red-950/40 hover:text-red-300 transition-colors"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                      <span>Log Out</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : null}
 
             {/* Action CTA Button */}
             <Link
@@ -997,7 +1046,7 @@ const Navbar = () => {
                 )}
               </div>
 
-              {/* Mobile Call To Action & Notice */}
+              {/* Mobile Call To Action & Session Controls */}
               <div className="pt-4 space-y-2.5">
                 <Link
                   href="/home"
@@ -1007,7 +1056,36 @@ const Navbar = () => {
                   Try Generator
                 </Link>
 
-               
+                {isAuthenticated ? (
+                  <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/30 p-3 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                      <div>
+                        <p className="text-xs font-bold text-emerald-200">Ad-Free Mode Active</p>
+                        <p className="text-[10px] text-emerald-400/80">{username || "Admin"}</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        setIsMenuOpen(false);
+                        await logout();
+                      }}
+                      className="flex items-center gap-1 text-xs font-semibold text-red-400 hover:text-red-300 bg-red-500/10 border border-red-500/20 px-2.5 py-1 rounded-lg"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                      <span>Log Out</span>
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="block w-full rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-2.5 text-center text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Personal Login (Ad-Free)
+                  </Link>
+                )}
               </div>
             </div>
           </div>

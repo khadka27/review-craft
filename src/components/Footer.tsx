@@ -14,6 +14,7 @@ const Footer = () => {
       { name: "UI Guides", href: "/guides" },
       { name: "About", href: "/about" },
       { name: "Contact", href: "/contact" },
+      { name: "Personal Mode", href: "/login" },
     ],
     legal: [
       { name: "Terms", href: "/terms" },

@@ -1,9 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { cookies } from "next/headers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/ui/Toast";
+import { AuthProvider } from "@/components/auth/AuthProvider";
+import AdSenseScript from "@/components/auth/AdSenseScript";
+import { SESSION_COOKIE_NAME, verifySessionToken } from "@/lib/auth";
 import "./globals.css";
 
 const inter = Inter({
@@ -93,15 +97,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-JF87FG7JXT";
 
+  // Check personal admin authentication status from session cookie on the server
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+  const { valid, username } = verifySessionToken(sessionCookie);
+  const isAuthenticated = Boolean(valid && username);
+
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      data-ad-free={isAuthenticated ? "true" : undefined}
+      className={isAuthenticated ? "ad-free-mode" : ""}
+    >
       <head>
         <meta name="msapplication-TileColor" content="#6366f1" />
         <meta name="application-name" content="ReviewCraft" />
@@ -126,44 +140,43 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <ToastProvider>
-          <Navbar />
-          <div className="flex-1">{children}</div>
-          {/* Deferred AdSense script loading strategy (lazyOnload) prevents blocking mobile main thread (INP/LCP fix) */}
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${
-              process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-5286253567075688"
-            }`}
-            crossOrigin="anonymous"
-            strategy="lazyOnload"
-            id="adsense-init"
-          />
+        <AuthProvider
+          initialIsAuthenticated={isAuthenticated}
+          initialUsername={username || null}
+        >
+          <ToastProvider>
+            <Navbar />
+            <div className="flex-1">{children}</div>
 
-          <Footer />
+            {/* Conditionally loads AdSense script only for public non-authenticated visitors */}
+            <AdSenseScript />
 
-          {/* Lazy-loaded Google Analytics to ensure 0 main-thread blocking during initial paint */}
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="lazyOnload"
-            id="ga-script"
-          />
-          <Script
-            id="ga-init"
-            strategy="lazyOnload"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-            }}
-          />
-        </ToastProvider>
+            <Footer />
+
+            {/* Lazy-loaded Google Analytics to ensure 0 main-thread blocking during initial paint */}
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="lazyOnload"
+              id="ga-script"
+            />
+            <Script
+              id="ga-init"
+              strategy="lazyOnload"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );
 }
+
