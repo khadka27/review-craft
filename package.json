@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build --turbo",
-    "start": "next start -p 3001",
+    "start": "next start -p 3099",
     "lint": "next lint",
     "submit:indexnow": "node scripts/submit-indexnow.mjs"
   },
