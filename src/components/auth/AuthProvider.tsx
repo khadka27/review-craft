@@ -138,6 +138,9 @@ export function AuthProvider({
       setIsAuthenticated(false);
       setUsername(null);
       syncDomAdState(false);
+      if (typeof window !== "undefined") {
+        window.location.href = "/";
+      }
     } catch (err) {
       console.error("Logout request failed:", err);
     } finally {

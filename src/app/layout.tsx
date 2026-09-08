@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/ui/Toast";
 import { AuthProvider } from "@/components/auth/AuthProvider";
+import { AuthGuard } from "@/components/auth/AuthGuard";
 import AdSenseScript from "@/components/auth/AdSenseScript";
 import { SESSION_COOKIE_NAME, verifySessionToken } from "@/lib/auth";
 import "./globals.css";
@@ -145,13 +146,13 @@ export default async function RootLayout({
           initialUsername={username || null}
         >
           <ToastProvider>
-            <Navbar />
-            <div className="flex-1">{children}</div>
-
-            {/* Conditionally loads AdSense script only for public non-authenticated visitors */}
-            <AdSenseScript />
-
-            <Footer />
+            <AuthGuard
+              navbar={<Navbar />}
+              footer={<Footer />}
+              adSense={<AdSenseScript />}
+            >
+              {children}
+            </AuthGuard>
 
             {/* Lazy-loaded Google Analytics to ensure 0 main-thread blocking during initial paint */}
             <Script

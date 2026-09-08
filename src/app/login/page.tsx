@@ -128,14 +128,14 @@ function LoginFormContent() {
 
             <div className="mt-3 flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-white/20 border border-white/30 text-white shadow-sm">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
-              <span>Personal Studio • Ad-Free Mode</span>
+              <span>Office Studio • Secure Portal</span>
             </div>
 
             <h1 className="mt-4 text-2xl sm:text-3xl font-extrabold tracking-tight text-white drop-shadow-sm">
-              Login
+              Office Login
             </h1>
             <p className="mt-1 text-xs text-blue-100/80">
-              Sign in to suppress all ads & access your tools
+              Sign in to access ReviewCraft mockup generators & tools
             </p>
           </div>
 
@@ -149,11 +149,11 @@ function LoginFormContent() {
                   </div>
                   <div className="text-xs">
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-white text-sm">Active Ad-Free Studio</span>
+                      <span className="font-bold text-white text-sm">Active Office Studio</span>
                       <span className="text-[9px] bg-emerald-400/30 text-emerald-200 border border-emerald-400/40 px-2 py-0.5 rounded-full font-bold">ONLINE</span>
                     </div>
                     <p className="mt-1 text-emerald-200/90 leading-relaxed">
-                      Signed in as <span className="font-bold text-white">{username}</span>. All Google AdSense ads, banners, and auto-ads are completely blocked.
+                      Signed in as <span className="font-bold text-white">{username}</span>. Full studio access active with zero ads.
                     </p>
                   </div>
                 </div>
@@ -271,14 +271,12 @@ function LoginFormContent() {
             </form>
           )}
 
-          {/* Bottom Return Link */}
+          {/* Bottom Security Note */}
           <div className="mt-6 pt-4 border-t border-white/20 text-center">
-            <Link
-              href="/"
-              className="text-xs text-blue-100 hover:text-white transition-colors font-medium inline-flex items-center gap-1"
-            >
-              ← Back to ReviewCraft Homepage
-            </Link>
+            <span className="text-[11px] text-blue-100/70 font-medium inline-flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5 text-blue-300 inline" />
+              <span>ReviewCraft Office Workspace • Authorized Access</span>
+            </span>
           </div>
 
         </div>

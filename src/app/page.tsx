@@ -1,24 +1,20 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { cookies } from "next/headers";
 import HomePage from "./home/page";
+import LoginPage from "./login/page";
+import { SESSION_COOKIE_NAME, verifySessionToken } from "@/lib/auth";
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: {
-    absolute: "ReviewCraft — Free Review Generator, Social Proof & UI Mockup Tool",
+    absolute: "Login | ReviewCraft Office Studio",
   },
   description:
-    "Free online review generator & UI mockup maker. Design realistic Google reviews, Amazon ratings, Trustpilot cards, and social proof components in seconds.",
+    "ReviewCraft Office Studio. Free online review generator & UI mockup maker.",
   alternates: {
     canonical: "/",
-  },
-  openGraph: {
-    title: "ReviewCraft — Free Review Generator & UI Prototype Tool",
-    description:
-      "Design realistic review interface mockups, rating cards, and social proof components for UI/UX testing, client presentations, and design demos.",
-    url: "https://www.fakereviewgenerator.com",
-    type: "website",
   },
 };
 
@@ -69,7 +65,16 @@ const softwareSchema = {
     "A browser-based visual prototyping application for creating simulated review UI cards, social proof mockups, and interface design assets.",
 };
 
-export default function Page() {
+export default async function Page() {
+  const cookieStore = await cookies();
+  const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+  const { valid, username } = verifySessionToken(sessionCookie);
+
+  // When opening the site in office branch, directly show login page if not authenticated
+  if (!valid || !username) {
+    return <LoginPage />;
+  }
+
   return (
     <>
       <Script
@@ -86,3 +91,4 @@ export default function Page() {
     </>
   );
 }
+
